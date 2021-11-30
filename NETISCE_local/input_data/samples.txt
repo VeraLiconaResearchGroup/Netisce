@@ -1,0 +1,7 @@
+name	phenotype
+A_1	sensitive
+A_2	sensitive
+A_3	sensitive
+B_1	resistant
+B_2	resistant
+B_3	resistant

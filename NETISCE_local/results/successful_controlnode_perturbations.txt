@@ -1,0 +1,5 @@
+B D up down total
+pert_1 down nochange 0 1 1
+pert_5 nochange up 1 0 1
+pert_0 down down 0 2 2
+pert_2 down up 1 1 2
