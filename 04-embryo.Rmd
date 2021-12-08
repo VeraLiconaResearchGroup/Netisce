@@ -61,7 +61,6 @@ mincol<-apply(d1, 2, min)
 d2<-rbind(maxcol,mincol, d1)
 rownames(d2)[1:2]<- c("Max", "Min")
 
-# Define settings for plotting in a 3x4 grid, with appropriate margins:
 for (i in 4:nrow(d2)) {
   create_beautiful_radarchart(d2[c(1:3, i), ],color = c("#00AFBB", "#E7B800"),caxislabels = seq(round(min(d2[c(1:3, i),]),1),round(max(d2[c(1:3, i),]),1),.2));legend(x=0.4, y=1.4, legend =c("unperturbed","FVS perturbation") , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800") , text.col = "black", cex=1, pt.cex=2)
 par()
