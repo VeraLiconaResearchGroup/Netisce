@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lora&display=swap');
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+.book.font-family-1 {
+  font-family: 'Lato', sans-serif;
+  color: #000000;
+ }
+ h1, h2, h3 {
+  font-family: 'Lora', serif;
+  color: #2f5275;
+}

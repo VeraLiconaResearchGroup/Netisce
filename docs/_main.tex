@@ -113,7 +113,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2021-11-30}
+\date{2021-12-08}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -142,7 +142,9 @@
 \hypertarget{about}{%
 \chapter{About}\label{about}}
 
-Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology.
+Welcome to the NETISCE manual and tutorials.
+
+NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
 
 \hypertarget{installation-and-usage}{%
 \chapter{Installation and Usage}\label{installation-and-usage}}
@@ -152,62 +154,84 @@ Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identifi
 
 NETISCE pipelines can be downloaded from our github repository: \url{https://github.com/veraliconaresearchgroup/netisce}
 
-We recommend that you run NETISCE on a high-performance cluster, as you may potentially generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs (NETISCE\_hpc), and another for running NETISCE on a local machine (NETISCE\_local)
+We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc}{(NETISCE\_hpc)}, and another for running NETISCE on a local machine \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local}{(NETISCE\_local)}.
 
 \hypertarget{install-nextflow}{%
 \section{Install Nextflow}\label{install-nextflow}}
 
-Nextflow is required to run the NETISCE pipeline. Please follow the instructions from \url{https://www.nextflow.io/} (see'Getting Started' steps 1 \& 2) to install Nextflow in the appropriate NETSICE folder (\_local or \_hpc)
+Nextflow is required to run the NETISCE pipeline. Please follow the instructions from \url{https://www.nextflow.io/} (see `Getting Started' steps 1 \& 2) to install Nextflow in the appropriate NETSICE folder (\_local or \_hpc).
 
-\hypertarget{parameters-and-configuration}{%
-\section{Parameters and Configuration}\label{parameters-and-configuration}}
+\hypertarget{docker-image}{%
+\section{Docker Image}\label{docker-image}}
 
-Whether on your local machine or hpc, to run NETISCE you must specify the files and parameters within the .nf file
+\emph{docker image provided here TBD}
+
+\hypertarget{prerequisuites}{%
+\section{Prerequisuites}\label{prerequisuites}}
+
+If you are not using the Docker image, the following packages will need to be installed:
 
 \begin{itemize}
 \tightlist
 \item
-  params.expressions: csv file containing normalized expression data for network nodes in different samples
+  \href{https://scipy.org/install/}{scipy}
 \item
-  params.network: network file (sif format)
+  \href{https://pandas.pydata.org/getting_started.html}{pandas}
 \item
-  params.samples: text file specifying the phenotype for each sample in params.expressions file (tab delimited)
+  \href{https://scikit-learn.org/stable/install.html}{sklearn}
 \item
-  params.internal\_control: text file containing a list of nodes to be used as internal marker nodes
-\item
-  params.alpha: alpha parameter for signal flow analysis (default =0.9)
-\item
-  params.undesired: string of the undesired phenotype (as labeled in the params.samples file)
-\item
-  params.desired: string of the desired phenotype (as labeled in the params.samples file)
-\item
-  params.filter: filtering parameter for criterion 2 (``strict'' or ``relaxed'')
-\item
-  params.kmeans\_min\_val: minimum k-means value for clustering (default=2)
-\item
-  params.kmeans\_max\_val: maximum k-means value for clustering (default=10)
-\item
-  params.num\_nodes: number of nodes in network for which normalized expression data exists (within the params.expressions file)
-\item
-  params.num\_states: number of randomly generated initial states (default=100000, or 3\^{}n where n is the number of network nodes and 3\^{}n is less than 100000)
+  \href{https://www.scikit-yb.org/en/latest/quickstart.html}{yellowbrick}
 \end{itemize}
 
-please see the input\_data folder for examples of files to match the formatting.
+\hypertarget{params}{%
+\section{Parameters and Configuration}\label{params}}
+
+Whether on your local machine or hpc, to run NETISCE you must specify the files and parameters within the \texttt{.nf} file
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{params.expressions}: csv file containing normalized expression data for network nodes in different samples
+\item
+  \textbf{params.network}: network file (sif format)
+\item
+  \textbf{params.samples}: text file specifying the phenotype for each sample in params.expressions file (tab delimited)
+\item
+  \textbf{params.internal\_control}: text file containing a list of nodes to be used as internal marker nodes
+\item
+  \textbf{params.alpha}: alpha parameter for signal flow analysis (default =0.9)
+\item
+  \textbf{params.undesired}: string of the undesired phenotype (as labeled in the params.samples file)
+\item
+  \textbf{params.desired}: string of the desired phenotype (as labeled in the params.samples file)
+\item
+  \textbf{params.filter}: filtering parameter for criterion 2 (``strict'' or ``relaxed'')
+\item
+  \textbf{params.kmeans\_min\_val}: minimum k-means value for clustering (default=2)
+\item
+  \textbf{params.kmeans\_max\_val}: maximum k-means value for clustering (default=10)
+\item
+  \textbf{params.num\_nodes}: number of nodes in network for which normalized expression data exists (within the params.expressions file)
+\item
+  \textbf{params.num\_states}: number of randomly generated initial states (default=100000, or 3\^{}n where n is the number of network nodes and 3\^{}n is less than 100000)
+\end{itemize}
+
+Please see the \textbf{input\_data} folder for examples of files to match the formatting.
 
 \hypertarget{netisce_mutations.nf}{%
 \subsection{NETISCE\_mutations.nf}\label{netisce_mutations.nf}}
 
-If you are interested in including mutational information, please use the NETISCE\_mutations.nf pipeline. You must additionally specify params.mutations: csv file containing mutational configuration for network nodes (0 for loss of function, 1 for gain of function). Please see example in input\_data
+If you are interested in including mutational information, please use the \texttt{NETISCE\_mutations.nf} pipeline. You must additionally specify \texttt{params.mutations}: a csv file containing mutational configuration for network nodes (0 for loss of function, 1 for gain of function). Please see example in \texttt{input\_data} for formatting.
 
 \hypertarget{nextflow.config}{%
 \subsection{nextflow.config}\label{nextflow.config}}
 
-If you are running nextflow on an hpc, please specify your executor, and clusterOptions within the nextflow.config file. Please see \url{https://www.nextflow.io/docs/latest/config.html} for more information
+If you are running nextflow on an hpc, please specify your executor, and clusterOptions within the nextflow.config file. Please see \url{https://www.nextflow.io/docs/latest/config.html} for more information regarding your executor.
 
 \hypertarget{running-netisce}{%
 \section{Running NETISCE}\label{running-netisce}}
 
-Once you have specified the parameters, run NETSICE using the following command
+Once you have specified the parameters, run NETSICE using the following command:
 
 \begin{verbatim}
 ./nextflow run NETISCE.nf -resume ##or NETISCE_mutations.nf if including mutational data
@@ -218,106 +242,580 @@ We recommend using the -resume flag in the case that you change a file or parame
 \hypertarget{netsice-output}{%
 \chapter{NETSICE output}\label{netsice-output}}
 
-Cross-references make it easier for your readers to find and link to elements in your book.
+After the NETISCE computations are complete, the output files will be located in the \texttt{results} folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline's work folder.
 
-\hypertarget{chapters-and-sub-chapters}{%
-\section{Chapters and sub-chapters}\label{chapters-and-sub-chapters}}
+The contents of each file are briefly described below. For more details and to see example outputs, please see the \protect\hyperlink{toy}{Toy Network Examples}.
 
-There are two steps to cross-reference any heading:
+\hypertarget{section-id}{%
+\subsubsection*{exp\_internalmarkers.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{exp\_internalmarkers.txt}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Label the heading: \texttt{\#\ Hello\ world\ \{\#nice-label\}}.
+This file contains the resultant steady state values for the internal marker nodes for the provided experimental samples (those specified in samples.txt) from Signal Flow Analysis.
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Leave the label off if you like the automated heading generated based on your heading title: for example, \texttt{\#\ Hello\ world} = \texttt{\#\ Hello\ world\ \{\#hello-world\}}.
-  \item
-    To label an un-numbered heading, use: \texttt{\#\ Hello\ world\ \{-\#nice-label\}} or \texttt{\{\#\ Hello\ world\ .unnumbered\}}.
-  \end{itemize}
-\item
-  Next, reference the labeled heading anywhere in the text using \texttt{\textbackslash{}@ref(nice-label)}; for example, please see Chapter \ref{cross}.
+\hypertarget{section-id}{%
+\subsubsection*{experimental\_internalmarkers.pdf}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{experimental\_internalmarkers.pdf}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    If you prefer text as the link instead of a numbered reference use: \protect\hyperlink{cross}{any text you want can go here}.
-  \end{itemize}
-\end{enumerate}
+This pdf is a figure of the steady state values for the internal marker nodes for the provided experimental samples. This can be used to verify the validity of the internal marker nodes.
 
-\hypertarget{captioned-figures-and-tables}{%
-\section{Captioned figures and tables}\label{captioned-figures-and-tables}}
+\hypertarget{section-id}{%
+\subsubsection*{elbow.png}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{elbow.png}
 
-Figures and tables \emph{with captions} can also be cross-referenced from elsewhere in your book using \texttt{\textbackslash{}@ref(fig:chunk-label)} and \texttt{\textbackslash{}@ref(tab:chunk-label)}, respectively.
+A graph of the elbow metric for determining the optimal k for k-means.
 
-See Figure \ref{fig:nice-fig}.
+\hypertarget{section-id}{%
+\subsubsection*{silhouette.pdf}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{silhouette.pdf}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{.1}\NormalTok{, }\FloatTok{.1}\NormalTok{))}
-\KeywordTok{plot}\NormalTok{(pressure, }\DataTypeTok{type =} \StringTok{'b'}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+A graph of the silhouette metric for determining the optimal k for k-means.
+
+\hypertarget{section-id}{%
+\subsubsection*{fvs.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{fvs.txt}
+
+This file contains the node names for the FVS used as control nodes for the NETISCE run.
+
+\hypertarget{section-id}{%
+\subsubsection*{crit1perts.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{crit1perts.txt}
+
+This file contains a list of IDs for the control node perturbations that passed criterion 1.
+
+\hypertarget{section-id}{%
+\subsubsection*{pert1\_internal\_markers.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{pert1\_internal\_markers.txt}
+
+This file contains a table of the internal marker node steady state values from control node perturbations whose associated attractors passed the first filtering criterion.
+
+\hypertarget{section-id}{%
+\subsubsection*{successful\_controlnode\_perturbations.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{successful\_controlnode\_perturbations.txt}
+
+This file contains a table of the control node perturbations that pass both the 1st and 2nd filtering criteria. it also contains the number of upregulation,downregulations, and total number of nodes perturbed for each perturbation set.
+
+\hypertarget{toy}{%
+\chapter{Toy Network Examples}\label{toy}}
+
+Here, we will walk through a brief tutorial of a NETISCE run. The files necessary to complete the tutorial are within the \texttt{input\ data} folder of both \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local}{\texttt{NETISCE\_local}} and \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc}{\texttt{NETISCE\_hpc}}.
+The results from these Toy examples can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results}{toy\_example\_results} folder of the main github repository.
+
+\hypertarget{overview}{%
+\section{Overview}\label{overview}}
+
+We will use a simple toy network of 6 nodes and 9 edges.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/nice-fig-1} 
+{\centering \includegraphics[width=0.5\linewidth]{images/toy_network} 
 
 }
 
-\caption{Here is a nice figure!}\label{fig:nice-fig}
+\caption{Simple Toy Network}\label{fig:unnamed-chunk-2}
 \end{figure}
 
-Don't miss Table \ref{tab:nice-tab}.
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+You can find the relevant data files in the \texttt{input\_data} folder.
+
+In this example, we have 2 samples, A and B, with three replicates each (A\_1,A\_2,A\_3, etc).
+The normalized expression data is housed in \texttt{expressions.csv}, and contains normalized expression values for 4 of the network nodes (in this case, node C was not found to be expressed in the samples).
+
+\begin{tabular}{l|r|r|r|r|r|r}
+\hline
+X & A\_1 & A\_2 & A\_3 & B\_1 & B\_2 & B\_3\\
+\hline
+A & 2 & 1 & 2 & 6 & 7 & 6\\
+\hline
+B & 6 & 7 & 6 & 2 & 1 & 1\\
+\hline
+D & -1 & -1 & -2 & 6 & 7 & 6\\
+\hline
+E & 2 & 1 & 2 & 6 & 7 & 6\\
+\hline
+\end{tabular}
+
+The \texttt{samples.txt} file specifies that A is associated to a treatment sensitive phenotype, while B is associated to a resistance phenotype.
+
+\begin{tabular}{l|l}
+\hline
+name & phenotype\\
+\hline
+A\_1 & sensitive\\
+\hline
+A\_2 & sensitive\\
+\hline
+A\_3 & sensitive\\
+\hline
+B\_1 & resistant\\
+\hline
+B\_2 & resistant\\
+\hline
+B\_3 & resistant\\
+\hline
+\end{tabular}
+
+Note that you can use any term to describe the phenotypes. Just be sure to be consistent with the \texttt{param.desried} and \texttt{param.undesired} variables within the Nextflow \texttt{.nf} file.
+
+Lastly, we need to include a list of internal marker nodes. This list is in \texttt{internal\_marker.txt}. For our small network, the internal marker node is \texttt{C}.
+
+\begin{tabular}{l}
+\hline
+C\\
+
+
+\hline
+\end{tabular}
+
+\hypertarget{netisce-run-configuration}{%
+\section{NETISCE run configuration}\label{netisce-run-configuration}}
+
+With all your input data files loaded, next we configure the nextflow run.
+Within either \texttt{NETISCE\_local} or \texttt{NETSICE\_hpc} (\textbf{Note: while we do recommend you run NETISCE on a hpc, this example is small enough to run locally}).
+
+Open up \texttt{NETISCE.nf}. Here, you need to specify the parameters for the Nextflow run on lines 3-19. Please refer to \protect\hyperlink{params}{section 2.5} for parameter definitions.
+
+For this example, your parameters should look like:
+
+\begin{verbatim}
+params.expressions = "$baseDir/input_data/expressions.csv"
+params.network = "$baseDir/input_data/network.sif"
+params.samples = "$baseDir/input_data/samples.txt"
+params.internal_control="$baseDir/input_data/internal_marker.txt"
+params.alpha = 0.9
+params.undesired = 'resistant'
+params.desired = 'sensitive'
+params.filter ="strict"
+
+
+params.kmeans_min_val = 2
+params.kmeans_max_val = 10
+
+
+params.num_nodes = 4 // that have expression data
+params.num_states = 1000
+\end{verbatim}
+
+\textbf{Some Notes: } make sure to include \texttt{\$baseDir} before pointing to the folder containing your input data. Also, be sure that \texttt{params.num\_nodes} is the number of nodes where there exists normalized expression data within \texttt{expression.csv}. Finally, in \texttt{NETISCE.nf}, mutations are not considered, so that like is commented out.
+
+\hypertarget{run-netsice}{%
+\section{Run NETSICE}\label{run-netsice}}
+
+In your terminal/command prompt, navigate to the appropriate NETISCE folder \texttt{\_hpc} or \texttt{local}. To start your run, enter \texttt{./nextflow\ run\ NETISCE.nf\ -resume}.
+While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{images/running_shot} 
+
+}
+
+\caption{Terminal when running NETISCE}\label{fig:unnamed-chunk-6}
+\end{figure}
+
+Once the run has successfully completed, the process will end and the following will be displayed:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{images/completed} 
+
+}
+
+\caption{Terminal when running NETISCE}\label{fig:unnamed-chunk-7}
+\end{figure}
+
+\hypertarget{netsice-results}{%
+\section{NETSICE Results}\label{netsice-results}}
+
+Let's take a look at the results of our NETISCE run, where the goal was to shift the system from the undesired state B, and towards the desired state A. These results can be found in the toy\_example\_1 subfolder of the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results}{toy\_example\_results} folder of the main github repository.
+
+\hypertarget{section-id}{%
+\subsubsection*{exp\_internalmarkers.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{exp\_internalmarkers.txt}
+
+Our internal marker node was node C. In this file we see the steady state values of the node in the A and B sample replicates (the output values from SFA).
+
+\begin{tabular}{l|r}
+\hline
+name & C\\
+\hline
+A\_1 & 0.4278056\\
+\hline
+A\_2 & 0.4802943\\
+\hline
+A\_3 & 0.4361991\\
+\hline
+B\_1 & 0.1590962\\
+\hline
+B\_2 & 0.0982107\\
+\hline
+B\_3 & 0.0935476\\
+\hline
+\end{tabular}
+
+\hypertarget{section-id}{%
+\subsubsection*{experimental\_internalmarkers.pdf}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{experimental\_internalmarkers.pdf}
+
+The above numbers may be a little challenging to read! So, we have included a plot of the values in the\texttt{experimental\_internalmarkers.pdf}:
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{images/expmarkers} 
+
+}
+
+\caption{experimental marker node steady state values}\label{fig:unnamed-chunk-9}
+\end{figure}
+
+On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.
+
+In this example, since there are only 4 network nodes that have normalized expression values, NETISCE generates the maximum number of random initial states, \(3^4\), or 81.
+
+After estimating attractors for the experimental and randomly generated initial states, the resultant attractors were clustered using k-means clustering. The elbow and silhouette metrics are used to determine the optimal number k.
+
+\hypertarget{section-id}{%
+\subsubsection*{elbow.png}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{elbow.png}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{results/elbow} 
+
+}
+
+\caption{elbow metric for optimal k}\label{fig:unnamed-chunk-10}
+\end{figure}
+
+The elbow metric found the optimal number of k clusters to be k=4.
+
+\hypertarget{section-id}{%
+\subsubsection*{silhouette.pdf}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{silhouette.pdf}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{images/silhouette} 
+
+}
+
+\caption{silhouette metric for optimal k}\label{fig:unnamed-chunk-11}
+\end{figure}
+
+The silhouette metric found the optimal number of k clusters to be k=2.
+
+Since the optimal ks identified by the silhouette metric and the elbow metric do not match, NETISCE chooses the smaller k, as long as the phenotypes remain separate (NETISCE checks to make sure this is true).
+
+\hypertarget{section-id}{%
+\subsubsection*{fvs.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{fvs.txt}
+
+This file contains the node names that were identified by the FVS finding algorithm.
+
+\begin{tabular}{l}
+\hline
+name\\
+\hline
+D\\
+\hline
+B\\
+\hline
+\end{tabular}
+
+The FVS finding algorithm identified nodes B and D to be the minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.
+
+\hypertarget{section-id}{%
+\subsubsection*{crit1perts.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{crit1perts.txt}
+
+This file contains a list of IDs for the perturbations to FVS control nodes that passed criterion 1.
+
+\begin{tabular}{l}
+\hline
+V1\\
+\hline
+pert\_0\\
+\hline
+pert\_1\\
+\hline
+pert\_2\\
+\hline
+pert\_4\\
+\hline
+pert\_5\\
+\hline
+pert\_6\\
+\hline
+pert\_7\\
+\hline
+pert\_8\\
+\hline
+\end{tabular}
+
+8 out of the 9 pertrubations passed the machine learning filtering criterion.
+
+\hypertarget{section-id}{%
+\subsubsection*{pert1\_internal\_markers.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{pert1\_internal\_markers.txt}
+
+This file contains a table of the internal marker node state values from control node perturbations whose associated attractors passed the first filtering criterion.
+
+\begin{tabular}{l|r}
+\hline
+name & C\\
+\hline
+pert\_0 & -2.7000000\\
+\hline
+pert\_1 & 1.0209997\\
+\hline
+pert\_2 & 6.3000000\\
+\hline
+pert\_4 & -0.0427445\\
+\hline
+pert\_5 & 6.3000000\\
+\hline
+pert\_6 & -2.7000000\\
+\hline
+pert\_7 & -2.8528056\\
+\hline
+pert\_8 & 6.3000000\\
+\hline
+\end{tabular}
+
+\hypertarget{section-id}{%
+\subsubsection*{successful\_controlnode\_perturbations.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{successful\_controlnode\_perturbations.txt}
+
+This file contains a table of the perturbations on FVS control nodes that passed both the 1st and 2nd filtering criteria. it also contains the number of upregulation,downregulations, and total number of nodes perturbed for each perturbation set.
+
+\begin{tabular}{l|l|l|r|r|r}
+\hline
+  & D & B & up & down & total\\
+\hline
+pert\_1 & down & nochange & 0 & 1 & 1\\
+\hline
+pert\_5 & nochange & up & 1 & 0 & 1\\
+\hline
+pert\_2 & down & up & 1 & 1 & 2\\
+\hline
+pert\_8 & up & up & 2 & 0 & 2\\
+\hline
+\end{tabular}
+
+Here, we see that four perturbations that passed both filtering criteria.
+
+Let's take a quick look at the steady state values for these perturbations, and the attractors generated from the experimental data:
+
+\begin{tabular}{l|l|r}
+\hline
+  & name & C\\
+\hline
+1 & A\_1 & 0.4278056\\
+\hline
+2 & A\_2 & 0.4802943\\
+\hline
+3 & A\_3 & 0.4361991\\
+\hline
+4 & B\_1 & 0.1590962\\
+\hline
+5 & B\_2 & 0.0982107\\
+\hline
+6 & B\_3 & 0.0935476\\
+\hline
+21 & pert\_1 & 1.0209997\\
+\hline
+31 & pert\_2 & 6.3000000\\
+\hline
+51 & pert\_5 & 6.3000000\\
+\hline
+8 & pert\_8 & 6.3000000\\
+\hline
+\end{tabular}
+
+Indeed, we see that the steady-state expression values of node C in the attractors generated by peturbations to the FVS control nodes are all are greater than the steady-state expression values of node C in the attractors generated from the sensitive A sample. A successful reprogramming from resistant (B) to sensitive (A) cells has occurred!
+
+\hypertarget{toy-example-with-mutations}{%
+\section{Toy Example with mutations}\label{toy-example-with-mutations}}
+
+Let's say that in our system, gene A exhibits a loss of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the \texttt{NETISCE\_mutations.nf} pipeline.
+
+First, we must add to our \texttt{input\_data} folder a \texttt{.csv} file containing the mutational profile. Let's call this file \texttt{mutations.csv}:
+
+\begin{tabular}{l|r}
+\hline
+X & A\\
+\hline
+A\_1 & 0\\
+\hline
+A\_2 & 0\\
+\hline
+A\_3 & 0\\
+\hline
+B\_1 & NA\\
+\hline
+B\_2 & NA\\
+\hline
+B\_3 & NA\\
+\hline
+\end{tabular}
+
+The loss of function mutation is encoded with 0 (gain-of-function mutations can be encoded with ``1'').
+
+Next, we make sure that the parameters in \texttt{NETISCE\_mutations.nf} on lines 3-19 are set correctly for the conditions
+
+For this example, your parameters should look like:
+
+\begin{verbatim}
+params.expressions = "$baseDir/input_data/expressions.csv"
+params.network = "$baseDir/input_data/network.sif"
+params.samples = "$baseDir/input_data/samples.txt"
+params.internal_control="$baseDir/input_data/internal_marker.txt"
+params.mutations="$baseDir/input_data/mutations.csv"
+params.alpha = 0.9
+params.undesired = 'resistant'
+params.desired = 'sensitive'
+params.filter ="strict"
+
+
+params.kmeans_min_val = 2
+params.kmeans_max_val = 10
+
+
+params.num_nodes = 4 // that have expression data
+params.num_states = 1000
+\end{verbatim}
+
+Note, the additional parameter \texttt{params.mutations} that points to the \texttt{mutations.csv.}
+
+As above, to run Netisce, enter \texttt{./nextflow\ run\ NETISCE.nf\ -resume}.
+
+\hypertarget{section-id}{%
+\subsubsection*{Results}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{Results}
+
+By including mutational information, the results of NETISCE have changed.These results can be found in the toy\_example\_2 subfolder of the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results}{toy\_example\_results} folder of the main github repository.
+Now, our \texttt{successful\_controlnode\_perturbations.txt} file contains pert\_0 instead of pert\_8
+
+\begin{tabular}{l|l|l|r|r|r}
+\hline
+  & B & D & up & down & total\\
+\hline
+pert\_1 & down & nochange & 0 & 1 & 1\\
+\hline
+pert\_5 & nochange & up & 1 & 0 & 1\\
+\hline
+pert\_0 & down & down & 0 & 2 & 2\\
+\hline
+pert\_2 & down & up & 1 & 1 & 2\\
+\hline
+\end{tabular}
+
+Let's take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states when mutational information is included.
+
+\begin{tabular}{l|r}
+\hline
+name & C\\
+\hline
+A\_1 & -0.6621166\\
+\hline
+B\_1 & 0.1590962\\
+\hline
+pert\_0 & -2.7000000\\
+\hline
+pert\_1 & -2.7000000\\
+\hline
+pert\_2 & -2.7000000\\
+\hline
+pert\_5 & -2.8528056\\
+\hline
+\end{tabular}
+
+Though the values are different in this system with mutations, we still see that the steady-state expression values of node C in the attractors generated by peturbations to the FVS control nodes are all are greater than the steady-state expression values of node C in the attractors generated from the sensitive A sample. A successful reprogramming from resistant (B) to sensitive (A) cells has occurred!
+
+\hypertarget{cell-fate-specification-in-ascidian-embryo}{%
+\chapter{Cell Fate Specification in Ascidian Embryo}\label{cell-fate-specification-in-ascidian-embryo}}
+
+This section contains instructions to reproduce the results of simulating FVS control node perturbations in a model of ascidian embryo cell specification. You can read the original report here: link
+
+The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/ascidian_embryo}{ascidian embryo folder} in the github repository
+
+These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simnulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the \texttt{nextflow.config} file from the directory.
+
+\hypertarget{input-data}{%
+\section{Input Data}\label{input-data}}
+
+The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis.Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.
+We are only interested in performing the 7 perturbations to the 6 FVS control nodes that were experimentally verified to induce cell tissue fates.
+
+\texttt{expression.csv} contains the initial activities for the unperturbed state and the 7 FVS control node perturbations. Here, all simulations have Gata.a and Zic-r.a=1, as the activation of these two genes is required for normal embryonic development.
+
+\texttt{perturbations.csv} contains the specified perturbations for each FVS node in the appropriate perturbation simulation. 0 denotes downregulation, wherease 1 encodes upregulation. If no value is set, then there is no fixed perturbation to the FVS node, as in the unperturbed case.
+
+\texttt{internal-marker-nodes.txt} contains the 7 internal marker nodes used to verify if the specified cell reprogramming had been successfully simulated.
+
+\hypertarget{run-the-simulation}{%
+\section{Run the simulation}\label{run-the-simulation}}
+
+To run the simulation, simply execute the \texttt{ascidian-embryo.nf} file using the following command: \texttt{./nextflow\ run\ ascidian-embryo.nf\ -resume}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+The nextflow pipeline generates 1 result file \texttt{exp\_internalmarkers.txt}, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
+
+\hypertarget{visualizing-results}{%
+\section{Visualizing Results}\label{visualizing-results}}
+
+We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context, a perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor.
+
+The following code for generating radar plots was adapted from \href{https://www.google.com/search?q=create+_beautiful_+radar+chart\&oq=create+beautiful+rada\&aqs=chrome.1.69i57j0i10i22i30.11973j0j1\&sourceid=chrome\&ie=UTF-8}{datanovia.com} is used to generate the radar charts.
+\textbf{Note: } you may need to adjust the formatting of \texttt{exp\_internalmarkers.txt} so that the strings within quotations are placed into one column.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}
-  \KeywordTok{head}\NormalTok{(pressure, }\DecValTok{10}\NormalTok{), }\DataTypeTok{caption =} \StringTok{'Here is a nice table!'}\NormalTok{,}
-  \DataTypeTok{booktabs =} \OtherTok{TRUE}
-\NormalTok{)}
+\NormalTok{create_beautiful_radarchart <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(data, }\DataTypeTok{color =} \StringTok{"#00AFBB"}\NormalTok{, }
+                                        \DataTypeTok{vlabels =} \KeywordTok{colnames}\NormalTok{(data), }\DataTypeTok{vlcex =} \DecValTok{1}\NormalTok{,}
+                                        \DataTypeTok{caxislabels =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(data)[}\DecValTok{4}\NormalTok{], ...)\{}
+  \KeywordTok{radarchart}\NormalTok{(}
+\NormalTok{    data, }\DataTypeTok{axistype =} \DecValTok{1}\NormalTok{,}
+    \CommentTok{# Customize the polygon}
+    \DataTypeTok{pcol =}\NormalTok{ color, }\DataTypeTok{pfcol =}\NormalTok{ scales}\OperatorTok{::}\KeywordTok{alpha}\NormalTok{(color, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{plwd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{plty =} \DecValTok{1}\NormalTok{,}
+    \CommentTok{# Customize the grid}
+    \DataTypeTok{cglcol =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{cglty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{cglwd =} \FloatTok{0.8}\NormalTok{,}
+    \CommentTok{# Customize the axis}
+    \DataTypeTok{axislabcol =} \StringTok{"grey"}\NormalTok{, }
+    \CommentTok{# Variable labels}
+    \DataTypeTok{vlcex =}\NormalTok{ vlcex, }\DataTypeTok{vlabels =}\NormalTok{ vlabels,}
+    \DataTypeTok{title =}\NormalTok{ title,}
+    \DataTypeTok{centerzero =}\NormalTok{ F,}
+    \DataTypeTok{caxislabels =}\NormalTok{ caxislabels}
+\NormalTok{  )}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{table}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(fmsb)}
+\NormalTok{d1<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ascidian_embryo/results/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{,}\DataTypeTok{check.names =}\NormalTok{ F)}
 
-\caption{\label{tab:nice-tab}Here is a nice table!}
-\centering
-\begin{tabular}[t]{rr}
-\toprule
-temperature & pressure\\
-\midrule
-0 & 0.0002\\
-20 & 0.0012\\
-40 & 0.0060\\
-60 & 0.0300\\
-80 & 0.0900\\
-\addlinespace
-100 & 0.2700\\
-120 & 0.7500\\
-140 & 1.8500\\
-160 & 4.2000\\
-180 & 8.8000\\
-\bottomrule
-\end{tabular}
-\end{table}
+\NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
+\NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
 
-\hypertarget{toy-network-examples}{%
-\chapter{Toy Network Examples}\label{toy-network-examples}}
+\NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
+\KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
 
-You can add parts to organize one or more book chapters together. Parts can be inserted at the top of an .Rmd file, before the first-level chapter heading in that same file.
+\CommentTok{# Define settings for plotting in a 3x4 grid, with appropriate margins:}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{4}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
+  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{))}
+  \KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\StringTok{"unperturbed"}\NormalTok{,}\StringTok{"FVS perturbation"}\NormalTok{) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
 
-Add a numbered part: \texttt{\#\ (PART)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
 
-Add an unnumbered part: \texttt{\#\ (PART\textbackslash{}*)\ Act\ one\ \{-\}} (followed by \texttt{\#\ A\ chapter})
-
-Add an appendix as a special kind of un-numbered part: \texttt{\#\ (APPENDIX)\ Other\ stuff\ \{-\}} (followed by \texttt{\#\ A\ chapter}). Chapters in an appendix are prepended with letters instead of numbers.
-
-\hypertarget{cell-fate-specification-example}{%
-\chapter{Cell Fate Specification Example}\label{cell-fate-specification-example}}
+\includegraphics{_main_files/figure-latex/ascidian embryo radar plots-1.pdf} \includegraphics{_main_files/figure-latex/ascidian embryo radar plots-2.pdf} \includegraphics{_main_files/figure-latex/ascidian embryo radar plots-3.pdf} \includegraphics{_main_files/figure-latex/ascidian embryo radar plots-4.pdf} \includegraphics{_main_files/figure-latex/ascidian embryo radar plots-5.pdf} \includegraphics{_main_files/figure-latex/ascidian embryo radar plots-6.pdf} \includegraphics{_main_files/figure-latex/ascidian embryo radar plots-7.pdf}
 
 \hypertarget{pluripotent-stem-cell-example}{%
 \chapter{Pluripotent Stem Cell Example}\label{pluripotent-stem-cell-example}}
