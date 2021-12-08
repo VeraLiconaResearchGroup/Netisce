@@ -1,34 +1,29 @@
 # NETSICE output 
 
-Cross-references make it easier for your readers to find and link to elements in your book.
+After the NETISCE computations are complete, the output files will be located in the `results` folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline's work folder. 
 
-## Chapters and sub-chapters
+The contents of each file are briefly described below. For more details and to see example outputs, please see the [Toy Network Examples](#toy).
 
-There are two steps to cross-reference any heading:
+#### exp_internalmarkers.txt {-#section-id}
+This file contains the resultant steady state values for the internal marker nodes for the provided experimental samples (those specified in samples.txt) from Signal Flow Analysis.
 
-1. Label the heading: `# Hello world {#nice-label}`. 
-    - Leave the label off if you like the automated heading generated based on your heading title: for example, `# Hello world` = `# Hello world {#hello-world}`.
-    - To label an un-numbered heading, use: `# Hello world {-#nice-label}` or `{# Hello world .unnumbered}`.
+#### experimental_internalmarkers.pdf {-#section-id}
+This pdf is a figure of the steady state values for the internal marker nodes for the provided experimental samples. This can be used to verify the validity of the internal marker nodes.
 
-1. Next, reference the labeled heading anywhere in the text using `\@ref(nice-label)`; for example, please see Chapter \@ref(cross). 
-    - If you prefer text as the link instead of a numbered reference use: [any text you want can go here](#cross).
+#### elbow.png  {-#section-id}
+A graph of the elbow metric for determining the optimal k for k-means.
 
-## Captioned figures and tables
+#### silhouette.pdf  {-#section-id}
+A graph of the silhouette metric for determining the optimal k for k-means.
 
-Figures and tables *with captions* can also be cross-referenced from elsewhere in your book using `\@ref(fig:chunk-label)` and `\@ref(tab:chunk-label)`, respectively.
+#### fvs.txt  {-#section-id}
+This file contains the node names for the FVS used as control nodes for the NETISCE run.
 
-See Figure \@ref(fig:nice-fig).
+#### crit1perts.txt  {-#section-id}
+This file contains a list of IDs for the control node perturbations that passed criterion 1.
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center', fig.alt='Plot with connected points showing that vapor pressure of mercury increases exponentially as temperature increases.'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
+#### pert1_internal_markers.txt  {-#section-id}
+This file contains a table of the internal marker node steady state  values from control node perturbations whose associated attractors passed the first filtering criterion. 
 
-Don't miss Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(pressure, 10), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
+#### successful_controlnode_perturbations.txt  {-#section-id}
+This file contains a table of the control node perturbations that pass both the 1st and 2nd filtering criteria. it also contains the number of upregulation,downregulations, and total number of nodes perturbed for each perturbation set. 

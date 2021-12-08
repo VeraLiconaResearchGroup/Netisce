@@ -3,45 +3,58 @@
 
 ## Download NETISCE
 
-NETISCE pipelines can be downloaded from our github repository: <https://github.com/veraliconaresearchgroup/netisce>
+NETISCE pipelines can be downloaded from our github repository:  <https://github.com/veraliconaresearchgroup/netisce>
 
-We recommend that you run NETISCE on a high-performance cluster, as you may potentially generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs (NETISCE_hpc), and another for running NETISCE on a local machine (NETISCE_local)
+We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs [(NETISCE_hpc)](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc), and another for running NETISCE on a local machine [(NETISCE_local)](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local).
 
 ## Install Nextflow
 
-Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETSICE folder (_local or _hpc)
+Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see 'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETSICE folder (_local or _hpc).
 
-## Parameters and Configuration
+## Docker Image
+
+*docker image provided here TBD*
+
+## Prerequisuites
+
+If you are not using the Docker image, the following packages will need to be installed:
+
+- [scipy](https://scipy.org/install/)
+- [pandas](https://pandas.pydata.org/getting_started.html)
+- [sklearn](https://scikit-learn.org/stable/install.html)
+- [yellowbrick](https://www.scikit-yb.org/en/latest/quickstart.html)
+
+## Parameters and Configuration {#params}
 
 
-Whether on your local machine or hpc, to run NETISCE you must specify the files and parameters within the .nf file
+Whether on your local machine or hpc, to run NETISCE you must specify the files and parameters within the  `.nf` file
 
-- params.expressions: csv file containing normalized expression data for network nodes in different samples
-- params.network: network file (sif format)
-- params.samples: text file specifying the phenotype for each sample in params.expressions file (tab delimited)
-- params.internal_control: text file containing a list of nodes to be used as internal marker nodes
-- params.alpha: alpha parameter for signal flow analysis (default =0.9)
-- params.undesired: string of the undesired phenotype (as labeled in the params.samples file)
-- params.desired: string of the desired phenotype (as labeled in the params.samples file)
-- params.filter: filtering parameter for criterion 2 ("strict" or "relaxed")
-- params.kmeans_min_val: minimum k-means value for clustering (default=2)
-- params.kmeans_max_val:  maximum k-means value for clustering (default=10)
-- params.num_nodes: number of nodes in network for which normalized expression data exists (within the params.expressions file)
-- params.num_states: number of randomly generated initial states (default=100000, or 3^n where n is the number of network nodes and 3^n is less than 100000)
+- **params.expressions**: csv file containing normalized expression data for network nodes in different samples
+- **params.network**: network file (sif format)
+- **params.samples**: text file specifying the phenotype for each sample in params.expressions file (tab delimited)
+- **params.internal_control**: text file containing a list of nodes to be used as internal marker nodes
+- **params.alpha**: alpha parameter for signal flow analysis (default =0.9)
+- **params.undesired**: string of the undesired phenotype (as labeled in the params.samples file)
+- **params.desired**: string of the desired phenotype (as labeled in the params.samples file)
+- **params.filter**: filtering parameter for criterion 2 ("strict" or "relaxed")
+- **params.kmeans_min_val**: minimum k-means value for clustering (default=2)
+- **params.kmeans_max_val**:  maximum k-means value for clustering (default=10)
+- **params.num_nodes**: number of nodes in network for which normalized expression data exists (within the params.expressions file)
+- **params.num_states**: number of randomly generated initial states (default=100000, or 3^n where n is the number of network nodes and 3^n is less than 100000)
 
-please see the input_data folder for examples of files to match the formatting. 
+Please see the **input_data** folder for examples of files to match the formatting. 
 
 ### NETISCE_mutations.nf
 
-If you are interested in including mutational information, please use the NETISCE_mutations.nf pipeline. You must additionally specify params.mutations: csv file containing mutational configuration for network nodes (0 for loss of function, 1 for gain of function). Please see example in input_data
+If you are interested in including mutational information, please use the `NETISCE_mutations.nf` pipeline. You must additionally specify `params.mutations`: a csv file containing mutational configuration for network nodes (0 for loss of function, 1 for gain of function). Please see example in `input_data` for formatting.
 
 ### nextflow.config
 
-If you are running nextflow on an hpc, please specify your executor, and clusterOptions within the nextflow.config file. Please see <https://www.nextflow.io/docs/latest/config.html> for more information
+If you are running nextflow on an hpc, please specify your executor, and clusterOptions within the nextflow.config file. Please see <https://www.nextflow.io/docs/latest/config.html> for more information regarding your executor.
 
 ## Running NETISCE
 
-Once you have specified the parameters, run NETSICE using the following command 
+Once you have specified the parameters, run NETSICE using the following command: 
 ``` 
 ./nextflow run NETISCE.nf -resume ##or NETISCE_mutations.nf if including mutational data
 

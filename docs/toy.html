@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Toy Network Examples | NETISCE Manual and Tutorials</title>
+  <meta name="description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Toy Network Examples | NETISCE Manual and Tutorials" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://laurenpmarazzi.github.io/Netisce/" />
+  <meta property="og:image" content="https://laurenpmarazzi.github.io/Netisce/images/test.jpeg" />
+  <meta property="og:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology." />
+  <meta name="github-repo" content="https://github.com/veraliconaresearchgroup/netisce" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Toy Network Examples | NETISCE Manual and Tutorials" />
+  
+  <meta name="twitter:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology." />
+  <meta name="twitter:image" content="https://laurenpmarazzi.github.io/Netisce/images/test.jpeg" />
+
+<meta name="author" content="Lauren Marazzi" />
+
+
+<meta name="date" content="2021-12-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="netsice-output.html"/>
+<link rel="next" href="cell-fate-specification-in-ascidian-embryo.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">NETISCE manual and tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="installation-and-usage.html"><a href="installation-and-usage.html"><i class="fa fa-check"></i><b>2</b> Installation and Usage</a><ul>
+<li class="chapter" data-level="2.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#download-netisce"><i class="fa fa-check"></i><b>2.1</b> Download NETISCE</a></li>
+<li class="chapter" data-level="2.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#install-nextflow"><i class="fa fa-check"></i><b>2.2</b> Install Nextflow</a></li>
+<li class="chapter" data-level="2.3" data-path="installation-and-usage.html"><a href="installation-and-usage.html#docker-image"><i class="fa fa-check"></i><b>2.3</b> Docker Image</a></li>
+<li class="chapter" data-level="2.4" data-path="installation-and-usage.html"><a href="installation-and-usage.html#prerequisuites"><i class="fa fa-check"></i><b>2.4</b> Prerequisuites</a></li>
+<li class="chapter" data-level="2.5" data-path="installation-and-usage.html"><a href="installation-and-usage.html#params"><i class="fa fa-check"></i><b>2.5</b> Parameters and Configuration</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#netisce_mutations.nf"><i class="fa fa-check"></i><b>2.5.1</b> NETISCE_mutations.nf</a></li>
+<li class="chapter" data-level="2.5.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#nextflow.config"><i class="fa fa-check"></i><b>2.5.2</b> nextflow.config</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="installation-and-usage.html"><a href="installation-and-usage.html#running-netisce"><i class="fa fa-check"></i><b>2.6</b> Running NETISCE</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="netsice-output.html"><a href="netsice-output.html"><i class="fa fa-check"></i><b>3</b> NETSICE output</a></li>
+<li class="chapter" data-level="4" data-path="toy.html"><a href="toy.html"><i class="fa fa-check"></i><b>4</b> Toy Network Examples</a><ul>
+<li class="chapter" data-level="4.1" data-path="toy.html"><a href="toy.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="toy.html"><a href="toy.html#data"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="toy.html"><a href="toy.html#netisce-run-configuration"><i class="fa fa-check"></i><b>4.3</b> NETISCE run configuration</a></li>
+<li class="chapter" data-level="4.4" data-path="toy.html"><a href="toy.html#run-netsice"><i class="fa fa-check"></i><b>4.4</b> Run NETSICE</a></li>
+<li class="chapter" data-level="4.5" data-path="toy.html"><a href="toy.html#netsice-results"><i class="fa fa-check"></i><b>4.5</b> NETSICE Results</a></li>
+<li class="chapter" data-level="4.6" data-path="toy.html"><a href="toy.html#toy-example-with-mutations"><i class="fa fa-check"></i><b>4.6</b> Toy Example with mutations</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html"><i class="fa fa-check"></i><b>5</b> Cell Fate Specification in Ascidian Embryo</a><ul>
+<li class="chapter" data-level="5.1" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#input-data"><i class="fa fa-check"></i><b>5.1</b> Input Data</a></li>
+<li class="chapter" data-level="5.2" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#run-the-simulation"><i class="fa fa-check"></i><b>5.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="5.3" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#results"><i class="fa fa-check"></i><b>5.3</b> Results</a></li>
+<li class="chapter" data-level="5.4" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#visualizing-results"><i class="fa fa-check"></i><b>5.4</b> Visualizing Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html"><i class="fa fa-check"></i><b>6</b> Pluripotent Stem Cell Example</a></li>
+<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>8</b> Footnotes and citations</a><ul>
+<li class="chapter" data-level="8.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>8.1</b> Footnotes</a></li>
+<li class="chapter" data-level="8.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>8.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>9</b> Blocks</a><ul>
+<li class="chapter" data-level="9.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>9.1</b> Equations</a></li>
+<li class="chapter" data-level="9.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>9.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="9.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>9.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>10</b> Sharing your book</a><ul>
+<li class="chapter" data-level="10.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>10.1</b> Publishing</a></li>
+<li class="chapter" data-level="10.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>10.2</b> 404 pages</a></li>
+<li class="chapter" data-level="10.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>10.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NETISCE Manual and Tutorials</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="toy" class="section level1">
+<h1><span class="header-section-number">4</span> Toy Network Examples</h1>
+<p>Here, we will walk through a brief tutorial of a NETISCE run. The files necessary to complete the tutorial are within the <code>input data</code> folder of both <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local"><code>NETISCE_local</code></a> and <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc"><code>NETISCE_hpc</code></a>.
+The results from these Toy examples can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results">toy_example_results</a> folder of the main github repository.</p>
+<div id="overview" class="section level2">
+<h2><span class="header-section-number">4.1</span> Overview</h2>
+We will use a simple toy network of 6 nodes and 9 edges.
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="images/toy_network.png" alt="Simple Toy Network" width="50%" />
+<p class="caption">
+Figure 4.1: Simple Toy Network
+</p>
+</div>
+</div>
+<div id="data" class="section level2">
+<h2><span class="header-section-number">4.2</span> Data</h2>
+<p>You can find the relevant data files in the <code>input_data</code> folder.</p>
+<p>In this example, we have 2 samples, A and B, with three replicates each (A_1,A_2,A_3, etc).
+The normalized expression data is housed in <code>expressions.csv</code>, and contains normalized expression values for 4 of the network nodes (in this case, node C was not found to be expressed in the samples).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">X</th>
+<th align="right">A_1</th>
+<th align="right">A_2</th>
+<th align="right">A_3</th>
+<th align="right">B_1</th>
+<th align="right">B_2</th>
+<th align="right">B_3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">D</td>
+<td align="right">-1</td>
+<td align="right">-1</td>
+<td align="right">-2</td>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">E</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="right">6</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>samples.txt</code> file specifies that A is associated to a treatment sensitive phenotype, while B is associated to a resistance phenotype.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="left">phenotype</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A_1</td>
+<td align="left">sensitive</td>
+</tr>
+<tr class="even">
+<td align="left">A_2</td>
+<td align="left">sensitive</td>
+</tr>
+<tr class="odd">
+<td align="left">A_3</td>
+<td align="left">sensitive</td>
+</tr>
+<tr class="even">
+<td align="left">B_1</td>
+<td align="left">resistant</td>
+</tr>
+<tr class="odd">
+<td align="left">B_2</td>
+<td align="left">resistant</td>
+</tr>
+<tr class="even">
+<td align="left">B_3</td>
+<td align="left">resistant</td>
+</tr>
+</tbody>
+</table>
+<p>Note that you can use any term to describe the phenotypes. Just be sure to be consistent with the <code>param.desried</code> and <code>param.undesired</code> variables within the Nextflow <code>.nf</code> file.</p>
+<p>Lastly, we need to include a list of internal marker nodes. This list is in <code>internal_marker.txt</code>. For our small network, the internal marker node is <code>C</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">C</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+<div id="netisce-run-configuration" class="section level2">
+<h2><span class="header-section-number">4.3</span> NETISCE run configuration</h2>
+<p>With all your input data files loaded, next we configure the nextflow run.
+Within either <code>NETISCE_local</code> or <code>NETSICE_hpc</code> (<strong>Note: while we do recommend you run NETISCE on a hpc, this example is small enough to run locally</strong>).</p>
+<p>Open up <code>NETISCE.nf</code>. Here, you need to specify the parameters for the Nextflow run on lines 3-19. Please refer to <a href="installation-and-usage.html#params">section 2.5</a> for parameter definitions.</p>
+<p>For this example, your parameters should look like:</p>
+<pre><code>params.expressions = &quot;$baseDir/input_data/expressions.csv&quot;
+params.network = &quot;$baseDir/input_data/network.sif&quot;
+params.samples = &quot;$baseDir/input_data/samples.txt&quot;
+params.internal_control=&quot;$baseDir/input_data/internal_marker.txt&quot;
+params.alpha = 0.9
+params.undesired = &#39;resistant&#39;
+params.desired = &#39;sensitive&#39;
+params.filter =&quot;strict&quot;
+
+
+params.kmeans_min_val = 2
+params.kmeans_max_val = 10
+
+
+params.num_nodes = 4 // that have expression data
+params.num_states = 1000</code></pre>
+<p><strong>Some Notes: </strong> make sure to include <code>$baseDir</code> before pointing to the folder containing your input data. Also, be sure that <code>params.num_nodes</code> is the number of nodes where there exists normalized expression data within <code>expression.csv</code>. Finally, in <code>NETISCE.nf</code>, mutations are not considered, so that like is commented out.</p>
+</div>
+<div id="run-netsice" class="section level2">
+<h2><span class="header-section-number">4.4</span> Run NETSICE</h2>
+In your terminal/command prompt, navigate to the appropriate NETISCE folder <code>_hpc</code> or <code>local</code>. To start your run, enter <code>./nextflow run NETISCE.nf -resume</code>.
+While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="images/running_shot.png" alt="Terminal when running NETISCE" width="50%" />
+<p class="caption">
+Figure 4.2: Terminal when running NETISCE
+</p>
+</div>
+Once the run has successfully completed, the process will end and the following will be displayed:
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="images/completed.png" alt="Terminal when running NETISCE" width="50%" />
+<p class="caption">
+Figure 4.3: Terminal when running NETISCE
+</p>
+</div>
+</div>
+<div id="netsice-results" class="section level2">
+<h2><span class="header-section-number">4.5</span> NETSICE Results</h2>
+<p>Let’s take a look at the results of our NETISCE run, where the goal was to shift the system from the undesired state B, and towards the desired state A. These results can be found in the toy_example_1 subfolder of the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results">toy_example_results</a> folder of the main github repository.</p>
+<div id="section-id" class="section level4 unnumbered">
+<h4>exp_internalmarkers.txt</h4>
+<p>Our internal marker node was node C. In this file we see the steady state values of the node in the A and B sample replicates (the output values from SFA).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A_1</td>
+<td align="right">0.4278056</td>
+</tr>
+<tr class="even">
+<td align="left">A_2</td>
+<td align="right">0.4802943</td>
+</tr>
+<tr class="odd">
+<td align="left">A_3</td>
+<td align="right">0.4361991</td>
+</tr>
+<tr class="even">
+<td align="left">B_1</td>
+<td align="right">0.1590962</td>
+</tr>
+<tr class="odd">
+<td align="left">B_2</td>
+<td align="right">0.0982107</td>
+</tr>
+<tr class="even">
+<td align="left">B_3</td>
+<td align="right">0.0935476</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>experimental_internalmarkers.pdf</h4>
+The above numbers may be a little challenging to read! So, we have included a plot of the values in the<code>experimental_internalmarkers.pdf</code>:
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<img src="images/expmarkers.png" alt="experimental marker node steady state values" width="50%" />
+<p class="caption">
+Figure 4.4: experimental marker node steady state values
+</p>
+</div>
+<p>On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.</p>
+<p>In this example, since there are only 4 network nodes that have normalized expression values, NETISCE generates the maximum number of random initial states, <span class="math inline">\(3^4\)</span>, or 81.</p>
+<p>After estimating attractors for the experimental and randomly generated initial states, the resultant attractors were clustered using k-means clustering. The elbow and silhouette metrics are used to determine the optimal number k.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>elbow.png</h4>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="results/elbow.png" alt="elbow metric for optimal k" width="50%" />
+<p class="caption">
+Figure 4.5: elbow metric for optimal k
+</p>
+</div>
+<p>The elbow metric found the optimal number of k clusters to be k=4.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>silhouette.pdf</h4>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="images/silhouette.png" alt="silhouette metric for optimal k" width="50%" />
+<p class="caption">
+Figure 4.6: silhouette metric for optimal k
+</p>
+</div>
+<p>The silhouette metric found the optimal number of k clusters to be k=2.</p>
+<p>Since the optimal ks identified by the silhouette metric and the elbow metric do not match, NETISCE chooses the smaller k, as long as the phenotypes remain separate (NETISCE checks to make sure this is true).</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>fvs.txt</h4>
+<p>This file contains the node names that were identified by the FVS finding algorithm.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">D</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+</tr>
+</tbody>
+</table>
+<p>The FVS finding algorithm identified nodes B and D to be the minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>crit1perts.txt</h4>
+<p>This file contains a list of IDs for the perturbations to FVS control nodes that passed criterion 1.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">V1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">pert_0</td>
+</tr>
+<tr class="even">
+<td align="left">pert_1</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_2</td>
+</tr>
+<tr class="even">
+<td align="left">pert_4</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_5</td>
+</tr>
+<tr class="even">
+<td align="left">pert_6</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_7</td>
+</tr>
+<tr class="even">
+<td align="left">pert_8</td>
+</tr>
+</tbody>
+</table>
+<p>8 out of the 9 pertrubations passed the machine learning filtering criterion.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>pert1_internal_markers.txt</h4>
+<p>This file contains a table of the internal marker node state values from control node perturbations whose associated attractors passed the first filtering criterion.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">pert_0</td>
+<td align="right">-2.7000000</td>
+</tr>
+<tr class="even">
+<td align="left">pert_1</td>
+<td align="right">1.0209997</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_2</td>
+<td align="right">6.3000000</td>
+</tr>
+<tr class="even">
+<td align="left">pert_4</td>
+<td align="right">-0.0427445</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_5</td>
+<td align="right">6.3000000</td>
+</tr>
+<tr class="even">
+<td align="left">pert_6</td>
+<td align="right">-2.7000000</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_7</td>
+<td align="right">-2.8528056</td>
+</tr>
+<tr class="even">
+<td align="left">pert_8</td>
+<td align="right">6.3000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>successful_controlnode_perturbations.txt</h4>
+<p>This file contains a table of the perturbations on FVS control nodes that passed both the 1st and 2nd filtering criteria. it also contains the number of upregulation,downregulations, and total number of nodes perturbed for each perturbation set.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">D</th>
+<th align="left">B</th>
+<th align="right">up</th>
+<th align="right">down</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">pert_1</td>
+<td align="left">down</td>
+<td align="left">nochange</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">pert_5</td>
+<td align="left">nochange</td>
+<td align="left">up</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_2</td>
+<td align="left">down</td>
+<td align="left">up</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">pert_8</td>
+<td align="left">up</td>
+<td align="left">up</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>Here, we see that four perturbations that passed both filtering criteria.</p>
+<p>Let’s take a quick look at the steady state values for these perturbations, and the attractors generated from the experimental data:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">name</th>
+<th align="right">C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">A_1</td>
+<td align="right">0.4278056</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">A_2</td>
+<td align="right">0.4802943</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">A_3</td>
+<td align="right">0.4361991</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">B_1</td>
+<td align="right">0.1590962</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">B_2</td>
+<td align="right">0.0982107</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">B_3</td>
+<td align="right">0.0935476</td>
+</tr>
+<tr class="odd">
+<td align="left">21</td>
+<td align="left">pert_1</td>
+<td align="right">1.0209997</td>
+</tr>
+<tr class="even">
+<td align="left">31</td>
+<td align="left">pert_2</td>
+<td align="right">6.3000000</td>
+</tr>
+<tr class="odd">
+<td align="left">51</td>
+<td align="left">pert_5</td>
+<td align="right">6.3000000</td>
+</tr>
+<tr class="even">
+<td align="left">8</td>
+<td align="left">pert_8</td>
+<td align="right">6.3000000</td>
+</tr>
+</tbody>
+</table>
+<p>Indeed, we see that the steady-state expression values of node C in the attractors generated by peturbations to the FVS control nodes are all are greater than the steady-state expression values of node C in the attractors generated from the sensitive A sample. A successful reprogramming from resistant (B) to sensitive (A) cells has occurred!</p>
+</div>
+</div>
+<div id="toy-example-with-mutations" class="section level2">
+<h2><span class="header-section-number">4.6</span> Toy Example with mutations</h2>
+<p>Let’s say that in our system, gene A exhibits a loss of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the <code>NETISCE_mutations.nf</code> pipeline.</p>
+<p>First, we must add to our <code>input_data</code> folder a <code>.csv</code> file containing the mutational profile. Let’s call this file <code>mutations.csv</code>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">X</th>
+<th align="right">A</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A_1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">A_2</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">A_3</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">B_1</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">B_2</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">B_3</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<p>The loss of function mutation is encoded with 0 (gain-of-function mutations can be encoded with “1”).</p>
+<p>Next, we make sure that the parameters in <code>NETISCE_mutations.nf</code> on lines 3-19 are set correctly for the conditions</p>
+<p>For this example, your parameters should look like:</p>
+<pre><code>params.expressions = &quot;$baseDir/input_data/expressions.csv&quot;
+params.network = &quot;$baseDir/input_data/network.sif&quot;
+params.samples = &quot;$baseDir/input_data/samples.txt&quot;
+params.internal_control=&quot;$baseDir/input_data/internal_marker.txt&quot;
+params.mutations=&quot;$baseDir/input_data/mutations.csv&quot;
+params.alpha = 0.9
+params.undesired = &#39;resistant&#39;
+params.desired = &#39;sensitive&#39;
+params.filter =&quot;strict&quot;
+
+
+params.kmeans_min_val = 2
+params.kmeans_max_val = 10
+
+
+params.num_nodes = 4 // that have expression data
+params.num_states = 1000</code></pre>
+<p>Note, the additional parameter <code>params.mutations</code> that points to the <code>mutations.csv.</code></p>
+<p>As above, to run Netisce, enter <code>./nextflow run NETISCE.nf -resume</code>.</p>
+<div id="section-id" class="section level4 unnumbered">
+<h4>Results</h4>
+<p>By including mutational information, the results of NETISCE have changed.These results can be found in the toy_example_2 subfolder of the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results">toy_example_results</a> folder of the main github repository.
+Now, our <code>successful_controlnode_perturbations.txt</code> file contains pert_0 instead of pert_8</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">B</th>
+<th align="left">D</th>
+<th align="right">up</th>
+<th align="right">down</th>
+<th align="right">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">pert_1</td>
+<td align="left">down</td>
+<td align="left">nochange</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">pert_5</td>
+<td align="left">nochange</td>
+<td align="left">up</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_0</td>
+<td align="left">down</td>
+<td align="left">down</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">pert_2</td>
+<td align="left">down</td>
+<td align="left">up</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states when mutational information is included.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A_1</td>
+<td align="right">-0.6621166</td>
+</tr>
+<tr class="even">
+<td align="left">B_1</td>
+<td align="right">0.1590962</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_0</td>
+<td align="right">-2.7000000</td>
+</tr>
+<tr class="even">
+<td align="left">pert_1</td>
+<td align="right">-2.7000000</td>
+</tr>
+<tr class="odd">
+<td align="left">pert_2</td>
+<td align="right">-2.7000000</td>
+</tr>
+<tr class="even">
+<td align="left">pert_5</td>
+<td align="right">-2.8528056</td>
+</tr>
+</tbody>
+</table>
+<p>Though the values are different in this system with mutations, we still see that the steady-state expression values of node C in the attractors generated by peturbations to the FVS control nodes are all are greater than the steady-state expression values of node C in the attractors generated from the sensitive A sample. A successful reprogramming from resistant (B) to sensitive (A) cells has occurred!</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="netsice-output.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cell-fate-specification-in-ascidian-embryo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-example.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
