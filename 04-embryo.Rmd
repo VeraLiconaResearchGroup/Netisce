@@ -51,7 +51,7 @@ create_beautiful_radarchart <- function(data, color = "#00AFBB",
 ```
 
 
-```{r out.width='50%', fig.align='center',echo = TRUE,fig.show='hold'}
+```{r charts,out.width='50%', fig.align='center',echo = TRUE,fig.show='hold'}
 library(fmsb)
 d1<-read.delim("ascidian_embryo/results/exp_internalmarkers.txt",sep="\t",row.names = 1,check.names = F)
 
