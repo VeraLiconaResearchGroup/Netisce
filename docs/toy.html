@@ -4,22 +4,22 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Toy Network Examples | _main.knit</title>
-  <meta name="description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology." />
+  <title>4 Toy Network Examples | NETISCE Manual and Tutorials</title>
+  <meta name="description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Toy Network Examples | _main.knit" />
+  <meta property="og:title" content="4 Toy Network Examples | NETISCE Manual and Tutorials" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://laurenpmarazzi.github.io/Netisce/" />
-  <meta property="og:image" content="https://laurenpmarazzi.github.io/Netisce/images/netisce-logo.png" />
-  <meta property="og:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology." />
+  <meta property="og:url" content="https://veraliconaresearchgroup.github.io/Netisce/" />
+  <meta property="og:image" content="https://veraliconaresearchgroup.github.io/Netisce/images/netisce-logo.png" />
+  <meta property="og:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
   <meta name="github-repo" content="https://github.com/veraliconaresearchgroup/netisce" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Toy Network Examples | _main.knit" />
+  <meta name="twitter:title" content="4 Toy Network Examples | NETISCE Manual and Tutorials" />
   
-  <meta name="twitter:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology." />
-  <meta name="twitter:image" content="https://laurenpmarazzi.github.io/Netisce/images/netisce-logo.png" />
+  <meta name="twitter:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
+  <meta name="twitter:image" content="https://veraliconaresearchgroup.github.io/Netisce/images/netisce-logo.png" />
 
 <meta name="author" content="Lauren Marazzi" />
 
@@ -53,6 +53,8 @@
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -192,8 +194,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><p><img src="images/netisce-logo.png" /></p>
-<p>“NETISCE Manual and Tutorials”</p></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NETISCE Manual and Tutorials</a>
           </h1>
         </div>
 
@@ -208,7 +209,7 @@ The results from these Toy examples can be found in the <a href="https://github.
 <div id="overview" class="section level2">
 <h2><span class="header-section-number">4.1</span> Overview</h2>
 We will use a simple toy network of 6 nodes and 9 edges.
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
 <img src="images/toy_network.png" alt="Simple Toy Network" width="50%" />
 <p class="caption">
 Figure 4.1: Simple Toy Network
@@ -346,14 +347,14 @@ params.num_states = 1000</code></pre>
 <h2><span class="header-section-number">4.4</span> Run NETSICE</h2>
 In your terminal/command prompt, navigate to the appropriate NETISCE folder <code>_hpc</code> or <code>local</code>. To start your run, enter <code>./nextflow run NETISCE.nf -resume</code>.
 While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="images/running_shot.png" alt="Terminal when running NETISCE" width="50%" />
 <p class="caption">
 Figure 4.2: Terminal when running NETISCE
 </p>
 </div>
 Once the run has successfully completed, the process will end and the following will be displayed:
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
 <img src="images/completed.png" alt="Terminal when running NETISCE" width="50%" />
 <p class="caption">
 Figure 4.3: Terminal when running NETISCE
@@ -404,7 +405,7 @@ Figure 4.3: Terminal when running NETISCE
 <div id="section-id" class="section level4 unnumbered">
 <h4>experimental_internalmarkers.pdf</h4>
 The above numbers may be a little challenging to read! So, we have included a plot of the values in the<code>experimental_internalmarkers.pdf</code>:
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
 <img src="images/expmarkers.png" alt="experimental marker node steady state values" width="50%" />
 <p class="caption">
 Figure 4.4: experimental marker node steady state values
@@ -416,7 +417,7 @@ Figure 4.4: experimental marker node steady state values
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>elbow.png</h4>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
 <img src="results/elbow.png" alt="elbow metric for optimal k" width="50%" />
 <p class="caption">
 Figure 4.5: elbow metric for optimal k
@@ -426,7 +427,7 @@ Figure 4.5: elbow metric for optimal k
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>silhouette.pdf</h4>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
 <img src="images/silhouette.png" alt="silhouette metric for optimal k" width="50%" />
 <p class="caption">
 Figure 4.6: silhouette metric for optimal k

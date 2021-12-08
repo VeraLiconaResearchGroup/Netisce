@@ -36,6 +36,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
+  pdftitle={NETISCE Manual and Tutorials},
   pdfauthor={Lauren Marazzi},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -107,12 +108,24 @@
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
-\title{\includegraphics{images/netisce-logo.png}
-
-``NETISCE Manual and Tutorials''}
+\title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
 \date{2021-12-08}
 
@@ -145,7 +158,9 @@
 
 Welcome to the NETISCE manual and tutorials.
 
-NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
+NETISCE is a network-based approach for cellular reprogramming. This manual contains instructions for installing the NETISCE pipeline tool and accessing the Galaxy Project web-based tool. We provide a simple toy example walkthrough tutorial. Lastly, we include instructions for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
+
+NETISCE identifies combinations of perturbations to be applied on a gene regulatory or signaling network to trigger a shift from an undesired to a desired cell fate. The core of the pipeline is the application of structure-based control theory to identify control nodes that drive the system from an initial state that would lead to an attractor associated with an undesired phenotype and towards an attractor associated with the desired phenotype. For more information, please see the accompanying paper: \textbf{link here}
 
 \hypertarget{installation-and-usage}{%
 \chapter{Installation and Usage}\label{installation-and-usage}}
@@ -312,7 +327,7 @@ We will use a simple toy network of 6 nodes and 9 edges.
 
 }
 
-\caption{Simple Toy Network}\label{fig:unnamed-chunk-2}
+\caption{Simple Toy Network}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \hypertarget{data}{%
@@ -412,7 +427,7 @@ While NETISCE is running, your terminal should look like this, where you can see
 
 }
 
-\caption{Terminal when running NETISCE}\label{fig:unnamed-chunk-6}
+\caption{Terminal when running NETISCE}\label{fig:unnamed-chunk-7}
 \end{figure}
 
 Once the run has successfully completed, the process will end and the following will be displayed:
@@ -423,7 +438,7 @@ Once the run has successfully completed, the process will end and the following 
 
 }
 
-\caption{Terminal when running NETISCE}\label{fig:unnamed-chunk-7}
+\caption{Terminal when running NETISCE}\label{fig:unnamed-chunk-8}
 \end{figure}
 
 \hypertarget{netsice-results}{%
@@ -467,7 +482,7 @@ The above numbers may be a little challenging to read! So, we have included a pl
 
 }
 
-\caption{experimental marker node steady state values}\label{fig:unnamed-chunk-9}
+\caption{experimental marker node steady state values}\label{fig:unnamed-chunk-10}
 \end{figure}
 
 On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.
@@ -486,7 +501,7 @@ After estimating attractors for the experimental and randomly generated initial 
 
 }
 
-\caption{elbow metric for optimal k}\label{fig:unnamed-chunk-10}
+\caption{elbow metric for optimal k}\label{fig:unnamed-chunk-11}
 \end{figure}
 
 The elbow metric found the optimal number of k clusters to be k=4.
@@ -501,7 +516,7 @@ The elbow metric found the optimal number of k clusters to be k=4.
 
 }
 
-\caption{silhouette metric for optimal k}\label{fig:unnamed-chunk-11}
+\caption{silhouette metric for optimal k}\label{fig:unnamed-chunk-12}
 \end{figure}
 
 The silhouette metric found the optimal number of k clusters to be k=2.
@@ -765,6 +780,36 @@ To run the simulation, simply execute the \texttt{ascidian-embryo.nf} file using
 
 The nextflow pipeline generates 1 result file \texttt{exp\_internalmarkers.txt}, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
 
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'kableExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     group_rows
+\end{verbatim}
+
+\begin{table}
+\centering
 \begin{tabular}{l|r|r|r|r|r|r|r}
 \hline
 name & Alp & Bco & Celf3.a & Epi1 & Fli.Erg.a & Myl & Noto1\\
@@ -786,6 +831,7 @@ adenTz (muscle perturbation) & -0.5243074 & -0.4252100 & -0.4252100 & 0.2707276 
 aDentz (notochord perturbation) & -0.3792942 & -0.4252100 & -0.4252100 & 0.1988199 & -0.3966199 & -0.1218621 & 0.0943055\\
 \hline
 \end{tabular}
+\end{table}
 
 \hypertarget{visualizing-results}{%
 \section{Visualizing Results}\label{visualizing-results}}
