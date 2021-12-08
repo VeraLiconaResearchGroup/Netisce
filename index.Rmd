@@ -1,12 +1,17 @@
 --- 
-title: "NETISCE Manual and Tutorials"
+title: |
+  ![](images/netisce-logo.png)
+  
+  
+  "NETISCE Manual and Tutorials"
+  
 author: "Lauren Marazzi"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 url: https://laurenpmarazzi.github.io/Netisce/
-cover-image: images/test.jpeg
+cover-image: images/netisce-logo.png
 description: |
   Welcome to the NETISCE manual and tutorials. NETISCE is a workflow that identified control node perturbations for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and pluripotent biology.
 link-citations: yes

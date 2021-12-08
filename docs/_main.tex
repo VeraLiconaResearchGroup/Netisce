@@ -36,7 +36,6 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={NETISCE Manual and Tutorials},
   pdfauthor={Lauren Marazzi},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -111,7 +110,9 @@
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
 
-\title{NETISCE Manual and Tutorials}
+\title{\includegraphics{images/netisce-logo.png}
+
+``NETISCE Manual and Tutorials''}
 \author{Lauren Marazzi}
 \date{2021-12-08}
 
@@ -764,12 +765,6 @@ To run the simulation, simply execute the \texttt{ascidian-embryo.nf} file using
 
 The nextflow pipeline generates 1 result file \texttt{exp\_internalmarkers.txt}, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{read.delim}\NormalTok{(}\StringTok{'ascidian_embryo/results/exp_internalmarkers.txt'}\NormalTok{,}\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{tabular}{l|r|r|r|r|r|r|r}
 \hline
 name & Alp & Bco & Celf3.a & Epi1 & Fli.Erg.a & Myl & Noto1\\
@@ -833,28 +828,14 @@ The following code for generating radar plots was adapted from \href{https://www
 
 \NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
 \KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
-
-
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{4}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
   \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{));}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\StringTok{"unperturbed"}\NormalTok{,}\StringTok{"FVS perturbation"}\NormalTok{) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
-\KeywordTok{par}\NormalTok{()}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/unnamed-chunk-21-1} \end{center}
-
-\begin{center}\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/unnamed-chunk-21-2} \end{center}
-
-\begin{center}\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/unnamed-chunk-21-3} \end{center}
-
-\begin{center}\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/unnamed-chunk-21-4} \end{center}
-
-\begin{center}\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/unnamed-chunk-21-5} \end{center}
-
-\begin{center}\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/unnamed-chunk-21-6} \end{center}
-
-\begin{center}\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/unnamed-chunk-21-7} \end{center}
+\begin{center}\includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-1} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-2} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-3} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-4} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-5} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-6} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-7} \end{center}
 
 \hypertarget{pluripotent-stem-cell-example}{%
 \chapter{Pluripotent Stem Cell Example}\label{pluripotent-stem-cell-example}}
