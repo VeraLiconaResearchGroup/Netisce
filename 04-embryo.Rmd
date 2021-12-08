@@ -21,7 +21,9 @@ To run the simulation, simply execute the `ascidian-embryo.nf` file using the fo
 
 ## Results
 The nextflow pipeline generates 1 result file `exp_internalmarkers.txt`, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
-
+```{r}
+knitr::kable(read.delim('ascidian_embryo/results/exp_internalmarkers.txt',sep="\t"))
+```
 ## Visualizing Results
 We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context, a perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor.
 
@@ -63,8 +65,9 @@ rownames(d2)[1:2]<- c("Max", "Min")
 for (i in 4:nrow(d2)) {
   create_beautiful_radarchart(d2[c(1:3, i), ],color = c("#00AFBB", "#E7B800"),caxislabels = seq(round(min(d2[c(1:3, i),]),1),round(max(d2[c(1:3, i),]),1),.2))
   legend(x=0.4, y=1.4, legend =c("unperturbed","FVS perturbation") , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800") , text.col = "black", cex=1, pt.cex=2)
-
-}```
+par()
+}
+```
 
 
 
