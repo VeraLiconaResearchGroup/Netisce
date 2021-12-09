@@ -221,22 +221,9 @@ We are only interested in performing the 7 perturbations to the 6 FVS control no
 </div>
 <div id="results" class="section level2">
 <h2><span class="header-section-number">5.3</span> Results</h2>
-<p>The nextflow pipeline generates 1 result file <code>exp_internalmarkers.txt</code>, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.</p>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre><code>## 
-## Attaching package: &#39;kableExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     group_rows</code></pre>
+The nextflow pipeline generates 1 result file <code>exp_internalmarkers.txt</code>, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
 <div style="border: 0px;overflow-x: scroll; width:100%; ">
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="font-size: 8px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -477,43 +464,261 @@ aDentz (notochord perturbation)
 </tbody>
 </table>
 </div>
+<p>A perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor. We determine this by subtracting the steady-state values of the unperturbed simulation from the steady-state values of the perturbations of FVS control nodes.</p>
+<div style="border: 0px;overflow-x: scroll; width:100%; ">
+<table class="table" style="font-size: 8px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Alp
+</th>
+<th style="text-align:left;">
+Bco
+</th>
+<th style="text-align:left;">
+Celf3.a
+</th>
+<th style="text-align:left;">
+Epi1
+</th>
+<th style="text-align:left;">
+Fli.Erg.a
+</th>
+<th style="text-align:left;">
+Myl
+</th>
+<th style="text-align:left;">
+Noto1
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Adentz (Endoderm perturbation)
+</td>
+<td style="text-align:left;">
+<span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">0.118</span>
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+0.249
+</td>
+<td style="text-align:left;">
+-0.185
+</td>
+<td style="text-align:left;">
+-0.141
+</td>
+<td style="text-align:left;">
+0.117
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adentZ (brain+pan-neural perturbation)
+</td>
+<td style="text-align:left;">
+-0.385
+</td>
+<td style="text-align:left;">
+<span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">0.423</span>
+</td>
+<td style="text-align:left;">
+<span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">0.423</span>
+</td>
+<td style="text-align:left;">
+0.249
+</td>
+<td style="text-align:left;">
+-0.238
+</td>
+<td style="text-align:left;">
+-0.005
+</td>
+<td style="text-align:left;">
+0.112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adeNtz (pan-neural perturbation)
+</td>
+<td style="text-align:left;">
+-0.524
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+0.249
+</td>
+<td style="text-align:left;">
+-0.302
+</td>
+<td style="text-align:left;">
+-0.107
+</td>
+<td style="text-align:left;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adEntZ (mesenchyme perturbation)
+</td>
+<td style="text-align:left;">
+-0.263
+</td>
+<td style="text-align:left;">
+0.423
+</td>
+<td style="text-align:left;">
+0.423
+</td>
+<td style="text-align:left;">
+-0.178
+</td>
+<td style="text-align:left;">
+<span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">0.283</span>
+</td>
+<td style="text-align:left;">
+-0.088
+</td>
+<td style="text-align:left;">
+-0.006
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adentz (epidermis perturbation)
+</td>
+<td style="text-align:left;">
+-0.524
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+<span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">0.249</span>
+</td>
+<td style="text-align:left;">
+-0.302
+</td>
+<td style="text-align:left;">
+-0.125
+</td>
+<td style="text-align:left;">
+0.235
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+adenTz (muscle perturbation)
+</td>
+<td style="text-align:left;">
+-0.524
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+0.249
+</td>
+<td style="text-align:left;">
+-0.302
+</td>
+<td style="text-align:left;">
+<span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">0.083</span>
+</td>
+<td style="text-align:left;">
+0.259
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+aDentz (notochord perturbation)
+</td>
+<td style="text-align:left;">
+-0.379
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+-0.427
+</td>
+<td style="text-align:left;">
+0.177
+</td>
+<td style="text-align:left;">
+-0.398
+</td>
+<td style="text-align:left;">
+-0.123
+</td>
+<td style="text-align:left;">
+<span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;">0.094</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Here we see that for 6 out of the 7 perturbations to FVS controlnodes, we were able to upregulate the desired tissue marker when compared to the unperturbed state.</p>
 </div>
 <div id="visualizing-results" class="section level2">
 <h2><span class="header-section-number">5.4</span> Visualizing Results</h2>
-<p>We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context, a perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor.</p>
+<p>We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context.</p>
 <p>The following code for generating radar plots was adapted from <a href="https://www.google.com/search?q=create+_beautiful_+radar+chart&amp;oq=create+beautiful+rada&amp;aqs=chrome.1.69i57j0i10i22i30.11973j0j1&amp;sourceid=chrome&amp;ie=UTF-8">datanovia.com</a> is used to generate the radar charts.
 <strong>Note: </strong> you may need to adjust the formatting of <code>exp_internalmarkers.txt</code> so that the strings within quotations are placed into one column.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-1"></a>create_beautiful_radarchart &lt;-<span class="st"> </span><span class="cf">function</span>(data, <span class="dt">color =</span> <span class="st">&quot;#00AFBB&quot;</span>, </span>
-<span id="cb9-2"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-2"></a>                                        <span class="dt">vlabels =</span> <span class="kw">colnames</span>(data), <span class="dt">vlcex =</span> <span class="dv">1</span>,</span>
-<span id="cb9-3"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-3"></a>                                        <span class="dt">caxislabels =</span> <span class="ot">NULL</span>, <span class="dt">title =</span><span class="kw">row.names</span>(data)[<span class="dv">4</span>], ...){</span>
-<span id="cb9-4"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-4"></a>  <span class="kw">radarchart</span>(</span>
-<span id="cb9-5"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-5"></a>    data, <span class="dt">axistype =</span> <span class="dv">1</span>,</span>
-<span id="cb9-6"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-6"></a>    <span class="co"># Customize the polygon</span></span>
-<span id="cb9-7"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-7"></a>    <span class="dt">pcol =</span> color, <span class="dt">pfcol =</span> scales<span class="op">::</span><span class="kw">alpha</span>(color, <span class="fl">0.5</span>), <span class="dt">plwd =</span> <span class="dv">2</span>, <span class="dt">plty =</span> <span class="dv">1</span>,</span>
-<span id="cb9-8"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-8"></a>    <span class="co"># Customize the grid</span></span>
-<span id="cb9-9"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-9"></a>    <span class="dt">cglcol =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">cglty =</span> <span class="dv">1</span>, <span class="dt">cglwd =</span> <span class="fl">0.8</span>,</span>
-<span id="cb9-10"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-10"></a>    <span class="co"># Customize the axis</span></span>
-<span id="cb9-11"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-11"></a>    <span class="dt">axislabcol =</span> <span class="st">&quot;grey&quot;</span>, </span>
-<span id="cb9-12"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-12"></a>    <span class="co"># Variable labels</span></span>
-<span id="cb9-13"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-13"></a>    <span class="dt">vlcex =</span> vlcex, <span class="dt">vlabels =</span> vlabels,</span>
-<span id="cb9-14"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-14"></a>    <span class="dt">title =</span> title,</span>
-<span id="cb9-15"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-15"></a>    <span class="dt">centerzero =</span> F,</span>
-<span id="cb9-16"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-16"></a>    <span class="dt">caxislabels =</span> caxislabels</span>
-<span id="cb9-17"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-17"></a>  )</span>
-<span id="cb9-18"><a href="cell-fate-specification-in-ascidian-embryo.html#cb9-18"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-1"></a><span class="kw">library</span>(fmsb)</span>
-<span id="cb10-2"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-2"></a>d1&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ascidian_embryo/results/exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>,<span class="dt">check.names =</span> F)</span>
-<span id="cb10-3"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-3"></a></span>
-<span id="cb10-4"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-4"></a>maxcol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, max)</span>
-<span id="cb10-5"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-5"></a>mincol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, min)</span>
-<span id="cb10-6"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-6"></a></span>
-<span id="cb10-7"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-7"></a>d2&lt;-<span class="kw">rbind</span>(maxcol,mincol, d1)</span>
-<span id="cb10-8"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-8"></a><span class="kw">rownames</span>(d2)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Min&quot;</span>)</span>
-<span id="cb10-9"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-9"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span>))</span>
-<span id="cb10-10"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-10"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">4</span><span class="op">:</span><span class="kw">nrow</span>(d2)) {</span>
-<span id="cb10-11"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-11"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>));<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;unperturbed&quot;</span>,<span class="st">&quot;FVS perturbation&quot;</span>) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.cex=</span><span class="dv">2</span>)</span>
-<span id="cb10-12"><a href="cell-fate-specification-in-ascidian-embryo.html#cb10-12"></a>}</span></code></pre></div>
-<p><img src="_main_files/figure-html/charts-1.png" width="80%" style="display: block; margin: auto;" /><img src="_main_files/figure-html/charts-2.png" width="80%" style="display: block; margin: auto;" /><img src="_main_files/figure-html/charts-3.png" width="80%" style="display: block; margin: auto;" /><img src="_main_files/figure-html/charts-4.png" width="80%" style="display: block; margin: auto;" /><img src="_main_files/figure-html/charts-5.png" width="80%" style="display: block; margin: auto;" /><img src="_main_files/figure-html/charts-6.png" width="80%" style="display: block; margin: auto;" /><img src="_main_files/figure-html/charts-7.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-1"></a>create_beautiful_radarchart &lt;-<span class="st"> </span><span class="cf">function</span>(data, <span class="dt">color =</span> <span class="st">&quot;#00AFBB&quot;</span>, </span>
+<span id="cb4-2"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-2"></a>                                        <span class="dt">vlabels =</span> <span class="kw">colnames</span>(data), <span class="dt">vlcex =</span> <span class="dv">1</span>,</span>
+<span id="cb4-3"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-3"></a>                                        <span class="dt">caxislabels =</span> <span class="ot">NULL</span>, <span class="dt">title =</span><span class="kw">row.names</span>(data)[<span class="dv">4</span>], ...){</span>
+<span id="cb4-4"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-4"></a>  <span class="kw">radarchart</span>(</span>
+<span id="cb4-5"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-5"></a>    data, <span class="dt">axistype =</span> <span class="dv">1</span>,</span>
+<span id="cb4-6"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-6"></a>    <span class="co"># Customize the polygon</span></span>
+<span id="cb4-7"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-7"></a>    <span class="dt">pcol =</span> color, <span class="dt">pfcol =</span> scales<span class="op">::</span><span class="kw">alpha</span>(color, <span class="fl">0.5</span>), <span class="dt">plwd =</span> <span class="dv">2</span>, <span class="dt">plty =</span> <span class="dv">1</span>,</span>
+<span id="cb4-8"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-8"></a>    <span class="co"># Customize the grid</span></span>
+<span id="cb4-9"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-9"></a>    <span class="dt">cglcol =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">cglty =</span> <span class="dv">1</span>, <span class="dt">cglwd =</span> <span class="fl">0.8</span>,</span>
+<span id="cb4-10"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-10"></a>    <span class="co"># Customize the axis</span></span>
+<span id="cb4-11"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-11"></a>    <span class="dt">axislabcol =</span> <span class="st">&quot;grey&quot;</span>, </span>
+<span id="cb4-12"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-12"></a>    <span class="co"># Variable labels</span></span>
+<span id="cb4-13"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-13"></a>    <span class="dt">vlcex =</span> vlcex, <span class="dt">vlabels =</span> vlabels,</span>
+<span id="cb4-14"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-14"></a>    <span class="dt">title =</span> title,</span>
+<span id="cb4-15"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-15"></a>    <span class="dt">centerzero =</span> F,</span>
+<span id="cb4-16"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-16"></a>    <span class="dt">caxislabels =</span> caxislabels</span>
+<span id="cb4-17"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-17"></a>  )</span>
+<span id="cb4-18"><a href="cell-fate-specification-in-ascidian-embryo.html#cb4-18"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-1"></a><span class="kw">library</span>(fmsb)</span>
+<span id="cb5-2"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-2"></a>d1&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ascidian_embryo/results/exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>,<span class="dt">check.names =</span> F)</span>
+<span id="cb5-3"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-3"></a></span>
+<span id="cb5-4"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-4"></a>maxcol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, max)</span>
+<span id="cb5-5"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-5"></a>mincol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, min)</span>
+<span id="cb5-6"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-6"></a></span>
+<span id="cb5-7"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-7"></a>d2&lt;-<span class="kw">rbind</span>(maxcol,mincol, d1)</span>
+<span id="cb5-8"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-8"></a><span class="kw">rownames</span>(d2)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Min&quot;</span>)</span>
+<span id="cb5-9"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-9"></a></span>
+<span id="cb5-10"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-10"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="fl">0.1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span>
+<span id="cb5-11"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-11"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">4</span><span class="op">:</span><span class="kw">nrow</span>(d2)) {</span>
+<span id="cb5-12"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-12"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>));<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;unperturbed&quot;</span>,<span class="st">&quot;FVS perturbation&quot;</span>) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.cex=</span><span class="dv">2</span>)</span>
+<span id="cb5-13"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-13"></a>}</span></code></pre></div>
+<p><img src="_main_files/figure-html/charts-1.png" width="50%" /><img src="_main_files/figure-html/charts-2.png" width="50%" /><img src="_main_files/figure-html/charts-3.png" width="50%" /><img src="_main_files/figure-html/charts-4.png" width="50%" /><img src="_main_files/figure-html/charts-5.png" width="50%" /><img src="_main_files/figure-html/charts-6.png" width="50%" /><img src="_main_files/figure-html/charts-7.png" width="50%" /></p>
 
 </div>
 </div>

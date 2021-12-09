@@ -780,36 +780,9 @@ To run the simulation, simply execute the \texttt{ascidian-embryo.nf} file using
 
 The nextflow pipeline generates 1 result file \texttt{exp\_internalmarkers.txt}, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
 
-\begin{verbatim}
-## 
-## Attaching package: 'dplyr'
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-\end{verbatim}
-
-\begin{verbatim}
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'kableExtra'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:dplyr':
-## 
-##     group_rows
-\end{verbatim}
-
 \begin{table}
-\centering
+\centering\begingroup\fontsize{8}{10}\selectfont
+
 \begin{tabular}{l|r|r|r|r|r|r|r}
 \hline
 name & Alp & Bco & Celf3.a & Epi1 & Fli.Erg.a & Myl & Noto1\\
@@ -831,12 +804,42 @@ adenTz (muscle perturbation) & -0.5243074 & -0.4252100 & -0.4252100 & 0.2707276 
 aDentz (notochord perturbation) & -0.3792942 & -0.4252100 & -0.4252100 & 0.1988199 & -0.3966199 & -0.1218621 & 0.0943055\\
 \hline
 \end{tabular}
+\endgroup{}
 \end{table}
+
+A perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor. We determine this by subtracting the steady-state values of the unperturbed simulation from the steady-state values of the perturbations of FVS control nodes.
+
+\begin{table}
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\begin{tabular}{l|l|l|l|l|l|l|l}
+\hline
+  & Alp & Bco & Celf3.a & Epi1 & Fli.Erg.a & Myl & Noto1\\
+\hline
+Adentz (Endoderm perturbation) & <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;" >0.118</span> & -0.427 & -0.427 & 0.249 & -0.185 & -0.141 & 0.117\\
+\hline
+adentZ (brain+pan-neural perturbation) & -0.385 & <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;" >0.423</span> & <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;" >0.423</span> & 0.249 & -0.238 & -0.005 & 0.112\\
+\hline
+adeNtz (pan-neural perturbation) & -0.524 & -0.427 & -0.427 & 0.249 & -0.302 & -0.107 & 0.24\\
+\hline
+adEntZ (mesenchyme perturbation) & -0.263 & 0.423 & 0.423 & -0.178 & <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;" >0.283</span> & -0.088 & -0.006\\
+\hline
+adentz (epidermis perturbation) & -0.524 & -0.427 & -0.427 & <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;" >0.249</span> & -0.302 & -0.125 & 0.235\\
+\hline
+adenTz (muscle perturbation) & -0.524 & -0.427 & -0.427 & 0.249 & -0.302 & <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;" >0.083</span> & 0.259\\
+\hline
+aDentz (notochord perturbation) & -0.379 & -0.427 & -0.427 & 0.177 & -0.398 & -0.123 & <span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;" >0.094</span>\\
+\hline
+\end{tabular}
+\endgroup{}
+\end{table}
+
+Here we see that for 6 out of the 7 perturbations to FVS controlnodes, we were able to upregulate the desired tissue marker when compared to the unperturbed state.
 
 \hypertarget{visualizing-results}{%
 \section{Visualizing Results}\label{visualizing-results}}
 
-We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context, a perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor.
+We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context.
 
 The following code for generating radar plots was adapted from \href{https://www.google.com/search?q=create+_beautiful_+radar+chart\&oq=create+beautiful+rada\&aqs=chrome.1.69i57j0i10i22i30.11973j0j1\&sourceid=chrome\&ie=UTF-8}{datanovia.com} is used to generate the radar charts.
 \textbf{Note: } you may need to adjust the formatting of \texttt{exp\_internalmarkers.txt} so that the strings within quotations are placed into one column.
@@ -874,14 +877,15 @@ The following code for generating radar plots was adapted from \href{https://www
 
 \NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
 \KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{4}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
   \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{));}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\StringTok{"unperturbed"}\NormalTok{,}\StringTok{"FVS perturbation"}\NormalTok{) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-1} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-2} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-3} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-4} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-5} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-6} \includegraphics[width=0.8\linewidth]{_main_files/figure-latex/charts-7} \end{center}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-2} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-3} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-4} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-5} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-6} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-7}
 
 \hypertarget{pluripotent-stem-cell-example}{%
 \chapter{Pluripotent Stem Cell Example}\label{pluripotent-stem-cell-example}}
