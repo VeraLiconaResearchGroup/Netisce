@@ -128,3 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .Rproj.user
+.Rhistory
+graveyard/07-references.Rmd
+graveyard/09-citations.Rmd
+graveyard/10-blocks.Rmd
+graveyard/11-share.Rmd

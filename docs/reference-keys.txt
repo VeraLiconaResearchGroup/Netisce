@@ -4,7 +4,6 @@ fig:unnamed-chunk-8
 fig:unnamed-chunk-10
 fig:unnamed-chunk-11
 fig:unnamed-chunk-12
-eq:binom
 about
 installation-and-usage
 download-netisce
@@ -30,14 +29,4 @@ results
 visualizing-results
 pluripotent-stem-cell-example
 adaptive-resistance-in-colorectal-cancer-example
-footnotes-and-citations
-footnotes
-citations
-blocks
-equations
-theorems-and-proofs
-callout-blocks
-sharing-your-book
-publishing
-pages
-metadata-for-sharing
+netisce-in-galaxy-project
