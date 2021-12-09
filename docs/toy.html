@@ -155,7 +155,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="toy.html"><a href="toy.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
 <li class="chapter" data-level="4.2" data-path="toy.html"><a href="toy.html#data"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
 <li class="chapter" data-level="4.3" data-path="toy.html"><a href="toy.html#netisce-run-configuration"><i class="fa fa-check"></i><b>4.3</b> NETISCE run configuration</a></li>
-<li class="chapter" data-level="4.4" data-path="toy.html"><a href="toy.html#run-netsice"><i class="fa fa-check"></i><b>4.4</b> Run NETSICE</a></li>
+<li class="chapter" data-level="4.4" data-path="toy.html"><a href="toy.html#run-netisce"><i class="fa fa-check"></i><b>4.4</b> Run NETISCE</a></li>
 <li class="chapter" data-level="4.5" data-path="toy.html"><a href="toy.html#netsice-results"><i class="fa fa-check"></i><b>4.5</b> NETSICE Results</a></li>
 <li class="chapter" data-level="4.6" data-path="toy.html"><a href="toy.html#toy-example-with-mutations"><i class="fa fa-check"></i><b>4.6</b> Toy Example with mutations</a></li>
 </ul></li>
@@ -329,8 +329,8 @@ params.num_nodes = 4 // that have expression data
 params.num_states = 1000</code></pre>
 <p><strong>Some Notes: </strong> make sure to include <code>$baseDir</code> before pointing to the folder containing your input data. Also, be sure that <code>params.num_nodes</code> is the number of nodes where there exists normalized expression data within <code>expression.csv</code>. Finally, in <code>NETISCE.nf</code>, mutations are not considered, so that like is commented out.</p>
 </div>
-<div id="run-netsice" class="section level2">
-<h2><span class="header-section-number">4.4</span> Run NETSICE</h2>
+<div id="run-netisce" class="section level2">
+<h2><span class="header-section-number">4.4</span> Run NETISCE</h2>
 In your terminal/command prompt, navigate to the appropriate NETISCE folder <code>_hpc</code> or <code>local</code>. To start your run, enter <code>./nextflow run NETISCE.nf -resume</code>.
 While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>

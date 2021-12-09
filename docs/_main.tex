@@ -398,8 +398,8 @@ params.num_states = 1000
 
 \textbf{Some Notes: } make sure to include \texttt{\$baseDir} before pointing to the folder containing your input data. Also, be sure that \texttt{params.num\_nodes} is the number of nodes where there exists normalized expression data within \texttt{expression.csv}. Finally, in \texttt{NETISCE.nf}, mutations are not considered, so that like is commented out.
 
-\hypertarget{run-netsice}{%
-\section{Run NETSICE}\label{run-netsice}}
+\hypertarget{run-netisce}{%
+\section{Run NETISCE}\label{run-netisce}}
 
 In your terminal/command prompt, navigate to the appropriate NETISCE folder \texttt{\_hpc} or \texttt{local}. To start your run, enter \texttt{./nextflow\ run\ NETISCE.nf\ -resume}.
 While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
@@ -739,7 +739,7 @@ This section contains instructions to reproduce the results of simulating FVS co
 
 The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/ascidian_embryo}{ascidian embryo folder} in the github repository
 
-These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simnulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the \texttt{nextflow.config} file from the directory.
+These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the \texttt{nextflow.config} file from the directory.
 
 \hypertarget{input-data}{%
 \section{Input Data}\label{input-data}}

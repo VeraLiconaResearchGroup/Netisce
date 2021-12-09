@@ -4,7 +4,7 @@ This section contains instructions to reproduce the results of simulating FVS co
 
 The input data, nextflow pipeline, and results of this simulation can be found in the [ascidian embryo folder](https://github.com/VeraLiconaResearchGroup/Netisce/ascidian_embryo) in the github repository
 
-These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simnulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the `nextflow.config` file from the directory.
+These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the `nextflow.config` file from the directory.
 
 ## Input Data
 The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis.Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.

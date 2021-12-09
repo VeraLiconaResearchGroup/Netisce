@@ -62,7 +62,7 @@ params.num_states = 1000
 **Some Notes: ** make sure to include `$baseDir` before pointing to the folder containing your input data. Also, be sure that `params.num_nodes` is the number of nodes where there exists normalized expression data within `expression.csv`. Finally, in `NETISCE.nf`, mutations are not considered, so that like is commented out.
 
 
-## Run NETSICE
+## Run NETISCE
 In your terminal/command prompt, navigate to the appropriate NETISCE folder `_hpc` or `local`. To start your run, enter `./nextflow run NETISCE.nf -resume`.
 While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
 ```{r, out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'Terminal when running NETISCE'}

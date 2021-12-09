@@ -19,7 +19,7 @@ toy
 overview
 data
 netisce-run-configuration
-run-netsice
+run-netisce
 netsice-results
 toy-example-with-mutations
 cell-fate-specification-in-ascidian-embryo
