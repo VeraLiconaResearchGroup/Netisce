@@ -900,15 +900,12 @@ To run the simulation, simply execute the \texttt{ascidian-embryo.nf} file using
 \section{Results}\label{results-1}}
 
 The nextflow pipeline generates 1 result file \texttt{exp\_internalmarkers.txt}, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
-\# \texttt{\{r,echo=FALSE,\ message=FALSE,\ warning=FALSE\}\ \#\ library(dplyr)\ \#\ library(kableExtra)\ \#\ \ \#\ results\textless{}-read.delim(\textquotesingle{}ascidian\_embryo/results/exp\_internalmarkers.txt\textquotesingle{},sep="\textbackslash{}t")\ \#\ knitr::kable(results)\ \%\textgreater{}\%kable\_styling(font\_size\ =\ 8)\ \%\textgreater{}\%\ scroll\_box(width\ =\ "100\%",\ box\_css\ =\ "border:\ 0px;")\ \#}
 
 \begin{verbatim}
 ## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 \end{verbatim}
 
 \label{fig:unnamed-chunk-23}Simple Toy Network
-
-A perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor. We determine this by subtracting the steady-state values of the unperturbed simulation from the steady-state values of the perturbations of FVS control nodes.
 
 \hypertarget{adaptive-resistance-in-colorectal-cancer-example}{%
 \chapter{Adaptive Resistance in Colorectal Cancer Example}\label{adaptive-resistance-in-colorectal-cancer-example}}
