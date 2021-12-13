@@ -1,0 +1,9 @@
+,Foxa.a,Foxd,Erk_signaling,Neurog,Tbx6-r.b,Zic-r.b
+unperturbed,,,,,,
+Adentz (Endoderm perturbation),1,0,0,0,0,0
+adentZ (brain+pan-neural perturbation),0,0,0,0,0,1
+adeNtz (pan-neural perturbation),0,0,0,1,0,0
+adEntZ (mesenchyme perturbation),0,0,1,0,0,1
+adentz (epidermis perturbation),0,0,0,0,0,0
+adenTz (muscle perturbation),0,0,0,0,1,0
+aDentz (notochord perturbation),0,1,0,0,0,0
