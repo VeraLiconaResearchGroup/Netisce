@@ -21,10 +21,9 @@ def main():
         df=pd.concat([df,dfi],axis=0)
 # Use the quick method and immediately show the figure
     visualizer=kelbow_visualizer(MiniBatchKMeans(random_state=0,n_init=100),df, k=(2,int(sys.argv[2])))
-    visualizer.show("elbow.png")
     elbow=visualizer.elbow_value_
     visualizer=kelbow_visualizer(MiniBatchKMeans(random_state=0,n_init=100),df, k=(2,int(sys.argv[2])),metric='silhouette')
-    visualizer.show("silhouette.png")
+    visualizer.show("optimalk_plots.png")
     silhouette=visualizer.elbow_value_
 
     if elbow==silhouette:

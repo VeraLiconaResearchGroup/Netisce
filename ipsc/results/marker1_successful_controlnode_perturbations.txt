@@ -1,7 +1,0 @@
-Klf4 Oct4 Nanog up down total
-pert_14 nochange nochange up 1 0 1
-pert_16 nochange up nochange 1 0 1
-pert_17 nochange up up 2 0 2
-pert_23 up nochange up 2 0 2
-pert_25 up up nochange 2 0 2
-pert_26 up up up 3 0 3

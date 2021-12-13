@@ -15,7 +15,7 @@ params.kmeans_max_val = 10
 
 
 params.num_nodes = 23 // that have expression data
-params.num_states = 10000
+params.num_states = 100000
 
 
 process sfa_exp {
@@ -149,8 +149,7 @@ process kmeans {
  
     output:
 
-    path 'silhouette.png' into records_silplots
-    path 'elbow.png' into records_elbowplots
+    path 'optimalk_plots.png' into records_elbowplots
     path 'kmeans.txt' into records_kmeans
     
     script:

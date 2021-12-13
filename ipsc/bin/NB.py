@@ -5,8 +5,6 @@ from sklearn.neighbors import KNeighborsClassifier
 import sklearn.metrics as metrics
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 import sys
 def main():

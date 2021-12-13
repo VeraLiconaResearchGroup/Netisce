@@ -128,3 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .Rproj.user
+kinoshita.zip
+ipsc/run.sh
+ipsc/.DS_Store
+.Rhistory
