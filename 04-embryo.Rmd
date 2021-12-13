@@ -2,7 +2,7 @@
 
 This section contains instructions to reproduce the results of simulating FVS control node perturbations in a model of ascidian embryo cell specification. You can read the original report here: link
 
-The input data, nextflow pipeline, and results of this simulation can be found in the [ascidian embryo folder](https://github.com/VeraLiconaResearchGroup/Netisce/ascidian_embryo) in the github repository
+The input data, nextflow pipeline, and results of this simulation can be found in the [ascidian embryo folder](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ascidian_embryo) in the github repository
 
 These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the `nextflow.config` file from the directory.
 

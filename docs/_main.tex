@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2021-12-08}
+\date{2021-12-12}
 
 \begin{document}
 \maketitle
@@ -737,7 +737,7 @@ Though the values are different in this system with mutations, we still see that
 
 This section contains instructions to reproduce the results of simulating FVS control node perturbations in a model of ascidian embryo cell specification. You can read the original report here: link
 
-The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/ascidian_embryo}{ascidian embryo folder} in the github repository
+The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ascidian_embryo}{ascidian embryo folder} in the github repository
 
 These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the \texttt{nextflow.config} file from the directory.
 
@@ -872,6 +872,43 @@ The following code for generating radar plots was adapted from \href{https://www
 
 \hypertarget{pluripotent-stem-cell-example}{%
 \chapter{Pluripotent Stem Cell Example}\label{pluripotent-stem-cell-example}}
+
+This section contains instructions to reproduce the results of simulating FVS control node perturbations in a model of ascidian embryo cell specification. You can read the original report here: link
+
+The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc}{ipsc folder} in the github repository
+
+These simulations were run on a high performance cluster that uses a SLURM executor. If your hpc uses a different executor, please update those specifications in the \texttt{nextflow.config} file in the directory. Please see \url{https://www.nextflow.io/docs/latest/config.html} for more information regarding your executor.
+
+\hypertarget{input-data-1}{%
+\section{Input Data}\label{input-data-1}}
+
+The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis.Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.
+We are only interested in performing the 7 perturbations to the 6 FVS control nodes that were experimentally verified to induce cell tissue fates.
+
+\texttt{expression.csv} contains the initial activities for the unperturbed state and the 7 FVS control node perturbations. Here, all simulations have Gata.a and Zic-r.a=1, as the activation of these two genes is required for normal embryonic development.
+
+\texttt{perturbations.csv} contains the specified perturbations for each FVS node in the appropriate perturbation simulation. 0 denotes downregulation, wherease 1 encodes upregulation. If no value is set, then there is no fixed perturbation to the FVS node, as in the unperturbed case.
+
+\texttt{internal-marker-nodes.txt} contains the 7 internal marker nodes used to verify if the specified cell reprogramming had been successfully simulated.
+
+\hypertarget{run-the-simulation-1}{%
+\section{Run the simulation}\label{run-the-simulation-1}}
+
+To run the simulation, simply execute the \texttt{ascidian-embryo.nf} file using the following command: \texttt{./nextflow\ run\ ascidian-embryo.nf\ -resume}
+
+\hypertarget{results-1}{%
+\section{Results}\label{results-1}}
+
+The nextflow pipeline generates 1 result file \texttt{exp\_internalmarkers.txt}, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
+\# \texttt{\{r,echo=FALSE,\ message=FALSE,\ warning=FALSE\}\ \#\ library(dplyr)\ \#\ library(kableExtra)\ \#\ \ \#\ results\textless{}-read.delim(\textquotesingle{}ascidian\_embryo/results/exp\_internalmarkers.txt\textquotesingle{},sep="\textbackslash{}t")\ \#\ knitr::kable(results)\ \%\textgreater{}\%kable\_styling(font\_size\ =\ 8)\ \%\textgreater{}\%\ scroll\_box(width\ =\ "100\%",\ box\_css\ =\ "border:\ 0px;")\ \#}
+
+\begin{verbatim}
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+\end{verbatim}
+
+\label{fig:unnamed-chunk-23}Simple Toy Network
+
+A perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor. We determine this by subtracting the steady-state values of the unperturbed simulation from the steady-state values of the perturbations of FVS control nodes.
 
 \hypertarget{adaptive-resistance-in-colorectal-cancer-example}{%
 \chapter{Adaptive Resistance in Colorectal Cancer Example}\label{adaptive-resistance-in-colorectal-cancer-example}}

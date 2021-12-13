@@ -4,6 +4,7 @@ fig:unnamed-chunk-8
 fig:unnamed-chunk-10
 fig:unnamed-chunk-11
 fig:unnamed-chunk-12
+fig:unnamed-chunk-23
 about
 installation-and-usage
 download-netisce
@@ -28,5 +29,8 @@ run-the-simulation
 results
 visualizing-results
 pluripotent-stem-cell-example
+input-data-1
+run-the-simulation-1
+results-1
 adaptive-resistance-in-colorectal-cancer-example
 netisce-in-galaxy-project

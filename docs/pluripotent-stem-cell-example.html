@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-08" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -165,7 +165,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#results"><i class="fa fa-check"></i><b>5.3</b> Results</a></li>
 <li class="chapter" data-level="5.4" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#visualizing-results"><i class="fa fa-check"></i><b>5.4</b> Visualizing Results</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html"><i class="fa fa-check"></i><b>6</b> Pluripotent Stem Cell Example</a></li>
+<li class="chapter" data-level="6" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html"><i class="fa fa-check"></i><b>6</b> Pluripotent Stem Cell Example</a><ul>
+<li class="chapter" data-level="6.1" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#input-data-1"><i class="fa fa-check"></i><b>6.1</b> Input Data</a></li>
+<li class="chapter" data-level="6.2" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#run-the-simulation-1"><i class="fa fa-check"></i><b>6.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="6.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-1"><i class="fa fa-check"></i><b>6.3</b> Results</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a></li>
 <li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a></li>
 <li class="divider"></li>
@@ -190,7 +194,86 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pluripotent-stem-cell-example" class="section level1">
 <h1><span class="header-section-number">6</span> Pluripotent Stem Cell Example</h1>
+<p>This section contains instructions to reproduce the results of simulating FVS control node perturbations in a model of ascidian embryo cell specification. You can read the original report here: link</p>
+<p>The input data, nextflow pipeline, and results of this simulation can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc">ipsc folder</a> in the github repository</p>
+<p>These simulations were run on a high performance cluster that uses a SLURM executor. If your hpc uses a different executor, please update those specifications in the <code>nextflow.config</code> file in the directory. Please see <a href="https://www.nextflow.io/docs/latest/config.html" class="uri">https://www.nextflow.io/docs/latest/config.html</a> for more information regarding your executor.</p>
+<div id="input-data-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Input Data</h2>
+<p>The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis.Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.
+We are only interested in performing the 7 perturbations to the 6 FVS control nodes that were experimentally verified to induce cell tissue fates.</p>
+<p><code>expression.csv</code> contains the initial activities for the unperturbed state and the 7 FVS control node perturbations. Here, all simulations have Gata.a and Zic-r.a=1, as the activation of these two genes is required for normal embryonic development.</p>
+<p><code>perturbations.csv</code> contains the specified perturbations for each FVS node in the appropriate perturbation simulation. 0 denotes downregulation, wherease 1 encodes upregulation. If no value is set, then there is no fixed perturbation to the FVS node, as in the unperturbed case.</p>
+<p><code>internal-marker-nodes.txt</code> contains the 7 internal marker nodes used to verify if the specified cell reprogramming had been successfully simulated.</p>
+</div>
+<div id="run-the-simulation-1" class="section level2">
+<h2><span class="header-section-number">6.2</span> Run the simulation</h2>
+<p>To run the simulation, simply execute the <code>ascidian-embryo.nf</code> file using the following command: <code>./nextflow run ascidian-embryo.nf -resume</code></p>
+</div>
+<div id="results-1" class="section level2">
+<h2><span class="header-section-number">6.3</span> Results</h2>
+<p>The nextflow pipeline generates 1 result file <code>exp_internalmarkers.txt</code>, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.
+# <code>{r,echo=FALSE, message=FALSE, warning=FALSE} # library(dplyr) # library(kableExtra) #  # results&lt;-read.delim('ascidian_embryo/results/exp_internalmarkers.txt',sep="\t") # knitr::kable(results) %&gt;%kable_styling(font_size = 8) %&gt;% scroll_box(width = "100%", box_css = "border: 0px;") #</code></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<iframe src="https://raw.githubusercontent.com/VeraLiconaResearchGroup/Netisce/main/ipsc/results/silhouette.png" width="50%" height="400px">
+</iframe>
+<p class="caption">
+Figure 6.1: Simple Toy Network
+</p>
+</div>
+<p>A perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor. We determine this by subtracting the steady-state values of the unperturbed simulation from the steady-state values of the perturbations of FVS control nodes.</p>
+<!-- ```{r,echo=FALSE, message=FALSE, warning=FALSE} -->
+<!-- DACs<-sweep(as.matrix(results[2:8,2:8]),2,as.matrix(results[1,2:8])) -->
+<!-- row.names(DACs)<-results$name[2:8] -->
+<!-- DACs<-as.data.frame(DACs) %>%round(3) -->
+<!-- where <- rbind(c(1,1), c(2,2), c(3,3)) -->
+<!-- DACs[1,1]<-cell_spec(DACs[1,1], background = "yellow", format = "html") -->
+<!-- DACs[2,2]<-cell_spec(DACs[2,2], background = "yellow", format = "html") -->
+<!-- DACs[2,3]<-cell_spec(DACs[2,3], background = "yellow", format = "html") -->
+<!-- DACs[4,5]<-cell_spec(DACs[4,5], background = "yellow", format = "html") -->
+<!-- DACs[5,4]<-cell_spec(DACs[5,4], background = "yellow", format = "html") -->
+<!-- DACs[6,6]<-cell_spec(DACs[6,6], background = "yellow", format = "html") -->
+<!-- DACs[7,7]<-cell_spec(DACs[7,7], background = "yellow", format = "html") -->
+<!-- knitr::kable(DACs,escape=F) %>% kable_styling(font_size = 8) %>% scroll_box(width = "100%", box_css = "border: 0px;")   -->
+<!-- ``` -->
+<!-- Here we see that for 6 out of the 7 perturbations to FVS controlnodes, we were able to upregulate the desired tissue marker when compared to the unperturbed state. -->
+<!-- ## Visualizing Results -->
+<!-- We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context.  -->
+<!-- The following code for generating radar plots was adapted from [datanovia.com](https://www.google.com/search?q=create+_beautiful_+radar+chart&oq=create+beautiful+rada&aqs=chrome.1.69i57j0i10i22i30.11973j0j1&sourceid=chrome&ie=UTF-8) is used to generate the radar charts. -->
+<!-- **Note: ** you may need to adjust the formatting of `exp_internalmarkers.txt` so that the strings within quotations are placed into one column. -->
+<!-- ```{r radar charts, echo=TRUE} -->
+<!-- create_beautiful_radarchart <- function(data, color = "#00AFBB",  -->
+<!--                                         vlabels = colnames(data), vlcex = 1, -->
+<!--                                         caxislabels = NULL, title =row.names(data)[4], ...){ -->
+<!--   radarchart( -->
+<!--     data, axistype = 1, -->
+<!--     # Customize the polygon -->
+<!--     pcol = color, pfcol = scales::alpha(color, 0.5), plwd = 2, plty = 1, -->
+<!--     # Customize the grid -->
+<!--     cglcol = "grey", cglty = 1, cglwd = 0.8, -->
+<!--     # Customize the axis -->
+<!--     axislabcol = "grey",  -->
+<!--     # Variable labels -->
+<!--     vlcex = vlcex, vlabels = vlabels, -->
+<!--     title = title, -->
+<!--     centerzero = F, -->
+<!--     caxislabels = caxislabels -->
+<!--   ) -->
+<!-- } -->
+<!-- ``` -->
+<!-- ```{r charts, out.width='50%',echo = TRUE,fig.show='hold'} -->
+<!-- library(fmsb) -->
+<!-- d1<-read.delim("ascidian_embryo/results/exp_internalmarkers.txt",sep="\t",row.names = 1,check.names = F) -->
+<!-- maxcol<-apply(d1, 2, max) -->
+<!-- mincol<-apply(d1, 2, min) -->
+<!-- d2<-rbind(maxcol,mincol, d1) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
+<!-- for (i in 4:nrow(d2)) { -->
+<!--   create_beautiful_radarchart(d2[c(1:3, i), ],color = c("#00AFBB", "#E7B800"),caxislabels = seq(round(min(d2[c(1:3, i),]),1),round(max(d2[c(1:3, i),]),1),.2));legend(x=0.4, y=1.4, legend =c("unperturbed","FVS perturbation") , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- } -->
+<!-- ``` -->
 
+</div>
 </div>
             </section>
 
