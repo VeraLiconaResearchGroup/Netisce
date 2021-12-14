@@ -36,7 +36,7 @@ def main():
     if elbow>silhouette:
         k=silhouette
 #report out final k-means selected
-    kmeans = MiniBatchKMeans(n_clusters=3,random_state=0,n_init=100).fit(df)
+    kmeans = MiniBatchKMeans(n_clusters=k,random_state=0,n_init=100).fit(df)
     labels = kmeans.labels_
     df['clusters'] = labels
     df2 = pd.DataFrame(index=df.index)
