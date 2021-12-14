@@ -3,7 +3,8 @@
 params.expressions = "$baseDir/input_data/expression.csv"
 params.network = "$baseDir/input_data/network.sif"
 params.samples = "$baseDir/input_data/samples.txt"
-params.internal_control="$baseDir/input_data/internal-marker-kinoshita-expanded.txt"
+params.internal_control="$baseDir/input_data/internal-marker-kinoshita.txt"
+// params.internal_control="$baseDir/input_data/internal-marker-kinoshita-expanded.txt"
 params.alpha = 0.9
 params.undesired = 'EpiSC'
 params.desired = 'ESC'
