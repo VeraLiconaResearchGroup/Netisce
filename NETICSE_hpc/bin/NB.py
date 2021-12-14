@@ -5,8 +5,6 @@ from sklearn.neighbors import KNeighborsClassifier
 import sklearn.metrics as metrics
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 import sys
 def main():
@@ -30,7 +28,6 @@ def main():
     gnb = GaussianNB()
     gnb.fit(df_attr,labels)  #do knn with attractor landscape
     perturb_lab=gnb.predict(df_perturb) # predict clusters for perturbations
-    print("calculated svm on attractors, predicted perturbations")
     #create dataframe of perturabtion and clusters
     df2=pd.DataFrame(index=df_perturb.index) 
     df2['clusters']=perturb_lab

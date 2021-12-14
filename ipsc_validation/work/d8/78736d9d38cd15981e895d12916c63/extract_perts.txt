@@ -1,0 +1,16 @@
+name Sox2 Nanog Gata6 Tbx3 Oct4 Klf4
+pert_409 0 1 -1 -1 0 0
+pert_410 0 1 -1 -1 0 1
+pert_418 0 1 -1 0 0 0
+pert_419 0 1 -1 0 0 1
+pert_427 0 1 -1 1 0 0
+pert_428 0 1 -1 1 0 1
+pert_436 0 1 0 -1 0 0
+pert_437 0 1 0 -1 0 1
+pert_445 0 1 0 0 0 0
+pert_446 0 1 0 0 0 1
+pert_454 0 1 0 1 0 0
+pert_455 0 1 0 1 0 1
+pert_464 0 1 1 -1 0 1
+pert_473 0 1 1 0 0 1
+pert_482 0 1 1 1 0 1

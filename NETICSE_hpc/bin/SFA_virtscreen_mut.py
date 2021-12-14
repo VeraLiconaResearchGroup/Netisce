@@ -8,7 +8,6 @@ import random
 import sfa
 import csv
 import sys
-import time
 
 fpath =  os.path.join( sys.argv[1])                                                   # location of networkfile
 samples=pd.read_csv(sys.argv[2],index_col = 0)          # input samples (normexp initial states)
@@ -75,12 +74,10 @@ if __name__ == "__main__":
                     pi2.append(data.n2i[node])
                     if node in FC_perts.columns:
                         FC_perts=FC_perts.drop(node,axis=1)
-        start_time = time.time()
         for name2,item2 in FC_perts.iterrows():                  # for each FCnode perturbation
             pi=pi+pi2
             pnode=item2.index.tolist()
             for node in pnode:
-                print(pnode)
                 if item2.loc[node]==-1:          #if the perturbation is 0
                     if node in item.index:
                         b[data.n2i[node]]=float(str(item.loc[node]))-2.5*(float(str(item.loc[node])))        #downregulate the expression. fix to 0

@@ -68,4 +68,5 @@ if __name__ == "__main__":
         x = alg.compute(b,pi)                      #Run SFA calculation
         logss.loc[name,netnodes]=x[0]
 #write out nondisc tables  
+    
     logss.to_csv(sys.argv[3], sep=' ',float_format='%.0f',index_label="name",chunksize=10000)

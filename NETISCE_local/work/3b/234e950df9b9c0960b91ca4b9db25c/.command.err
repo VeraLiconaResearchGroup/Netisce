@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full.py", line 45, in <module>
+    main()
+  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full.py", line 25, in main
+    visualizer=kelbow_visualizer(MiniBatchKMeans(random_state=0,n_init=10),df, k=(2,int(sys.argv[2])))
+  File "/usr/local/lib/python3.9/site-packages/yellowbrick/cluster/elbow.py", line 507, in kelbow_visualizer
+    oz.fit(X, y, **fit_kwargs)
+  File "/usr/local/lib/python3.9/site-packages/yellowbrick/cluster/elbow.py", line 316, in fit
+    self.k_scores_.append(self.scoring_metric(X, self.estimator.labels_))
+  File "/usr/local/lib/python3.9/site-packages/yellowbrick/cluster/elbow.py", line 104, in distortion_score
+    distances = pairwise_distances(instances, center, metric=metric)
+  File "/usr/local/lib/python3.9/site-packages/sklearn/metrics/pairwise.py", line 1884, in pairwise_distances
+    return _parallel_pairwise(X, Y, func, n_jobs, **kwds)
+  File "/usr/local/lib/python3.9/site-packages/sklearn/metrics/pairwise.py", line 1425, in _parallel_pairwise
+    return func(X, Y, **kwds)
+  File "/usr/local/lib/python3.9/site-packages/sklearn/metrics/pairwise.py", line 299, in euclidean_distances
+    X, Y = check_pairwise_arrays(X, Y)
+  File "/usr/local/lib/python3.9/site-packages/sklearn/metrics/pairwise.py", line 156, in check_pairwise_arrays
+    X = check_array(
+  File "/usr/local/lib/python3.9/site-packages/sklearn/utils/validation.py", line 797, in check_array
+    raise ValueError(
+ValueError: Found array with 0 sample(s) (shape=(0, 6)) while a minimum of 1 is required by check_pairwise_arrays.

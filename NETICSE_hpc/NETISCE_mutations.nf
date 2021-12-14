@@ -39,14 +39,14 @@ process get_exp_internal_control_nodes {
     
     input:
     path 'attrs_exp.txt' from records_expattr
-    path "internal_marker.txt" from params.internal_control
+    path "internal-marker*" from params.internal_control
 
     output:
     path 'exp_internalmarkers.txt' into records_exp_icns
     
     script:
     """
-    get_RONs.py attrs_exp.txt internal_marker.txt
+    get_RONs.py attrs_exp.txt internal-marker*
     """
     
 }
@@ -56,6 +56,7 @@ process get_exp_internal_control_nodes {
 process insilico_inits {
     input: 
     path "mutations.csv" from params.mutations
+    path 'samples.txt' from params.samples
 
     output: 
     path 'init.txt' into records_insilicoinit
@@ -64,7 +65,7 @@ process insilico_inits {
     script:
     """
     generate_basal_states.py $params.num_states $params.num_nodes init.txt attr -1,0,1
-    gen_insilico_mut.py $params.num_states $params.num_nodes mutations.csv
+    gen_insilico_mut.py $params.num_states $params.num_nodes mutations.csv samples.txt
     """
 }
 process insilico {
@@ -98,10 +99,27 @@ process getFVS {
     FVS_run.py network.sif
     """
 }
-process perturbation_inits {
+
+process remove_mutants {
+    publishDir 'results', mode: 'copy', overwrite: true
+
     input:
     path "fvs.txt" from records_fvs
-    // path 'fvs.txt' from records3a
+    path "mutations.csv" from params.mutations
+ 
+    output:
+    path 'fvs-no-mutated-genes.txt' into records_fvs_nomuts
+    script:
+    
+    """
+    remove-mutants.py mutations.csv fvs.txt
+    """
+}
+
+process perturbation_inits {
+    input:
+    path "fvs-no-mutated-genes.txt" from records_fvs_nomuts
+
     
     output:
     path 'fvs_init.txt' into records_pert_inits
@@ -109,16 +127,17 @@ process perturbation_inits {
 
     script:
     """
-    generate_perts.py fvs.txt fvs_init.txt pert -1,0,1
+    generate_perts.py fvs-no-mutated-genes.txt fvs_init.txt pert -1,0,1
     """
 }
+
 process sfa_perts {
     input:
     path 'expressions.csv' from params.expressions
-    path 'mutations.csv' from params.expressions
+    path 'mutations.csv' from params.mutations
     path 'network.sif' from params.network
     path 'samples.txt' from params.samples
-    path "fvs.txt" from records_fvs
+    path "fvs-no-mutated-genes.txt" from records_fvs_nomuts
     path 'fvs_init.txt' from records_pert_inits
  
     output:
@@ -126,7 +145,7 @@ process sfa_perts {
  
     script:
     """
-    SFA_virtscreen_mut.py network.sif expressions.csv $params.undesired samples.txt fvs.txt fvs_init.txt mutations.csv
+    SFA_virtscreen_mut.py network.sif expressions.csv $params.undesired samples.txt fvs-no-mutated-genes.txt fvs_init.txt mutations.csv
     
     """
 }
@@ -148,7 +167,7 @@ process check_icns{
     
 }
 
-process kmeans_opt {
+process kmeans {
     publishDir 'results', mode: 'copy', overwrite: true
 
     input:
@@ -156,48 +175,15 @@ process kmeans_opt {
     path 'attrs_insilico*' from records_insilico
  
     output:
-    env ELBOW into records_elbow
-    env SILHOUETTE into records_silhouette
-    path '*.pdf' into records_silplots
-    path '*.png' into records_elbowplots
+
+    path 'optimalk_plots.png' into records_elbowplots
+    path 'kmeans.txt' into records_kmeans
     
-    shell:
+    script:
     """
     datasets=\$(ls -m attr* | sed 's/ //g')
-    echo \$datasets
-    export SILHOUETTE=\$(silhouette_metric.py \$datasets results/ $params.kmeans_max_val)
-    export ELBOW=\$(elbow_metric.py \$datasets results/ $params.kmeans_max_val)
+    kmeans_full.py \$datasets $params.kmeans_max_val
     """
-}
-process kmeans {
-    input:
-    val ELBOW from records_elbow
-    val SILHOUETTE from records_silhouette
-    path 'attrs_exp.txt' from records_expattr
-    path 'attrs_insilico*' from records_insilico
-    path 'samples.txt' from params.samples
-
-    output:
-    path 'kmeans.txt' into records_kmeans
-
-    script:
-    if (ELBOW==SILHOUETTE)
-        """
-        datasets=\$(ls -m attr* | sed 's/ //g')
-        kmeans.py $ELBOW \$datasets
-        """
-
-    else if (ELBOW<SILHOUETTE)
-        """
-        datasets=\$(ls -m attr* | sed 's/ //g')
-        kmeans.py $ELBOW \$datasets
-        """
-    else if (SILHOUETTE<ELBOW)
-        """
-        datasets=\$(ls -m attr* | sed 's/ //g')
-        kmeans.py $SILHOUETTE \$datasets
-        """
-
 }
 
 process classification {
@@ -248,7 +234,7 @@ process internal_control_node_analysis {
     input:
     path 'pert*' from records_perts
     path 'crit1perts.txt' from records_consensus
-    path "internal_marker.txt" from params.internal_control
+    path "internal-marker*" from params.internal_control
     
     output:
     path '*_internal_markers.txt' into records_pert_icns
@@ -258,7 +244,7 @@ process internal_control_node_analysis {
     for x in pert*
     do
     echo \$x
-    get_RONs_getperts.py \$x "internal_marker.txt" 'crit1perts.txt'
+    get_RONs_getperts.py \$x internal-marker* 'crit1perts.txt'
     done
     """
     
@@ -290,7 +276,7 @@ process extract_perts {
     
     input:
     path 'fvs_init.txt' from records_pert_inits
-    path "fvs.txt" from records_fvs
+    path "fvs-no-mutated-genes.txt" from records_fvs_nomuts
     path '*_filtered_perturbations.txt' from records_filtered_perts
 
 
@@ -301,7 +287,7 @@ process extract_perts {
     """
     for x in *_filtered_perturbations.txt
     do
-    get_perts.py fvs_init.txt fvs.txt \$x
+    get_perts.py fvs_init.txt fvs-no-mutated-genes.txt \$x
     done
     """
     

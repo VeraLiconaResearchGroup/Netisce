@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/labs/Vera-Licona/pipeline_validation_2021/kinoshita_FINAL/kinoshita_automation_changenetwork/bin/FVS_run.py", line 11, in <module>
+    edges=open(sys.argv[1]).readlines() #open network file
+FileNotFoundError: [Errno 2] No such file or directory: 'network.sif'

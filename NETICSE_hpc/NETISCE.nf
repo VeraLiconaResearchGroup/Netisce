@@ -18,6 +18,7 @@ params.num_nodes = 4
 params.num_states = 1000
 
 
+
 process sfa_exp {
     input: 
     path "expressions.csv" from params.expressions
@@ -37,14 +38,14 @@ process get_exp_internal_control_nodes {
     
     input:
     path 'attrs_exp.txt' from records_expattr
-    path "internal_marker.txt" from params.internal_control
+    path "internal-marker*" from params.internal_control
 
     output:
     path 'exp_internalmarkers.txt' into records_exp_icns
     
     script:
     """
-    get_RONs.py attrs_exp.txt internal_marker.txt
+    get_RONs.py attrs_exp.txt internal-marker*
     """
     
 }
@@ -119,7 +120,7 @@ process sfa_perts {
     script:
     """
     SFA_virtscreen.py network.sif expressions.csv $params.undesired samples.txt fvs.txt fvs_init.txt $params.alpha
-    
+
     """
 }
 
@@ -140,7 +141,7 @@ process check_icns{
     
 }
 
-process kmeans_opt {
+process kmeans {
     publishDir 'results', mode: 'copy', overwrite: true
 
     input:
@@ -148,49 +149,17 @@ process kmeans_opt {
     path 'attrs_insilico*' from records_insilico
  
     output:
-    env ELBOW into records_elbow
-    env SILHOUETTE into records_silhouette
-    path '*.pdf' into records_silplots
-    path '*.png' into records_elbowplots
+
+    path 'optimalk_plots.png' into records_elbowplots
+    path 'kmeans.txt' into records_kmeans
     
-    shell:
+    script:
     """
     datasets=\$(ls -m attr* | sed 's/ //g')
-    echo \$datasets
-    export SILHOUETTE=\$(silhouette_metric.py \$datasets results/ $params.kmeans_max_val)
-    export ELBOW=\$(elbow_metric.py \$datasets results/ $params.kmeans_max_val)
+    kmeans_full.py \$datasets $params.kmeans_max_val
     """
 }
-process kmeans {
-    input:
-    val ELBOW from records_elbow
-    val SILHOUETTE from records_silhouette
-    path 'attrs_exp.txt' from records_expattr
-    path 'attrs_insilico*' from records_insilico
-    path 'samples.txt' from params.samples
 
-    output:
-    path 'kmeans.txt' into records_kmeans
-
-    script:
-    if (ELBOW==SILHOUETTE)
-        """
-        datasets=\$(ls -m attr* | sed 's/ //g')
-        kmeans.py $ELBOW \$datasets
-        """
-
-    else if (ELBOW<SILHOUETTE)
-        """
-        datasets=\$(ls -m attr* | sed 's/ //g')
-        kmeans.py $ELBOW \$datasets
-        """
-    else if (SILHOUETTE<ELBOW)
-        """
-        datasets=\$(ls -m attr* | sed 's/ //g')
-        kmeans.py $SILHOUETTE \$datasets
-        """
-
-}
 
 process classification {
     input:
@@ -240,7 +209,7 @@ process internal_control_node_analysis {
     input:
     path 'pert*' from records_perts
     path 'crit1perts.txt' from records_consensus
-    path "internal_marker.txt" from params.internal_control
+    path "internal-marker*" from params.internal_control
     
     output:
     path '*_internal_markers.txt' into records_pert_icns
@@ -250,7 +219,7 @@ process internal_control_node_analysis {
     for x in pert*
     do
     echo \$x
-    get_RONs_getperts.py \$x "internal_marker.txt" 'crit1perts.txt'
+    get_RONs_getperts.py \$x internal-marker* 'crit1perts.txt'
     done
     """
     

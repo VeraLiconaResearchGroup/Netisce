@@ -1,0 +1,10 @@
+name clusters
+pert_0 0
+pert_1 1
+pert_2 0
+pert_3 0
+pert_4 1
+pert_5 0
+pert_6 0
+pert_7 1
+pert_8 0

@@ -26,7 +26,7 @@ def main():
     labels=df_labels['clusters'].tolist()
     outfolder=sys.argv[2]
     
-    regressor = RandomForestClassifier(n_estimators=20, random_state=0)
+    regressor = RandomForestClassifier(n_estimators=100, random_state=1)
     regressor.fit(df_attr,labels)  #do knn with attractor landscape
     perturb_lab=regressor.predict(df_perturb) # predict clusters for perturbations
     print("calculated svm on attractors, predicted perturbations")

@@ -1,3 +1,0 @@
-name Klf4 Oct4 Nanog
-pert_14 0 0 1
-pert_23 1 0 1

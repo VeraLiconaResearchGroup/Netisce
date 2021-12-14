@@ -78,5 +78,7 @@ if __name__ == "__main__":
             x = alg.compute(b,pi)                                      # Run SFA calculation
             logss.loc[name2,netnodes]=x[0]
         logss=logss.drop_duplicates()
+        logss=logss.astype(float).round(3)
+
     #write out tables  
-        logss.to_csv('pert_logss_'+name+'_.txt', sep=' ',float_format='%.0f',index_label="name",chunksize=10000)      
+        logss.to_csv('pert_logss_'+name+'_.txt', sep=' ',float_format='%.3f',index_label="name",chunksize=10000)      

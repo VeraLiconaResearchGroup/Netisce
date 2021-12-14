@@ -1,0 +1,26 @@
+extended
+[77/d40497] calculate attractors from experimental data
+[e2/1de4a7] generate randomly generated initial states
+[99/12c85a] simulate network using randomly generated initial states
+[ba/46f5b0] calculate FVS
+[2f/e7c230] generate combinations of perturbations on FVS control nodes
+[94/f6bb9d] simulate network with perturbations on FVS control nodes
+[42/690cf7] kmeans calculations
+[86/f9d1fc] ML classification calculations
+[1f/5074b8] criterion 1: consensus between classifation ML algorithms
+
+original four internal-marker nodes
+[cc/1f2020] extract internal-marker nodes from attractors generated from experimental initial states
+[55/5639d4] generate graphs for internal-marker nodes from attractors generated from experimental initial states
+[fe/9a6d08] extract internal-marker nodes from attractors generated perturbations on FVS control nodes that passed filtering criterion 1
+[c6/a139e7] citerion2: filtering perturbations that passed criterion 1 based on internal-marker node values
+[0d/d4f9e3] extract exact perturbations that passed criterion 2
+[b3/df3d81] generate readable chart of perturbations that passed criterion 2
+
+extended internal-marker nodes
+[c8/2ca9fa]  extract internal-marker nodes from attractors generated from experimental initial states
+[4e/a870bc] generate graphs for internal-marker nodes from attractors generated from experimental initial states
+[cd/ca66dc] extract internal-marker nodes from attractors generated perturbations on FVS control nodes that passed filtering criterion 1
+[cb/fb7549] citerion2: filtering perturbations that passed criterion 1 based on internal-marker node values
+[97/d7bc91] extract exact perturbations that passed criterion 2
+[ac/a87db6] generate readable chart of perturbations that passed criterion 2                

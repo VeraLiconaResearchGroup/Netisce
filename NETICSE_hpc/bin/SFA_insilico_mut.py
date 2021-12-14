@@ -15,7 +15,7 @@ fpath =  os.path.join(sys.argv[1]) #location of networkfile
 qdata_all=pd.read_csv(sys.argv[2],index_col = 0)
 
 all_samples=pd.read_csv(sys.argv[3],delim_whitespace=True, index_col = False)
-samples=pd.read_csv(sys.argv[4],delim_whitespace=True, index_col = False)
+samples=pd.read_csv(sys.argv[4],delim_whitespace=True)
 phenotypes = all_samples.phenotype.unique()
 
 mut=pd.read_csv(sys.argv[5],index_col=0)
@@ -49,44 +49,54 @@ if __name__ == "__main__":
 
     netnodes=list(data.dg.nodes)    
     expnodes=list(set(netnodes) & set(qdata_all.index)) 
-    samples.index=expnodes
+    expnodes.sort()
+    samples.columns=expnodes
     n = data.dg.number_of_nodes() #the number of nodes
     b = np.zeros((n,))
-
-    logss=pd.DataFrame(index=samples.columns,columns=netnodes,copy=True) 
-    for p in phenotypes:
-        qs = all_samples[all_samples.isin([p]).any(axis=1)]['name'].tolist()
+    switch_num = int(len(samples)/len(phenotypes)) + (len(phenotypes) % len(samples) > 0)
+    l=0
+    logss=pd.DataFrame(index=samples.index,columns=netnodes,copy=True) 
+    for i in range(len(phenotypes)):
+        m=switch_num*i
+        qs = all_samples[all_samples.isin([phenotypes[i]]).any(axis=1)]['name'].tolist()
         qdata=qdata_all.loc[:,qs]
         pi=[]
-        logss=pd.DataFrame(index=samples.columns,columns=netnodes,copy=True) 
+        samples2=samples.iloc[l:switch_num+m]
+        minv=pd.Series(index = qdata.index, data = [np.amin(qdata.loc[node,]) for node in qdata.index])
+        maxv=pd.Series(index = qdata.index, data = [np.amax(qdata.loc[node,]) for node in qdata.index])
+        q1=pd.Series(index = qdata.index, data = [np.quantile(qdata.loc[node,],.33) for node in qdata.index])
+        q2=pd.Series(index = qdata.index, data = [np.quantile(qdata.loc[node,],.66) for node in qdata.index]) 
 
-        for name, item in samples.iteritems():                      #for each simulated initial condition
+        for name, item in samples2.iterrows():                     #for each simulated initial condition
             pi=[]
             enodes=item.index.tolist()
-            for node in enodes:                                     # set initial state to simulated value
-                q1=np.quantile(qdata.loc[node,],.33)            # separate the values into 3 groups
-                q2=np.quantile(qdata.loc[node,],.66)
-                min=np.amin(qdata.loc[node,])
-                max=np.amax(qdata.loc[node,])
+            # print(enodes)
+            # die
+            for node in enodes:                                     # set initial state to simulated value                                    # set initial state to simulated value
                 if item.loc[node]==1:               # if 1
-                    number=np.random.uniform(low=q2, high=max) #generate a random value for the node in the upper quartile
+                    number=np.random.uniform(low=q2[node], high=maxv[node]) #generate a random value for the node in the upper quartile
                 elif item.loc[node]==-1: # if -1
-                    number=np.random.uniform(low=min, high=q1) #generate a random value for the node in the lower quartile
+                    number=np.random.uniform(low=minv[node], high=q1[node]) #generate a random value for the node in the lower quartile
                 else: #item.loc[node]==0
-                    number=np.random.uniform(low=q1, high=q2)   #generate a random value for the node in the middle
+                    number=np.random.uniform(low=q1[node], high=q2[node])   #generate a random value for the node in the middle
                 b[data.n2i[node]]=number
+            # print(b)
+            # die
             if name in mut.index:
                 muti=mut.loc[name,]
                 muti=muti.dropna()
                 for node,status in muti.iteritems():
                     if status==0.0:
-                        b[data.n2i[node]]=float(str(np.amin(qdata.loc[node,])))-2.5*(float(str(np.amin(qdata.loc[node,]))))
+                        b[data.n2i[node]]=float(str(minv[node]))-2.5*(float(str(minv[node])))
                         pi.append(data.n2i[node])
                     if status==1.0:
-                        b[data.n2i[node]]=float(str(np.amax(qdata.loc[node,])))+2.5*(float(str(np.amax(qdata.loc[node,]))))
+                        b[data.n2i[node]]=float(str(maxv[node]))+2.5*(float(str(maxv[node])))
                         pi.append(data.n2i[node])
+
             x = alg.compute(b,pi)                                 # Run SFA calculation
             logss.loc[name,netnodes]=x[0]
+        l=switch_num+m 
 
     #write out nondisc tables  
-            logss.to_csv("attrs_insilico" + p +'.txt', sep=' ',float_format='%.0f',index_label="name",chunksize=10000)
+    
+    logss.to_csv('attrs_insilico.txt', sep=' ',float_format='%.0f',index_label="name",chunksize=10000)

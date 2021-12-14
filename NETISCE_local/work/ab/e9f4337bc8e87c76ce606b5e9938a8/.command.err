@@ -1,0 +1,14 @@
+/usr/local/lib/python3.9/site-packages/yellowbrick/utils/kneed.py:155: YellowbrickWarning: No 'knee' or 'elbow point' detected This could be due to bad clustering, no actual clusters being formed etc.
+  warnings.warn(warning_message, YellowbrickWarning)
+/usr/local/lib/python3.9/site-packages/yellowbrick/cluster/elbow.py:343: YellowbrickWarning: No 'knee' or 'elbow' point detected, pass `locate_elbow=False` to remove the warning
+  warnings.warn(warning_message, YellowbrickWarning)
+/usr/local/lib/python3.9/site-packages/yellowbrick/base.py:246: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+/usr/local/lib/python3.9/site-packages/yellowbrick/base.py:246: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
+  plt.show()
+Traceback (most recent call last):
+  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full.py", line 45, in <module>
+    main()
+  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full.py", line 33, in main
+    if elbow<silhouette:
+TypeError: '>' not supported between instances of 'int' and 'NoneType'
