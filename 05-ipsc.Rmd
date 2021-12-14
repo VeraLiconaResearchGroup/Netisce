@@ -26,7 +26,7 @@ The nextflow pipeline generates 1 result file `exp_internalmarkers.txt`, which c
 
 
 ```{r, out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'Simple Toy Network'}
-url<-'https://raw.githubusercontent.com/VeraLiconaResearchGroup/Netisce/main/ipsc/results/silhouette.png'
+url<-'https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/silhouette.png?raw=true'
 knitr::include_url(url)
 ```
 
