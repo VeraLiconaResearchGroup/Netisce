@@ -134,3 +134,4 @@ ipsc/run.sh
 ipsc/.DS_Store
 .Rhistory
 ipsc/.DS_Store
+*.zip

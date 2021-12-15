@@ -1,0 +1,22 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:plyr’:
+
+    arrange, count, desc, failwith, id, mutate, rename, summarise,
+    summarize
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Warning message:
+In read.table(file = file, header = header, sep = sep, quote = quote,  :
+  incomplete final line found by readTableHeader on 'samples.txt'
+Using phenotype as id variables
+Using phenotype as id variables
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.

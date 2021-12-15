@@ -1,0 +1,4 @@
+name	phenotype
+HT29	untreated
+HT29_BRAFiEGFRi	sensitive
+HT29_BRAFi	resistant
