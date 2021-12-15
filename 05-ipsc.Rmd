@@ -132,6 +132,8 @@ ggplot(d3r, aes(x=value)) +
 ```
 Here, we see that in the majority of perturbations, there is overexpression of the FVS nodes Sox2, Nanog and Oct4. This aligns with their role as maintainers of pluripotency. 
 
+The steady-state values of the internal-marker nodes for these perturbations can be found in [`pert1_internal_markers.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt).
+
 
 A perturbation on the FVS control node, Nanog overexpression (pert_445),  was also identified in Yachie-Kinoshita et al. and experimentally verified to shift cells from the EpiSC state towards the ESC state. We can plot the internal-marker node values using a radar plot.
 
@@ -206,12 +208,14 @@ ggplot(d4r, aes(x=value)) +
 ```
 Interestingly, we see among these 15 perturbations, Nanog overexpression, but no change to Oct4 or Sox2, is indicated. We also see that Klf4 is overexpressed in the majority of these 15 perturbations. 
 
+The steady-state values of the internal-marker nodes for these perturbations can be found in [`pert1_internal_markers.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt).
+
 We can also generate radar plots for these 15 perturbations.
 
 ```{r ipsc-charts2, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"}
 library(fmsb)
 attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1)
-attr_pert <-attr_pert[row.names(crit2_7),c('Oct4',"Sox2","Nanog","EpiTFs")]
+attr_pert <-attr_pert[row.names(crit2_7),]
 exp<-read.delim("ipsc/results/original-exp_internalmarkers.txt",sep=" ",row.names = 1)
 EpiSC_avg<-colMeans(exp[4:6,])
 ESC_avg<-colMeans(exp[1:3,])
@@ -232,3 +236,55 @@ for (i in 5:nrow(d2)) {
 
 ```
 These radar plots show that for all 15 perturbations on FVS control nodes, the steady-state values of the internal-marker nodes are within the expression range of the attractors generated from the ESC experimental data.  
+
+
+```{r radar-plots-for-paper, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"}
+
+
+attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1)
+attr_pert <-attr_pert[c('pert_445','pert_365'),c('Oct4',"Sox2","Nanog","EpiTFs")]
+exp<-read.delim("ipsc/results/original-exp_internalmarkers.txt",sep=" ",row.names = 1)
+EpiSC_avg<-colMeans(exp[4:6,])
+ESC_avg<-colMeans(exp[1:3,])
+
+d1<-rbind(EpiSC_avg,ESC_avg,attr_pert)
+rownames(d1)[1:4]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression")
+maxcol<-apply(d1, 2, max)
+mincol<-apply(d1, 2, min)
+
+d2<-rbind(maxcol,mincol, d1)
+rownames(d2)[1:2]<- c("Max", "Min")
+
+par(mar = c(4, 0.1, 4, 0.1))
+
+
+for (i in 5:nrow(d2)) {
+  create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)
+}
+```
+
+
+```{r radar-plots-for-paper2, out.width='33%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"}
+
+
+attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1)
+attr_pert <-attr_pert[c('pert_445','pert_365','pert_446'),]
+exp<-read.delim("ipsc/results/original-exp_internalmarkers.txt",sep=" ",row.names = 1)
+EpiSC_avg<-colMeans(exp[4:6,])
+ESC_avg<-colMeans(exp[1:3,])
+
+d1<-rbind(EpiSC_avg,ESC_avg,attr_pert)
+rownames(d1)[1:5]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression","Nanog+Klf4 overexpression")
+maxcol<-apply(d1, 2, max)
+mincol<-apply(d1, 2, min)
+
+d2<-rbind(maxcol,mincol, d1)
+rownames(d2)[1:2]<- c("Max", "Min")
+
+par(mar = c(4, 0.1, 4, 0.1))
+
+
+for (i in 5:nrow(d2)) {
+  create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=.8, pt.cex=1.8)
+}
+```

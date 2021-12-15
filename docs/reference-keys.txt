@@ -9,6 +9,8 @@ fig:unnamed-chunk-27
 fig:ipsc-charts
 fig:unnamed-chunk-30
 fig:ipsc-charts2
+fig:radar-plots-for-paper
+fig:radar-plots-for-paper2
 about
 installation-and-usage
 download-netisce

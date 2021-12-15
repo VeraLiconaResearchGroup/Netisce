@@ -1108,6 +1108,8 @@ We can look to see if there are any trends in the orientation of the perturbatio
 
 Here, we see that in the majority of perturbations, there is overexpression of the FVS nodes Sox2, Nanog and Oct4. This aligns with their role as maintainers of pluripotency.
 
+The steady-state values of the internal-marker nodes for these perturbations can be found in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt}{\texttt{pert1\_internal\_markers.txt}}.
+
 A perturbation on the FVS control node, Nanog overexpression (pert\_445), was also identified in Yachie-Kinoshita et al.~and experimentally verified to shift cells from the EpiSC state towards the ESC state. We can plot the internal-marker node values using a radar plot.
 
 We can also plot Klf4 overexpression. This was a perturbation identified by Yachie-Kinoshita et al.~to shift cells from the EpiSC state towards the ESC state. However, in our analyses, this perturbation (pert\_365), did pass filtering criterion 1, but did not pass filtering criterion 2.
@@ -1240,13 +1242,15 @@ We can plot the trends of the orientation of perturbations for each FVS control 
 
 Interestingly, we see among these 15 perturbations, Nanog overexpression, but no change to Oct4 or Sox2, is indicated. We also see that Klf4 is overexpressed in the majority of these 15 perturbations.
 
+The steady-state values of the internal-marker nodes for these perturbations can be found in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt}{\texttt{pert1\_internal\_markers.txt}}.
+
 We can also generate radar plots for these 15 perturbations.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(fmsb)}
 \NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/pert1_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
-\NormalTok{attr_pert <-attr_pert[}\KeywordTok{row.names}\NormalTok{(crit2_}\DecValTok{7}\NormalTok{),}\KeywordTok{c}\NormalTok{(}\StringTok{'Oct4'}\NormalTok{,}\StringTok{"Sox2"}\NormalTok{,}\StringTok{"Nanog"}\NormalTok{,}\StringTok{"EpiTFs"}\NormalTok{)]}
+\NormalTok{attr_pert <-attr_pert[}\KeywordTok{row.names}\NormalTok{(crit2_}\DecValTok{7}\NormalTok{),]}
 \NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/original-exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{EpiSC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{,])}
 \NormalTok{ESC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,])}
@@ -1272,6 +1276,64 @@ We can also generate radar plots for these 15 perturbations.
 \end{figure}
 
 These radar plots show that for all 15 perturbations on FVS control nodes, the steady-state values of the internal-marker nodes are within the expression range of the attractors generated from the ESC experimental data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/pert1_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_445'}\NormalTok{,}\StringTok{'pert_365'}\NormalTok{),}\KeywordTok{c}\NormalTok{(}\StringTok{'Oct4'}\NormalTok{,}\StringTok{"Sox2"}\NormalTok{,}\StringTok{"Nanog"}\NormalTok{,}\StringTok{"EpiTFs"}\NormalTok{)]}
+\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/original-exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\NormalTok{EpiSC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{,])}
+\NormalTok{ESC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,])}
+
+\NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(EpiSC_avg,ESC_avg,attr_pert)}
+\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"EpiSC"}\NormalTok{, }\StringTok{"ESC"}\NormalTok{,}\StringTok{"Nanog overexpression"}\NormalTok{,}\StringTok{"Klf4 overexpression"}\NormalTok{)}
+\NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
+\NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
+
+\NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
+\KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
+
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
+  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\StringTok{"average EpiSC"}\NormalTok{,}\StringTok{"average ESC"}\NormalTok{,}\KeywordTok{row.names}\NormalTok{(d2)[i]) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/radar-plots-for-paper-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/radar-plots-for-paper-2} \caption{radar charts of the steady-state values of 7 internal-marker nodes perturbation}\label{fig:radar-plots-for-paper}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/pert1_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_445'}\NormalTok{,}\StringTok{'pert_365'}\NormalTok{,}\StringTok{'pert_446'}\NormalTok{),]}
+\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/original-exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\NormalTok{EpiSC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{,])}
+\NormalTok{ESC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,])}
+
+\NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(EpiSC_avg,ESC_avg,attr_pert)}
+\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"EpiSC"}\NormalTok{, }\StringTok{"ESC"}\NormalTok{,}\StringTok{"Nanog overexpression"}\NormalTok{,}\StringTok{"Klf4 overexpression"}\NormalTok{,}\StringTok{"Nanog+Klf4 overexpression"}\NormalTok{)}
+\NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
+\NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
+
+\NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
+\KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
+
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
+
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
+  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\StringTok{"average EpiSC"}\NormalTok{,}\StringTok{"average ESC"}\NormalTok{,}\KeywordTok{row.names}\NormalTok{(d2)[i]) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\NormalTok{.}\DecValTok{8}\NormalTok{, }\DataTypeTok{pt.cex=}\FloatTok{1.8}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\includegraphics[width=0.33\linewidth]{_main_files/figure-latex/radar-plots-for-paper2-1} \includegraphics[width=0.33\linewidth]{_main_files/figure-latex/radar-plots-for-paper2-2} \includegraphics[width=0.33\linewidth]{_main_files/figure-latex/radar-plots-for-paper2-3} \caption{radar charts of the steady-state values of 7 internal-marker nodes perturbation}\label{fig:radar-plots-for-paper2}
+\end{figure}
 
 \hypertarget{adaptive-resistance-in-colorectal-cancer-example}{%
 \chapter{Adaptive Resistance in Colorectal Cancer Example}\label{adaptive-resistance-in-colorectal-cancer-example}}
