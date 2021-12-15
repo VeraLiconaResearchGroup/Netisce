@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-14" />
+<meta name="date" content="2021-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -168,7 +168,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html"><i class="fa fa-check"></i><b>6</b> Pluripotent Stem Cell Example</a><ul>
 <li class="chapter" data-level="6.1" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#input-data-1"><i class="fa fa-check"></i><b>6.1</b> Input Data</a></li>
 <li class="chapter" data-level="6.2" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#run-the-simulation-1"><i class="fa fa-check"></i><b>6.2</b> Run the simulation</a></li>
-<li class="chapter" data-level="6.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-1"><i class="fa fa-check"></i><b>6.3</b> Results</a></li>
+<li class="chapter" data-level="6.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-1"><i class="fa fa-check"></i><b>6.3</b> Results</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#general-results"><i class="fa fa-check"></i><b>6.3.1</b> General Results</a></li>
+<li class="chapter" data-level="6.3.2" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-4-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.2</b> Results using 4 internal-marker nodes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-7-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.3</b> Results using 7 internal-marker nodes</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a></li>
 <li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a></li>
@@ -194,32 +198,1229 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="pluripotent-stem-cell-example" class="section level1">
 <h1><span class="header-section-number">6</span> Pluripotent Stem Cell Example</h1>
-<p>This section contains instructions to reproduce the results of simulating FVS control node perturbations in a model of ascidian embryo cell specification. You can read the original report here: link</p>
-<p>The input data, nextflow pipeline, and results of this simulation can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc">ipsc folder</a> in the github repository</p>
-<p>These simulations were run on a high performance cluster that uses a SLURM executor. If your hpc uses a different executor, please update those specifications in the <code>nextflow.config</code> file in the directory. Please see <a href="https://www.nextflow.io/docs/latest/config.html" class="uri">https://www.nextflow.io/docs/latest/config.html</a> for more information regarding your executor.</p>
+<p>This section contains instructions to reproduce the results of simulating perturbations on FVS control nodes in a pluripotent stem cell signaling. The goal of these simulations is to identify targets that can reprogram cells from the Epiblast stem cell (EpiSC) fate towards the Embryonic Stem Cell (ESC) fate. You can read the original report here: link</p>
+<p>The input data, nextflow pipeline, and results of this simulation can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation">ipsc folder</a> in the NETISCE github repository</p>
 <div id="input-data-1" class="section level2">
 <h2><span class="header-section-number">6.1</span> Input Data</h2>
-<p>The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis.Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.
-We are only interested in performing the 7 perturbations to the 6 FVS control nodes that were experimentally verified to induce cell tissue fates.</p>
-<p><code>expression.csv</code> contains the initial activities for the unperturbed state and the 7 FVS control node perturbations. Here, all simulations have Gata.a and Zic-r.a=1, as the activation of these two genes is required for normal embryonic development.</p>
-<p><code>perturbations.csv</code> contains the specified perturbations for each FVS node in the appropriate perturbation simulation. 0 denotes downregulation, wherease 1 encodes upregulation. If no value is set, then there is no fixed perturbation to the FVS node, as in the unperturbed case.</p>
-<p><code>internal-marker-nodes.txt</code> contains the 7 internal marker nodes used to verify if the specified cell reprogramming had been successfully simulated.</p>
+<p><a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/network.sif"><code>network.sif</code></a> contains the network structure for pluripotent stem cell signaling</p>
+<p><a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/expression.csv"><code>expression.csv</code></a> contains the initial activities for ESC cells (3 replicates), and EpiSC cells (3 replicates)</p>
+<p><a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/internal-marker-kinoshita.txt"><code>internal-marker-kinoshita.txt</code></a> contains the 4 internal marker nodes that were originally used in Yachie-Kinoshita et al., to evaluate simulations.</p>
+<p><a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/internal-marker-kinoshita-expanded.txt"><code>internal-marker-kinoshita-expanded.txt</code></a> contains the 4 internal marker nodes that were originally used in Yachie-Kinoshita et al., plus the additional marker ndoes identified from the data used to evaluate simulations.</p>
+<p><a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/samples.txt"><code>samples.txt</code></a> contains they key for NETISCE to associate certain samples to the phenotypes of Embryonic Stem Cells (ESCs) or Epiblast Stem Cells (EpiSCs)</p>
 </div>
 <div id="run-the-simulation-1" class="section level2">
 <h2><span class="header-section-number">6.2</span> Run the simulation</h2>
-<p>To run the simulation, simply execute the <code>ascidian-embryo.nf</code> file using the following command: <code>./nextflow run ascidian-embryo.nf -resume</code></p>
+<p>These simulations were run on a high performance cluster that uses a SLURM executor. If your hpc uses a different executor, please update those specifications in the <code>nextflow.config</code> file in the directory. Please see <a href="https://www.nextflow.io/docs/latest/config.html" class="uri">https://www.nextflow.io/docs/latest/config.html</a> for more information regarding your executor.</p>
+<p>For ease of reproduction, we have included all files necessary to reproduce the reported results directly in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation">directory</a>. We do reccomend you run this simulation on an hpc. We have included the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/run.sh">bash file</a> we used on our SLURM executor.</p>
+<p><strong>Note: </strong> within the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/NETISCE.nf"><code>NETISCE.nf</code></a> configuration file, we have included two lines for specifying the internal-marker nodes:</p>
+<pre><code>#!/usr/bin/env nextflow
+
+params.expressions = &quot;$baseDir/input_data/expression.csv&quot;
+params.network = &quot;$baseDir/input_data/network.sif&quot;
+params.samples = &quot;$baseDir/input_data/samples.txt&quot;
+params.internal_control=&quot;$baseDir/input_data/internal-marker-kinoshita.txt&quot;
+// params.internal_control=&quot;$baseDir/input_data/internal-marker-kinoshita-expanded.txt&quot;
+params.alpha = 0.9
+params.undesired = &#39;EpiSC&#39;
+params.desired = &#39;ESC&#39;
+params.filter =&quot;strict&quot;</code></pre>
+<p>As discussed in our paper, we filtered the perturbations using the original 4 internal-marker nodes for pluripotency (Oct4, Sox2, Nanog, EpiTFs), and then again using 3 additional internal-marker nodes. Therefore, to run either analysis, comment/uncomment the internal-marker node file you are interested in. If you want to run NETISCE first with the original internal-marker nodes, make sure to change the results file names for <code>exp_internalmarkers.txt</code>,<code>successful_controlnode_perturubations.txt</code>, and <code>original-experimental_internalmarkers.pdf</code> as to not overwrite them (or move them into a separate folder). Additionally, when you run the nextflow command, <strong>please be sure to use the <code>-resume</code> flag so that you use the cached computations that do not need to be re-computed</strong></p>
+<p>You can also run NETISCE directly using the following command: <code>./nextflow run NETISCE.nf -resume</code></p>
 </div>
 <div id="results-1" class="section level2">
 <h2><span class="header-section-number">6.3</span> Results</h2>
-<p>The nextflow pipeline generates 1 result file <code>exp_internalmarkers.txt</code>, which contains the steady state values of the internal-marker nodes for the unperturbed attractor, and the attractors generated from the perturbations on FVS control nodes.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
-<iframe src="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/silhouette.png?raw=true" width="50%" height="400px">
-</iframe>
+<p>Herein, we will focus on the results that are deposited in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/results"><code>results</code></a> folder by NETISCE. However, each step of the nextflow pipeline produces its coressponding raw results (for example, the entire attractor state for network simulations initialized with experimnetal data). If you are interested in looking at those raw results, they can be found within the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/work"><code>work</code></a> folder. We provide <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/workfiles.txt"><code>workfiles.txt</code></a> which is a guide to which folders/subfolders contain the relevant results of each step.</p>
+<div id="general-results" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> General Results</h3>
+<p>First, let’s take a look at the results that do not depend on the internal-marker node set.</p>
+<div id="section-id" class="section level4 unnumbered">
+<h4>FVS finding</h4>
+The FVS solving algorithm identified one FVS, containing 6 nodes.
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Sox2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Nanog
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gata6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tbx3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Oct4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Klf4
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>Attractor landscape estimation via k-means analysis</h4>
+<p>Now, let’s look at the results of k-means analysis. First, NETISCE determines the optimal number of k clusters by computing the elbow and silhouette metrics.</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
+<img src="ipsc/results/elbow.png" alt="optimal k as identified by a) the elbow and b) silhouette metrics" width="50%" /><img src="ipsc/results/silhouette.png" alt="optimal k as identified by a) the elbow and b) silhouette metrics" width="50%" />
 <p class="caption">
-Figure 6.1: Simple Toy Network
+Figure 6.1: optimal k as identified by a) the elbow and b) silhouette metrics
 </p>
 </div>
+<p>We see that the optimal k assessed by the elbow metric was k=4, while the optimal k identified by the silhouette metric was k=2. NETISCE automatically chooses the smaller k value, after checking that the attractors generated from the ESC samples and EpiSC samples do not appear in the same cluster.</p>
+<p>k=2 was selected for k-means optimal k, and we can see that the attractors generated from the ESC samples and EpiSC samples do not appear in separate clusters.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:right;">
+clusters
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ESC_1
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESC_2
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ESC_3
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EpiSC_1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EpiSC_2
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+EpiSC_3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>Pertrubations on FVS control nodes that pass criterion 1</h4>
+<p>With 6 FVS control nodes, NETISCE performed 729 simulations of combinations of perturbations on the FVS control nodes. The resulting attractors were classified to the clusters produced from the k-means analysis using Naive Bayes, Support Vector Machine, and Random Forest Machine Learning classification algorithms. Then, the perturbations are filtered by which of their corresponding attractors were classified to the ESC cluster by at least 2 of the 3 methods. These results can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/crit1perts.txt"><code>crit1_perts.txt</code></a>. Here we show the first 10 rows.</p>
+<pre><code>## [1] &quot;number of perturbations that pass filtering criteria 1: 375&quot;</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+pert_8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_88
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_98
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="results-using-4-internal-marker-nodes" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Results using 4 internal-marker nodes</h3>
+<p><strong>The relevant files have the prefix ‘original’ in the github repository</strong></p>
+<p>Our second perturbation filtering criterion identifies perturbations where, in their corresponding attractors, 90% of the steady state values for internal-marker nodes that are within the steady state expression ranges in the attractors generated from the ESC experimental data.</p>
+<p>First, let’s take a look at the steady state values of the internal-marker nodes Oct4, Sox2, and Nanog in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-exp_internalmarkers.txt"><code>original-exp_internalmarkers.txt</code></a> and are plotted in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-experimental_internalmarkers.pdf"><code>original-experimental_internalmarkers.pdf</code></a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
+<img src="ipsc/results/original-experimental_internalmarkers.pdf" alt="histograms of 4 internal-marker node values" width="460pt" height="700pt" />
+<p class="caption">
+Figure 6.2: histograms of 4 internal-marker node values
+</p>
+</div>
+<p>We see that the values of the internal-markers for the pluripotent state (Oct4, Sox2, Nanog) are higher in the attractors generated from the experimental data of the ESCs than the attractors generated from the experimental data of the EpiSCs, and the makrer of the epiblast stem state is higher in the attractors generated from the experimental data of the EpiSCs than in the attractors generated from the experimental data of the ESC.</p>
+<p>Now, we can take a look at the attractors that passed filtering criterion 2. We show the first 10 rows here, but you can view the entire set in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-successful_controlnode_perturbations.txt"><code>original-successful_controlnode_perturbations.txt</code></a></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="pluripotent-stem-cell-example.html#cb8-1"></a>crit2_<span class="dv">4</span>&lt;-<span class="kw">read.delim</span>(<span class="st">&#39;ipsc/results/original-successful_controlnode_perturbations.txt&#39;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">as.is =</span> T)</span>
+<span id="cb8-2"><a href="pluripotent-stem-cell-example.html#cb8-2"></a><span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;number of perturbations that pass filtering criteria 2: &#39;</span>,<span class="kw">nrow</span>(crit2_<span class="dv">4</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;number of perturbations that pass filtering criteria 2: 132&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="pluripotent-stem-cell-example.html#cb10-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(crit2_<span class="dv">4</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_spec</span>(<span class="dv">8</span>, <span class="dt">bold =</span> T, <span class="dt">border_left =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">box_css =</span> <span class="st">&quot;border: 0px;&quot;</span>) </span></code></pre></div>
+<div style="border: 0px;overflow-x: scroll; width:100%; ">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Sox2
+</th>
+<th style="text-align:left;">
+Nanog
+</th>
+<th style="text-align:left;">
+Gata6
+</th>
+<th style="text-align:left;">
+Tbx3
+</th>
+<th style="text-align:left;">
+Oct4
+</th>
+<th style="text-align:left;">
+Klf4
+</th>
+<th style="text-align:right;">
+up
+</th>
+<th style="text-align:right;">
+down
+</th>
+<th style="text-align:right;">
+total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+pert_445
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_607
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_368
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_418
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_436
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_446
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_448
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_454
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_580
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_598
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can look to see if there are any trends in the orientation of the perturbations on FVS control nodes across the perturbations that passed both filtering criteria.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="pluripotent-stem-cell-example.html#cb11-1"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb11-2"><a href="pluripotent-stem-cell-example.html#cb11-2"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb11-3"><a href="pluripotent-stem-cell-example.html#cb11-3"></a>d3&lt;-crit2_<span class="dv">4</span> [,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transpose</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()</span>
+<span id="cb11-4"><a href="pluripotent-stem-cell-example.html#cb11-4"></a><span class="kw">row.names</span>(d3)&lt;-<span class="kw">colnames</span>(crit2_<span class="dv">4</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>])</span>
+<span id="cb11-5"><a href="pluripotent-stem-cell-example.html#cb11-5"></a><span class="kw">colnames</span>(d3)&lt;-<span class="kw">row.names</span>(crit2_<span class="dv">4</span>)</span>
+<span id="cb11-6"><a href="pluripotent-stem-cell-example.html#cb11-6"></a>d3r&lt;-reshape2<span class="op">::</span><span class="kw">melt</span>(d3) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Var2)</span>
+<span id="cb11-7"><a href="pluripotent-stem-cell-example.html#cb11-7"></a></span>
+<span id="cb11-8"><a href="pluripotent-stem-cell-example.html#cb11-8"></a><span class="co">#From Paul Tol: https://personal.sron.nl/~pault/</span></span>
+<span id="cb11-9"><a href="pluripotent-stem-cell-example.html#cb11-9"></a>Tol_muted &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;#88CCEE&#39;</span>, <span class="st">&#39;#44AA99&#39;</span>, <span class="st">&#39;#117733&#39;</span>, <span class="st">&#39;#332288&#39;</span>, <span class="st">&#39;#DDCC77&#39;</span>, <span class="st">&#39;#999933&#39;</span>,<span class="st">&#39;#CC6677&#39;</span>, <span class="st">&#39;#882255&#39;</span>, <span class="st">&#39;#AA4499&#39;</span>, <span class="st">&#39;#DDDDDD&#39;</span>)</span>
+<span id="cb11-10"><a href="pluripotent-stem-cell-example.html#cb11-10"></a></span>
+<span id="cb11-11"><a href="pluripotent-stem-cell-example.html#cb11-11"></a><span class="kw">ggplot</span>(d3r, <span class="kw">aes</span>(<span class="dt">x=</span>value)) <span class="op">+</span></span>
+<span id="cb11-12"><a href="pluripotent-stem-cell-example.html#cb11-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Var1,<span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>,<span class="dt">shrink=</span><span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb11-13"><a href="pluripotent-stem-cell-example.html#cb11-13"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">ncol</span>(d3),<span class="dt">fill=</span>value))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>Tol_muted)<span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;% of specified perturbation to a control node across all </span><span class="ch">\n</span><span class="st"> combinations of perturbations that passed filtering criteria &quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;node perturbation&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" />
+Here, we see that in the majority of perturbations, there is overexpression of the FVS nodes Sox2, Nanog and Oct4. This aligns with their role as maintainers of pluripotency.</p>
+<p>A perturbation on the FVS control node, Nanog overexpression (pert_445), was also identified in Yachie-Kinoshita et al. and experimentally verified to shift cells from the EpiSC state towards the ESC state. We can plot the internal-marker node values using a radar plot.</p>
+<p>We can also plot Klf4 overexpression. This was a perturbation identified by Yachie-Kinoshita et al. to shift cells from the EpiSC state towards the ESC state. However, in our analyses, this perturbation (pert_365), did pass filtering criterion 1, but did not pass filtering criterion 2.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="pluripotent-stem-cell-example.html#cb12-1"></a><span class="kw">library</span>(fmsb)</span>
+<span id="cb12-2"><a href="pluripotent-stem-cell-example.html#cb12-2"></a>attr_pert&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/pert1_internal_markers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb12-3"><a href="pluripotent-stem-cell-example.html#cb12-3"></a>attr_pert &lt;-attr_pert[<span class="kw">c</span>(<span class="st">&#39;pert_445&#39;</span>,<span class="st">&#39;pert_365&#39;</span>),<span class="kw">c</span>(<span class="st">&#39;Oct4&#39;</span>,<span class="st">&quot;Sox2&quot;</span>,<span class="st">&quot;Nanog&quot;</span>,<span class="st">&quot;EpiTFs&quot;</span>)]</span>
+<span id="cb12-4"><a href="pluripotent-stem-cell-example.html#cb12-4"></a>exp&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/original-exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb12-5"><a href="pluripotent-stem-cell-example.html#cb12-5"></a>EpiSC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,])</span>
+<span id="cb12-6"><a href="pluripotent-stem-cell-example.html#cb12-6"></a>ESC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,])</span>
+<span id="cb12-7"><a href="pluripotent-stem-cell-example.html#cb12-7"></a></span>
+<span id="cb12-8"><a href="pluripotent-stem-cell-example.html#cb12-8"></a>d1&lt;-<span class="kw">rbind</span>(EpiSC_avg,ESC_avg,attr_pert)</span>
+<span id="cb12-9"><a href="pluripotent-stem-cell-example.html#cb12-9"></a><span class="kw">rownames</span>(d1)[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;EpiSC&quot;</span>, <span class="st">&quot;ESC&quot;</span>,<span class="st">&quot;Nanog overexpression&quot;</span>,<span class="st">&quot;Klf4 overexpression&quot;</span>)</span>
+<span id="cb12-10"><a href="pluripotent-stem-cell-example.html#cb12-10"></a>maxcol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, max)</span>
+<span id="cb12-11"><a href="pluripotent-stem-cell-example.html#cb12-11"></a>mincol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, min)</span>
+<span id="cb12-12"><a href="pluripotent-stem-cell-example.html#cb12-12"></a></span>
+<span id="cb12-13"><a href="pluripotent-stem-cell-example.html#cb12-13"></a>d2&lt;-<span class="kw">rbind</span>(maxcol,mincol, d1)</span>
+<span id="cb12-14"><a href="pluripotent-stem-cell-example.html#cb12-14"></a><span class="kw">rownames</span>(d2)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Min&quot;</span>)</span>
+<span id="cb12-15"><a href="pluripotent-stem-cell-example.html#cb12-15"></a></span>
+<span id="cb12-16"><a href="pluripotent-stem-cell-example.html#cb12-16"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="fl">0.1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span>
+<span id="cb12-17"><a href="pluripotent-stem-cell-example.html#cb12-17"></a></span>
+<span id="cb12-18"><a href="pluripotent-stem-cell-example.html#cb12-18"></a></span>
+<span id="cb12-19"><a href="pluripotent-stem-cell-example.html#cb12-19"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">5</span><span class="op">:</span><span class="kw">nrow</span>(d2)) {</span>
+<span id="cb12-20"><a href="pluripotent-stem-cell-example.html#cb12-20"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>),<span class="dt">title =</span><span class="kw">row.names</span>(d2)[i]);<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;average EpiSC&quot;</span>,<span class="st">&quot;average ESC&quot;</span>,<span class="kw">row.names</span>(d2)[i]) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.cex=</span><span class="dv">2</span>)</span>
+<span id="cb12-21"><a href="pluripotent-stem-cell-example.html#cb12-21"></a>}</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ipsc-charts"></span>
+<img src="_main_files/figure-html/ipsc-charts-1.png" alt="radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts-2.png" alt="radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation" width="50%" />
+<p class="caption">
+Figure 6.3: radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation
+</p>
+</div>
+<p>We see here, indeed that the values for Oct4, Sox2, Nanog, (when considered these three genes as internal-marker nodes) and EpiTFs are within the expected range for Nanog overexpression, but the values of Oct4, Sox2, Nanog in the attractor generated from Klf4 overexpression do not reach the values of the ESC state.</p>
+</div>
+<div id="results-using-7-internal-marker-nodes" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> Results using 7 internal-marker nodes</h3>
+<p><em>The relevant files have the prefix ‘expanded’ in the github repository.</em></p>
+<p>We explored filtering the 132 perturbations that passed the second filtering criterion by adding additional internal-marker nodes associated with pluripotency. We added 3 nodes, Lefty1, Pitx2 (transcription factors active in EpiSCs), and Esrrb (transcription factor active in ESCs) to the 4 previously used internal-marker nodes.</p>
+<p>Let’s look at the steady state values of the internal-marker nodes in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-exp_internalmarkers.txt"><code>expanded-exp_internalmarkers.txt</code></a> and are plotted in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-experimental_internalmarkers.pdf"><code>expanded-experimental_internalmarkers.pdf</code></a>:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<img src="ipsc/results/expanded-experimental_internalmarkers.pdf" alt="histograms of 7 internal-marker node values" width="460pt" height="700pt" />
+<p class="caption">
+Figure 6.4: histograms of 7 internal-marker node values
+</p>
+</div>
+<p>Again, the internal-marker nodes have the correct expression patterns within the attractors generated from the ESC and EpiSC states.</p>
+<p>Now, we can take a look at the attractors that passed filtering criterion 2. These are in file <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-successful_controlnode_perturbations.txt"><code>expanded-successful_controlnode_perturbations.txt</code></a></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pluripotent-stem-cell-example.html#cb13-1"></a>crit2_<span class="dv">7</span>&lt;-<span class="kw">read.delim</span>(<span class="st">&#39;ipsc/results/expanded-successful_controlnode_perturbations.txt&#39;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>)</span>
+<span id="cb13-2"><a href="pluripotent-stem-cell-example.html#cb13-2"></a><span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;number of perturbations that pass filtering criteria 2: &#39;</span>,<span class="kw">nrow</span>(crit2_<span class="dv">7</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;number of perturbations that pass filtering criteria 2: 15&quot;</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="pluripotent-stem-cell-example.html#cb15-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(crit2_<span class="dv">7</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_spec</span>(<span class="dv">8</span>, <span class="dt">bold =</span> T, <span class="dt">border_left =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">box_css =</span> <span class="st">&quot;border: 0px;&quot;</span>)</span></code></pre></div>
+<div style="border: 0px;overflow-x: scroll; width:100%; ">
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Sox2
+</th>
+<th style="text-align:left;">
+Nanog
+</th>
+<th style="text-align:left;">
+Gata6
+</th>
+<th style="text-align:left;">
+Tbx3
+</th>
+<th style="text-align:left;">
+Oct4
+</th>
+<th style="text-align:left;">
+Klf4
+</th>
+<th style="text-align:right;">
+up
+</th>
+<th style="text-align:right;">
+down
+</th>
+<th style="text-align:right;">
+total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+pert_445
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_418
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_436
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_446
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_454
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_409
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_419
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_427
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_437
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_455
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_473
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_410
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_428
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_464
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+down
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pert_482
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:left;">
+nochange
+</td>
+<td style="text-align:left;">
+up
+</td>
+<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We can plot the trends of the orientation of perturbations for each FVS control node across the 15 perturbations.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="pluripotent-stem-cell-example.html#cb16-1"></a>d4&lt;-crit2_<span class="dv">7</span> [,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transpose</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()</span>
+<span id="cb16-2"><a href="pluripotent-stem-cell-example.html#cb16-2"></a><span class="kw">row.names</span>(d4)&lt;-<span class="kw">colnames</span>(crit2_<span class="dv">7</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>])</span>
+<span id="cb16-3"><a href="pluripotent-stem-cell-example.html#cb16-3"></a><span class="kw">colnames</span>(d4)&lt;-<span class="kw">row.names</span>(crit2_<span class="dv">7</span>)</span>
+<span id="cb16-4"><a href="pluripotent-stem-cell-example.html#cb16-4"></a>d4r&lt;-reshape2<span class="op">::</span><span class="kw">melt</span>(d4) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Var2)</span>
+<span id="cb16-5"><a href="pluripotent-stem-cell-example.html#cb16-5"></a></span>
+<span id="cb16-6"><a href="pluripotent-stem-cell-example.html#cb16-6"></a></span>
+<span id="cb16-7"><a href="pluripotent-stem-cell-example.html#cb16-7"></a></span>
+<span id="cb16-8"><a href="pluripotent-stem-cell-example.html#cb16-8"></a><span class="kw">ggplot</span>(d4r, <span class="kw">aes</span>(<span class="dt">x=</span>value)) <span class="op">+</span></span>
+<span id="cb16-9"><a href="pluripotent-stem-cell-example.html#cb16-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Var1,<span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>,<span class="dt">shrink=</span><span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb16-10"><a href="pluripotent-stem-cell-example.html#cb16-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">ncol</span>(d4),<span class="dt">fill=</span>value))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>Tol_muted) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;% of specified perturbation to a control node across all </span><span class="ch">\n</span><span class="st"> combinations of perturbations that passed filtering criteria &quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;node perturbation&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" />
+Interestingly, we see among these 15 perturbations, Nanog overexpression, but no change to Oct4 or Sox2, is indicated. We also see that Klf4 is overexpressed in the majority of these 15 perturbations.</p>
+<p>We can also generate radar plots for these 15 perturbations.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pluripotent-stem-cell-example.html#cb17-1"></a><span class="kw">library</span>(fmsb)</span>
+<span id="cb17-2"><a href="pluripotent-stem-cell-example.html#cb17-2"></a>attr_pert&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/pert1_internal_markers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb17-3"><a href="pluripotent-stem-cell-example.html#cb17-3"></a>attr_pert &lt;-attr_pert[<span class="kw">row.names</span>(crit2_<span class="dv">7</span>),<span class="kw">c</span>(<span class="st">&#39;Oct4&#39;</span>,<span class="st">&quot;Sox2&quot;</span>,<span class="st">&quot;Nanog&quot;</span>,<span class="st">&quot;EpiTFs&quot;</span>)]</span>
+<span id="cb17-4"><a href="pluripotent-stem-cell-example.html#cb17-4"></a>exp&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/original-exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb17-5"><a href="pluripotent-stem-cell-example.html#cb17-5"></a>EpiSC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,])</span>
+<span id="cb17-6"><a href="pluripotent-stem-cell-example.html#cb17-6"></a>ESC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,])</span>
+<span id="cb17-7"><a href="pluripotent-stem-cell-example.html#cb17-7"></a></span>
+<span id="cb17-8"><a href="pluripotent-stem-cell-example.html#cb17-8"></a>d1&lt;-<span class="kw">rbind</span>(EpiSC_avg,ESC_avg,attr_pert)</span>
+<span id="cb17-9"><a href="pluripotent-stem-cell-example.html#cb17-9"></a><span class="kw">rownames</span>(d1)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;EpiSC&quot;</span>, <span class="st">&quot;ESC&quot;</span>)</span>
+<span id="cb17-10"><a href="pluripotent-stem-cell-example.html#cb17-10"></a>maxcol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, max)</span>
+<span id="cb17-11"><a href="pluripotent-stem-cell-example.html#cb17-11"></a>mincol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, min)</span>
+<span id="cb17-12"><a href="pluripotent-stem-cell-example.html#cb17-12"></a></span>
+<span id="cb17-13"><a href="pluripotent-stem-cell-example.html#cb17-13"></a>d2&lt;-<span class="kw">rbind</span>(maxcol,mincol, d1)</span>
+<span id="cb17-14"><a href="pluripotent-stem-cell-example.html#cb17-14"></a><span class="kw">rownames</span>(d2)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Min&quot;</span>)</span>
+<span id="cb17-15"><a href="pluripotent-stem-cell-example.html#cb17-15"></a></span>
+<span id="cb17-16"><a href="pluripotent-stem-cell-example.html#cb17-16"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="fl">0.1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span>
+<span id="cb17-17"><a href="pluripotent-stem-cell-example.html#cb17-17"></a></span>
+<span id="cb17-18"><a href="pluripotent-stem-cell-example.html#cb17-18"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">5</span><span class="op">:</span><span class="kw">nrow</span>(d2)) {</span>
+<span id="cb17-19"><a href="pluripotent-stem-cell-example.html#cb17-19"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>),<span class="dt">title =</span><span class="kw">row.names</span>(d2)[i]);<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;average EpiSC&quot;</span>,<span class="st">&quot;average ESC&quot;</span>,<span class="kw">row.names</span>(d2)[i]) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.cex=</span><span class="dv">2</span>)</span>
+<span id="cb17-20"><a href="pluripotent-stem-cell-example.html#cb17-20"></a>}</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ipsc-charts2"></span>
+<img src="_main_files/figure-html/ipsc-charts2-1.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-2.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-3.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-4.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-5.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-6.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-7.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-8.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-9.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-10.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-11.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-12.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-13.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-14.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/ipsc-charts2-15.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" />
+<p class="caption">
+Figure 6.5: radar charts of the steady-state values of 7 internal-marker nodes perturbation
+</p>
+</div>
+<p>These radar plots show that for all 15 perturbations on FVS control nodes, the steady-state values of the internal-marker nodes are within the expression range of the attractors generated from the ESC experimental data.</p>
 
+</div>
 </div>
 </div>
             </section>

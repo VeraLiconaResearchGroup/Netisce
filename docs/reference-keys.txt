@@ -4,7 +4,11 @@ fig:unnamed-chunk-8
 fig:unnamed-chunk-10
 fig:unnamed-chunk-11
 fig:unnamed-chunk-12
-fig:unnamed-chunk-23
+fig:unnamed-chunk-24
+fig:unnamed-chunk-27
+fig:ipsc-charts
+fig:unnamed-chunk-30
+fig:ipsc-charts2
 about
 installation-and-usage
 download-netisce
@@ -32,5 +36,8 @@ pluripotent-stem-cell-example
 input-data-1
 run-the-simulation-1
 results-1
+general-results
+results-using-4-internal-marker-nodes
+results-using-7-internal-marker-nodes
 adaptive-resistance-in-colorectal-cancer-example
 netisce-in-galaxy-project

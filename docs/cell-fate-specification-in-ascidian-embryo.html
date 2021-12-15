@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-14" />
+<meta name="date" content="2021-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -168,7 +168,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html"><i class="fa fa-check"></i><b>6</b> Pluripotent Stem Cell Example</a><ul>
 <li class="chapter" data-level="6.1" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#input-data-1"><i class="fa fa-check"></i><b>6.1</b> Input Data</a></li>
 <li class="chapter" data-level="6.2" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#run-the-simulation-1"><i class="fa fa-check"></i><b>6.2</b> Run the simulation</a></li>
-<li class="chapter" data-level="6.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-1"><i class="fa fa-check"></i><b>6.3</b> Results</a></li>
+<li class="chapter" data-level="6.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-1"><i class="fa fa-check"></i><b>6.3</b> Results</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#general-results"><i class="fa fa-check"></i><b>6.3.1</b> General Results</a></li>
+<li class="chapter" data-level="6.3.2" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-4-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.2</b> Results using 4 internal-marker nodes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-7-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.3</b> Results using 7 internal-marker nodes</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a></li>
 <li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a></li>
@@ -456,7 +460,7 @@ aDentz (notochord perturbation)
 </div>
 <p>A perturbation is considered successful if the internal-marker node in the attractor generated from the perturbed FVS control nodes has a larger steady-state value than that in the unperturbed attractor. We determine this by subtracting the steady-state values of the unperturbed simulation from the steady-state values of the perturbations of FVS control nodes.</p>
 <div style="border: 0px;overflow-x: scroll; width:100%; ">
-<table class="table" style="font-size: 8px; margin-left: auto; margin-right: auto;">
+<table class="table" style="font-size: 9px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -706,7 +710,7 @@ aDentz (notochord perturbation)
 <span id="cb5-9"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-9"></a></span>
 <span id="cb5-10"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-10"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="fl">0.1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span>
 <span id="cb5-11"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-11"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">4</span><span class="op">:</span><span class="kw">nrow</span>(d2)) {</span>
-<span id="cb5-12"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-12"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>));<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;unperturbed&quot;</span>,<span class="st">&quot;FVS perturbation&quot;</span>) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.cex=</span><span class="dv">2</span>)</span>
+<span id="cb5-12"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-12"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>));<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;unperturbed&quot;</span>,<span class="st">&quot;FVS perturbation&quot;</span>) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.cex=</span><span class="dv">2</span>)</span>
 <span id="cb5-13"><a href="cell-fate-specification-in-ascidian-embryo.html#cb5-13"></a>}</span></code></pre></div>
 <p><img src="_main_files/figure-html/charts-1.png" width="50%" /><img src="_main_files/figure-html/charts-2.png" width="50%" /><img src="_main_files/figure-html/charts-3.png" width="50%" /><img src="_main_files/figure-html/charts-4.png" width="50%" /><img src="_main_files/figure-html/charts-5.png" width="50%" /><img src="_main_files/figure-html/charts-6.png" width="50%" /><img src="_main_files/figure-html/charts-7.png" width="50%" /></p>
 
