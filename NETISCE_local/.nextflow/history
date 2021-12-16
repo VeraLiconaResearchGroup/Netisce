@@ -64,3 +64,6 @@
 2021-12-14 11:46:01	25.3s	pensive_banach	OK	f2d0c61f999d5b7140e7a1860f081673	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE.nf -resume
 2021-12-14 11:46:58	20.5s	angry_hugle	ERR	f2d0c61f999d5b7140e7a1860f081673	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE.nf -resume
 2021-12-14 11:47:46	22s	golden_jones	OK	f2d0c61f999d5b7140e7a1860f081673	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE.nf -resume
+2021-12-16 16:30:40	25.1s	nauseous_euler	OK	f2d0c61f999d5b7140e7a1860f081673	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE.nf -resume
+2021-12-16 16:35:35	9.5s	sleepy_booth	ERR	3e5ed645b9c93fb38d441ba0aac613b5	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE_mutations.nf -resume
+2021-12-16 16:36:22	21.9s	peaceful_knuth	OK	261b20d795809c33d083b7a3936b2eb5	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE_mutations.nf -resume

@@ -1,112 +1,97 @@
-Dec-14 11:36:13.952 [main] DEBUG nextflow.cli.Launcher - $> nextflow run NETISCE.nf -resume
-Dec-14 11:36:14.072 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.10.3
-Dec-14 11:36:14.104 [main] INFO  nextflow.cli.CmdRun - Launching `NETISCE.nf` [adoring_avogadro] - revision: 4c05e4a49c
-Dec-14 11:36:14.178 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/laurenmarazzi/.nextflow/plugins
-Dec-14 11:36:14.180 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
-Dec-14 11:36:14.192 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
-Dec-14 11:36:14.193 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
-Dec-14 11:36:14.197 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
-Dec-14 11:36:14.207 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
-Dec-14 11:36:14.267 [main] DEBUG nextflow.Session - Session uuid: 149ec756-8195-436a-8463-0d831a08dd24
-Dec-14 11:36:14.267 [main] DEBUG nextflow.Session - Run name: adoring_avogadro
-Dec-14 11:36:14.268 [main] DEBUG nextflow.Session - Executor pool size: 8
-Dec-14 11:36:14.546 [main] DEBUG nextflow.cli.CmdRun - 
+Dec-14 11:38:12.363 [main] DEBUG nextflow.cli.Launcher - $> nextflow run NETISCE.nf -resume
+Dec-14 11:38:12.470 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 21.10.3
+Dec-14 11:38:12.494 [main] INFO  nextflow.cli.CmdRun - Launching `NETISCE.nf` [irreverent_picasso] - revision: f2d0c61f99
+Dec-14 11:38:12.560 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; plugins-dir=/Users/laurenmarazzi/.nextflow/plugins
+Dec-14 11:38:12.562 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Dec-14 11:38:12.572 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Dec-14 11:38:12.573 [main] INFO  org.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Dec-14 11:38:12.577 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.4.1 in 'deployment' mode
+Dec-14 11:38:12.587 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Dec-14 11:38:12.636 [main] DEBUG nextflow.Session - Session uuid: 149ec756-8195-436a-8463-0d831a08dd24
+Dec-14 11:38:12.636 [main] DEBUG nextflow.Session - Run name: irreverent_picasso
+Dec-14 11:38:12.638 [main] DEBUG nextflow.Session - Executor pool size: 8
+Dec-14 11:38:12.670 [main] DEBUG nextflow.cli.CmdRun - 
   Version: 21.10.3 build 5655
   Created: 23-11-2021 07:29 UTC (02:29 EDT)
   System: Mac OS X 10.16
   Runtime: Groovy 3.0.9 on Java HotSpot(TM) 64-Bit Server VM 15.0.1+9-18
   Encoding: UTF-8 (UTF-8)
-  Process: 62208@MacBook-Pro.local [127.0.0.1]
-  CPUs: 8 - Mem: 8 GB (64.4 MB) - Swap: 7 GB (881.2 MB)
-Dec-14 11:36:14.655 [main] DEBUG nextflow.Session - Work-dir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work [Mac OS X]
-Dec-14 11:36:14.791 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
-Dec-14 11:36:14.811 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
-Dec-14 11:36:14.871 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
-Dec-14 11:36:15.038 [main] DEBUG nextflow.Session - Session start invoked
-Dec-14 11:36:16.122 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
-Dec-14 11:36:16.196 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.196 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.200 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
-Dec-14 11:36:16.205 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=8 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
-Dec-14 11:36:16.223 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
-Dec-14 11:36:16.316 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.317 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.321 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.321 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.326 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.326 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.331 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.332 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.337 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.337 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.344 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.344 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.354 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.354 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.362 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.363 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.369 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.369 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.373 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.373 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.377 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.377 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.381 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.381 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.385 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.385 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.390 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
-Dec-14 11:36:16.391 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
-Dec-14 11:36:16.395 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: sfa_perts, check_icns, insilico_inits, insilico, getFVS, kmeans, extract_perts, classification, get_exp_internal_control_nodes, translate_perts, consensus, internal_control_node_analysis, sfa_exp, filtering_by_icn, perturbation_inits
-Dec-14 11:36:16.395 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
-Dec-14 11:36:16.395 [main] DEBUG nextflow.Session - Session await
-Dec-14 11:36:16.481 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [16/517f70] Cached process > insilico_inits
-Dec-14 11:36:16.481 [Actor Thread 12] INFO  nextflow.processor.TaskProcessor - [4a/3e204b] Cached process > getFVS
-Dec-14 11:36:16.481 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [07/866f4d] Cached process > sfa_exp
-Dec-14 11:36:16.534 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [0f/838be9] Cached process > perturbation_inits
-Dec-14 11:36:16.534 [Actor Thread 17] INFO  nextflow.processor.TaskProcessor - [14/c72e04] Cached process > get_exp_internal_control_nodes
-Dec-14 11:36:16.546 [Actor Thread 12] DEBUG n.util.BlockingThreadExecutorFactory - Thread pool name=FileTransfer; maxThreads=24; maxQueueSize=72; keepAlive=1m
-Dec-14 11:36:16.547 [Actor Thread 7] INFO  nextflow.processor.TaskProcessor - [94/d71c23] Cached process > check_icns
-Dec-14 11:36:16.560 [Actor Thread 21] INFO  nextflow.processor.TaskProcessor - [52/d70e0b] Cached process > insilico
-Dec-14 11:36:16.566 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [92/49c58b] Cached process > sfa_perts
-Dec-14 11:36:16.609 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
-Dec-14 11:36:16.613 [Task submitter] INFO  nextflow.Session - [ad/50a45e] Submitted process > kmeans
-Dec-14 11:36:20.968 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: kmeans; status: COMPLETED; exit: 1; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/ad/50a45e6513362b2dbfbd8b45622d19]
-Dec-14 11:36:20.994 [Task monitor] ERROR nextflow.processor.TaskProcessor - Error executing process > 'kmeans'
-
-Caused by:
-  Process `kmeans` terminated with an error exit status (1)
-
-Command executed:
-
-  datasets=$(ls -m attr* | sed 's/ //g')
-  kmeans_full_copy.py $datasets 10
-
-Command exit status:
-  1
-
-Command output:
-  (empty)
-
-Command error:
-  /usr/local/lib/python3.9/site-packages/yellowbrick/base.py:246: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
-    plt.show()
-  /usr/local/lib/python3.9/site-packages/yellowbrick/base.py:246: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
-    plt.show()
-  Traceback (most recent call last):
-    File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full_copy.py", line 46, in <module>
-      main()
-    File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full_copy.py", line 34, in main
-      if elbow<silhouette:
-  TypeError: '>' not supported between instances of 'int' and 'AxesSubplot'
-
-Work dir:
-  /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/ad/50a45e6513362b2dbfbd8b45622d19
-
-Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
-Dec-14 11:36:20.999 [main] DEBUG nextflow.Session - Session await > all process finished
-Dec-14 11:36:21.001 [Task monitor] DEBUG nextflow.Session - Session aborted -- Cause: Process `kmeans` terminated with an error exit status (1)
-Dec-14 11:36:21.024 [main] DEBUG nextflow.Session - Session await > all barriers passed
-Dec-14 11:36:21.031 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=1; ignoredCount=0; cachedCount=8; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=4.3s; cachedDuration=13.6s;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
-Dec-14 11:36:21.224 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
-Dec-14 11:36:21.241 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
+  Process: 62583@MacBook-Pro.local [127.0.0.1]
+  CPUs: 8 - Mem: 8 GB (336 MB) - Swap: 7 GB (557.5 MB)
+Dec-14 11:38:12.706 [main] DEBUG nextflow.Session - Work-dir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work [Mac OS X]
+Dec-14 11:38:12.749 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Dec-14 11:38:12.760 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Dec-14 11:38:12.796 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Dec-14 11:38:12.896 [main] DEBUG nextflow.Session - Session start invoked
+Dec-14 11:38:14.007 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Dec-14 11:38:14.109 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.110 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.114 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Dec-14 11:38:14.120 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=8 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+Dec-14 11:38:14.137 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+Dec-14 11:38:14.240 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.240 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.245 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.245 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.251 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.251 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.258 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.258 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.263 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.263 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.273 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.273 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.295 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.295 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.302 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.302 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.312 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.313 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.317 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.317 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.326 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.326 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.333 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.333 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.341 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.341 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.347 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Dec-14 11:38:14.348 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Dec-14 11:38:14.355 [main] DEBUG nextflow.Session - Workflow process names [dsl1]: sfa_perts, check_icns, insilico_inits, insilico, getFVS, kmeans, extract_perts, classification, get_exp_internal_control_nodes, translate_perts, consensus, internal_control_node_analysis, sfa_exp, filtering_by_icn, perturbation_inits
+Dec-14 11:38:14.355 [main] DEBUG nextflow.script.ScriptRunner - > Await termination 
+Dec-14 11:38:14.355 [main] DEBUG nextflow.Session - Session await
+Dec-14 11:38:14.448 [Actor Thread 13] INFO  nextflow.processor.TaskProcessor - [4a/3e204b] Cached process > getFVS
+Dec-14 11:38:14.448 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [07/866f4d] Cached process > sfa_exp
+Dec-14 11:38:14.449 [Actor Thread 8] INFO  nextflow.processor.TaskProcessor - [16/517f70] Cached process > insilico_inits
+Dec-14 11:38:14.481 [Actor Thread 8] INFO  nextflow.processor.TaskProcessor - [0f/838be9] Cached process > perturbation_inits
+Dec-14 11:38:14.499 [Actor Thread 6] INFO  nextflow.processor.TaskProcessor - [14/c72e04] Cached process > get_exp_internal_control_nodes
+Dec-14 11:38:14.507 [Actor Thread 13] DEBUG n.util.BlockingThreadExecutorFactory - Thread pool name=FileTransfer; maxThreads=24; maxQueueSize=72; keepAlive=1m
+Dec-14 11:38:14.521 [Actor Thread 16] INFO  nextflow.processor.TaskProcessor - [94/d71c23] Cached process > check_icns
+Dec-14 11:38:14.525 [Actor Thread 17] INFO  nextflow.processor.TaskProcessor - [52/d70e0b] Cached process > insilico
+Dec-14 11:38:14.526 [Actor Thread 3] INFO  nextflow.processor.TaskProcessor - [92/49c58b] Cached process > sfa_perts
+Dec-14 11:38:14.580 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-14 11:38:14.584 [Task submitter] INFO  nextflow.Session - [99/1cf170] Submitted process > kmeans
+Dec-14 11:38:18.033 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: kmeans; status: COMPLETED; exit: 0; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/99/1cf17015aea48a5ed7c66fb0d6fc08]
+Dec-14 11:38:18.053 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-14 11:38:18.054 [Task submitter] INFO  nextflow.Session - [6d/e67f91] Submitted process > classification
+Dec-14 11:38:27.252 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: classification; status: COMPLETED; exit: 0; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/6d/e67f919b38d9e6878d8b11eea6e017]
+Dec-14 11:38:27.279 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-14 11:38:27.280 [Task submitter] INFO  nextflow.Session - [29/35fd91] Submitted process > consensus
+Dec-14 11:38:27.826 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: consensus; status: COMPLETED; exit: 0; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/29/35fd91bf26d3c49a086c90573b3f2a]
+Dec-14 11:38:27.838 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-14 11:38:27.839 [Task submitter] INFO  nextflow.Session - [ec/fdad9a] Submitted process > internal_control_node_analysis
+Dec-14 11:38:29.393 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: internal_control_node_analysis; status: COMPLETED; exit: 0; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/ec/fdad9a35f7795c2f295a6214ebb5ac]
+Dec-14 11:38:29.427 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-14 11:38:29.428 [Task submitter] INFO  nextflow.Session - [cd/14d342] Submitted process > filtering_by_icn
+Dec-14 11:38:33.371 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: filtering_by_icn; status: COMPLETED; exit: 0; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/cd/14d3426752a1b0c047446bbdb29d8f]
+Dec-14 11:38:33.383 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-14 11:38:33.383 [Task submitter] INFO  nextflow.Session - [09/fe73fc] Submitted process > extract_perts
+Dec-14 11:38:34.865 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: extract_perts; status: COMPLETED; exit: 0; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/09/fe73fca0c04eae26b3629ed550710a]
+Dec-14 11:38:34.878 [Task submitter] DEBUG nextflow.executor.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Dec-14 11:38:34.878 [Task submitter] INFO  nextflow.Session - [48/c126ec] Submitted process > translate_perts
+Dec-14 11:38:35.811 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: translate_perts; status: COMPLETED; exit: 0; error: -; workDir: /Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/work/48/c126ec2e9ddfa2b09bba83a257bfe1]
+Dec-14 11:38:35.813 [main] DEBUG nextflow.Session - Session await > all process finished
+Dec-14 11:38:35.814 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Dec-14 11:38:35.823 [main] DEBUG nextflow.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=7; failedCount=0; ignoredCount=0; cachedCount=8; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=20.6s; failedDuration=0ms; cachedDuration=13.6s;loadCpus=0; loadMemory=0; peakRunning=1; peakCpus=1; peakMemory=0; ]
+Dec-14 11:38:35.919 [main] DEBUG nextflow.CacheDB - Closing CacheDB done
+Dec-14 11:38:35.939 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

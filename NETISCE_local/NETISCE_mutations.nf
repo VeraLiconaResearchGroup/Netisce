@@ -174,13 +174,14 @@ process kmeans {
  
     output:
 
-    path 'optimalk_plots.png' into records_elbowplots
+    path 'elbow.png' into records_elbowplots
+    path 'silhouette.png' into records_silplots
     path 'kmeans.txt' into records_kmeans
     
     script:
     """
     datasets=\$(ls -m attr* | sed 's/ //g')
-    kmeans_full.py attrs_exp.txt,attrs_insilico.txt $params.kmeans_max_val
+    kmeans_full.py \$datasets $params.kmeans_max_val
     """
 }
 

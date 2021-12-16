@@ -1,0 +1,5 @@
+name C D
+pert_0 -1 -1
+pert_1 -1 0
+pert_2 -1 1
+pert_5 0 1
