@@ -7,7 +7,7 @@ The input data, nextflow pipeline, and results of this simulation can be found i
 These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the `nextflow.config` file from the directory.
 
 ## Input Data
-The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis.Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.
+The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis. Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.
 We are only interested in performing the 7 perturbations to the 6 FVS control nodes that were experimentally verified to induce cell tissue fates.
 
 `expression.csv` contains the initial activities for the unperturbed state and the 7 FVS control node perturbations. Here, all simulations have Gata.a and Zic-r.a=1, as the activation of these two genes is required for normal embryonic development. 
@@ -51,7 +51,8 @@ Here we see that for 6 out of the 7 perturbations to FVS controlnodes, we were a
 ## Visualizing Results
 We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context. 
 
-The following code for generating radar plots was adapted from [datanovia.com](https://www.google.com/search?q=create+_beautiful_+radar+chart&oq=create+beautiful+rada&aqs=chrome.1.69i57j0i10i22i30.11973j0j1&sourceid=chrome&ie=UTF-8) is used to generate the radar charts.
+The following code for generating radar plots was adapted from [datanovia.com](https://www.google.com/search?q=create+_beautiful_+radar+chart&oq=create+beautiful+rada&aqs=chrome.1.69i57j0i10i22i30.11973j0j1&sourceid=chrome&ie=UTF-8).
+
 **Note: ** you may need to adjust the formatting of `exp_internalmarkers.txt` so that the strings within quotations are placed into one column.
 ```{r radar charts, echo=TRUE}
 create_beautiful_radarchart <- function(data, color = "#00AFBB", 
@@ -70,6 +71,7 @@ create_beautiful_radarchart <- function(data, color = "#00AFBB",
     title = title,
     centerzero = F,
     caxislabels = caxislabels
+    
   )
 }
 ```

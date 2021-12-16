@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,7 +174,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-7-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.3</b> Results using 7 internal-marker nodes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a></li>
+<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a><ul>
+<li class="chapter" data-level="7.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#input-data-2"><i class="fa fa-check"></i><b>7.1</b> Input Data</a></li>
+<li class="chapter" data-level="7.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#run-the-simulation-2"><i class="fa fa-check"></i><b>7.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="7.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-2"><i class="fa fa-check"></i><b>7.3</b> Results</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#general-results-1"><i class="fa fa-check"></i><b>7.3.1</b> General Results</a></li>
+<li class="chapter" data-level="7.3.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-3-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.2</b> Results using 3 internal-marker nodes</a></li>
+<li class="chapter" data-level="7.3.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-apoptosis-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.3</b> Results using apoptosis internal-marker nodes</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -281,7 +289,7 @@ Klf4
 <div id="section-id" class="section level4 unnumbered">
 <h4>Attractor landscape estimation via k-means analysis</h4>
 <p>Now, let’s look at the results of k-means analysis. First, NETISCE determines the optimal number of k clusters by computing the elbow and silhouette metrics.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
 <img src="ipsc/results/elbow.png" alt="optimal k as identified by a) the elbow and b) silhouette metrics" width="50%" /><img src="ipsc/results/silhouette.png" alt="optimal k as identified by a) the elbow and b) silhouette metrics" width="50%" />
 <p class="caption">
 Figure 6.1: optimal k as identified by a) the elbow and b) silhouette metrics
@@ -424,7 +432,7 @@ pert_98
 <p><strong>The relevant files have the prefix ‘original’ in the github repository</strong></p>
 <p>Our second perturbation filtering criterion identifies perturbations where, in their corresponding attractors, 90% of the steady state values for internal-marker nodes that are within the steady state expression ranges in the attractors generated from the ESC experimental data.</p>
 <p>First, let’s take a look at the steady state values of the internal-marker nodes Oct4, Sox2, and Nanog in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-exp_internalmarkers.txt"><code>original-exp_internalmarkers.txt</code></a> and are plotted in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-experimental_internalmarkers.pdf"><code>original-experimental_internalmarkers.pdf</code></a>:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
 <img src="ipsc/results/original-experimental_internalmarkers.pdf" alt="histograms of 4 internal-marker node values" width="460pt" height="700pt" />
 <p class="caption">
 Figure 6.2: histograms of 4 internal-marker node values
@@ -432,10 +440,10 @@ Figure 6.2: histograms of 4 internal-marker node values
 </div>
 <p>We see that the values of the internal-markers for the pluripotent state (Oct4, Sox2, Nanog) are higher in the attractors generated from the experimental data of the ESCs than the attractors generated from the experimental data of the EpiSCs, and the makrer of the epiblast stem state is higher in the attractors generated from the experimental data of the EpiSCs than in the attractors generated from the experimental data of the ESC.</p>
 <p>Now, we can take a look at the attractors that passed filtering criterion 2. We show the first 10 rows here, but you can view the entire set in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-successful_controlnode_perturbations.txt"><code>original-successful_controlnode_perturbations.txt</code></a></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="pluripotent-stem-cell-example.html#cb8-1"></a>crit2_<span class="dv">4</span>&lt;-<span class="kw">read.delim</span>(<span class="st">&#39;ipsc/results/original-successful_controlnode_perturbations.txt&#39;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">as.is =</span> T)</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb8-1"><a href="pluripotent-stem-cell-example.html#cb8-1"></a>crit2_<span class="dv">4</span>&lt;-<span class="kw">read.delim</span>(<span class="st">&#39;ipsc/results/original-successful_controlnode_perturbations.txt&#39;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">as.is =</span> T)</span>
 <span id="cb8-2"><a href="pluripotent-stem-cell-example.html#cb8-2"></a><span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;number of perturbations that pass filtering criteria 2: &#39;</span>,<span class="kw">nrow</span>(crit2_<span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;number of perturbations that pass filtering criteria 2: 132&quot;</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="pluripotent-stem-cell-example.html#cb10-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(crit2_<span class="dv">4</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_spec</span>(<span class="dv">8</span>, <span class="dt">bold =</span> T, <span class="dt">border_left =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">box_css =</span> <span class="st">&quot;border: 0px;&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb10-1"><a href="pluripotent-stem-cell-example.html#cb10-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(crit2_<span class="dv">4</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,])  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_spec</span>(<span class="dv">8</span>, <span class="dt">bold =</span> F, <span class="dt">border_left =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">box_css =</span> <span class="st">&quot;border: 0px;&quot;</span>) </span></code></pre></div>
 <div style="border: 0px;overflow-x: scroll; width:100%; ">
 <table>
 <thead>
@@ -494,7 +502,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -526,7 +534,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -558,7 +566,7 @@ up
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -590,7 +598,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -622,7 +630,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -654,7 +662,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -686,7 +694,7 @@ up
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -718,7 +726,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -750,7 +758,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -782,7 +790,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -796,7 +804,7 @@ nochange
 </table>
 </div>
 <p>We can look to see if there are any trends in the orientation of the perturbations on FVS control nodes across the perturbations that passed both filtering criteria.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="pluripotent-stem-cell-example.html#cb11-1"></a><span class="kw">library</span>(data.table)</span>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb11-1"><a href="pluripotent-stem-cell-example.html#cb11-1"></a><span class="kw">library</span>(data.table)</span>
 <span id="cb11-2"><a href="pluripotent-stem-cell-example.html#cb11-2"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb11-3"><a href="pluripotent-stem-cell-example.html#cb11-3"></a>d3&lt;-crit2_<span class="dv">4</span> [,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transpose</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()</span>
 <span id="cb11-4"><a href="pluripotent-stem-cell-example.html#cb11-4"></a><span class="kw">row.names</span>(d3)&lt;-<span class="kw">colnames</span>(crit2_<span class="dv">4</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>])</span>
@@ -809,12 +817,12 @@ nochange
 <span id="cb11-11"><a href="pluripotent-stem-cell-example.html#cb11-11"></a><span class="kw">ggplot</span>(d3r, <span class="kw">aes</span>(<span class="dt">x=</span>value)) <span class="op">+</span></span>
 <span id="cb11-12"><a href="pluripotent-stem-cell-example.html#cb11-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Var1,<span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>,<span class="dt">shrink=</span><span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb11-13"><a href="pluripotent-stem-cell-example.html#cb11-13"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">ncol</span>(d3),<span class="dt">fill=</span>value))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>Tol_muted)<span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;% of specified perturbation to a control node across all </span><span class="ch">\n</span><span class="st"> combinations of perturbations that passed filtering criteria &quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;node perturbation&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" />
 Here, we see that in the majority of perturbations, there is overexpression of the FVS nodes Sox2, Nanog and Oct4. This aligns with their role as maintainers of pluripotency.</p>
 <p>The steady-state values of the internal-marker nodes for these perturbations can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt"><code>pert1_internal_markers.txt</code></a>.</p>
 <p>A perturbation on the FVS control node, Nanog overexpression (pert_445), was also identified in Yachie-Kinoshita et al. and experimentally verified to shift cells from the EpiSC state towards the ESC state. We can plot the internal-marker node values using a radar plot.</p>
 <p>We can also plot Klf4 overexpression. This was a perturbation identified by Yachie-Kinoshita et al. to shift cells from the EpiSC state towards the ESC state. However, in our analyses, this perturbation (pert_365), did pass filtering criterion 1, but did not pass filtering criterion 2.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="pluripotent-stem-cell-example.html#cb12-1"></a><span class="kw">library</span>(fmsb)</span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb12-1"><a href="pluripotent-stem-cell-example.html#cb12-1"></a><span class="kw">library</span>(fmsb)</span>
 <span id="cb12-2"><a href="pluripotent-stem-cell-example.html#cb12-2"></a>attr_pert&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/pert1_internal_markers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
 <span id="cb12-3"><a href="pluripotent-stem-cell-example.html#cb12-3"></a>attr_pert &lt;-attr_pert[<span class="kw">c</span>(<span class="st">&#39;pert_445&#39;</span>,<span class="st">&#39;pert_365&#39;</span>),<span class="kw">c</span>(<span class="st">&#39;Oct4&#39;</span>,<span class="st">&quot;Sox2&quot;</span>,<span class="st">&quot;Nanog&quot;</span>,<span class="st">&quot;EpiTFs&quot;</span>)]</span>
 <span id="cb12-4"><a href="pluripotent-stem-cell-example.html#cb12-4"></a>exp&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/original-exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
@@ -848,7 +856,7 @@ Figure 6.3: radar charts of the steady-state values of 4 internal-marker nodes f
 <p><em>The relevant files have the prefix ‘expanded’ in the github repository.</em></p>
 <p>We explored filtering the 132 perturbations that passed the second filtering criterion by adding additional internal-marker nodes associated with pluripotency. We added 3 nodes, Lefty1, Pitx2 (transcription factors active in EpiSCs), and Esrrb (transcription factor active in ESCs) to the 4 previously used internal-marker nodes.</p>
 <p>Let’s look at the steady state values of the internal-marker nodes in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-exp_internalmarkers.txt"><code>expanded-exp_internalmarkers.txt</code></a> and are plotted in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-experimental_internalmarkers.pdf"><code>expanded-experimental_internalmarkers.pdf</code></a>:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
 <img src="ipsc/results/expanded-experimental_internalmarkers.pdf" alt="histograms of 7 internal-marker node values" width="460pt" height="700pt" />
 <p class="caption">
 Figure 6.4: histograms of 7 internal-marker node values
@@ -856,10 +864,10 @@ Figure 6.4: histograms of 7 internal-marker node values
 </div>
 <p>Again, the internal-marker nodes have the correct expression patterns within the attractors generated from the ESC and EpiSC states.</p>
 <p>Now, we can take a look at the attractors that passed filtering criterion 2. These are in file <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-successful_controlnode_perturbations.txt"><code>expanded-successful_controlnode_perturbations.txt</code></a></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="pluripotent-stem-cell-example.html#cb13-1"></a>crit2_<span class="dv">7</span>&lt;-<span class="kw">read.delim</span>(<span class="st">&#39;ipsc/results/expanded-successful_controlnode_perturbations.txt&#39;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>)</span>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb13-1"><a href="pluripotent-stem-cell-example.html#cb13-1"></a>crit2_<span class="dv">7</span>&lt;-<span class="kw">read.delim</span>(<span class="st">&#39;ipsc/results/expanded-successful_controlnode_perturbations.txt&#39;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>)</span>
 <span id="cb13-2"><a href="pluripotent-stem-cell-example.html#cb13-2"></a><span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;number of perturbations that pass filtering criteria 2: &#39;</span>,<span class="kw">nrow</span>(crit2_<span class="dv">7</span>)))</span></code></pre></div>
 <pre><code>## [1] &quot;number of perturbations that pass filtering criteria 2: 15&quot;</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="pluripotent-stem-cell-example.html#cb15-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(crit2_<span class="dv">7</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_spec</span>(<span class="dv">8</span>, <span class="dt">bold =</span> T, <span class="dt">border_left =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">box_css =</span> <span class="st">&quot;border: 0px;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb15-1"><a href="pluripotent-stem-cell-example.html#cb15-1"></a>knitr<span class="op">::</span><span class="kw">kable</span>(crit2_<span class="dv">7</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">column_spec</span>(<span class="dv">8</span>, <span class="dt">bold =</span> F, <span class="dt">border_left =</span> T) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">scroll_box</span>(<span class="dt">width =</span> <span class="st">&quot;100%&quot;</span>, <span class="dt">box_css =</span> <span class="st">&quot;border: 0px;&quot;</span>)</span></code></pre></div>
 <div style="border: 0px;overflow-x: scroll; width:100%; ">
 <table>
 <thead>
@@ -918,7 +926,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -950,7 +958,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -982,7 +990,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -1014,7 +1022,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -1046,7 +1054,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -1078,7 +1086,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 1
 </td>
 <td style="text-align:right;">
@@ -1110,7 +1118,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -1142,7 +1150,7 @@ nochange
 <td style="text-align:left;">
 nochange
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -1174,7 +1182,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -1206,7 +1214,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 3
 </td>
 <td style="text-align:right;">
@@ -1238,7 +1246,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 3
 </td>
 <td style="text-align:right;">
@@ -1270,7 +1278,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 2
 </td>
 <td style="text-align:right;">
@@ -1302,7 +1310,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 3
 </td>
 <td style="text-align:right;">
@@ -1334,7 +1342,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 3
 </td>
 <td style="text-align:right;">
@@ -1366,7 +1374,7 @@ nochange
 <td style="text-align:left;">
 up
 </td>
-<td style="text-align:right;font-weight: bold;border-left:1px solid;">
+<td style="text-align:right;border-left:1px solid;">
 4
 </td>
 <td style="text-align:right;">
@@ -1380,7 +1388,7 @@ up
 </table>
 </div>
 <p>We can plot the trends of the orientation of perturbations for each FVS control node across the 15 perturbations.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="pluripotent-stem-cell-example.html#cb16-1"></a>d4&lt;-crit2_<span class="dv">7</span> [,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transpose</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb16-1"><a href="pluripotent-stem-cell-example.html#cb16-1"></a>d4&lt;-crit2_<span class="dv">7</span> [,<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>)] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">transpose</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.matrix</span>()</span>
 <span id="cb16-2"><a href="pluripotent-stem-cell-example.html#cb16-2"></a><span class="kw">row.names</span>(d4)&lt;-<span class="kw">colnames</span>(crit2_<span class="dv">7</span>[<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>])</span>
 <span id="cb16-3"><a href="pluripotent-stem-cell-example.html#cb16-3"></a><span class="kw">colnames</span>(d4)&lt;-<span class="kw">row.names</span>(crit2_<span class="dv">7</span>)</span>
 <span id="cb16-4"><a href="pluripotent-stem-cell-example.html#cb16-4"></a>d4r&lt;-reshape2<span class="op">::</span><span class="kw">melt</span>(d4) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>Var2)</span>
@@ -1390,11 +1398,11 @@ up
 <span id="cb16-8"><a href="pluripotent-stem-cell-example.html#cb16-8"></a><span class="kw">ggplot</span>(d4r, <span class="kw">aes</span>(<span class="dt">x=</span>value)) <span class="op">+</span></span>
 <span id="cb16-9"><a href="pluripotent-stem-cell-example.html#cb16-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Var1,<span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>,<span class="dt">shrink=</span><span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb16-10"><a href="pluripotent-stem-cell-example.html#cb16-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">ncol</span>(d4),<span class="dt">fill=</span>value))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>Tol_muted) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;% of specified perturbation to a control node across all </span><span class="ch">\n</span><span class="st"> combinations of perturbations that passed filtering criteria &quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;node perturbation&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" />
 Interestingly, we see among these 15 perturbations, Nanog overexpression, but no change to Oct4 or Sox2, is indicated. We also see that Klf4 is overexpressed in the majority of these 15 perturbations.</p>
 <p>The steady-state values of the internal-marker nodes for these perturbations can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt"><code>pert1_internal_markers.txt</code></a>.</p>
 <p>We can also generate radar plots for these 15 perturbations.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="pluripotent-stem-cell-example.html#cb17-1"></a><span class="kw">library</span>(fmsb)</span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r foldable"><code class="sourceCode r"><span id="cb17-1"><a href="pluripotent-stem-cell-example.html#cb17-1"></a><span class="kw">library</span>(fmsb)</span>
 <span id="cb17-2"><a href="pluripotent-stem-cell-example.html#cb17-2"></a>attr_pert&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/pert1_internal_markers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
 <span id="cb17-3"><a href="pluripotent-stem-cell-example.html#cb17-3"></a>attr_pert &lt;-attr_pert[<span class="kw">row.names</span>(crit2_<span class="dv">7</span>),]</span>
 <span id="cb17-4"><a href="pluripotent-stem-cell-example.html#cb17-4"></a>exp&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/original-exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
@@ -1421,58 +1429,6 @@ Figure 6.5: radar charts of the steady-state values of 7 internal-marker nodes p
 </p>
 </div>
 <p>These radar plots show that for all 15 perturbations on FVS control nodes, the steady-state values of the internal-marker nodes are within the expression range of the attractors generated from the ESC experimental data.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="pluripotent-stem-cell-example.html#cb18-1"></a>attr_pert&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/pert1_internal_markers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb18-2"><a href="pluripotent-stem-cell-example.html#cb18-2"></a>attr_pert &lt;-attr_pert[<span class="kw">c</span>(<span class="st">&#39;pert_445&#39;</span>,<span class="st">&#39;pert_365&#39;</span>),<span class="kw">c</span>(<span class="st">&#39;Oct4&#39;</span>,<span class="st">&quot;Sox2&quot;</span>,<span class="st">&quot;Nanog&quot;</span>,<span class="st">&quot;EpiTFs&quot;</span>)]</span>
-<span id="cb18-3"><a href="pluripotent-stem-cell-example.html#cb18-3"></a>exp&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/original-exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb18-4"><a href="pluripotent-stem-cell-example.html#cb18-4"></a>EpiSC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,])</span>
-<span id="cb18-5"><a href="pluripotent-stem-cell-example.html#cb18-5"></a>ESC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,])</span>
-<span id="cb18-6"><a href="pluripotent-stem-cell-example.html#cb18-6"></a></span>
-<span id="cb18-7"><a href="pluripotent-stem-cell-example.html#cb18-7"></a>d1&lt;-<span class="kw">rbind</span>(EpiSC_avg,ESC_avg,attr_pert)</span>
-<span id="cb18-8"><a href="pluripotent-stem-cell-example.html#cb18-8"></a><span class="kw">rownames</span>(d1)[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;EpiSC&quot;</span>, <span class="st">&quot;ESC&quot;</span>,<span class="st">&quot;Nanog overexpression&quot;</span>,<span class="st">&quot;Klf4 overexpression&quot;</span>)</span>
-<span id="cb18-9"><a href="pluripotent-stem-cell-example.html#cb18-9"></a>maxcol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, max)</span>
-<span id="cb18-10"><a href="pluripotent-stem-cell-example.html#cb18-10"></a>mincol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, min)</span>
-<span id="cb18-11"><a href="pluripotent-stem-cell-example.html#cb18-11"></a></span>
-<span id="cb18-12"><a href="pluripotent-stem-cell-example.html#cb18-12"></a>d2&lt;-<span class="kw">rbind</span>(maxcol,mincol, d1)</span>
-<span id="cb18-13"><a href="pluripotent-stem-cell-example.html#cb18-13"></a><span class="kw">rownames</span>(d2)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Min&quot;</span>)</span>
-<span id="cb18-14"><a href="pluripotent-stem-cell-example.html#cb18-14"></a></span>
-<span id="cb18-15"><a href="pluripotent-stem-cell-example.html#cb18-15"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="fl">0.1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span>
-<span id="cb18-16"><a href="pluripotent-stem-cell-example.html#cb18-16"></a></span>
-<span id="cb18-17"><a href="pluripotent-stem-cell-example.html#cb18-17"></a></span>
-<span id="cb18-18"><a href="pluripotent-stem-cell-example.html#cb18-18"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">5</span><span class="op">:</span><span class="kw">nrow</span>(d2)) {</span>
-<span id="cb18-19"><a href="pluripotent-stem-cell-example.html#cb18-19"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>),<span class="dt">title =</span><span class="kw">row.names</span>(d2)[i]);<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;average EpiSC&quot;</span>,<span class="st">&quot;average ESC&quot;</span>,<span class="kw">row.names</span>(d2)[i]) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span><span class="dv">1</span>, <span class="dt">pt.cex=</span><span class="dv">2</span>)</span>
-<span id="cb18-20"><a href="pluripotent-stem-cell-example.html#cb18-20"></a>}</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:radar-plots-for-paper"></span>
-<img src="_main_files/figure-html/radar-plots-for-paper-1.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" /><img src="_main_files/figure-html/radar-plots-for-paper-2.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="50%" />
-<p class="caption">
-Figure 6.6: radar charts of the steady-state values of 7 internal-marker nodes perturbation
-</p>
-</div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="pluripotent-stem-cell-example.html#cb19-1"></a>attr_pert&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/pert1_internal_markers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb19-2"><a href="pluripotent-stem-cell-example.html#cb19-2"></a>attr_pert &lt;-attr_pert[<span class="kw">c</span>(<span class="st">&#39;pert_445&#39;</span>,<span class="st">&#39;pert_365&#39;</span>,<span class="st">&#39;pert_446&#39;</span>),]</span>
-<span id="cb19-3"><a href="pluripotent-stem-cell-example.html#cb19-3"></a>exp&lt;-<span class="kw">read.delim</span>(<span class="st">&quot;ipsc/results/original-exp_internalmarkers.txt&quot;</span>,<span class="dt">sep=</span><span class="st">&quot; &quot;</span>,<span class="dt">row.names =</span> <span class="dv">1</span>)</span>
-<span id="cb19-4"><a href="pluripotent-stem-cell-example.html#cb19-4"></a>EpiSC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,])</span>
-<span id="cb19-5"><a href="pluripotent-stem-cell-example.html#cb19-5"></a>ESC_avg&lt;-<span class="kw">colMeans</span>(exp[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,])</span>
-<span id="cb19-6"><a href="pluripotent-stem-cell-example.html#cb19-6"></a></span>
-<span id="cb19-7"><a href="pluripotent-stem-cell-example.html#cb19-7"></a>d1&lt;-<span class="kw">rbind</span>(EpiSC_avg,ESC_avg,attr_pert)</span>
-<span id="cb19-8"><a href="pluripotent-stem-cell-example.html#cb19-8"></a><span class="kw">rownames</span>(d1)[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;EpiSC&quot;</span>, <span class="st">&quot;ESC&quot;</span>,<span class="st">&quot;Nanog overexpression&quot;</span>,<span class="st">&quot;Klf4 overexpression&quot;</span>,<span class="st">&quot;Nanog+Klf4 overexpression&quot;</span>)</span>
-<span id="cb19-9"><a href="pluripotent-stem-cell-example.html#cb19-9"></a>maxcol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, max)</span>
-<span id="cb19-10"><a href="pluripotent-stem-cell-example.html#cb19-10"></a>mincol&lt;-<span class="kw">apply</span>(d1, <span class="dv">2</span>, min)</span>
-<span id="cb19-11"><a href="pluripotent-stem-cell-example.html#cb19-11"></a></span>
-<span id="cb19-12"><a href="pluripotent-stem-cell-example.html#cb19-12"></a>d2&lt;-<span class="kw">rbind</span>(maxcol,mincol, d1)</span>
-<span id="cb19-13"><a href="pluripotent-stem-cell-example.html#cb19-13"></a><span class="kw">rownames</span>(d2)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Min&quot;</span>)</span>
-<span id="cb19-14"><a href="pluripotent-stem-cell-example.html#cb19-14"></a></span>
-<span id="cb19-15"><a href="pluripotent-stem-cell-example.html#cb19-15"></a><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="dv">4</span>, <span class="fl">0.1</span>, <span class="dv">4</span>, <span class="fl">0.1</span>))</span>
-<span id="cb19-16"><a href="pluripotent-stem-cell-example.html#cb19-16"></a></span>
-<span id="cb19-17"><a href="pluripotent-stem-cell-example.html#cb19-17"></a></span>
-<span id="cb19-18"><a href="pluripotent-stem-cell-example.html#cb19-18"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">5</span><span class="op">:</span><span class="kw">nrow</span>(d2)) {</span>
-<span id="cb19-19"><a href="pluripotent-stem-cell-example.html#cb19-19"></a>  <span class="kw">create_beautiful_radarchart</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i), ],<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>),<span class="dt">caxislabels =</span> <span class="kw">seq</span>(<span class="kw">round</span>(<span class="kw">min</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),<span class="kw">round</span>(<span class="kw">max</span>(d2[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, i),]),<span class="dv">1</span>),.<span class="dv">2</span>),<span class="dt">title =</span><span class="kw">row.names</span>(d2)[i]);<span class="kw">legend</span>(<span class="dt">x=</span><span class="fl">0.4</span>, <span class="dt">y=</span><span class="fl">1.4</span>, <span class="dt">legend =</span><span class="kw">c</span>(<span class="st">&quot;average EpiSC&quot;</span>,<span class="st">&quot;average ESC&quot;</span>,<span class="kw">row.names</span>(d2)[i]) , <span class="dt">bty =</span> <span class="st">&quot;n&quot;</span>, <span class="dt">pch=</span><span class="dv">20</span> , <span class="dt">col=</span><span class="kw">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>,<span class="st">&quot;#FC4E07&quot;</span>) , <span class="dt">text.col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">cex=</span>.<span class="dv">8</span>, <span class="dt">pt.cex=</span><span class="fl">1.8</span>)</span>
-<span id="cb19-20"><a href="pluripotent-stem-cell-example.html#cb19-20"></a>}</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:radar-plots-for-paper2"></span>
-<img src="_main_files/figure-html/radar-plots-for-paper2-1.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="33%" /><img src="_main_files/figure-html/radar-plots-for-paper2-2.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="33%" /><img src="_main_files/figure-html/radar-plots-for-paper2-3.png" alt="radar charts of the steady-state values of 7 internal-marker nodes perturbation" width="33%" />
-<p class="caption">
-Figure 6.7: radar charts of the steady-state values of 7 internal-marker nodes perturbation
-</p>
-</div>
 
 </div>
 </div>
@@ -1514,7 +1470,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-ipsc.Rmd",
+"link": "https://github.com/VeraLiconaResearchGroup/Netisce/tree/gh-pages/05-ipsc.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -1531,7 +1487,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "none"
+"collapse": "section"
 }
 });
 });

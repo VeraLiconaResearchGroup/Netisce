@@ -42,11 +42,11 @@ Whether on your local machine or hpc, to run NETISCE you must specify the files 
 - **params.num_nodes**: number of nodes in network for which normalized expression data exists (within the params.expressions file)
 - **params.num_states**: number of randomly generated initial states (default=100000, or 3^n where n is the number of network nodes and 3^n is less than 100000)
 
-Please see the **input_data** folder for examples of files to match the formatting. 
+Please see the [`input_data`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local/input_data) folder for examples of files to match the formatting. 
 
 ### NETISCE_mutations.nf
 
-If you are interested in including mutational information, please use the `NETISCE_mutations.nf` pipeline. You must additionally specify `params.mutations`: a csv file containing mutational configuration for network nodes (0 for loss of function, 1 for gain of function). Please see example in `input_data` for formatting.
+If you are interested in including mutational information, please use the [`NETISCE_mutations.nf`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/NETISCE_local/NETISCE_mutations.nf) pipeline. You must additionally specify `params.mutations`: a csv file containing mutational configuration for network nodes (0 for loss of function, 1 for gain of function). Please see example in [`input_data`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local/input_data)  for formatting.
 
 ### nextflow.config
 

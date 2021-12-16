@@ -27,7 +27,7 @@ knitr::kable(samples)
 
 Note that you can use any term to describe the phenotypes. Just be sure to be consistent with the `param.desried` and `param.undesired` variables within the Nextflow `.nf` file. 
 
-Lastly, we need to include a list of internal marker nodes. This list is in `internal_marker.txt`. For our small network, the internal marker node is `C`. 
+Lastly, we need to include a list of internal marker nodes. This list is in `internal_marker.txt`. For our small network, the internal-marker node is `C`. 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 marker<-read.delim('input_data/internal_marker.txt')
 knitr::kable(marker)
@@ -35,8 +35,7 @@ knitr::kable(marker)
 
 ## NETISCE run configuration
 
-With all your input data files loaded, next we configure the nextflow run.
-Within either `NETISCE_local` or `NETSICE_hpc` (**Note: while we do recommend you run NETISCE on a hpc, this example is small enough to run locally**). 
+With all your input data files loaded, next we configure the nextflow run in either `NETISCE_local` or `NETSICE_hpc` (**Note: while we do recommend you run NETISCE on a hpc, this example is small enough to run locally**). 
 
 Open up `NETISCE.nf`. Here, you need to specify the parameters for the Nextflow run on lines 3-19. Please refer to [section 2.5](#params) for parameter definitions. 
 
@@ -57,17 +56,18 @@ params.kmeans_max_val = 10
 
 
 params.num_nodes = 4 // that have expression data
-params.num_states = 1000
+params.num_states = 100000
 ```
-**Some Notes: ** make sure to include `$baseDir` before pointing to the folder containing your input data. Also, be sure that `params.num_nodes` is the number of nodes where there exists normalized expression data within `expression.csv`. Finally, in `NETISCE.nf`, mutations are not considered, so that like is commented out.
-
+**Some Notes: ** make sure to include `$baseDir` before pointing to the folder containing your input data. Also, be sure that `params.num_nodes` is the number of nodes where there exists normalized expression data within `expression.csv`. 
 
 ## Run NETISCE
-In your terminal/command prompt, navigate to the appropriate NETISCE folder `_hpc` or `local`. To start your run, enter `./nextflow run NETISCE.nf -resume`.
+In your terminal/command prompt, navigate to the appropriate NETISCE folder (`_hpc` or `local`). To start your run, enter `./nextflow run NETISCE.nf -resume`.
 While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
 ```{r, out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'Terminal when running NETISCE'}
 knitr::include_graphics("images/running_shot.png")
 ```
+The first column contains the location (folder and subfolder) that is running that step of NETISCE within the `work` folder.
+
 
 Once the run has successfully completed, the process will end and the following will be displayed:
 ```{r, out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'Terminal when running NETISCE'}
@@ -104,15 +104,26 @@ After estimating attractors for the experimental and randomly generated initial 
 ```{r, out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'elbow metric for optimal k'}
 knitr::include_graphics("results/elbow.png")
 ```
-The elbow metric found the optimal number of k clusters to be k=4.
+The elbow metric found the optimal number of k clusters to be k=3.
 
-#### silhouette.pdf  {-#section-id}
+#### silhouette.png {-#section-id}
 ```{r,out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'silhouette metric for optimal k'}
-knitr::include_graphics("images/silhouette.png")
+knitr::include_graphics("results/silhouette.png")
 ```
 The silhouette metric found the optimal number of k clusters to be k=2.
 
 Since the optimal ks identified by the silhouette metric and the elbow metric do not match, NETISCE chooses the smaller k, as long as the phenotypes remain separate (NETISCE checks to make sure this is true). 
+
+#### kmeans.txt {-#section-id}
+The `kmeans.txt` file contains the clustering results for each attractor generated from the experimental data and the randomly generated initial states. The first column contains the sample name, and the second column contains the ID of which cluster it is assigned to. Since k=2 in this case, one cluster is named 
+"0" and the other cluster is named "1"
+```{r,out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'silhouette metric for optimal k'}
+kmeans<-read.delim('results/kmeans.txt',header = T,sep=" ")
+knitr::kable(kmeans[1:6,])
+```
+
+And we see in the `kmeans.txt` file, that the A samples are clustered in cluster 0, while the B samples are grouped in cluster 1. 
+
 
 #### fvs.txt  {-#section-id}
 This file contains the node names that were identified by the FVS finding algorithm.

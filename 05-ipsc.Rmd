@@ -110,7 +110,7 @@ Now, we can take a look at the attractors that passed filtering criterion 2. We 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 crit2_4<-read.delim('ipsc/results/original-successful_controlnode_perturbations.txt',sep=" ",as.is = T)
 print(paste0('number of perturbations that pass filtering criteria 2: ',nrow(crit2_4)))
-knitr::kable(crit2_4[1:10,])  %>% column_spec(8, bold = T, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;") 
+knitr::kable(crit2_4[1:10,])  %>% column_spec(8, bold = F, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;") 
 ```
 
 We can look to see if there are any trends in the orientation of the perturbations on FVS control nodes across the perturbations that passed both filtering criteria.
@@ -188,7 +188,7 @@ Now, we can take a look at the attractors that passed filtering criterion 2. The
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 crit2_7<-read.delim('ipsc/results/expanded-successful_controlnode_perturbations.txt',sep=" ")
 print(paste0('number of perturbations that pass filtering criteria 2: ',nrow(crit2_7)))
-knitr::kable(crit2_7)  %>% column_spec(8, bold = T, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;")
+knitr::kable(crit2_7)  %>% column_spec(8, bold = F, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;")
 ```
 
 We can plot the trends of the orientation of perturbations for each FVS control node across the 15 perturbations. 
@@ -238,7 +238,7 @@ for (i in 5:nrow(d2)) {
 These radar plots show that for all 15 perturbations on FVS control nodes, the steady-state values of the internal-marker nodes are within the expression range of the attractors generated from the ESC experimental data.  
 
 
-```{r radar-plots-for-paper, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"}
+```{r radar-plots-for-paper, eval=FALSE, fig.cap=, fig.show='hold', include=FALSE, out.width='50%'}
 
 
 attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1)
@@ -264,7 +264,7 @@ for (i in 5:nrow(d2)) {
 ```
 
 
-```{r radar-plots-for-paper2, out.width='33%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"}
+```{r radar-plots-for-paper2, eval=FALSE, fig.cap=, fig.show='hold', include=FALSE, out.width='33%'}
 
 
 attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1)

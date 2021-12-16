@@ -1,6 +1,6 @@
 # NETSICE output 
 
-After the NETISCE computations are complete, the output files will be located in the `results` folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline's work folder. 
+After the NETISCE computations are complete, the output files will be located in the `results` folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline's `work` folder that is generated during a NETISCE run. 
 
 The contents of each file are briefly described below. For more details and to see example outputs, please see the [Toy Network Examples](#toy).
 
@@ -13,7 +13,7 @@ This pdf is a figure of the steady state values for the internal marker nodes fo
 #### elbow.png  {-#section-id}
 A graph of the elbow metric for determining the optimal k for k-means.
 
-#### silhouette.pdf  {-#section-id}
+#### silhouette.png {-#section-id}
 A graph of the silhouette metric for determining the optimal k for k-means.
 
 #### fvs.txt  {-#section-id}

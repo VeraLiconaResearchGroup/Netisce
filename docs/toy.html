@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,7 +174,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-7-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.3</b> Results using 7 internal-marker nodes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a></li>
+<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a><ul>
+<li class="chapter" data-level="7.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#input-data-2"><i class="fa fa-check"></i><b>7.1</b> Input Data</a></li>
+<li class="chapter" data-level="7.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#run-the-simulation-2"><i class="fa fa-check"></i><b>7.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="7.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-2"><i class="fa fa-check"></i><b>7.3</b> Results</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#general-results-1"><i class="fa fa-check"></i><b>7.3.1</b> General Results</a></li>
+<li class="chapter" data-level="7.3.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-3-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.2</b> Results using 3 internal-marker nodes</a></li>
+<li class="chapter" data-level="7.3.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-apoptosis-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.3</b> Results using apoptosis internal-marker nodes</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -302,7 +310,7 @@ The normalized expression data is housed in <code>expressions.csv</code>, and co
 </tbody>
 </table>
 <p>Note that you can use any term to describe the phenotypes. Just be sure to be consistent with the <code>param.desried</code> and <code>param.undesired</code> variables within the Nextflow <code>.nf</code> file.</p>
-<p>Lastly, we need to include a list of internal marker nodes. This list is in <code>internal_marker.txt</code>. For our small network, the internal marker node is <code>C</code>.</p>
+<p>Lastly, we need to include a list of internal marker nodes. This list is in <code>internal_marker.txt</code>. For our small network, the internal-marker node is <code>C</code>.</p>
 <table>
 <thead>
 <tr class="header">
@@ -315,8 +323,7 @@ The normalized expression data is housed in <code>expressions.csv</code>, and co
 </div>
 <div id="netisce-run-configuration" class="section level2">
 <h2><span class="header-section-number">4.3</span> NETISCE run configuration</h2>
-<p>With all your input data files loaded, next we configure the nextflow run.
-Within either <code>NETISCE_local</code> or <code>NETSICE_hpc</code> (<strong>Note: while we do recommend you run NETISCE on a hpc, this example is small enough to run locally</strong>).</p>
+<p>With all your input data files loaded, next we configure the nextflow run in either <code>NETISCE_local</code> or <code>NETSICE_hpc</code> (<strong>Note: while we do recommend you run NETISCE on a hpc, this example is small enough to run locally</strong>).</p>
 <p>Open up <code>NETISCE.nf</code>. Here, you need to specify the parameters for the Nextflow run on lines 3-19. Please refer to <a href="installation-and-usage.html#params">section 2.5</a> for parameter definitions.</p>
 <p>For this example, your parameters should look like:</p>
 <pre><code>params.expressions = &quot;$baseDir/input_data/expressions.csv&quot;
@@ -334,12 +341,12 @@ params.kmeans_max_val = 10
 
 
 params.num_nodes = 4 // that have expression data
-params.num_states = 1000</code></pre>
-<p><strong>Some Notes: </strong> make sure to include <code>$baseDir</code> before pointing to the folder containing your input data. Also, be sure that <code>params.num_nodes</code> is the number of nodes where there exists normalized expression data within <code>expression.csv</code>. Finally, in <code>NETISCE.nf</code>, mutations are not considered, so that like is commented out.</p>
+params.num_states = 100000</code></pre>
+<p><strong>Some Notes: </strong> make sure to include <code>$baseDir</code> before pointing to the folder containing your input data. Also, be sure that <code>params.num_nodes</code> is the number of nodes where there exists normalized expression data within <code>expression.csv</code>.</p>
 </div>
 <div id="run-netisce" class="section level2">
 <h2><span class="header-section-number">4.4</span> Run NETISCE</h2>
-In your terminal/command prompt, navigate to the appropriate NETISCE folder <code>_hpc</code> or <code>local</code>. To start your run, enter <code>./nextflow run NETISCE.nf -resume</code>.
+In your terminal/command prompt, navigate to the appropriate NETISCE folder (<code>_hpc</code> or <code>local</code>). To start your run, enter <code>./nextflow run NETISCE.nf -resume</code>.
 While NETISCE is running, your terminal should look like this, where you can see the progress on each step of the pipeline:
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
 <img src="images/running_shot.png" alt="Terminal when running NETISCE" width="50%" />
@@ -347,6 +354,7 @@ While NETISCE is running, your terminal should look like this, where you can see
 Figure 4.2: Terminal when running NETISCE
 </p>
 </div>
+<p>The first column contains the location (folder and subfolder) that is running that step of NETISCE within the <code>work</code> folder.</p>
 Once the run has successfully completed, the process will end and the following will be displayed:
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
 <img src="images/completed.png" alt="Terminal when running NETISCE" width="50%" />
@@ -417,18 +425,58 @@ Figure 4.4: experimental marker node steady state values
 Figure 4.5: elbow metric for optimal k
 </p>
 </div>
-<p>The elbow metric found the optimal number of k clusters to be k=4.</p>
+<p>The elbow metric found the optimal number of k clusters to be k=3.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
-<h4>silhouette.pdf</h4>
+<h4>silhouette.png</h4>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
-<img src="images/silhouette.png" alt="silhouette metric for optimal k" width="50%" />
+<img src="results/silhouette.png" alt="silhouette metric for optimal k" width="50%" />
 <p class="caption">
 Figure 4.6: silhouette metric for optimal k
 </p>
 </div>
 <p>The silhouette metric found the optimal number of k clusters to be k=2.</p>
 <p>Since the optimal ks identified by the silhouette metric and the elbow metric do not match, NETISCE chooses the smaller k, as long as the phenotypes remain separate (NETISCE checks to make sure this is true).</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>kmeans.txt</h4>
+<p>The <code>kmeans.txt</code> file contains the clustering results for each attractor generated from the experimental data and the randomly generated initial states. The first column contains the sample name, and the second column contains the ID of which cluster it is assigned to. Since k=2 in this case, one cluster is named
+“0” and the other cluster is named “1”</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">clusters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A_1</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">A_2</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">A_3</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">B_1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">B_2</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">B_3</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>And we see in the <code>kmeans.txt</code> file, that the A samples are clustered in cluster 0, while the B samples are grouped in cluster 1.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>fvs.txt</h4>
@@ -836,7 +884,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-example.Rmd",
+"link": "https://github.com/VeraLiconaResearchGroup/Netisce/tree/gh-pages/03-example.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -853,7 +901,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "none"
+"collapse": "section"
 }
 });
 });

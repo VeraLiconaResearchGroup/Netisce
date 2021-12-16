@@ -3,13 +3,14 @@ bookdown::gitbook:
   css: assets/style.css
   config:
     toc:
-      collapse: none
+      collapse: section
       before: |
         <li><a href="./">NETISCE manual and tutorials</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
+    edit: https://github.com/VeraLiconaResearchGroup/Netisce/tree/gh-pages/%s
     download: ["pdf", "epub"]
+   
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

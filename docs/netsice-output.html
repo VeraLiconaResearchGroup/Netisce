@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-15" />
+<meta name="date" content="2021-12-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -174,7 +174,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-7-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.3</b> Results using 7 internal-marker nodes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a></li>
+<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a><ul>
+<li class="chapter" data-level="7.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#input-data-2"><i class="fa fa-check"></i><b>7.1</b> Input Data</a></li>
+<li class="chapter" data-level="7.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#run-the-simulation-2"><i class="fa fa-check"></i><b>7.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="7.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-2"><i class="fa fa-check"></i><b>7.3</b> Results</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#general-results-1"><i class="fa fa-check"></i><b>7.3.1</b> General Results</a></li>
+<li class="chapter" data-level="7.3.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-3-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.2</b> Results using 3 internal-marker nodes</a></li>
+<li class="chapter" data-level="7.3.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-apoptosis-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.3</b> Results using apoptosis internal-marker nodes</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -198,7 +206,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="netsice-output" class="section level1">
 <h1><span class="header-section-number">3</span> NETSICE output</h1>
-<p>After the NETISCE computations are complete, the output files will be located in the <code>results</code> folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline’s work folder.</p>
+<p>After the NETISCE computations are complete, the output files will be located in the <code>results</code> folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline’s <code>work</code> folder that is generated during a NETISCE run.</p>
 <p>The contents of each file are briefly described below. For more details and to see example outputs, please see the <a href="toy.html#toy">Toy Network Examples</a>.</p>
 <div id="section-id" class="section level4 unnumbered">
 <h4>exp_internalmarkers.txt</h4>
@@ -213,7 +221,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>A graph of the elbow metric for determining the optimal k for k-means.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
-<h4>silhouette.pdf</h4>
+<h4>silhouette.png</h4>
 <p>A graph of the silhouette metric for determining the optimal k for k-means.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
@@ -271,7 +279,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-output.Rmd",
+"link": "https://github.com/VeraLiconaResearchGroup/Netisce/tree/gh-pages/02-output.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -288,7 +296,7 @@ gitbook.start({
 "options": null
 },
 "toc": {
-"collapse": "none"
+"collapse": "section"
 }
 });
 });
