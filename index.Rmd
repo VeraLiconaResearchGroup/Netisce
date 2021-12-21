@@ -22,9 +22,12 @@ github-repo: https://github.com/veraliconaresearchgroup/netisce
 
 Welcome to the NETISCE manual and tutorials.
 
-NETISCE is a network-based approach for cellular reprogramming. This manual contains instructions for installing the NETISCE pipeline tool and accessing the Galaxy Project GUI web-based tool. We provide a simple toy example walkthrough tutorial. Lastly, we include instructions for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
+Cell-fate reprogramming is a powerful type of cellular reprogramming which aims to drive a system from a selected initial state towards a desired phenotype. However, methods for identifying reprogramming targets remain limited in biological systems that lack large sets of experimental data or dynamical characterization. We present here NETISCE, a novel computational method for identifying cell-fate reprogramming targets and their perturbations in static networks through the   application of control theory and dynamical systems frameworks to a network-based analysis. Our method only requires a static network and the gene expression data for the initial state of the system. We validate NETISCE in studies of cell-fate reprogramming from developmental, stem cell, and cancer biology. Our results show that NETISCE can predict previously identified cell-fate reprogramming target perturbations in these systems, and identify potentially novel combinations of targets. This work extends cell-fate reprogramming studies beyond fully parameterized models and can be used by experimental and computational biologists to guide their cell-fate reprogramming studies. 
 
-NETISCE identifies combinations of perturbations to be applied on a gene regulatory or signaling network to trigger a shift from an undesired to a desired cell fate. The core of the pipeline is the application of structure-based control theory to identify control nodes that drive the system from an initial state that would lead to an attractor associated with an undesired phenotype and towards an attractor associated with the desired phenotype. For more information, please see the accompanying paper: **link here**
+For more information, please see the accompanying paper: **link here**
+
+This manual contains instructions for installing the NETISCE pipeline tool and accessing the Galaxy Project GUI web-based tool. We provide a simple toy example walkthrough tutorial. Lastly, we include instructions for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
+
 
 
 
@@ -38,5 +41,5 @@ knitr::opts_chunk$set(class.source = "foldable")
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');
-title.innerHTML = '<img src="images/netisce-logo.png" alt="logo">' + title.innerHTML
+title.innerHTML = '<img src="images/netisce-logo.png" alt="logo",width="100">' + title.innerHTML
 ```

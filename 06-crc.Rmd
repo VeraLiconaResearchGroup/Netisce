@@ -232,6 +232,16 @@ ggplot(d4r, aes(x=value)) +
 
 ```
 
+```{r}
+
+attr_pert<-read.delim("crc/results/20-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1)
+attr_pert <-attr_pert[c('pert_797158','pert_797159','pert_790597'),]
+exp<-read.delim("crc/results/20-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1)
+
+
+d1<-rbind(exp,attr_pert)
+rownames(d1)[3:5]<- c("HT29_BRAFi+SRCi","HT29_BRAFi+SRCi+TSCovr","HT29_BRAFi+SRCi+GRBi")
+```
 
 ```{r crc-chartsapop, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation"}
 library(fmsb)
