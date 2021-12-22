@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/gen_insilico_mut.py", line 23, in <module>
-    for i in len(phenotypes):
-TypeError: 'int' object is not iterable

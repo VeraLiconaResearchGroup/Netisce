@@ -1,0 +1,38 @@
+<tool id="netisce10" name="Netisce Step 10" version="0.1.0" python_template_version="3.5">
+<description>Extracts the steady-state values of internal-marker nodes in the attractors from perturbations whose  attractors passed filtering criterion 1</description>
+
+    <requirements>
+        <requirement type="package" version="1.1.5">pandas</requirement>
+        <requirement type="package" version="3.5.0">sys</requirement>
+    </requirements>
+    
+    <command> python3 '$__tool_directory__/bin/get_RONs_getperts.py' '$pert_attrs' '$icn' '$crit_perts'</command>
+
+    <inputs>
+        <param name="pert_attrs" type="data" format="txt" label="Perturbation Attractors"/>
+        <param name="crit_perts" type="data" format="txt" label="Perturbation Attractors that shifted to a different state/cluster"/>
+        <param name="icn" type="data" format="txt" label="Internal Control Nodes"/>
+    </inputs>
+
+    <outputs>
+        <data name="output" format="txt" from_work_dir="internal_markers.txt" label="internal-marker nodes in attracotrs from perturbations that passed criterion 1"/>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="icn" value="internal_control.txt"/>
+            <param name="pert_attrs" value="pert_logss.txt"/>
+            <param name="crit_perts" value="crit1perts.txt"/>
+            <output name="output" value="internal_markers.txt" ftype="txt"/>
+        </test>
+    </tests>
+
+    <help>
+    This tool extracts the steady-state values of internal-marker nodes in the attractors from perturbations whose  attractors passed filtering criterion 1.
+    Required Inputs:
+    1. Perturbation Attractors 
+    2. Perturbation Attractors IDs that shifted to a different state/cluster
+    3. Internal Control Nodes
+    </help>
+
+</tool>

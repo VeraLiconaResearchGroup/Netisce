@@ -1,7 +1,0 @@
-name
-Sox2
-Nanog
-Gata6
-Tbx3
-Oct4
-Klf4

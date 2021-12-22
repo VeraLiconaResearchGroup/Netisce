@@ -1,7 +1,0 @@
-name	phenotype
-ESC_1	ESC
-ESC_2	ESC
-ESC_3	ESC
-EpiSC_1	EpiSC
-EpiSC_2	EpiSC
-EpiSC_3	EpiSC

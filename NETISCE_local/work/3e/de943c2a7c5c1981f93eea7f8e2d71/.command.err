@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/gen_insilico_mut.py", line 16, in <module>
-    all_samples=pd.read_csv(sys.argv[4],delim_whitespace=True, index_col = False)
-IndexError: list index out of range

@@ -1,0 +1,40 @@
+<tool id="netisce5" name="Netisce Step 5" version="0.1.0" python_template_version="3.5">
+<description>Generates combinations of perturbations for FVS control nodes</description>
+
+    <requirements>
+        <requirement type="package" version="1.19.5">numpy</requirement>
+        <requirement type="package" version="1.1.5">pandas</requirement>
+        <requirement type="package" version="3.5.0">os</requirement>
+        <requirement type="package" version="3.5.0">itertools</requirement>
+        <requirement type="package" version="3.5.0">csv</requirement>
+        <requirement type="package" version="3.5.0">sys</requirement>
+    </requirements>
+
+    <command>python3 '$__tool_directory__/bin/generate_perts.py' '$fvs' 'pert' '-1,0,1'</command>
+
+    <inputs>
+        <param name="fvs" type="data" format="txt" label="Minimal Feedback Vertex Set"/>
+        <!-- <param name="prefix" type="text" value="pert" label="Prefix for Output File"/>
+        <param name="states" type="text" value="-1,0,1" label="States of a node"/> -->
+    </inputs>
+
+    <outputs>
+        <data name="output" format="txt" from_work_dir="init.txt" label="Combinations of Perturbations of the FVS Set"/>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="fvs" value="fvs.txt" />
+            <param name="prefix" value="pert" />
+            <param name="states" value="-1,0,1" />
+            <output name="output" value="init.txt" ftype="txt"/>
+        </test>
+    </tests>
+
+    <help>
+    This tool Generates combinations of perturbations for FVS control nodes.
+    Required Inputs:
+    1. minimal Feedbfack Vertex Set in txt format (from 4_getFVS)
+    </help>
+
+</tool>

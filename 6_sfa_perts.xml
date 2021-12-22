@@ -1,0 +1,58 @@
+<tool id="netisce6" name="Netisce Step 6" version="0.1.0" python_template_version="3.5">
+<description>Computes the attractors from perturbations on FVS control nodes</description>
+
+    <requirements>
+        <requirement type="package" version="1.19.5">numpy</requirement>
+        <requirement type="package" version="1.1.5">pandas</requirement>
+        <requirement type="package" version="3.5.0">os</requirement>
+        <requirement type="package" version="1.11.0">networkx</requirement>
+        <requirement type="package" version="3.5.0">random</requirement>
+        <requirement type="package" version="3.1.14">sfa</requirement>
+        <requirement type="package" version="1.0.1">sklearn.preprocessing</requirement>
+        <requirement type="package" version="3.5.0">csv</requirement>
+        <requirement type="package" version="3.5.0">sys</requirement>
+    </requirements>
+
+    <command>python3 '$__tool_directory__/bin/SFA_virtscreen.py' '$network' '$expression_data' '$init' '$samples' '$fvs' '$fvs_init'</command>
+
+    <inputs>
+        <param name="network" type="data" format="sif" label="Network"/>
+        <param name="expression_data" type="data" format="csv" label="Expression Data"/>
+        <param name="init" type="text" value="resistant" label="Name of Undesired Initial State"/>
+        <param name="samples" type="data" format="txt" label="Names of all Experimental Samples"/>
+        <param name="fvs" type="data" format="txt" label="Minimal Feedback Vertex Set"/>
+        <param name="fvs_init" type="data" format="txt" label="Perturbations of the FVS Set"/>
+    </inputs>
+
+    <outputs>
+        <data name="output" format="tabular" from_work_dir="pert_logss.txt" label="Attractors when the FVS Set is randomly perturbed"/>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="network" value="network.sif" />
+            <param name="expression_data" value="expressions.csv" />
+            <param name="init" value="resistant" />
+            <param name="samples" value="samples.txt" />
+            <param name="fvs" value="fvs.txt"/>
+            <param name="fvs_init" value="init.txt" />
+            <output name="output" value="pert_logss.tsv" ftype="tsv" />
+        </test>
+    </tests>
+
+    <help>
+    This tool computes Computes the attractors from perturbations on FVS control nodes. 
+    Required Inputs:
+    1. network in sif format (activating edges as "activates", inhibitory edges as "inhibits")
+    2. normalized expression values for data sample (rows are expressed genes, columns are samples)
+    3. name of undesired initial state/experimental sample
+    4. name of all experimental samples of interest
+    5. minimal Feedback Vertex set of the network
+    6. randomly generated perturbations of FVS Set
+    </help>
+
+    <citations>
+        <citation type="doi">10.1038/s41598-019-50790-0</citation>
+    </citations>
+
+</tool>

@@ -1,0 +1,52 @@
+<tool id="netisce3" name="Netisce Step 3" version="0.1.0" python_template_version="3.5">
+<description>Estimates the attractors for randomly generated initial states using signal flow analysis</description>
+
+    <requirements>
+        <requirement type="package" version="1.1.5">pandas</requirement>
+        <requirement type="package" version="1.19.5">numpy</requirement>
+        <requirement type="package" version="3.5.0">os</requirement>
+        <requirement type="package" version="1.11.0">networkx</requirement>
+        <requirement type="package" version="3.5.0">random</requirement>
+        <requirement type="package" version="3.5.0">sys</requirement>
+        <requirement type="package" version="3.5.0">csv</requirement>
+        <requirement type="package" version="3.1.14">sfa</requirement>
+        <requirement type="package" version="1.0.3">statistics</requirement>
+    </requirements>
+
+    <command>python3 '$__tool_directory__/bin/SFA_insilico.py' '$network' '$expression_data' '$samples' '$num_states'</command>
+
+    <inputs>
+        <param name="network" type="data" format="sif" label="Network"/>
+        <param name="expression_data" type="data" format="csv" label="Expression Data"/>
+        <param name="samples" type="data" format="txt" label="Name of Experimental Samples"/>
+        <param name="num_states" type="integer" value="10000" label="Num of Insilico Attractors to Generate"/>
+    </inputs>
+
+    <outputs>
+        <data name="output" format="tabular" from_work_dir="attrs_insilico.tsv" label="Insilico Attractors"/>
+    </outputs>
+
+    <tests>
+        <test>
+            <param name="network" value="network.sif" />
+            <param name="expression_data" value="expressions.csv" />
+            <param name="num_states" value="10000"/>
+            <param name="samples" value="samples.txt" />
+            <output name="output" file="attrs_insilico.tsv" ftype="tsv" />
+        </test>
+    </tests>
+
+    <help>
+    This tool estimates the attractors for randomly generated initial states using signal flow analysis.
+    Required Inputs:
+    1. network in sif format (activating edges as "activates", inhibitory edges as "inhibits")
+    2. normalized expression values for data sample
+    3. experimental sample names of interest
+    4. number of insilico Attractors to generate (default = 10,000)
+    </help>
+
+    <citations>
+        <citation type="doi">10.1038/s41598-019-50790-0</citation>
+    </citations>
+
+</tool>
