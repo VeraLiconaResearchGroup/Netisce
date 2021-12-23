@@ -1,0 +1,42 @@
+<tool id="netisce1" name="Netisce Step 1" version="0.1.0" python_template_version="3.5">
+
+    <description>Estimates attractors from experimental data using Signal Flow Analysis.</description>
+
+    <requirements>
+        <requirement type="package" version="3.5.0">os</requirement>
+        <requirement type="package" version="1.19.5">numpy</requirement>
+        <requirement type="package" version="1.1.5">pandas</requirement>
+        <requirement type="package" version="1.11.0">networkx</requirement>
+        <requirement type="package" version="3.5.0">random</requirement>
+        <requirement type="package" version="3.1.14">sfa</requirement>
+        <requirement type="package" version="3.5.0">csv</requirement>
+        <requirement type="package" version="3.5.0">sys</requirement>
+    </requirements>
+    
+    <command>python3 '$__tool_directory__/bin/SFA_exp_attr.py' '$network' '$expression_data' exp_attrs.csv</command>
+
+    <inputs>
+        <param name="network" type="data" format="sif" label="Network"/>
+        <param name="expression_data" type="data" format="csv" label="Expression Data"/>
+    </inputs>
+
+    <outputs>
+        <data name="output" format="tabular" from_work_dir="attrs_exp.tsv" label="Experimental Attractors"/>
+    </outputs>
+
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="network" value="network.sif" />
+            <param name="expression_data" value="expressions.csv" />
+            <output name="output" file="attrs_exp.tsv" ftype="tsv" />
+        </test>
+    </tests>
+
+    <help>
+        This tool estimates attractors for each experimental sample from normalized expression data using Signal Flow Analysis.
+        Required Inputs:
+        1. network in sif format (activating edges as "activates", inhibitory edges as "inhibits")
+        2. normalized expression values for data sample
+    </help>
+
+</tool>

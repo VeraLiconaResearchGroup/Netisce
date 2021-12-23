@@ -1,0 +1,1047 @@
+{
+    "a_galaxy_workflow": "true",
+    "annotation": "NETISCE identifies cell fate reprogramming targets from static networks.",
+    "creator": [
+        {
+            "class": "Organization",
+            "name": "The Vera-Licona Research Group",
+            "url": "https://veraliconaresearchgroup.github.io/Netisce"
+        },
+        {
+            "class": "Person",
+            "identifier": "https://orcid.org/0000-0002-7425-9467",
+            "name": "Lauren Marazzi"
+        },
+        {
+            "class": "Person",
+            "identifier": "",
+            "name": "Shreedula Balakrishnan"
+        }
+    ],
+    "format-version": "0.1",
+    "name": "NETISCE",
+    "steps": {
+        "0": {
+            "annotation": "file containing list of names of internal-marker nodes",
+            "content_id": null,
+            "errors": null,
+            "id": 0,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "file containing list of names of internal-marker nodes",
+                    "name": "internal-marker nodes"
+                }
+            ],
+            "label": "internal-marker nodes",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "bottom": 83.171875,
+                "height": 82.171875,
+                "left": 37,
+                "right": 237,
+                "top": 1,
+                "width": 200,
+                "x": 37,
+                "y": 1
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "0a66b60c-ccf1-40d7-ad6d-9a89172365b9",
+            "workflow_outputs": []
+        },
+        "1": {
+            "annotation": "file specifying sample names and their phenotype",
+            "content_id": null,
+            "errors": null,
+            "id": 1,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "file specifying sample names and their phenotype",
+                    "name": "samples.txt"
+                }
+            ],
+            "label": "samples.txt",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "bottom": 132.78125,
+                "height": 61.78125,
+                "left": -261,
+                "right": -61,
+                "top": 71,
+                "width": 200,
+                "x": -261,
+                "y": 71
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "c7bc11fa-2500-49ee-aa94-97b150ffbca6",
+            "workflow_outputs": []
+        },
+        "2": {
+            "annotation": "Number of randomly generated initial states to generate (default=10,000)",
+            "content_id": null,
+            "errors": null,
+            "id": 2,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "Number of randomly generated initial states to generate (default=10,000)",
+                    "name": "Random State generation"
+                }
+            ],
+            "label": "Random State generation",
+            "name": "Input parameter",
+            "outputs": [],
+            "position": {
+                "bottom": 273.5625,
+                "height": 102.5625,
+                "left": -261,
+                "right": -61,
+                "top": 171,
+                "width": 200,
+                "x": -261,
+                "y": 171
+            },
+            "tool_id": null,
+            "tool_state": "{\"parameter_type\": \"integer\", \"optional\": false}",
+            "tool_version": null,
+            "type": "parameter_input",
+            "uuid": "76ce6509-574a-4e27-8414-478a66023235",
+            "workflow_outputs": []
+        },
+        "3": {
+            "annotation": "gene expression data",
+            "content_id": null,
+            "errors": null,
+            "id": 3,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "gene expression data",
+                    "name": "Gene Expression Data"
+                }
+            ],
+            "label": "Gene Expression Data",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "bottom": 572.171875,
+                "height": 82.171875,
+                "left": -261,
+                "right": -61,
+                "top": 490,
+                "width": 200,
+                "x": -261,
+                "y": 490
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "68fc9ec5-8467-4e17-a0ec-9c6b44a445bf",
+            "workflow_outputs": []
+        },
+        "4": {
+            "annotation": "sif",
+            "content_id": null,
+            "errors": null,
+            "id": 4,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "sif",
+                    "name": "network file"
+                }
+            ],
+            "label": "network file",
+            "name": "Input dataset",
+            "outputs": [],
+            "position": {
+                "bottom": 621.78125,
+                "height": 61.78125,
+                "left": -539,
+                "right": -339,
+                "top": 560,
+                "width": 200,
+                "x": -539,
+                "y": 560
+            },
+            "tool_id": null,
+            "tool_state": "{\"optional\": false}",
+            "tool_version": null,
+            "type": "data_input",
+            "uuid": "8c382dde-4260-49a5-a666-d9eb80f155ea",
+            "workflow_outputs": []
+        },
+        "5": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 5,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Undesired phenotype"
+                }
+            ],
+            "label": "Undesired phenotype",
+            "name": "Input parameter",
+            "outputs": [],
+            "position": {
+                "bottom": -99.4375,
+                "height": 102.5625,
+                "left": 911,
+                "right": 1111,
+                "top": -202,
+                "width": 200,
+                "x": 911,
+                "y": -202
+            },
+            "tool_id": null,
+            "tool_state": "{\"parameter_type\": \"text\", \"optional\": false}",
+            "tool_version": null,
+            "type": "parameter_input",
+            "uuid": "a935df54-55ba-45e4-9f28-4954c8af698a",
+            "workflow_outputs": []
+        },
+        "6": {
+            "annotation": "\"strict\" or \"relaxed\"",
+            "content_id": null,
+            "errors": null,
+            "id": 6,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "\"strict\" or \"relaxed\"",
+                    "name": "Filtering criterion 2 strictness"
+                }
+            ],
+            "label": "Filtering criterion 2 strictness",
+            "name": "Input parameter",
+            "outputs": [],
+            "position": {
+                "bottom": 542.5625,
+                "height": 102.5625,
+                "left": 911,
+                "right": 1111,
+                "top": 440,
+                "width": 200,
+                "x": 911,
+                "y": 440
+            },
+            "tool_id": null,
+            "tool_state": "{\"parameter_type\": \"text\", \"optional\": false}",
+            "tool_version": null,
+            "type": "parameter_input",
+            "uuid": "8eba9a23-4eac-4c0d-b27e-e0a0f5a92fc7",
+            "workflow_outputs": []
+        },
+        "7": {
+            "annotation": "",
+            "content_id": null,
+            "errors": null,
+            "id": 7,
+            "input_connections": {},
+            "inputs": [
+                {
+                    "description": "",
+                    "name": "Desired Phenotype"
+                }
+            ],
+            "label": "Desired Phenotype",
+            "name": "Input parameter",
+            "outputs": [],
+            "position": {
+                "bottom": 642.171875,
+                "height": 82.171875,
+                "left": 911,
+                "right": 1111,
+                "top": 560,
+                "width": 200,
+                "x": 911,
+                "y": 560
+            },
+            "tool_id": null,
+            "tool_state": "{\"parameter_type\": \"text\", \"optional\": false}",
+            "tool_version": null,
+            "type": "parameter_input",
+            "uuid": "0bdc39e2-9978-440d-a480-1db9205cea50",
+            "workflow_outputs": []
+        },
+        "8": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce3/0.1.0",
+            "errors": null,
+            "id": 8,
+            "input_connections": {
+                "expression_data": {
+                    "id": 3,
+                    "output_name": "output"
+                },
+                "network": {
+                    "id": 4,
+                    "output_name": "output"
+                },
+                "num_states": {
+                    "id": 2,
+                    "output_name": "output"
+                },
+                "samples": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 3",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "bottom": 367.515625,
+                "height": 245.515625,
+                "left": 37,
+                "right": 237,
+                "top": 122,
+                "width": 200,
+                "x": 37,
+                "y": 122
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce3/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"expression_data\": {\"__class__\": \"ConnectedValue\"}, \"network\": {\"__class__\": \"ConnectedValue\"}, \"num_states\": {\"__class__\": \"ConnectedValue\"}, \"samples\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "47cb3dfc-baca-4edb-8063-5780e7e8c655",
+            "workflow_outputs": [
+                {
+                    "label": "Insilico Attractors",
+                    "output_name": "output",
+                    "uuid": "c215b5c8-3d47-483b-8a83-63ad8afc80e2"
+                }
+            ]
+        },
+        "9": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce1/0.1.0",
+            "errors": null,
+            "id": 9,
+            "input_connections": {
+                "expression_data": {
+                    "id": 3,
+                    "output_name": "output"
+                },
+                "network": {
+                    "id": 4,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 1",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "bottom": 549.953125,
+                "height": 143.953125,
+                "left": 37,
+                "right": 237,
+                "top": 406,
+                "width": 200,
+                "x": 37,
+                "y": 406
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce1/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"expression_data\": {\"__class__\": \"ConnectedValue\"}, \"network\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "96294ed9-263a-4d34-a239-521f92c2055d",
+            "workflow_outputs": [
+                {
+                    "label": "Experimental Attractors",
+                    "output_name": "output",
+                    "uuid": "a08f07ce-6dd2-4b0a-89fa-2cfe70fda86a"
+                }
+            ]
+        },
+        "10": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce4/0.1.0",
+            "errors": null,
+            "id": 10,
+            "input_connections": {
+                "network": {
+                    "id": 4,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 4",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 942.5625,
+                "height": 113.5625,
+                "left": -261,
+                "right": -61,
+                "top": 829,
+                "width": 200,
+                "x": -261,
+                "y": 829
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce4/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"network\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "5dd55bbd-9ee3-490a-8b7e-505b2a8eee93",
+            "workflow_outputs": [
+                {
+                    "label": "Feedback Vertex Set",
+                    "output_name": "output",
+                    "uuid": "997ce166-7bc1-42cf-b641-f74ea34a3f62"
+                }
+            ]
+        },
+        "11": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce2/0.1.0",
+            "errors": null,
+            "id": 11,
+            "input_connections": {
+                "attrs_exp": {
+                    "id": 9,
+                    "output_name": "output"
+                },
+                "icn": {
+                    "id": 0,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 2",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "bottom": 83.34375,
+                "height": 164.34375,
+                "left": 335,
+                "right": 535,
+                "top": -81,
+                "width": 200,
+                "x": 335,
+                "y": -81
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce2/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"attrs_exp\": {\"__class__\": \"ConnectedValue\"}, \"icn\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "de503e62-8429-4c2b-9598-b22ebfa7c46c",
+            "workflow_outputs": [
+                {
+                    "label": "Internal-marker nodes from experimental attractors",
+                    "output_name": "output",
+                    "uuid": "7fbd99aa-31a8-4a51-ac88-3a7c05c937c5"
+                }
+            ]
+        },
+        "12": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce8/0.1.0",
+            "errors": null,
+            "id": 12,
+            "input_connections": {
+                "experimental_attractors": {
+                    "id": 9,
+                    "output_name": "output"
+                },
+                "random_attractors": {
+                    "id": 8,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 8",
+            "outputs": [
+                {
+                    "name": "output1",
+                    "type": "png"
+                },
+                {
+                    "name": "output2",
+                    "type": "png"
+                },
+                {
+                    "name": "output3",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 480.296875,
+                "height": 286.296875,
+                "left": 335,
+                "right": 535,
+                "top": 194,
+                "width": 200,
+                "x": 335,
+                "y": 194
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce8/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"experimental_attractors\": {\"__class__\": \"ConnectedValue\"}, \"random_attractors\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "938bf71c-36b7-4b9f-b7f5-b6b2f0644824",
+            "workflow_outputs": [
+                {
+                    "label": "Elbow Metric Plot",
+                    "output_name": "output1",
+                    "uuid": "fe727181-a5ab-4e98-88a7-37227fe0eb55"
+                },
+                {
+                    "label": "Silhouette Metric Plot",
+                    "output_name": "output2",
+                    "uuid": "fcbf2317-a894-4678-bd47-15adbd0e2b8b"
+                },
+                {
+                    "label": "K-means clustering of attractors",
+                    "output_name": "output3",
+                    "uuid": "30dc3f12-d2a5-4a4f-ac87-650ee507bdde"
+                }
+            ]
+        },
+        "13": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce5/0.1.0",
+            "errors": null,
+            "id": 13,
+            "input_connections": {
+                "fvs": {
+                    "id": 10,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 5",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 867.34375,
+                "height": 154.34375,
+                "left": 37,
+                "right": 237,
+                "top": 713,
+                "width": 200,
+                "x": 37,
+                "y": 713
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce5/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"fvs\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "8e206c9b-1c6a-4377-998d-d991d27defeb",
+            "workflow_outputs": [
+                {
+                    "label": "Combinations of Perturbations of the FVS Set",
+                    "output_name": "output",
+                    "uuid": "d969208a-ff1b-48db-a0ed-caa89443958f"
+                }
+            ]
+        },
+        "14": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce7/0.1.0",
+            "errors": null,
+            "id": 14,
+            "input_connections": {
+                "attrs_exp": {
+                    "id": 11,
+                    "output_name": "output"
+                },
+                "samples": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 7",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "png"
+                }
+            ],
+            "position": {
+                "bottom": 155.515625,
+                "height": 225.515625,
+                "left": 623,
+                "right": 823,
+                "top": -70,
+                "width": 200,
+                "x": 623,
+                "y": -70
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce7/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"attrs_exp\": {\"__class__\": \"ConnectedValue\"}, \"samples\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "eb8b2c1e-45b9-4029-9c08-f5de412881c4",
+            "workflow_outputs": [
+                {
+                    "label": "internal marker node values from experimental attractors plotted",
+                    "output_name": "output",
+                    "uuid": "88156c02-c49d-4b42-8da0-12184dcdcc90"
+                }
+            ]
+        },
+        "15": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce6/0.1.0",
+            "errors": null,
+            "id": 15,
+            "input_connections": {
+                "expression_data": {
+                    "id": 3,
+                    "output_name": "output"
+                },
+                "fvs": {
+                    "id": 10,
+                    "output_name": "output"
+                },
+                "fvs_init": {
+                    "id": 13,
+                    "output_name": "output"
+                },
+                "network": {
+                    "id": 4,
+                    "output_name": "output"
+                },
+                "samples": {
+                    "id": 1,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 6",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "tabular"
+                }
+            ],
+            "position": {
+                "bottom": 856.078125,
+                "height": 337.078125,
+                "left": 335,
+                "right": 535,
+                "top": 519,
+                "width": 200,
+                "x": 335,
+                "y": 519
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce6/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"expression_data\": {\"__class__\": \"ConnectedValue\"}, \"fvs\": {\"__class__\": \"ConnectedValue\"}, \"fvs_init\": {\"__class__\": \"ConnectedValue\"}, \"init\": \"resistant\", \"network\": {\"__class__\": \"ConnectedValue\"}, \"samples\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "351cf40f-5155-4400-9834-db93ed8944cd",
+            "workflow_outputs": [
+                {
+                    "label": "Attractors when the FVS Set is randomly perturbed",
+                    "output_name": "output",
+                    "uuid": "871d8fe6-6893-4435-b690-ae26bc891e93"
+                }
+            ]
+        },
+        "16": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce9/0.1.0",
+            "errors": null,
+            "id": 16,
+            "input_connections": {
+                "experimental_attractors": {
+                    "id": 9,
+                    "output_name": "output"
+                },
+                "kmeans": {
+                    "id": 12,
+                    "output_name": "output3"
+                },
+                "pert_attrs": {
+                    "id": 15,
+                    "output_name": "output"
+                },
+                "random_attractors": {
+                    "id": 8,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce step 9",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 603.640625,
+                "height": 408.640625,
+                "left": 623,
+                "right": 823,
+                "top": 195,
+                "width": 200,
+                "x": 623,
+                "y": 195
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce9/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"experimental_attractors\": {\"__class__\": \"ConnectedValue\"}, \"kmeans\": {\"__class__\": \"ConnectedValue\"}, \"pert_attrs\": {\"__class__\": \"ConnectedValue\"}, \"random_attractors\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "e4f1fa06-bd1a-44f2-9769-a00199733e27",
+            "workflow_outputs": [
+                {
+                    "label": "Names of perturbations whose attractors shifted to a the cluster associated with the desired phenotype",
+                    "output_name": "output",
+                    "uuid": "7db5c24a-18ec-4a47-a606-e40c1dd30dea"
+                }
+            ]
+        },
+        "17": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce10/0.1.0",
+            "errors": null,
+            "id": 17,
+            "input_connections": {
+                "crit_perts": {
+                    "id": 16,
+                    "output_name": "output"
+                },
+                "icn": {
+                    "id": 0,
+                    "output_name": "output"
+                },
+                "pert_attrs": {
+                    "id": 15,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 10",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 401.6875,
+                "height": 296.6875,
+                "left": 911,
+                "right": 1111,
+                "top": 105,
+                "width": 200,
+                "x": 911,
+                "y": 105
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce10/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"crit_perts\": {\"__class__\": \"ConnectedValue\"}, \"icn\": {\"__class__\": \"ConnectedValue\"}, \"pert_attrs\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "97384e1b-eb32-4cf2-8271-14afa8ba29de",
+            "workflow_outputs": [
+                {
+                    "label": "internal-marker nodes in attracotrs from perturbations that passed criterion 1",
+                    "output_name": "output",
+                    "uuid": "e73ffa1e-d616-4056-ae6f-fab8e89e3034"
+                }
+            ]
+        },
+        "18": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce11/0.1.0",
+            "errors": null,
+            "id": 18,
+            "input_connections": {
+                "crit_perts": {
+                    "id": 17,
+                    "output_name": "output"
+                },
+                "desired_state": {
+                    "id": 7,
+                    "output_name": "output"
+                },
+                "exp_attrs_icn": {
+                    "id": 11,
+                    "output_name": "output"
+                },
+                "filter_type": {
+                    "id": 6,
+                    "output_name": "output"
+                },
+                "samples": {
+                    "id": 1,
+                    "output_name": "output"
+                },
+                "undesired_state": {
+                    "id": 5,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 11",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 247.421875,
+                "height": 469.421875,
+                "left": 1209,
+                "right": 1409,
+                "top": -222,
+                "width": 200,
+                "x": 1209,
+                "y": -222
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce11/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"crit_perts\": {\"__class__\": \"ConnectedValue\"}, \"desired_state\": {\"__class__\": \"ConnectedValue\"}, \"exp_attrs_icn\": {\"__class__\": \"ConnectedValue\"}, \"filter_type\": {\"__class__\": \"ConnectedValue\"}, \"samples\": {\"__class__\": \"ConnectedValue\"}, \"undesired_state\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "31b03bf2-2378-488f-bf4d-0afe975064af",
+            "workflow_outputs": [
+                {
+                    "label": "Perturbations whose internal-marker nodes in the attractors are within the gene expression range of the desired attractor.",
+                    "output_name": "output",
+                    "uuid": "89d9aba7-2812-44a1-8d36-d8a3305f3326"
+                }
+            ]
+        },
+        "19": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce12/0.1.0",
+            "errors": null,
+            "id": 19,
+            "input_connections": {
+                "filtered_perts": {
+                    "id": 18,
+                    "output_name": "output"
+                },
+                "fvs": {
+                    "id": 10,
+                    "output_name": "output"
+                },
+                "fvs_init": {
+                    "id": 13,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 12",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 970.859375,
+                "height": 357.859375,
+                "left": 1487,
+                "right": 1687,
+                "top": 613,
+                "width": 200,
+                "x": 1487,
+                "y": 613
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce12/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"filtered_perts\": {\"__class__\": \"ConnectedValue\"}, \"fvs\": {\"__class__\": \"ConnectedValue\"}, \"fvs_init\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "15765ac7-c413-4bd3-8ef8-bd872b5e0b16",
+            "workflow_outputs": [
+                {
+                    "label": "combinations of perturbations on FVS control nodes that pass filtering criterion 2.",
+                    "output_name": "output",
+                    "uuid": "d13d4025-11f6-485c-b097-f9073df0b3d6"
+                }
+            ]
+        },
+        "20": {
+            "annotation": "",
+            "content_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce13/0.1.0",
+            "errors": null,
+            "id": 20,
+            "input_connections": {
+                "perts": {
+                    "id": 19,
+                    "output_name": "output"
+                }
+            },
+            "inputs": [],
+            "label": null,
+            "name": "Netisce Step 13",
+            "outputs": [
+                {
+                    "name": "output",
+                    "type": "txt"
+                }
+            ],
+            "position": {
+                "bottom": 925.125,
+                "height": 195.125,
+                "left": 1765,
+                "right": 1965,
+                "top": 730,
+                "width": 200,
+                "x": 1765,
+                "y": 730
+            },
+            "post_job_actions": {},
+            "tool_id": "toolshed.g2.bx.psu.edu/repos/laurenmarazzi/netisce/netisce13/0.1.0",
+            "tool_shed_repository": {
+                "changeset_revision": "e45d5d0e1237",
+                "name": "netisce",
+                "owner": "laurenmarazzi",
+                "tool_shed": "toolshed.g2.bx.psu.edu"
+            },
+            "tool_state": "{\"perts\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+            "tool_version": "0.1.0",
+            "type": "tool",
+            "uuid": "46bba463-be18-4cb2-873e-9aaaa1b5e6ea",
+            "workflow_outputs": [
+                {
+                    "label": "FVS control node perturbations that passed both filtering criteria",
+                    "output_name": "output",
+                    "uuid": "b0505b58-9c05-4e6e-a2a5-c3f81b2d8821"
+                }
+            ]
+        }
+    },
+    "tags": [
+        "systemsbiology",
+        "networkanalysis"
+    ],
+    "uuid": "c3e78484-6763-4733-bed4-0d2b9f9832a0",
+    "version": 15
+}
