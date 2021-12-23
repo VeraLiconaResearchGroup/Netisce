@@ -1,0 +1,11 @@
+[c4/151371] calculate attractors from experimental data
+[f6/addc3e] generate randomly generated initial states
+[70/30c11a] simulate network using randomly generated initial states 
+[73/2d7e5c] kmeans calculations
+[3f/6b1a40] ML classification calculations
+[7d/06f874] calculate FVS
+[15/f1e806] check if there are any mutated genes within FVS, and if so, remove them
+[fd/6da63f] generate combinations of perturbations on FVS control nodes       
+[8e/40225e] simulate network with perturbations on FVS control nodes
+[50/4ab41b] criterion 1: consensus between classifation ML algorithms 
+
