@@ -29,6 +29,8 @@ For more information, please see the accompanying paper: **link here**
 This manual contains instructions for installing the NETISCE pipeline tool and accessing the Galaxy Project GUI web-based tool. We provide a simple toy example walkthrough tutorial. Lastly, we include instructions for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
 
 
+To navigate this site, use the menu on the left-hand side. 
+
 
 
 ```{r include=FALSE}
@@ -41,5 +43,5 @@ knitr::opts_chunk$set(class.source = "foldable")
 
 ```{js, echo = FALSE}
 title=document.getElementById('header');
-title.innerHTML = '<img src="images/netisce-logo.png" alt="logo",width="100">' + title.innerHTML
+title.innerHTML = '<img src="images/netisce-logo.png" alt="logo",width="90",height="20">' + title.innerHTML
 ```

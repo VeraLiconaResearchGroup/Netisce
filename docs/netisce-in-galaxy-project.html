@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-17" />
+<meta name="date" content="2021-12-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -180,10 +180,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-2"><i class="fa fa-check"></i><b>7.3</b> Results</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#general-results-1"><i class="fa fa-check"></i><b>7.3.1</b> General Results</a></li>
 <li class="chapter" data-level="7.3.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-3-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.2</b> Results using 3 internal-marker nodes</a></li>
-<li class="chapter" data-level="7.3.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-apoptosis-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.3</b> Results using apoptosis internal-marker nodes</a></li>
+<li class="chapter" data-level="7.3.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-apoptosis-proliferation-and-mapk-signaling-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.3</b> Results using apoptosis, proliferation, and MAPK signaling internal-marker nodes</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a></li>
+<li class="chapter" data-level="8" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>8</b> NETISCE in Galaxy Project</a><ul>
+<li class="chapter" data-level="8.1" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html#installing-galaxy"><i class="fa fa-check"></i><b>8.1</b> Installing Galaxy</a></li>
+<li class="chapter" data-level="8.2" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html#installing-the-netisce-tool-from-galaxy-tool-shed."><i class="fa fa-check"></i><b>8.2</b> Installing the NETISCE tool from Galaxy Tool Shed.</a></li>
+<li class="chapter" data-level="8.3" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html#downloading-the-netisce-workflow."><i class="fa fa-check"></i><b>8.3</b> Downloading the NETISCE workflow.</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -206,7 +210,38 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="netisce-in-galaxy-project" class="section level1">
 <h1><span class="header-section-number">8</span> NETISCE in Galaxy Project</h1>
+<p>We have implemented NETISCE as a Galaxy Project tool. This allows users to run NETISCE analysis without programming knowledge. Herein are brief instructions for downloading and installing the Galaxy Project Tool and Workflow.</p>
+<div id="installing-galaxy" class="section level2">
+<h2><span class="header-section-number">8.1</span> Installing Galaxy</h2>
+<p>Please follow the instructions for installing a local version of Galaxy here: <a href="https://galaxyproject.org/admin/get-galaxy/" class="uri">https://galaxyproject.org/admin/get-galaxy/</a></p>
+<p>Follow instructions up to “Install Tools”.</p>
+</div>
+<div id="installing-the-netisce-tool-from-galaxy-tool-shed." class="section level2">
+<h2><span class="header-section-number">8.2</span> Installing the NETISCE tool from Galaxy Tool Shed.</h2>
+<p>First launch Galaxy by inputting <code>sh run.sh</code> in your terminal and load the GUI (navigate to <code>http://localhost:8080/</code> in your browser of choice). Then, after you have established your admin account and are logged in, you will be able to download the NETSICE tool.</p>
+<p>Click on the Admin button in the top ribbon:
+<img src="images/galaxy1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Under Tool Management, select “Install and Uninstall”. This will lead you to the search repositories page. You can search for the NETISCE tool by typing “netisce” into the search bar.</p>
+<p>Click on “netisce” and select Install. You can choose to Install additional dependencies (this is especially useful if you have installed Galaxy in a conda environment). You can specify the header under which you want to install netisce (we suggest “NETISCE”)</p>
+<p><img src="images/galaxy2.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="downloading-the-netisce-workflow." class="section level2">
+<h2><span class="header-section-number">8.3</span> Downloading the NETISCE workflow.</h2>
+<p>The fastest way to download the NETISCE workflow is to direct download it from here: <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/049aec40e76c6b1d965aa199a041e0651fadd29b/Galaxy-Workflow-NETISCE.ga" class="uri">https://github.com/VeraLiconaResearchGroup/Netisce/blob/049aec40e76c6b1d965aa199a041e0651fadd29b/Galaxy-Workflow-NETISCE.ga</a></p>
+<p>Alternatively, you can launch galaxy from <a href="https://usegalaxy.org/" class="uri">https://usegalaxy.org/</a></p>
+<p>In the upper ribbon, navigate to “Shared Data” -&gt; “Workflows”. Here you can search for “netisce”</p>
+<p><img src="images/galaxy3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Click the dropdown arrow and select “save as file.”</p>
+<p><img src="images/galaxy4.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>Using either downloaded file, in your local Galaxy, navigate to the “Workflow” page. Select import in the right-hand corner. Upload the .ga file.</p>
+<p>Once the Netisce workflow appears, on the righthand side, press the run button
+<img src="images/galaxy5.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>This will load the workflow.You will be presented with parameters to fill in (either text or files). You can use the same sample files as are used in the toy example nextflow run. Once you have uploaded your files and filled in other parameters, press “Run Workflow”.</p>
+<p><img src="images/galaxy6.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>You can monitor the progress of your run on the right hand side. when all jobs are complete, you can view the report of your workflow, which contains all resutls files.</p>
+<p><img src="images/galaxy7.png" width="100%" style="display: block; margin: auto;" /></p>
 
+</div>
 </div>
             </section>
 

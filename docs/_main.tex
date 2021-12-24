@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2021-12-17}
+\date{2021-12-24}
 
 \begin{document}
 \maketitle
@@ -927,7 +927,7 @@ The input data, nextflow pipeline, and results of this simulation can be found i
 
 These simulations were run on a high performance cluster that uses a SLURM executor. If your hpc uses a different executor, please update those specifications in the \texttt{nextflow.config} file in the directory. Please see \url{https://www.nextflow.io/docs/latest/config.html} for more information regarding your executor.
 
-For ease of reproduction, we have included all files necessary to reproduce the reported results directly in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation}{directory}. We do reccomend you run this simulation on an hpc. We have included the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/run.sh}{bash file} we used on our SLURM executor.
+For ease of reproduction, we have included all files necessary to reproduce the reported results directly in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation}{directory}. We do recommend you run this simulation on an hpc. We have included the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/run.sh}{bash file} we used on our SLURM executor.
 
 \textbf{Note: } within the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/NETISCE.nf}{\texttt{NETISCE.nf}} configuration file, we have included two lines for specifying the internal-marker nodes:
 
@@ -952,7 +952,7 @@ You can also run NETISCE directly using the following command: \texttt{./nextflo
 \hypertarget{results-1}{%
 \section{Results}\label{results-1}}
 
-Herein, we will focus on the results that are deposited in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/results}{\texttt{results}} folder by NETISCE. However, each step of the nextflow pipeline produces its coressponding raw results (for example, the entire attractor state for network simulations initialized with experimnetal data). If you are interested in looking at those raw results, they can be found within the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/work}{\texttt{work}} folder. We provide \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/workfiles.txt}{\texttt{workfiles.txt}} which is a guide to which folders/subfolders contain the relevant results of each step.
+Herein, we will focus on the results that are deposited in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/results}{\texttt{results}} folder by NETISCE. However, each step of the nextflow pipeline produces its corresponding raw results (for example, the entire attractor state for network simulations initialized with experimental data). If you are interested in looking at those raw results, they can be found within the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/work}{\texttt{work}} folder. We provide \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/workfiles.txt}{\texttt{workfiles.txt}} which is a guide to which folders/subfolders contain the relevant results of each step.
 
 \hypertarget{general-results}{%
 \subsection{General Results}\label{general-results}}
@@ -1132,7 +1132,7 @@ We can look to see if there are any trends in the orientation of the perturbatio
 
 \KeywordTok{ggplot}\NormalTok{(d3r, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{value)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Var1,}\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{,}\DataTypeTok{shrink=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d3),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted)}\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to a control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d3),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted)}\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to an FVS control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1266,7 +1266,7 @@ We can plot the trends of the orientation of perturbations for each FVS control 
 
 \KeywordTok{ggplot}\NormalTok{(d4r, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{value)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Var1,}\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{,}\DataTypeTok{shrink=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d4),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to a control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d4),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to an FVS control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1283,7 +1283,7 @@ We can also generate radar plots for these 15 perturbations.
 \KeywordTok{library}\NormalTok{(fmsb)}
 \NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/pert1_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{attr_pert <-attr_pert[}\KeywordTok{row.names}\NormalTok{(crit2_}\DecValTok{7}\NormalTok{),]}
-\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/original-exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ipsc/results/expanded-exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{EpiSC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{4}\OperatorTok{:}\DecValTok{6}\NormalTok{,])}
 \NormalTok{ESC_avg<-}\KeywordTok{colMeans}\NormalTok{(exp[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{,])}
 
@@ -1312,31 +1312,37 @@ These radar plots show that for all 15 perturbations on FVS control nodes, the s
 \hypertarget{adaptive-resistance-in-colorectal-cancer-example}{%
 \chapter{Adaptive Resistance in Colorectal Cancer Example}\label{adaptive-resistance-in-colorectal-cancer-example}}
 
-This section contains instructions to reproduce the results of simulating perturbations on FVS control nodes in a pluripotent stem cell signaling. The goal of these simulations is to identify targets that can reprogram cells from the Epiblast stem cell (EpiSC) fate towards the Embryonic Stem Cell (ESC) fate. You can read the original report here: link
+This section contains instructions to reproduce the results of simulating perturbations on FVS control nodes in a network of colorectal cancer (CRC) signaling pathways. The goal of these simulations is to identify targets that can reprogram cells from a MAPK inhibitor therapy resistant phenotype to the MAPK inhibitor therapy sensitive fate. You can read the original report here: link
 
-The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation}{ipsc folder} in the NETISCE github repository
+The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation}{colorectal\_cancer\_validation folder} in the NETISCE github repository
 
 \hypertarget{input-data-2}{%
 \section{Input Data}\label{input-data-2}}
 
-\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/network.sif}{\texttt{network.sif}} contains the network structure for pluripotent stem cell signaling
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/network.sif}{\texttt{network.sif}} contains the network structure for CRC signaling
 
-\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/expression.csv}{\texttt{expression.csv}} contains the initial activities for ESC cells (3 replicates), and EpiSC cells (3 replicates)
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/expression.csv}{\texttt{expression.csv}} contains the initial activities for HT29 untreated cells. The columns for H29\_BRAFi (MAPK inhibitor therapy resistant state) and H29\_BRAFi+EGRFi (MAPK inhibitor therapy sensitive state) are copies of the HT29 column
 
-\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/internal-marker-kinoshita.txt}{\texttt{internal-marker-kinoshita.txt}} contains the 4 internal marker nodes that were originally used in Yachie-Kinoshita et al., to evaluate simulations.
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-1.txt}{\texttt{internal-marker-1.txt}} contains the 3 internal marker nodes that were originally used in Park et al., to evaluate simulations.
 
-\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/internal-marker-kinoshita-expanded.txt}{\texttt{internal-marker-kinoshita-expanded.txt}} contains the 4 internal marker nodes that were originally used in Yachie-Kinoshita et al., plus the additional marker ndoes identified from the data used to evaluate simulations.
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-apoptosis.txt}{\texttt{internal-marker-apoptosis.txt}} contains the internal marker nodes related to apoptosis used to evaluate simulations.
 
-\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/input_data/samples.txt}{\texttt{samples.txt}} contains they key for NETISCE to associate certain samples to the phenotypes of Embryonic Stem Cells (ESCs) or Epiblast Stem Cells (EpiSCs)
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-mapk.txt}{\texttt{internal-marker-mapk.txt}} contains the internal marker nodes related to mapk used to evaluate simulations.
+
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-proliferation.txt}{\texttt{internal-marker-proliferation.txt}} contains the internal marker nodes related to proliferation used to evaluate simulations.
+
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/samples.txt}{\texttt{samples.txt}} contains they key for NETISCE to associate certain samples to the phenotypes of untreated (HT29), resistant (HT29\_BRAFi), and sensitive (HT29\_BRAFiEGFRi)
+
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/mutations.csv}{\texttt{mutations.csv}} mutational profile of HT29 cells, as well as the overrides for simulating BRAFi and EGRFi.
 
 \hypertarget{run-the-simulation-2}{%
 \section{Run the simulation}\label{run-the-simulation-2}}
 
 These simulations were run on a high performance cluster that uses a SLURM executor. If your hpc uses a different executor, please update those specifications in the \texttt{nextflow.config} file in the directory. Please see \url{https://www.nextflow.io/docs/latest/config.html} for more information regarding your executor.
 
-For ease of reproduction, we have included all files necessary to reproduce the reported results directly in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation}{directory}. We do reccomend you run this simulation on an hpc. We have included the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/run.sh}{bash file} we used on our SLURM executor.
+For ease of reproduction, we have included all files necessary to reproduce the reported results directly in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation}{directory}. We highly recommend you run this simulation on an hpc, as you will be generating files of 3Gb+. We have included the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/run.sh}{bash file} we used on our SLURM executor.
 
-\textbf{Note: } within the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/NETISCE.nf}{\texttt{NETISCE.nf}} configuration file, we have included two lines for specifying the internal-marker nodes:
+\textbf{Note: } within the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/NETISCE_mutations.nf}{\texttt{NETISCE\_mutations.nf}} configuration file, you will want to change the params.internal\_control line if you want to use a different set of internal-marker nodes.
 
 \begin{verbatim}
 #!/usr/bin/env nextflow
@@ -1344,22 +1350,22 @@ For ease of reproduction, we have included all files necessary to reproduce the 
 params.expressions = "$baseDir/input_data/expression.csv"
 params.network = "$baseDir/input_data/network.sif"
 params.samples = "$baseDir/input_data/samples.txt"
-params.internal_control="$baseDir/input_data/internal-marker-kinoshita.txt"
-// params.internal_control="$baseDir/input_data/internal-marker-kinoshita-expanded.txt"
+params.internal_control="$baseDir/input_data/internal-marker-1.txt"
+params.mutations="$baseDir/input_data/mutations.csv"
 params.alpha = 0.9
-params.undesired = 'EpiSC'
-params.desired = 'ESC'
+params.undesired = 'resistant'
+params.desired = 'sensitive'
 params.filter ="strict"
 \end{verbatim}
 
-As discussed in our paper, we filtered the perturbations using the original 4 internal-marker nodes for pluripotency (Oct4, Sox2, Nanog, EpiTFs), and then again using 3 additional internal-marker nodes. Therefore, to run either analysis, comment/uncomment the internal-marker node file you are interested in. If you want to run NETISCE first with the original internal-marker nodes, make sure to change the results file names for \texttt{exp\_internalmarkers.txt},\texttt{successful\_controlnode\_perturubations.txt}, and \texttt{original-experimental\_internalmarkers.pdf} as to not overwrite them (or move them into a separate folder). Additionally, when you run the nextflow command, \textbf{please be sure to use the \texttt{-resume} flag so that you use the cached computations that do not need to be re-computed}
+As discussed in our paper, we filtered the perturbations using the original 3 internal-marker nodes for apoptosis, proliferation, and MAPK signaling. We further filtered perturbations on the FVS control nodes using 17 addition internal-marker nodes, related to the phenotypes of apoptosis, proliferation, and MAPK signaling. Therefore, to use a set of internal-marker nodes, please point to the correct input-data file. We created folders within the \texttt{results} folder to house the relevant internal-marker node files for each set. You may want to do the same as to not overwrite them (or move them into a separate folder). Additionally, when you run the nextflow command, \textbf{please be sure to use the \texttt{-resume} flag so that you use the cached computations that do not need to be re-computed}
 
-You can also run NETISCE directly using the following command: \texttt{./nextflow\ run\ NETISCE.nf\ -resume}
+You can run NETISCE directly from this folder using the following command: \texttt{./nextflow\ run\ NETISC\_mutations.nf\ -resume}
 
 \hypertarget{results-2}{%
 \section{Results}\label{results-2}}
 
-Herein, we will focus on the results that are deposited in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/results}{\texttt{results}} folder by NETISCE. However, each step of the nextflow pipeline produces its coressponding raw results (for example, the entire attractor state for network simulations initialized with experimnetal data). If you are interested in looking at those raw results, they can be found within the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation/work}{\texttt{work}} folder. We provide \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/workfiles.txt}{\texttt{workfiles.txt}} which is a guide to which folders/subfolders contain the relevant results of each step.
+Herein, we will focus on the results that are deposited in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results}{\texttt{results}} folder by NETISCE. However, each step of the nextflow pipeline produces its corresponding raw results (for example, the entire attractor state for network simulations initialized with experimental data). If you are interested in looking at those raw results, they can be found within the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/work}{\texttt{work}} folder. We provide \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/work/workfiles.txt}{\texttt{workfiles.txt}} which is a guide to which folders/subfolders contain the relevant results of each step.
 
 \hypertarget{general-results-1}{%
 \subsection{General Results}\label{general-results-1}}
@@ -1370,7 +1376,7 @@ First, let's take a look at the results that do not depend on the internal-marke
 \subsubsection*{FVS finding}\label{section-id}}
 \addcontentsline{toc}{subsubsection}{FVS finding}
 
-The FVS solving algorithm identified one FVS, containing 6 nodes.
+Here we focus on one of the FVSes in the network, which we call, Set 1.
 
 \begin{tabular}{l}
 \hline
@@ -1405,6 +1411,8 @@ TP53\\
 TSC1\\
 \hline
 \end{tabular}
+
+Set 1 contains 14 nodes. Notice that TP53 is included in the FVS. This is a mutant gene in HT29 cells. NETISCE\_mutations automatically filters out mutated genes, and places the FVS without mutated genes in the \texttt{fvs-no-mutated-genes.txt} file.
 
 and we remove mutated genes!
 
@@ -1450,9 +1458,9 @@ Now, let's look at the results of k-means analysis. First, NETISCE determines th
 \includegraphics[width=0.5\linewidth]{crc/results/elbow} \includegraphics[width=0.5\linewidth]{crc/results/silhouette} \caption{optimal k as identified by a) the elbow and b) silhouette metrics}\label{fig:unnamed-chunk-36}
 \end{figure}
 
-We see that the optimal k assessed by the elbow metric was k=4, while the optimal k identified by the silhouette metric was k=2. NETISCE automatically chooses the smaller k value, after checking that the attractors generated from the ESC samples and EpiSC samples do not appear in the same cluster.
+We see that the optimal k assessed by both the elbow metric and silhouette metric was k=3. NETISCE checkes to make sure that the untreated, MAPK inihibitor therapy resistant, and MAPK inhibitor therapy sensitive attractors are all separate.
 
-k=2 was selected for k-means optimal k, and we can see that the attractors generated from the ESC samples and EpiSC samples do not appear in separate clusters.
+We can look at those results in the \texttt{kmeans.txt} file.
 
 \begin{tabular}{l|r}
 \hline
@@ -1470,7 +1478,7 @@ HT29\_BRAFi & 1\\
 \subsubsection*{Pertrubations on FVS control nodes that pass criterion 1}\label{section-id}}
 \addcontentsline{toc}{subsubsection}{Pertrubations on FVS control nodes that pass criterion 1}
 
-With 6 FVS control nodes, NETISCE performed 729 simulations of combinations of perturbations on the FVS control nodes. The resulting attractors were classified to the clusters produced from the k-means analysis using Naive Bayes, Support Vector Machine, and Random Forest Machine Learning classification algorithms. Then, the perturbations are filtered by which of their corresponding attractors were classified to the ESC cluster by at least 2 of the 3 methods. These results can be found in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/crit1perts.txt}{\texttt{crit1\_perts.txt}}. Here we show the first 10 rows.
+With 13 FVS control nodes, NETISCE performed 1,594,323 simulations of combinations of perturbations on the FVS control nodes. The resulting attractors were classified to the clusters produced from the k-means analysis using Naive Bayes, Support Vector Machine, and Random Forest Machine Learning classification algorithms. Then, the perturbations are filtered by which of their corresponding attractors were classified to the MAPK inhibitor therapy sensitive cluster by at least 2 of the 3 methods. These results can be found in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/crit1perts.txt}{\texttt{crit1\_perts.txt}}. Here we show the first 10 rows.
 
 \begin{verbatim}
 ## [1] "number of perturbations that pass filtering criteria 1: 232114"
@@ -1507,22 +1515,22 @@ pert\_27\\
 
 \textbf{The relevant files have the prefix `original' in the github repository}
 
-Our second perturbation filtering criterion identifies perturbations where, in their corresponding attractors, 90\% of the steady state values for internal-marker nodes that are within the steady state expression ranges in the attractors generated from the ESC experimental data.
+Our second perturbation filtering criterion identifies perturbations where, in their corresponding attractors, 90\% of the steady state values for internal-marker nodes that are within the steady state expression ranges in the attractor representing MAPK inhibitor therapy sensitivity.
 
-First, let's take a look at the steady state values of the internal-marker nodes Oct4, Sox2, and Nanog in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-exp_internalmarkers.txt}{\texttt{original-exp\_internalmarkers.txt}} and are plotted in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-experimental_internalmarkers.pdf}{\texttt{original-experimental\_internalmarkers.pdf}}:
+First, let's take a look at the steady state values of the internal-marker nodes CASP3, CCNE1, and MAPK1 in the attractors generated from the untreated HT29 with simulated BRAFi (resistant) and BRAFi+EGFRi (sensitive). The values can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/exp_internalmarkers.txt}{\texttt{exp\_internalmarkers.txt}} and are plotted in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/experimental_internalmarkers.pdf}{\texttt{-experimental\_internalmarkers.pdf}}:
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=460pt,height=700pt]{crc/results/3-marker-nodes/experimental_internalmarkers} 
+{\centering \includegraphics[width=9.72in]{crc/results/3-marker-nodes/experimental_internalmarkers} 
 
 }
 
-\caption{histograms of 4 internal-marker node values}\label{fig:unnamed-chunk-39}
+\caption{histograms of 3 internal-marker node values}\label{fig:unnamed-chunk-39}
 \end{figure}
 
-We see that the values of the internal-markers for the pluripotent state (Oct4, Sox2, Nanog) are higher in the attractors generated from the experimental data of the ESCs than the attractors generated from the experimental data of the EpiSCs, and the makrer of the epiblast stem state is higher in the attractors generated from the experimental data of the EpiSCs than in the attractors generated from the experimental data of the ESC.
+We see that the value of the internal-marker for the apoptosis (CASP3) is higher and the steady-state values of the internal-marker nodes for proliferation (CCNE1) and MAPK signaling (MAPK1) are lower in the MAPK inhibitor therapy sensitive associated attractor than the MAPK inhibitor therapy resistance and untreated associated attractors.
 
-Now, we can take a look at the attractors that passed filtering criterion 2. We show the first 10 rows here, but you can view the entire set in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-successful_controlnode_perturbations.txt}{\texttt{original-successful\_controlnode\_perturbations.txt}}
+Now, we can take a look at the attractors that passed filtering criterion 2. We show the first 10 rows here, but you can view the entire set in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/successful_controlnode_perturbations.txt}{\texttt{successful\_controlnode\_perturbations.txt}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1583,19 +1591,24 @@ We can look to see if there are any trends in the orientation of the perturbatio
 
 \KeywordTok{ggplot}\NormalTok{(d3r, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{value)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Var1,}\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{,}\DataTypeTok{shrink=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d3),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted)}\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to a control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d3),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted)}\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to an FVS control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-41-1} \end{center}
+\begin{figure}
 
-Here, we see that in the majority of perturbations, there is overexpression of the FVS nodes Sox2, Nanog and Oct4. This aligns with their role as maintainers of pluripotency.
+{\centering \includegraphics{_main_files/figure-latex/unnamed-chunk-41-1} 
 
-The steady-state values of the internal-marker nodes for these perturbations can be found in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt}{\texttt{pert1\_internal\_markers.txt}}.
+}
 
-A perturbation on the FVS control node, Nanog overexpression (pert\_445), was also identified in Yachie-Kinoshita et al.~and experimentally verified to shift cells from the EpiSC state towards the ESC state. We can plot the internal-marker node values using a radar plot.
+\caption{the precentage of specific perturbations on FVS control nodes in the perturbations that passed the filtering criteria}\label{fig:unnamed-chunk-41}
+\end{figure}
 
-We can also plot Klf4 overexpression. This was a perturbation identified by Yachie-Kinoshita et al.~to shift cells from the EpiSC state towards the ESC state. However, in our analyses, this perturbation (pert\_365), did pass filtering criterion 1, but did not pass filtering criterion 2.
+Here, we see that in the majority of perturbations, SRC is knocked-out.
+
+The steady-state values of the internal-marker nodes for these perturbations can be found in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/pert_internal_markers.txt}{\texttt{pert1\_internal\_markers.txt}}.
+
+The combination BRAFi+SRCi treatment was identified and experimentally validated by Park et al., to overcome adaptive resistance to MAPK inhibitor therapy in HT29 cells. This perturbation, pert\_797158, passed both of our filtering criteria. We can plot the steady-state values of the internal-marker nodes for HT29\_BRAFi, H29\_BRAFi+EGFRi, and HT29\_BRAFi+SRCi using a radar plot.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1622,66 +1635,37 @@ We can also plot Klf4 overexpression. This was a perturbation identified by Yach
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-charts-1} \caption{radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation}\label{fig:crc-charts}
-\end{figure}
+\textbackslash begin\{figure\}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-charts-1} \textbackslash caption\{radar charts of the steady-state values of 3 internal-marker nodes for HT29\_BRAFi+SRCi\}\label{fig:crc-charts}
+\textbackslash end\{figure\}
 
-We see here, indeed that the values for Oct4, Sox2, Nanog, (when considered these three genes as internal-marker nodes) and EpiTFs are within the expected range for Nanog overexpression, but the values of Oct4, Sox2, Nanog in the attractor generated from Klf4 overexpression do not reach the values of the ESC state.
+We see here that the steady state value of CASP3 in the attractor produced from the HT29\_BRAFi+SRCi perturbation is within the range of attractor produced from the HT29\_BRAFi+EGFRi perturbation.
 
-\hypertarget{results-using-apoptosis-internal-marker-nodes}{%
-\subsection{Results using apoptosis internal-marker nodes}\label{results-using-apoptosis-internal-marker-nodes}}
+\hypertarget{results-using-apoptosis-proliferation-and-mapk-signaling-internal-marker-nodes}{%
+\subsection{Results using apoptosis, proliferation, and MAPK signaling internal-marker nodes}\label{results-using-apoptosis-proliferation-and-mapk-signaling-internal-marker-nodes}}
 
-\emph{The relevant files have the prefix `expanded' in the github repository.}
+We filtered the 52,703 perturbations using an additional 17 internal-marker nodes for the phenotypes of apoptosis, proliferation, and mapk signaling.
 
-We explored filtering the 132 perturbations that passed the second filtering criterion by adding additional internal-marker nodes associated with pluripotency. We added 3 nodes, Lefty1, Pitx2 (transcription factors active in EpiSCs), and Esrrb (transcription factor active in ESCs) to the 4 previously used internal-marker nodes.
+The individual results for all three sets can be found in their respective folders on github:
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results/apoptosis-marker-nodes}{\texttt{apoptosis-marker-nodes}}
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results/mapk-marker-nodes}{\texttt{mapk-marker-nodes}}
+\href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results/proliferation-marker-nodes}{\texttt{proliferation-marker-nodes}}
 
-Let's look at the steady state values of the internal-marker nodes in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-exp_internalmarkers.txt}{\texttt{expanded-exp\_internalmarkers.txt}} and are plotted in \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-experimental_internalmarkers.pdf}{\texttt{expanded-experimental\_internalmarkers.pdf}}:
-
-Again, the internal-marker nodes have the correct expression patterns within the attractors generated from the ESC and EpiSC states.
-
-Now, we can take a look at the attractors that passed filtering criterion 2. These are in file \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-successful_controlnode_perturbations.txt}{\texttt{expanded-successful\_controlnode\_perturbations.txt}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{crit2_apop<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{'crc/results/apoptosis-marker-nodes/successful_controlnode_perturbations.txt'}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{)}
-\CommentTok{# print(paste0('number of perturbations that pass filtering criteria 2: ',nrow(crit2_apop)))}
-\CommentTok{# knitr::kable(crit2_apop[1:10,])  %>% column_spec(15, bold = F, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;")}
-\end{Highlighting}
-\end{Shaded}
-
-Again, the internal-marker nodes have the correct expression patterns within the attractors generated from the ESC and EpiSC states.
-
-Now, we can take a look at the attractors that passed filtering criterion 2. These are in file \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-successful_controlnode_perturbations.txt}{\texttt{expanded-successful\_controlnode\_perturbations.txt}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{crit2_prolif<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{'crc/results/proliferation-marker-nodes/successful_controlnode_perturbations.txt'}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{)}
-\CommentTok{# print(paste0('number of perturbations that pass filtering criteria 2: ',nrow(crit2_prolif)))}
-\CommentTok{# knitr::kable(crit2_prolif[1:10,])  %>% column_spec(15, bold = F, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;")}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{crit2_mapk<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{'crc/results/mapk-marker-nodes/successful_controlnode_perturbations.txt'}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{)}
-\KeywordTok{print}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{'number of perturbations that pass filtering criteria 2: '}\NormalTok{,}\KeywordTok{nrow}\NormalTok{(crit2_mapk)))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] "number of perturbations that pass filtering criteria 2: 50290"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# knitr::kable(crit2_mapk[1:10,])  %>% column_spec(15, bold = F, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;")}
-\end{Highlighting}
-\end{Shaded}
+We are interested in perturbations on FVS control nodes that pass the filtering criterion for each of the three phenotypes (i.e., the 90\% threshold for steady-state values is met separately for each of the sets of apoptosis, MAPK signaling, and proliferation nodes). We can plot the node perturbation trends for these perturbations.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{allthree<-crit2_}\DecValTok{3}\NormalTok{[}\KeywordTok{c}\NormalTok{(}\KeywordTok{Reduce}\NormalTok{(intersect, }\KeywordTok{list}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(crit2_}\DecValTok{3}\NormalTok{),}\KeywordTok{row.names}\NormalTok{(crit2_apop),}\KeywordTok{row.names}\NormalTok{(crit2_prolif),}\KeywordTok{row.names}\NormalTok{(crit2_mapk)))),]}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste0}\NormalTok{(}\StringTok{'number of perturbations that pass filtering criteria 2: '}\NormalTok{,}\KeywordTok{nrow}\NormalTok{(allthree)))}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## [1] "number of perturbations that pass filtering criteria 2: 1266"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{d4<-allthree[,}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{13}\NormalTok{)] }\OperatorTok{%>%}\StringTok{ }\KeywordTok{transpose}\NormalTok{() }\OperatorTok{%>%}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{()}
 \KeywordTok{row.names}\NormalTok{(d4)<-}\KeywordTok{colnames}\NormalTok{(allthree[}\DecValTok{1}\OperatorTok{:}\DecValTok{13}\NormalTok{])}
 \KeywordTok{colnames}\NormalTok{(d4)<-}\KeywordTok{row.names}\NormalTok{(allthree)}
@@ -1691,34 +1675,30 @@ Now, we can take a look at the attractors that passed filtering criterion 2. The
 
 \KeywordTok{ggplot}\NormalTok{(d4r, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{value)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{Var1,}\DataTypeTok{scales =} \StringTok{"free_x"}\NormalTok{,}\DataTypeTok{shrink=}\OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d4),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to a control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ (..count..)}\OperatorTok{/}\KeywordTok{ncol}\NormalTok{(d4),}\DataTypeTok{fill=}\NormalTok{value))  }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels=}\NormalTok{scales}\OperatorTok{::}\NormalTok{percent)}\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{panel.spacing.x =} \KeywordTok{unit}\NormalTok{(}\DecValTok{4}\NormalTok{, }\StringTok{"mm"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\NormalTok{Tol_muted) }\OperatorTok{+}\StringTok{ }\KeywordTok{ylab}\NormalTok{(}\StringTok{"% of specified perturbation to an FVS control node across all }\CharTok{\textbackslash{}n}\StringTok{ combinations of perturbations that passed filtering criteria "}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"node perturbation"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{figure}
+\centering
 \includegraphics{_main_files/figure-latex/all-three-1.pdf}
+\caption{\label{fig:all-three}the precentage of specific perturbations on FVS control nodes in the perturbations that passed the filtering criteria}
+\end{figure}
+
+For perturbations that pass the 2nd filtering criterion using internal-marker nodes for apoptosis, MAPK sigaling and proliferation, we see that in 100\% of the perturbations SRC is downregulated. In the majority of of perturbations, TSC1 is upregulated, and GRB2 is downregulated.
+
+The two smallest sets of perturbations that passed the filtering criteria were BRAFi+SRCi+TSC1overexpression (pert\_797159) and BRAFi+SRCi+GRB2i (pert\_790597). We can make radar charts for each phenotype's internal marker nodes to show that the steady-state values for the internal marker-nodes produced from these perturbations are within the gene expression range of the MAPK inhibitor therapy sensitivty assocaited attractor (HT29\_BRAFi+EGFRi).
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/20-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
-\NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_797158'}\NormalTok{,}\StringTok{'pert_797159'}\NormalTok{,}\StringTok{'pert_790597'}\NormalTok{),]}
-\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/20-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
-
-
-\NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
-\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{5}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+GRBi"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(fmsb)}
 \NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/apoptosis-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_797159'}\NormalTok{,}\StringTok{'pert_790597'}\NormalTok{),]}
 \NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/apoptosis-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{exp<-exp[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),]}
 
 \NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
-\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+TSCi"}\NormalTok{)}
+\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+GRB2i"}\NormalTok{)}
 \NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
 \NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
 
@@ -1732,20 +1712,19 @@ Now, we can take a look at the attractors that passed filtering criterion 2. The
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsapop-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsapop-2} \caption{radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation}\label{fig:crc-chartsapop}
-\end{figure}
+\textbackslash begin\{figure\}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsapop-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsapop-2} \textbackslash caption\{radar charts of the steady-state values of apoptosis internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsapop}
+\textbackslash end\{figure\}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(fmsb)}
 \NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/proliferation-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_797159'}\NormalTok{,}\StringTok{'pert_790597'}\NormalTok{),]}
 \NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/proliferation-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{exp<-exp[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),]}
 
 \NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
-\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+TSCi"}\NormalTok{)}
+\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+GRB2i"}\NormalTok{)}
 \NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
 \NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
 
@@ -1754,25 +1733,24 @@ Now, we can take a look at the attractors that passed filtering criterion 2. The
 
 \KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
-  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(d2)[}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,i)]) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
+  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\CommentTok{#legend(x=0.4, y=1.4, legend =c(row.names(d2)[c(3,4,i)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-2} \caption{radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation}\label{fig:crc-chartsprolif}
-\end{figure}
+\textbackslash begin\{figure\}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-2} \textbackslash caption\{radar charts of the steady-state values of apoptosis internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsprolif}
+\textbackslash end\{figure\}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(fmsb)}
 \NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/mapk-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_797159'}\NormalTok{,}\StringTok{'pert_790597'}\NormalTok{),]}
 \NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/mapk-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{exp<-exp[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),]}
 
 \NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
-\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+TSCi"}\NormalTok{)}
+\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+GRB2i"}\NormalTok{)}
 \NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
 \NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
 
@@ -1781,17 +1759,70 @@ Now, we can take a look at the attractors that passed filtering criterion 2. The
 
 \KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
-  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(d2)[}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,i)]) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
+  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\CommentTok{#legend(x=0.4, y=1.4, legend =c(row.names(d2)[c(3,4,i)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-2} \caption{radar charts of the steady-state values of 4 internal-marker nodes for Nanog overexpression and Klf4 overexpression perturbation}\label{fig:crc-chartsmapk}
-\end{figure}
+\textbackslash begin\{figure\}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-2} \textbackslash caption\{radar charts of the steady-state values of apoptosis internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsmapk}
+\textbackslash end\{figure\}
 
 \hypertarget{netisce-in-galaxy-project}{%
 \chapter{NETISCE in Galaxy Project}\label{netisce-in-galaxy-project}}
+
+We have implemented NETISCE as a Galaxy Project tool. This allows users to run NETISCE analysis without programming knowledge. Herein are brief instructions for downloading and installing the Galaxy Project Tool and Workflow.
+
+\hypertarget{installing-galaxy}{%
+\section{Installing Galaxy}\label{installing-galaxy}}
+
+Please follow the instructions for installing a local version of Galaxy here: \url{https://galaxyproject.org/admin/get-galaxy/}
+
+Follow instructions up to ``Install Tools''.
+
+\hypertarget{installing-the-netisce-tool-from-galaxy-tool-shed.}{%
+\section{Installing the NETISCE tool from Galaxy Tool Shed.}\label{installing-the-netisce-tool-from-galaxy-tool-shed.}}
+
+First launch Galaxy by inputting \texttt{sh\ run.sh} in your terminal and load the GUI (navigate to \texttt{http://localhost:8080/} in your browser of choice). Then, after you have established your admin account and are logged in, you will be able to download the NETSICE tool.
+
+Click on the Admin button in the top ribbon:
+
+\begin{center}\includegraphics[width=1\linewidth]{images/galaxy1} \end{center}
+
+Under Tool Management, select ``Install and Uninstall''. This will lead you to the search repositories page. You can search for the NETISCE tool by typing ``netisce'' into the search bar.
+
+Click on ``netisce'' and select Install. You can choose to Install additional dependencies (this is especially useful if you have installed Galaxy in a conda environment). You can specify the header under which you want to install netisce (we suggest ``NETISCE'')
+
+\begin{center}\includegraphics[width=1\linewidth]{images/galaxy2} \end{center}
+
+\hypertarget{downloading-the-netisce-workflow.}{%
+\section{Downloading the NETISCE workflow.}\label{downloading-the-netisce-workflow.}}
+
+The fastest way to download the NETISCE workflow is to direct download it from here: \url{https://github.com/VeraLiconaResearchGroup/Netisce/blob/049aec40e76c6b1d965aa199a041e0651fadd29b/Galaxy-Workflow-NETISCE.ga}
+
+Alternatively, you can launch galaxy from \url{https://usegalaxy.org/}
+
+In the upper ribbon, navigate to ``Shared Data'' -\textgreater{} ``Workflows''. Here you can search for ``netisce''
+
+\begin{center}\includegraphics[width=1\linewidth]{images/galaxy3} \end{center}
+
+Click the dropdown arrow and select ``save as file.''
+
+\begin{center}\includegraphics[width=1\linewidth]{images/galaxy4} \end{center}
+
+Using either downloaded file, in your local Galaxy, navigate to the ``Workflow'' page. Select import in the right-hand corner. Upload the .ga file.
+
+Once the Netisce workflow appears, on the righthand side, press the run button
+
+\begin{center}\includegraphics[width=1\linewidth]{images/galaxy5} \end{center}
+
+This will load the workflow.You will be presented with parameters to fill in (either text or files). You can use the same sample files as are used in the toy example nextflow run. Once you have uploaded your files and filled in other parameters, press ``Run Workflow''.
+
+\begin{center}\includegraphics[width=1\linewidth]{images/galaxy6} \end{center}
+
+You can monitor the progress of your run on the right hand side. when all jobs are complete, you can view the report of your workflow, which contains all resutls files.
+
+\begin{center}\includegraphics[width=1\linewidth]{images/galaxy7} \end{center}
 
   \bibliography{book.bib,packages.bib}
 
