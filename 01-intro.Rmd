@@ -11,18 +11,21 @@ We recommend that you run NETISCE on a high-performance cluster (hpc), as you ma
 
 Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see 'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETSICE folder (_local or _hpc).
 
-## Docker Image
-
-*docker image provided here TBD*
-
 ## Prerequisuites
 
-If you are not using the Docker image, the following packages will need to be installed:
+Please be sure you have the following Python packages installed:
 
 - [scipy](https://scipy.org/install/)
 - [pandas](https://pandas.pydata.org/getting_started.html)
 - [sklearn](https://scikit-learn.org/stable/install.html)
 - [yellowbrick](https://www.scikit-yb.org/en/latest/quickstart.html)
+
+## Docker Image
+
+If you are interested, we additionally provide a Docker container which has all required packages and code loaded to run NETISCE. It can be downloaded [here](https://www.dropbox.com/sh/8ix62io5axlq479/AADf8asm1hfxNZhXHqJoahoGa?dl=0)
+
+After downloading the image, it can be unpacked using ` docker image load -i netisce.tar`. Then, you can run the container with `docker run ubuntu:NETISCE`. (note, depending on your system, you may need to use `sudo` commands)
+
 
 ## Parameters and Configuration {#params}
 

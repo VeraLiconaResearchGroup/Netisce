@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2021-12-24" />
+<meta name="date" content="2021-12-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,8 +142,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="installation-and-usage.html"><a href="installation-and-usage.html"><i class="fa fa-check"></i><b>2</b> Installation and Usage</a><ul>
 <li class="chapter" data-level="2.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#download-netisce"><i class="fa fa-check"></i><b>2.1</b> Download NETISCE</a></li>
 <li class="chapter" data-level="2.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#install-nextflow"><i class="fa fa-check"></i><b>2.2</b> Install Nextflow</a></li>
-<li class="chapter" data-level="2.3" data-path="installation-and-usage.html"><a href="installation-and-usage.html#docker-image"><i class="fa fa-check"></i><b>2.3</b> Docker Image</a></li>
-<li class="chapter" data-level="2.4" data-path="installation-and-usage.html"><a href="installation-and-usage.html#prerequisuites"><i class="fa fa-check"></i><b>2.4</b> Prerequisuites</a></li>
+<li class="chapter" data-level="2.3" data-path="installation-and-usage.html"><a href="installation-and-usage.html#prerequisuites"><i class="fa fa-check"></i><b>2.3</b> Prerequisuites</a></li>
+<li class="chapter" data-level="2.4" data-path="installation-and-usage.html"><a href="installation-and-usage.html#docker-image"><i class="fa fa-check"></i><b>2.4</b> Docker Image</a></li>
 <li class="chapter" data-level="2.5" data-path="installation-and-usage.html"><a href="installation-and-usage.html#params"><i class="fa fa-check"></i><b>2.5</b> Parameters and Configuration</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#netisce_mutations.nf"><i class="fa fa-check"></i><b>2.5.1</b> NETISCE_mutations.nf</a></li>
 <li class="chapter" data-level="2.5.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#nextflow.config"><i class="fa fa-check"></i><b>2.5.2</b> nextflow.config</a></li>
@@ -219,19 +219,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.2</span> Install Nextflow</h2>
 <p>Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <a href="https://www.nextflow.io/" class="uri">https://www.nextflow.io/</a> (see ‘Getting Started’ steps 1 &amp; 2) to install Nextflow in the appropriate NETSICE folder (_local or _hpc).</p>
 </div>
-<div id="docker-image" class="section level2">
-<h2><span class="header-section-number">2.3</span> Docker Image</h2>
-<p><em>docker image provided here TBD</em></p>
-</div>
 <div id="prerequisuites" class="section level2">
-<h2><span class="header-section-number">2.4</span> Prerequisuites</h2>
-<p>If you are not using the Docker image, the following packages will need to be installed:</p>
+<h2><span class="header-section-number">2.3</span> Prerequisuites</h2>
+<p>Please be sure you have the following Python packages installed:</p>
 <ul>
 <li><a href="https://scipy.org/install/">scipy</a></li>
 <li><a href="https://pandas.pydata.org/getting_started.html">pandas</a></li>
 <li><a href="https://scikit-learn.org/stable/install.html">sklearn</a></li>
 <li><a href="https://www.scikit-yb.org/en/latest/quickstart.html">yellowbrick</a></li>
 </ul>
+</div>
+<div id="docker-image" class="section level2">
+<h2><span class="header-section-number">2.4</span> Docker Image</h2>
+<p>If you are interested, we additionally provide a Docker container which has all required packages and code loaded to run NETISCE. It can be downloaded <a href="https://www.dropbox.com/sh/8ix62io5axlq479/AADf8asm1hfxNZhXHqJoahoGa?dl=0">here</a></p>
+<p>After downloading the image, it can be unpacked using <code>docker image load -i netisce.tar</code>. Then, you can run the container with <code>docker run ubuntu:NETISCE</code>. (note, depending on your system, you may need to use <code>sudo</code> commands)</p>
 </div>
 <div id="params" class="section level2">
 <h2><span class="header-section-number">2.5</span> Parameters and Configuration</h2>

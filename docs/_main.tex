@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2021-12-24}
+\date{2021-12-27}
 
 \begin{document}
 \maketitle
@@ -147,6 +147,8 @@ For more information, please see the accompanying paper: \textbf{link here}
 
 This manual contains instructions for installing the NETISCE pipeline tool and accessing the Galaxy Project GUI web-based tool. We provide a simple toy example walkthrough tutorial. Lastly, we include instructions for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
 
+To navigate this site, use the menu on the left-hand side.
+
 \hypertarget{installation-and-usage}{%
 \chapter{Installation and Usage}\label{installation-and-usage}}
 
@@ -162,15 +164,10 @@ We recommend that you run NETISCE on a high-performance cluster (hpc), as you ma
 
 Nextflow is required to run the NETISCE pipeline. Please follow the instructions from \url{https://www.nextflow.io/} (see `Getting Started' steps 1 \& 2) to install Nextflow in the appropriate NETSICE folder (\_local or \_hpc).
 
-\hypertarget{docker-image}{%
-\section{Docker Image}\label{docker-image}}
-
-\emph{docker image provided here TBD}
-
 \hypertarget{prerequisuites}{%
 \section{Prerequisuites}\label{prerequisuites}}
 
-If you are not using the Docker image, the following packages will need to be installed:
+Please be sure you have the following Python packages installed:
 
 \begin{itemize}
 \tightlist
@@ -183,6 +180,13 @@ If you are not using the Docker image, the following packages will need to be in
 \item
   \href{https://www.scikit-yb.org/en/latest/quickstart.html}{yellowbrick}
 \end{itemize}
+
+\hypertarget{docker-image}{%
+\section{Docker Image}\label{docker-image}}
+
+If you are interested, we additionally provide a Docker container which has all required packages and code loaded to run NETISCE. It can be downloaded \href{https://www.dropbox.com/sh/8ix62io5axlq479/AADf8asm1hfxNZhXHqJoahoGa?dl=0}{here}
+
+After downloading the image, it can be unpacked using \texttt{docker\ image\ load\ -i\ netisce.tar}. Then, you can run the container with \texttt{docker\ run\ ubuntu:NETISCE}. (note, depending on your system, you may need to use \texttt{sudo} commands)
 
 \hypertarget{params}{%
 \section{Parameters and Configuration}\label{params}}
