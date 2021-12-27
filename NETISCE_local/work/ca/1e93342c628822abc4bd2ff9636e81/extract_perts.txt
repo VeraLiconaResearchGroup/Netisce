@@ -1,0 +1,5 @@
+name B E
+pert_3 0 -1
+pert_6 1 -1
+pert_7 1 0
+pert_8 1 1

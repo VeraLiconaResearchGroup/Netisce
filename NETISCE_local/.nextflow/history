@@ -67,3 +67,5 @@
 2021-12-16 16:30:40	25.1s	nauseous_euler	OK	f2d0c61f999d5b7140e7a1860f081673	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE.nf -resume
 2021-12-16 16:35:35	9.5s	sleepy_booth	ERR	3e5ed645b9c93fb38d441ba0aac613b5	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE_mutations.nf -resume
 2021-12-16 16:36:22	21.9s	peaceful_knuth	OK	261b20d795809c33d083b7a3936b2eb5	149ec756-8195-436a-8463-0d831a08dd24	nextflow run NETISCE_mutations.nf -resume
+2021-12-24 10:27:22	25.7s	serene_mcnulty	OK	f2d0c61f999d5b7140e7a1860f081673	dc5ada6f-c693-49d0-8846-9e0b4804e7b9	nextflow run NETISCE.nf
+2021-12-24 14:46:49	25.6s	deadly_cantor	OK	f2d0c61f999d5b7140e7a1860f081673	12182af6-eee7-440a-b2e8-be30454a0be1	nextflow run NETISCE.nf

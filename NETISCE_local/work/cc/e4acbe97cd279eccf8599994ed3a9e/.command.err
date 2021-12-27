@@ -1,8 +1,0 @@
-/usr/local/lib/python3.9/site-packages/yellowbrick/base.py:246: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
-  plt.show()
-Traceback (most recent call last):
-  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full.py", line 47, in <module>
-    main()
-  File "/Users/laurenmarazzi/Documents/GitHub/VLRG/Netisce/NETISCE_local/bin/kmeans_full.py", line 33, in main
-    if elbow==silhouette:
-NameError: name 'silhouette' is not defined

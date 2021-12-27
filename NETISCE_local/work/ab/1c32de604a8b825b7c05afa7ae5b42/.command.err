@@ -1,2 +1,0 @@
-/usr/local/lib/python3.9/site-packages/yellowbrick/base.py:246: UserWarning: Matplotlib is currently using agg, which is a non-GUI backend, so cannot show the figure.
-  plt.show()

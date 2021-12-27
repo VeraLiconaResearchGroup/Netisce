@@ -135,3 +135,7 @@ ipsc/.DS_Store
 *.zip
 .DS_Store
 kobayashi.zip
+Dockerfile
+.dockerignore
+NETISCE_local/docker-compose.debug.yml
+NETISCE_local/docker-compose.yml
