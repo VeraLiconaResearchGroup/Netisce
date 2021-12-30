@@ -238,53 +238,53 @@ for (i in 5:nrow(d2)) {
 These radar plots show that for all 15 perturbations on FVS control nodes, the steady-state values of the internal-marker nodes are within the expression range of the attractors generated from the ESC experimental data.  
 
 
-```{r radar-plots-for-paper, eval=FALSE, fig.cap=, fig.show='hold', include=FALSE, out.width='50%'}
+<!-- ```{r radar-plots-for-paper, echo=FALSE,  fig.show='hold', out.width='50%'} -->
 
 
-attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1)
-attr_pert <-attr_pert[c('pert_445','pert_365'),c('Oct4',"Sox2","Nanog","EpiTFs")]
-exp<-read.delim("ipsc/results/original-exp_internalmarkers.txt",sep=" ",row.names = 1)
-EpiSC_avg<-colMeans(exp[4:6,])
-ESC_avg<-colMeans(exp[1:3,])
+<!-- attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1) -->
+<!-- attr_pert <-attr_pert[c('pert_445','pert_365'),c('Oct4',"Sox2","Nanog","EpiTFs")] -->
+<!-- exp<-read.delim("ipsc/results/original-exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- EpiSC_avg<-colMeans(exp[4:6,]) -->
+<!-- ESC_avg<-colMeans(exp[1:3,]) -->
 
-d1<-rbind(EpiSC_avg,ESC_avg,attr_pert)
-rownames(d1)[1:4]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression")
-maxcol<-apply(d1, 2, max)
-mincol<-apply(d1, 2, min)
+<!-- d1<-rbind(EpiSC_avg,ESC_avg,attr_pert) -->
+<!-- rownames(d1)[1:4]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression") -->
+<!-- maxcol<-apply(d1, 2, max) -->
+<!-- mincol<-apply(d1, 2, min) -->
 
-d2<-rbind(maxcol,mincol, d1)
-rownames(d2)[1:2]<- c("Max", "Min")
+<!-- d2<-rbind(maxcol,mincol, d1) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
 
-par(mar = c(4, 0.1, 4, 0.1))
-
-
-for (i in 5:nrow(d2)) {
-  create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)
-}
-```
+<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
 
 
-```{r radar-plots-for-paper2, eval=FALSE, fig.cap=, fig.show='hold', include=FALSE, out.width='33%'}
+<!-- for (i in 5:nrow(d2)) { -->
+<!--   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- } -->
+<!-- ``` -->
 
 
-attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1)
-attr_pert <-attr_pert[c('pert_445','pert_365','pert_446'),]
-exp<-read.delim("ipsc/results/expanded-exp_internalmarkers.txt",sep=" ",row.names = 1)
-EpiSC_avg<-colMeans(exp[4:6,])
-ESC_avg<-colMeans(exp[1:3,])
-
-d1<-rbind(EpiSC_avg,ESC_avg,attr_pert)
-rownames(d1)[1:5]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression","Nanog+Klf4 overexpression")
-maxcol<-apply(d1, 2, max)
-mincol<-apply(d1, 2, min)
-
-d2<-rbind(maxcol,mincol, d1)
-rownames(d2)[1:2]<- c("Max", "Min")
-
-par(mar = c(4, 0.1, 4, 0.1))
+<!-- ```{r radar-plots-for-paper2, echo=FALSE,  fig.show='hold', out.width='33%'} -->
 
 
-for (i in 5:nrow(d2)) {
-  create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=.8, pt.cex=1.8)
-}
-```
+<!-- attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1) -->
+<!-- attr_pert <-attr_pert[c('pert_445','pert_365','pert_446'),] -->
+<!-- exp<-read.delim("ipsc/results/expanded-exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- EpiSC_avg<-colMeans(exp[4:6,]) -->
+<!-- ESC_avg<-colMeans(exp[1:3,]) -->
+
+<!-- d1<-rbind(EpiSC_avg,ESC_avg,attr_pert) -->
+<!-- rownames(d1)[1:5]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression","Nanog+Klf4 overexpression") -->
+<!-- maxcol<-apply(d1, 2, max) -->
+<!-- mincol<-apply(d1, 2, min) -->
+
+<!-- d2<-rbind(maxcol,mincol, d1) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
+
+<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
+
+
+<!-- for (i in 5:nrow(d2)) { -->
+<!--   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=.8, pt.cex=1.8) -->
+<!-- } -->
+<!-- ``` -->

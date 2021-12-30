@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2021-12-27}
+\date{2021-12-30}
 
 \begin{document}
 \maketitle
@@ -141,7 +141,7 @@
 
 Welcome to the NETISCE manual and tutorials.
 
-Cell-fate reprogramming is a powerful type of cellular reprogramming which aims to drive a system from a selected initial state towards a desired phenotype. However, methods for identifying reprogramming targets remain limited in biological systems that lack large sets of experimental data or dynamical characterization. We present here NETISCE, a novel computational method for identifying cell-fate reprogramming targets and their perturbations in static networks through the application of control theory and dynamical systems frameworks to a network-based analysis. Our method only requires a static network and the gene expression data for the initial state of the system. We validate NETISCE in studies of cell-fate reprogramming from developmental, stem cell, and cancer biology. Our results show that NETISCE can predict previously identified cell-fate reprogramming target perturbations in these systems, and identify potentially novel combinations of targets. This work extends cell-fate reprogramming studies beyond fully parameterized models and can be used by experimental and computational biologists to guide their cell-fate reprogramming studies.
+The search for effective therapeutic targets in fields like regenerative medicine and cancer research has generated interest in cell fate reprogramming. This cellular reprogramming paradigm can drive cells to a desired target state from any initial state. However, methods for identifying reprogramming targets remain limited for biological systems that lack large sets of experimental data or a dynamical characterization. We present NETISCE, a novel computational tool for identifying cell fate reprogramming targets in static networks. NETISCE identifies reprogramming targets through the innovative use of control theory within a dynamical systems framework. Through validations in studies of cell fate reprogramming from developmental, stem cell, and cancer biology, we show that NETISCE can predict previously identified cell fate reprogramming targets and identify potentially novel combinations of targets. NETISCE extends cell fate reprogramming studies to larger-scale biological networks without the need for full model parameterization and can be implemented by experimental and computational biologists to identify parts of a biological system that are relevant for the desired reprogramming task.
 
 For more information, please see the accompanying paper: \textbf{link here}
 
@@ -870,7 +870,7 @@ The following code for generating radar plots was adapted from \href{https://www
   \KeywordTok{radarchart}\NormalTok{(}
 \NormalTok{    data, }\DataTypeTok{axistype =} \DecValTok{1}\NormalTok{,}
     \CommentTok{# Customize the polygon}
-    \DataTypeTok{pcol =}\NormalTok{ color, }\DataTypeTok{pfcol =}\NormalTok{ scales}\OperatorTok{::}\KeywordTok{alpha}\NormalTok{(color, }\FloatTok{0.5}\NormalTok{), }\DataTypeTok{plwd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{plty =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{pcol =}\NormalTok{ color, }\DataTypeTok{pfcol =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{plwd =} \DecValTok{2}\NormalTok{, }\DataTypeTok{plty =} \DecValTok{1}\NormalTok{,}
     \CommentTok{# Customize the grid}
     \DataTypeTok{cglcol =} \StringTok{"grey"}\NormalTok{, }\DataTypeTok{cglty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{cglwd =} \FloatTok{0.8}\NormalTok{,}
     \CommentTok{# Customize the axis}
@@ -885,26 +885,6 @@ The following code for generating radar plots was adapted from \href{https://www
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(fmsb)}
-\NormalTok{d1<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"ascidian_embryo/results/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{"}\CharTok{\textbackslash{}t}\StringTok{"}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{,}\DataTypeTok{check.names =}\NormalTok{ F)}
-
-\NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
-\NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
-
-\NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
-\KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
-
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{4}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
-  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{));}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\StringTok{"unperturbed"}\NormalTok{,}\StringTok{"FVS perturbation"}\NormalTok{) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-2} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-3} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-4} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-5} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-6} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-7}
 
 \hypertarget{pluripotent-stem-cell-example}{%
 \chapter{Pluripotent Stem Cell Example}\label{pluripotent-stem-cell-example}}
@@ -1743,7 +1723,7 @@ The two smallest sets of perturbations that passed the filtering criteria were B
 \end{Shaded}
 
 \textbackslash begin\{figure\}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-2} \textbackslash caption\{radar charts of the steady-state values of apoptosis internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsprolif}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-2} \textbackslash caption\{radar charts of the steady-state values of proliferation internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsprolif}
 \textbackslash end\{figure\}
 
 \begin{Shaded}
@@ -1769,7 +1749,7 @@ The two smallest sets of perturbations that passed the filtering criteria were B
 \end{Shaded}
 
 \textbackslash begin\{figure\}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-2} \textbackslash caption\{radar charts of the steady-state values of apoptosis internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsmapk}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-2} \textbackslash caption\{radar charts of the steady-state values of MAPK signaling internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsmapk}
 \textbackslash end\{figure\}
 
 \hypertarget{netisce-in-galaxy-project}{%
