@@ -1,0 +1,3 @@
+name	phenotype
+wt	wild_type
+unp	unpatterned

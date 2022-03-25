@@ -1,0 +1,7 @@
+name	phenotype
+wt1	wild_type
+wt2	wild_type
+wt3	wild_type
+unp1	unpatterned
+unp2	unpatterned
+unp3	unpatterned

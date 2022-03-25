@@ -53,13 +53,13 @@ if __name__ == "__main__":
     
     n = data.dg.number_of_nodes() #the number of nodes
     b = np.zeros((n,))
-    
     for name, item in samples.iteritems():                      #for each simulated initial condition
         logss=pd.DataFrame(index=FC_perts.index,columns=netnodes,copy=True) # create dataframe for the FC perturbations
         enodes=item.index.tolist()                            # get expressed nodes
-        for node in enodes:                                     # set initial state to simulated value
-            b[data.n2i[node]]=float(str(item.loc[node]))
-        for name2,item2 in FC_perts.iterrows():                  # for each FCnode perturbation
+        for name2,item2 in FC_perts.iterrows():                 # for each FCnode perturbation
+            b = np.zeros((n,))
+            for node in enodes:                                     # set initial state to simulated value
+                b[data.n2i[node]]=float(str(item.loc[node]))
             pnode=item2.index.tolist()
             pi = []
             for node in pnode: #if logFC.loc[node].at['logFC']>0: # if the logfc is postive (res > veh)
@@ -78,7 +78,6 @@ if __name__ == "__main__":
             x = alg.compute(b,pi)                                      # Run SFA calculation
             logss.loc[name2,netnodes]=x[0]
         logss=logss.drop_duplicates()
-        logss=logss.astype(float).round(3)
 
     #write out tables  
-        logss.to_csv('pert_logss_'+name+'_.txt', sep=' ',float_format='%.3f',index_label="name",chunksize=10000)      
+        logss.to_csv('pert_logss_'+name+'_.txt', sep=' ',float_format='%.0f',index_label="name",chunksize=10000)      

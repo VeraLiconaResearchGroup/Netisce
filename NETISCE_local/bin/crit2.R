@@ -50,7 +50,7 @@ if (filter=="strict"){
             isdisc[,node]<-replace(isdisc[,node],is[,node]>val, 1)
         }
         if (disc[node]==1){ 
-            val=max(dfdes[,node])
+            val=max(dfundes[,node])
             isdisc[,node]<-replace(isdisc[,node],is[,node]>val, 1)
             isdisc[,node]<-replace(isdisc[,node],is[,node]<val, 0)
         }

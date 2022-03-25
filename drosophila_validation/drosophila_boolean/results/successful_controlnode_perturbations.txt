@@ -1,0 +1,2 @@
+X0_PTC X0_hh X0_wg X1_PTC X1_wg X2_PTC X2_hh X2_wg X3_PTC X3_wg up down total
+pert0 up up up up up up up up up up 10 0 10

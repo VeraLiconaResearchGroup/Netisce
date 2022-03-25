@@ -1,0 +1,8 @@
+name	phenotype
+b1	beta_cell
+b2	beta_cell
+b3	beta_cell
+e1	exocrine_cell
+e2	exocrine_cell
+e3	exocrine_cell
+
