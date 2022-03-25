@@ -1,0 +1,3 @@
+name	Alp	Bco	Celf3.a1	Celf3.a2	Epi1	Fli.Erg.a	Myl	Noto1
+unperturbed	-0.0000341	0.00187	0.00187	0.00187	0.0218	0.0014	0.000898	0.000403
+perturbation results	0.118	0.425	0.425	-0.425	0.271	0.284	0.0837	0.0943

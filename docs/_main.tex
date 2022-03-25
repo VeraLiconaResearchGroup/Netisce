@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2021-12-30}
+\date{2022-03-25}
 
 \begin{document}
 \maketitle
@@ -143,7 +143,9 @@ Welcome to the NETISCE manual and tutorials.
 
 The search for effective therapeutic targets in fields like regenerative medicine and cancer research has generated interest in cell fate reprogramming. This cellular reprogramming paradigm can drive cells to a desired target state from any initial state. However, methods for identifying reprogramming targets remain limited for biological systems that lack large sets of experimental data or a dynamical characterization. We present NETISCE, a novel computational tool for identifying cell fate reprogramming targets in static networks. NETISCE identifies reprogramming targets through the innovative use of control theory within a dynamical systems framework. Through validations in studies of cell fate reprogramming from developmental, stem cell, and cancer biology, we show that NETISCE can predict previously identified cell fate reprogramming targets and identify potentially novel combinations of targets. NETISCE extends cell fate reprogramming studies to larger-scale biological networks without the need for full model parameterization and can be implemented by experimental and computational biologists to identify parts of a biological system that are relevant for the desired reprogramming task.
 
-For more information, please see the accompanying paper: \textbf{link here}
+For more information, please see the accompanying paper:
+
+Or biorxiv version: \url{https://www.biorxiv.org/content/10.1101/2021.12.30.474582v1}
 
 This manual contains instructions for installing the NETISCE pipeline tool and accessing the Galaxy Project GUI web-based tool. We provide a simple toy example walkthrough tutorial. Lastly, we include instructions for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.
 
@@ -856,7 +858,7 @@ Here we see that for 6 out of the 7 perturbations to FVS controlnodes, we were a
 \hypertarget{visualizing-results}{%
 \section{Visualizing Results}\label{visualizing-results}}
 
-We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context.
+We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate.
 
 The following code for generating radar plots was adapted from \href{https://www.google.com/search?q=create+_beautiful_+radar+chart\&oq=create+beautiful+rada\&aqs=chrome.1.69i57j0i10i22i30.11973j0j1\&sourceid=chrome\&ie=UTF-8}{datanovia.com}.
 
@@ -885,6 +887,38 @@ The following code for generating radar plots was adapted from \href{https://www
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+We can take the relevant internal-marker for each perturbation to create one ``meta'' radar chart that summarizes the difference in steady-state expression values between the unperturbed state and the perturbed state
+
+\begin{table}
+\centering\begingroup\fontsize{8}{10}\selectfont
+
+\begin{tabular}{l|r|r|r|r|r|r|r|r}
+\hline
+  & Alp & Bco & Celf3.a1 & Celf3.a2 & Epi1 & Fli.Erg.a & Myl & Noto1\\
+\hline
+unperturbed & -3.41e-05 & 0.00187 & 0.00187 & 0.00187 & 0.0218 & 0.0014 & 0.000898 & 0.000403\\
+\hline
+perturbation results & 1.18e-01 & 0.42500 & 0.42500 & -0.42500 & 0.2710 & 0.2840 & 0.083700 & 0.094300\\
+\hline
+\end{tabular}
+\endgroup{}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(test, }\DecValTok{2}\NormalTok{, max)}
+\NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(test, }\DecValTok{2}\NormalTok{, min)}
+\NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, test)}
+\KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{4}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
+  \KeywordTok{create_beautiful_radarchart2}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{1}\NormalTok{), }\DataTypeTok{vlabels=}\KeywordTok{c}\NormalTok{(}\StringTok{"Alp}\CharTok{\textbackslash{}n}\StringTok{(endoderm)"}\NormalTok{,}\StringTok{"Bco }\CharTok{\textbackslash{}n}\StringTok{(brain)"}\NormalTok{,}\StringTok{"Celf3.a }\CharTok{\textbackslash{}n}\StringTok{(pan-neural)"}\NormalTok{,}\StringTok{"Celf3.a}\CharTok{\textbackslash{}n}\StringTok{ (pan-neural)"}\NormalTok{,}\StringTok{"Epi1 }\CharTok{\textbackslash{}n}\StringTok{(epidermis)"}\NormalTok{,}\StringTok{"Fli.Erg.a }\CharTok{\textbackslash{}n}\StringTok{(mesenchyme)"}\NormalTok{,}\StringTok{"Myl }\CharTok{\textbackslash{}n}\StringTok{(muscle)"}\NormalTok{, }\StringTok{"Noto1}\CharTok{\textbackslash{}n}\StringTok{ (notochord)"}\NormalTok{));}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.3}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\StringTok{"unperturbed"}\NormalTok{,}\StringTok{"perturbed FVS"}\NormalTok{) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\NormalTok{.}\DecValTok{8}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/charts-1}
 
 \hypertarget{pluripotent-stem-cell-example}{%
 \chapter{Pluripotent Stem Cell Example}\label{pluripotent-stem-cell-example}}

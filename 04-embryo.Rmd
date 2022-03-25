@@ -24,6 +24,7 @@ The nextflow pipeline generates 1 result file `exp_internalmarkers.txt`, which c
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
 library(dplyr)
 library(kableExtra)
+library(fmsb)
 
 results<-read.delim('ascidian_embryo/results/exp_internalmarkers.txt',sep="\t")
 knitr::kable(results) %>%kable_styling(font_size = 8) %>% scroll_box(width = "100%", box_css = "border: 0px;")
@@ -49,7 +50,7 @@ knitr::kable(DACs,escape=F) %>% kable_styling(font_size = 9) %>% scroll_box(widt
 Here we see that for 6 out of the 7 perturbations to FVS controlnodes, we were able to upregulate the desired tissue marker when compared to the unperturbed state.
 
 ## Visualizing Results
-We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. In this context. 
+We can use radar plots to visualize the results of the SFA simulations of perturbations to the FVS control nodes. This can help us identify which perturbations successfully induced the appropriate tissue fate. 
 
 The following code for generating radar plots was adapted from [datanovia.com](https://www.google.com/search?q=create+_beautiful_+radar+chart&oq=create+beautiful+rada&aqs=chrome.1.69i57j0i10i22i30.11973j0j1&sourceid=chrome&ie=UTF-8).
 
@@ -76,52 +77,47 @@ create_beautiful_radarchart <- function(data, color = "#00AFBB",
 }
 ```
 
-<!-- ```{r radar charts2, echo=TRUE} -->
-<!-- create_beautiful_radarchart2 <- function(data, color = "#00AFBB",  -->
-<!--                                         vlabels = colnames(data), vlcex = 1, -->
-<!--                                         caxislabels = NULL, title =NULL, ...){ -->
-<!--   radarchart( -->
-<!--     data, axistype = 1, -->
-<!--     # Customize the polygon -->
-<!--     pcol = color, pfcol = NULL, plwd = 2, plty = 1, -->
-<!--     # Customize the grid -->
-<!--     cglcol = "grey", cglty = 1, cglwd = 0.8, -->
-<!--     # Customize the axis -->
-<!--     axislabcol = "grey",  -->
-<!--     # Variable labels -->
-<!--     vlcex = vlcex, vlabels = vlabels, -->
-<!--     title = title, -->
-<!--     centerzero = F, -->
-<!--     caxislabels = caxislabels -->
+```{r radar charts2, include=FALSE}
+create_beautiful_radarchart2 <- function(data, color = "#00AFBB",
+                                        vlabels = colnames(data), vlcex = 1,
+                                        caxislabels = NULL, title =NULL, ...){
+  radarchart(
+    data, axistype = 1,
+    # Customize the polygon
+    pcol = color, pfcol = NULL, plwd = 2, plty = 1,
+    # Customize the grid
+    cglcol = "grey", cglty = 1, cglwd = 0.8,
+    # Customize the axis
+    axislabcol = "grey",
+    # Variable labels
+    vlcex = vlcex, vlabels = vlabels,
+    title = title,
+    centerzero = F,
+    caxislabels = caxislabels
 
-<!--   ) -->
-<!-- } -->
-<!-- ``` -->
+  )
+}
+```
 
-<!-- ```{r charts, out.width='50%',echo = TRUE,fig.show='hold'} -->
-<!-- library(fmsb) -->
-<!-- d1<-read.delim("ascidian_embryo/results/exp_internalmarkers.txt",sep="\t",row.names = 1,check.names = F) -->
+We can take the relevant internal-marker for each perturbation to create one "meta" radar chart that summarizes the difference in steady-state expression values between the unperturbed state and the perturbed state
 
-<!-- maxcol<-apply(d1, 2, max) -->
-<!-- mincol<-apply(d1, 2, min) -->
+```{r meta-chart, echo=FALSE}
+test<-read.delim('ascidian_embryo/results/meta.txt',row.names = 1)
+knitr::kable(test) %>%kable_styling(font_size = 8) %>% scroll_box(width = "100%", box_css = "border: 0px;")
+```
 
-<!-- d2<-rbind(maxcol,mincol, d1) -->
-<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
 
-<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
-<!-- for (i in 4:nrow(d2)) { -->
-<!--   create_beautiful_radarchart(d2[c(1:3, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:3, i),]),1),round(max(d2[c(1:3, i),]),1),.2));legend(x=0.4, y=1.4, legend =c("unperturbed","FVS perturbation") , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
-<!-- } -->
+```{r charts, out.width='50%',echo = TRUE,fig.show='hold'}
 
-<!-- test<-read.delim('~/Desktop/test.txt',row.names = 1) -->
-<!-- maxcol<-apply(test, 2, max) -->
-<!-- mincol<-apply(test, 2, min) -->
-<!-- d2<-rbind(maxcol,mincol, test) -->
-<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
-<!-- par(mar = c(1, 0.1, 4, 1)) -->
-<!-- for (i in 4:nrow(d2)) { -->
-<!--   create_beautiful_radarchart2(d2[c(1:3, i), ],color = c("#00AFBB", "#E7B800"),caxislabels = seq(round(min(d2[c(1:3, i),]),1),round(max(d2[c(1:3, i),]),1),.1), vlabels=c("Alp\n(endoderm)","Bco \n(brain)","Celf3.a \n(pan-neural)","Celf3.a\n (pan-neural)","Epi1 \n(epidermis)","Fli.Erg.a \n(mesenchyme)","Myl \n(muscle)",	"Noto1\n (notochord)"));legend(x=0.4, y=1.3, legend =c("unperturbed","perturbed FVS") , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=.8, pt.cex=2) -->
-<!-- } -->
 
-<!-- #legend(x=0.4, y=1.4, legend =c("unperturbed","FVS perturbation") , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
-<!-- ``` -->
+maxcol<-apply(test, 2, max)
+mincol<-apply(test, 2, min)
+d2<-rbind(maxcol,mincol, test)
+rownames(d2)[1:2]<- c("Max", "Min")
+par(mar = c(1, 0.1, 4, 1))
+for (i in 4:nrow(d2)) {
+  create_beautiful_radarchart2(d2[c(1:3, i), ],color = c("#00AFBB", "#E7B800"),caxislabels = seq(round(min(d2[c(1:3, i),]),1),round(max(d2[c(1:3, i),]),1),.1), vlabels=c("Alp\n(endoderm)","Bco \n(brain)","Celf3.a \n(pan-neural)","Celf3.a\n (pan-neural)","Epi1 \n(epidermis)","Fli.Erg.a \n(mesenchyme)","Myl \n(muscle)",	"Noto1\n (notochord)"));legend(x=0.4, y=1.3, legend =c("unperturbed","perturbed FVS") , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=.8, pt.cex=2)
+}
+
+
+```
