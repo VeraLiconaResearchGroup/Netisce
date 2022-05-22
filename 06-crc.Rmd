@@ -3,6 +3,9 @@
 
 This section contains instructions to reproduce the results of simulating perturbations on FVS control nodes in a network of colorectal cancer (CRC) signaling pathways. The goal of these simulations is to identify targets that can reprogram cells from a MAPK inhibitor therapy resistant phenotype to the MAPK inhibitor therapy sensitive fate. You can read the original report here: link
 
+The original study of reversion of resistance to MAPKi therapy was performed by Park et al. in "[Feedback analysis identifies a combination target for overcoming adaptive resistance to targeted cancer therapy (Oncogene volume 39, pages3803–3820 (2020))](https://www.nature.com/articles/s41388-020-1255-y)". The network and internal-marker nodes were extracted from the publication and its supplementary material. The normalized expression data  and mutational profiles used for initial activities in NETISCE was downloaded from the Cancer Cell Line Encyclopedia from[ The Cancer Dependency Map](https://depmap.org/portal/cell_line/ACH-000552?tab=mutation).
+
+
 The input data, nextflow pipeline, and results of this simulation can be found in the [colorectal_cancer_validation folder](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation) in the NETISCE github repository
 
 
@@ -158,12 +161,23 @@ The combination BRAFi+SRCi treatment was identified and experimentally validated
 
 ```{r crc-charts, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 3 internal-marker nodes for HT29_BRAFi+SRCi"}
 library(fmsb)
-attr_pert<-read.delim("crc/results/3-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1)
+attr_pert<-read.delim("crc/results/3-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1) %>% mutate(across(where(is.numeric), ~ round(., digits = 3)))
 attr_pert <-attr_pert[c('pert_797158'),]
-exp<-read.delim("crc/results/3-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1)
+exp<-read.delim("crc/results/3-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1) %>% mutate(across(where(is.numeric), ~ round(., digits = 3)))
 exp<-exp[c(2,3),]
 
-d1<-rbind(exp,attr_pert)
+d1<-rbind(exp,attr_pert) 
+
+maxcol<-apply(exp, 2, max)
+mincol<-apply(exp, 2, min)
+d2<-rbind(maxcol,mincol, exp)
+rownames(d2)[1:2]<- c("Max", "Min")
+create_beautiful_radarchart(d2,color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(min(d2),max(d2),.4),title ="resistant and sensitive attractors");legend(x=0.4, y=1.4, legend =c(row.names(d2)[3:nrow(d2)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)
+
+# library(NMF)
+# annot<-c("sensitive","resistant","perturbation")
+# aheatmap(t(d1),scale="none",Rowv = NA,color = colorRampPalette(c("navy", "white", "firebrick3"))(80), annCol=annot,cellwidth = 30)
+
 rownames(d1)[3]<- c("HT29_BRAFi+SRCi")
 maxcol<-apply(d1, 2, max)
 mincol<-apply(d1, 2, min)
@@ -171,9 +185,10 @@ mincol<-apply(d1, 2, min)
 d2<-rbind(maxcol,mincol, d1)
 rownames(d2)[1:2]<- c("Max", "Min")
 
+
+
+
 par(mar = c(4, 0.1, 4, 0.1))
-
-
 for (i in 5:nrow(d2)) {
   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c(row.names(d2)[3:nrow(d2)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)
 }
@@ -234,6 +249,7 @@ exp<-read.delim("crc/results/apoptosis-marker-nodes/exp_internalmarkers.txt",sep
 exp<-exp[c(2,3),]
 
 d1<-rbind(exp,attr_pert)
+
 rownames(d1)[3:4]<- c("HT29_BRAFi+SRCi+TSCovr","HT29_BRAFi+SRCi+GRB2i")
 maxcol<-apply(d1, 2, max)
 mincol<-apply(d1, 2, min)
@@ -248,26 +264,7 @@ for (i in 5:nrow(d2)) {
 
 ```
 
-```{r crc-chartsprolif, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of proliferation internal-marker nodes for HT29_BRAFi+SRCi_TSCovr and HT29_BRAFi+SRCi_GRB2i"}
-attr_pert<-read.delim("crc/results/proliferation-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1)
-attr_pert <-attr_pert[c('pert_797159','pert_790597'),]
-exp<-read.delim("crc/results/proliferation-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1)
-exp<-exp[c(2,3),]
 
-d1<-rbind(exp,attr_pert)
-rownames(d1)[3:4]<- c("HT29_BRAFi+SRCi+TSCovr","HT29_BRAFi+SRCi+GRB2i")
-maxcol<-apply(d1, 2, max)
-mincol<-apply(d1, 2, min)
-
-d2<-rbind(maxcol,mincol, d1)
-rownames(d2)[1:2]<- c("Max", "Min")
-
-par(mar = c(4, 0.1, 4, 0.1))
-for (i in 5:nrow(d2)) {
-  create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);#legend(x=0.4, y=1.4, legend =c(row.names(d2)[c(3,4,i)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)
-}
-
-```
 
 ```{r crc-chartsmapk, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of MAPK signaling internal-marker nodes for HT29_BRAFi+SRCi_TSCovr and HT29_BRAFi+SRCi_GRB2i"}
 
@@ -277,6 +274,7 @@ exp<-read.delim("crc/results/mapk-marker-nodes/exp_internalmarkers.txt",sep=" ",
 exp<-exp[c(2,3),]
 
 d1<-rbind(exp,attr_pert)
+
 rownames(d1)[3:4]<- c("HT29_BRAFi+SRCi+TSCovr","HT29_BRAFi+SRCi+GRB2i")
 maxcol<-apply(d1, 2, max)
 mincol<-apply(d1, 2, min)
@@ -290,6 +288,9 @@ for (i in 5:nrow(d2)) {
 }
 
 ```
+
+
+
 <!-- # ```{r radar-plots-for-paper, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"} -->
 <!-- #  -->
 <!-- #  -->

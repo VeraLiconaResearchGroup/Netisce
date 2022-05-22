@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2022-03-25}
+\date{2022-05-22}
 
 \begin{document}
 \maketitle
@@ -773,7 +773,9 @@ Though the values are different in this system with mutations, we still see that
 
 This section contains instructions to reproduce the results of simulating FVS control node perturbations in a model of ascidian embryo cell specification. You can read the original report here: link
 
-The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ascidian_embryo}{ascidian embryo folder} in the github repository
+The original studies of Cell Fate Specification in the Ascidian Embryo were performed by Kobayashi et al.~in ``\href{https://www.nature.com/articles/s41598-021-83045-y}{Using linkage logic theory to control dynamics of a gene regulatory network of a chordate embryo (Sci Rep 11, 4001 (2021))}''. The network, internal-marker nodes, and FVS was derived from the publication and its supplementary material.
+
+The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ascidian_embryo_validation}{ascidian embryo folder} in the github repository
 
 These simulations were run on a high performance cluster that uses a SLURM executor. Although we recommend that you run NETISCE on an hpc, this simulation is small enough that it can be run on a local machine. If you choose to run it locally, then remove the \texttt{nextflow.config} file from the directory.
 
@@ -782,6 +784,8 @@ These simulations were run on a high performance cluster that uses a SLURM execu
 
 The goal of this simulation was to reproduce the results of experimental perturbations to the FVS nodes of the cell fate specification GRN for ascidian embryos using Signal Flow Analysis. Therefore, we use a modified version of the NETISCE pipeline to simulate these specific perturbations.
 We are only interested in performing the 7 perturbations to the 6 FVS control nodes that were experimentally verified to induce cell tissue fates.
+
+\texttt{network.sif}contains the gene regulatory network of ascidian embryonic development.
 
 \texttt{expression.csv} contains the initial activities for the unperturbed state and the 7 FVS control node perturbations. Here, all simulations have Gata.a and Zic-r.a=1, as the activation of these two genes is required for normal embryonic development.
 
@@ -924,6 +928,8 @@ perturbation results & 1.18e-01 & 0.42500 & 0.42500 & -0.42500 & 0.2710 & 0.2840
 \chapter{Pluripotent Stem Cell Example}\label{pluripotent-stem-cell-example}}
 
 This section contains instructions to reproduce the results of simulating perturbations on FVS control nodes in a pluripotent stem cell signaling. The goal of these simulations is to identify targets that can reprogram cells from the Epiblast stem cell (EpiSC) fate towards the Embryonic Stem Cell (ESC) fate. You can read the original report here: link
+
+The original study of reversion of primed pluripotency in mouse epiblast stem cells was performed by Yachie-Kinoshita et al.~in ``\href{https://www.embopress.org/doi/full/10.15252/msb.20177952}{Modeling signaling-dependent pluripotency with Boolean logic to predict cell fate transitions (Molecular Systems Biology (2018)14:e7952)}''. The network and internal-marker nodes were extracted from the publication and its supplementary material. The normalized expression data used for initial activities in NETISCE can be found at \href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE62155}{GSE62155}.
 
 The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/ipsc_validation}{ipsc folder} in the NETISCE github repository
 
@@ -1332,6 +1338,8 @@ These radar plots show that for all 15 perturbations on FVS control nodes, the s
 
 This section contains instructions to reproduce the results of simulating perturbations on FVS control nodes in a network of colorectal cancer (CRC) signaling pathways. The goal of these simulations is to identify targets that can reprogram cells from a MAPK inhibitor therapy resistant phenotype to the MAPK inhibitor therapy sensitive fate. You can read the original report here: link
 
+The original study of reversion of resistance to MAPKi therapy was performed by Park et al.~in ``\href{https://www.nature.com/articles/s41388-020-1255-y}{Feedback analysis identifies a combination target for overcoming adaptive resistance to targeted cancer therapy (Oncogene volume 39, pages3803--3820 (2020))}''. The network and internal-marker nodes were extracted from the publication and its supplementary material. The normalized expression data and mutational profiles used for initial activities in NETISCE was downloaded from the Cancer Cell Line Encyclopedia from\href{https://depmap.org/portal/cell_line/ACH-000552?tab=mutation}{The Cancer Dependency Map}.
+
 The input data, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation}{colorectal\_cancer\_validation folder} in the NETISCE github repository
 
 \hypertarget{input-data-2}{%
@@ -1631,12 +1639,23 @@ The combination BRAFi+SRCi treatment was identified and experimentally validated
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(fmsb)}
-\NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/3-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/3-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\KeywordTok{across}\NormalTok{(}\KeywordTok{where}\NormalTok{(is.numeric), }\OperatorTok{~}\StringTok{ }\KeywordTok{round}\NormalTok{(., }\DataTypeTok{digits =} \DecValTok{3}\NormalTok{)))}
 \NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_797158'}\NormalTok{),]}
-\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/3-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
+\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/3-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\KeywordTok{across}\NormalTok{(}\KeywordTok{where}\NormalTok{(is.numeric), }\OperatorTok{~}\StringTok{ }\KeywordTok{round}\NormalTok{(., }\DataTypeTok{digits =} \DecValTok{3}\NormalTok{)))}
 \NormalTok{exp<-exp[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),]}
 
-\NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
+\NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert) }
+
+\NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(exp, }\DecValTok{2}\NormalTok{, max)}
+\NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(exp, }\DecValTok{2}\NormalTok{, min)}
+\NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, exp)}
+\KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
+\KeywordTok{create_beautiful_radarchart}\NormalTok{(d2,}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2),}\KeywordTok{max}\NormalTok{(d2),.}\DecValTok{4}\NormalTok{),}\DataTypeTok{title =}\StringTok{"resistant and sensitive attractors"}\NormalTok{);}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(d2)[}\DecValTok{3}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)]) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
+
+\CommentTok{# library(NMF)}
+\CommentTok{# annot<-c("sensitive","resistant","perturbation")}
+\CommentTok{# aheatmap(t(d1),scale="none",Rowv = NA,color = colorRampPalette(c("navy", "white", "firebrick3"))(80), annCol=annot,cellwidth = 30)}
+
 \KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi"}\NormalTok{)}
 \NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
 \NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
@@ -1644,9 +1663,10 @@ The combination BRAFi+SRCi treatment was identified and experimentally validated
 \NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
 \KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
 
+
+
+
 \KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
-
-
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
   \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\KeywordTok{legend}\NormalTok{(}\DataTypeTok{x=}\FloatTok{0.4}\NormalTok{, }\DataTypeTok{y=}\FloatTok{1.4}\NormalTok{, }\DataTypeTok{legend =}\KeywordTok{c}\NormalTok{(}\KeywordTok{row.names}\NormalTok{(d2)[}\DecValTok{3}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)]) , }\DataTypeTok{bty =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{ , }\DataTypeTok{col=}\KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{) , }\DataTypeTok{text.col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{pt.cex=}\DecValTok{2}\NormalTok{)}
 \NormalTok{\}}
@@ -1654,7 +1674,7 @@ The combination BRAFi+SRCi treatment was identified and experimentally validated
 \end{Shaded}
 
 \textbackslash begin\{figure\}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-charts-1} \textbackslash caption\{radar charts of the steady-state values of 3 internal-marker nodes for HT29\_BRAFi+SRCi\}\label{fig:crc-charts}
+\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-charts-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-charts-2} \textbackslash caption\{radar charts of the steady-state values of 3 internal-marker nodes for HT29\_BRAFi+SRCi\}\label{fig:crc-charts}
 \textbackslash end\{figure\}
 
 We see here that the steady state value of CASP3 in the attractor produced from the HT29\_BRAFi+SRCi perturbation is within the range of attractor produced from the HT29\_BRAFi+EGFRi perturbation.
@@ -1716,6 +1736,7 @@ The two smallest sets of perturbations that passed the filtering criteria were B
 \NormalTok{exp<-exp[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),]}
 
 \NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
+
 \KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+GRB2i"}\NormalTok{)}
 \NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
 \NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
@@ -1736,38 +1757,13 @@ The two smallest sets of perturbations that passed the filtering criteria were B
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/proliferation-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
-\NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_797159'}\NormalTok{,}\StringTok{'pert_790597'}\NormalTok{),]}
-\NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/proliferation-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
-\NormalTok{exp<-exp[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),]}
-
-\NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
-\KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+GRB2i"}\NormalTok{)}
-\NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
-\NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
-
-\NormalTok{d2<-}\KeywordTok{rbind}\NormalTok{(maxcol,mincol, d1)}
-\KeywordTok{rownames}\NormalTok{(d2)[}\DecValTok{1}\OperatorTok{:}\DecValTok{2}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Max"}\NormalTok{, }\StringTok{"Min"}\NormalTok{)}
-
-\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\FloatTok{0.1}\NormalTok{))}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{5}\OperatorTok{:}\KeywordTok{nrow}\NormalTok{(d2)) \{}
-  \KeywordTok{create_beautiful_radarchart}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i), ],}\DataTypeTok{color =} \KeywordTok{c}\NormalTok{(}\StringTok{"#00AFBB"}\NormalTok{, }\StringTok{"#E7B800"}\NormalTok{,}\StringTok{"#FC4E07"}\NormalTok{),}\DataTypeTok{caxislabels =} \KeywordTok{seq}\NormalTok{(}\KeywordTok{round}\NormalTok{(}\KeywordTok{min}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),}\KeywordTok{round}\NormalTok{(}\KeywordTok{max}\NormalTok{(d2[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, i),]),}\DecValTok{1}\NormalTok{),.}\DecValTok{2}\NormalTok{),}\DataTypeTok{title =}\KeywordTok{row.names}\NormalTok{(d2)[i]);}\CommentTok{#legend(x=0.4, y=1.4, legend =c(row.names(d2)[c(3,4,i)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\textbackslash begin\{figure\}
-\includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsprolif-2} \textbackslash caption\{radar charts of the steady-state values of proliferation internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsprolif}
-\textbackslash end\{figure\}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \NormalTok{attr_pert<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/mapk-marker-nodes/pert_internal_markers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{attr_pert <-attr_pert[}\KeywordTok{c}\NormalTok{(}\StringTok{'pert_797159'}\NormalTok{,}\StringTok{'pert_790597'}\NormalTok{),]}
 \NormalTok{exp<-}\KeywordTok{read.delim}\NormalTok{(}\StringTok{"crc/results/mapk-marker-nodes/exp_internalmarkers.txt"}\NormalTok{,}\DataTypeTok{sep=}\StringTok{" "}\NormalTok{,}\DataTypeTok{row.names =} \DecValTok{1}\NormalTok{)}
 \NormalTok{exp<-exp[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{),]}
 
 \NormalTok{d1<-}\KeywordTok{rbind}\NormalTok{(exp,attr_pert)}
+
 \KeywordTok{rownames}\NormalTok{(d1)[}\DecValTok{3}\OperatorTok{:}\DecValTok{4}\NormalTok{]<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"HT29_BRAFi+SRCi+TSCovr"}\NormalTok{,}\StringTok{"HT29_BRAFi+SRCi+GRB2i"}\NormalTok{)}
 \NormalTok{maxcol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, max)}
 \NormalTok{mincol<-}\KeywordTok{apply}\NormalTok{(d1, }\DecValTok{2}\NormalTok{, min)}
@@ -1785,6 +1781,58 @@ The two smallest sets of perturbations that passed the filtering criteria were B
 \textbackslash begin\{figure\}
 \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-1} \includegraphics[width=0.5\linewidth]{_main_files/figure-latex/crc-chartsmapk-2} \textbackslash caption\{radar charts of the steady-state values of MAPK signaling internal-marker nodes for HT29\_BRAFi+SRCi\_TSCovr and HT29\_BRAFi+SRCi\_GRB2i\}\label{fig:crc-chartsmapk}
 \textbackslash end\{figure\}
+
+\hypertarget{evaluating-the-robustness-to-noise-of-netisce}{%
+\chapter{Evaluating the Robustness to Noise of NETISCE}\label{evaluating-the-robustness-to-noise-of-netisce}}
+
+This section contains the results of evaluating NETISCE's robustness to noisy initial states data. We evaluated this metric in the von Dassow ODE model of Drosophila Segment Polarity Genes and the Zhou model of pancreatic cell fate differentiation.
+
+The original study of controlling Drosophila development using the FVS Control theory was performed by Zanudo et al.~in\href{https://www.pnas.org/doi/10.1073/pnas.1617387114}{Structure-based control of complex networks with nonlinear dynamics} using the von Dassow Segment Polarity genes ODE model, originally published in \href{https://www.nature.com/articles/35018085}{The segment polarity network is a robust developmental module.}. The ODE model was obtained form xyz, and the initial states were extracted from the supplementary material of \href{link}{Zanudo et al.}. The study of pancreatic cell fate differentiation was performed by Zhou et al.~in ``\href{https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0014752}{Predicting Pancreas Cell Fate Decisions and Reprogramming with a Hierarchical Multi-Attractor Model}''. The model and parameters were extracted from Zhou et al.
+
+The input data, COPASI files, nextflow pipeline, and results of this simulation can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies}{noise\_studies} folder in the NETISCE github repository.
+
+Our approach to these noise studies uses COPASI to simulate two differential equation models of cell reprogramming and add different noise levels into some initial states. We use these generated initial states to simulate 1,000 triplicates of the desired and undesired phenotype normalized gene expression data per noise level varying from 0\% to 50\%
+
+\hypertarget{copasi-simualtions-of-mathematical-models}{%
+\section{COPASI simualtions of mathematical models}\label{copasi-simualtions-of-mathematical-models}}
+
+In COPASI, we simulated the Differential Equation (DE) DE models using the Time Course function for the undesired and desired phenotypes. We additionally simulate the time course for the undesired initial condition when a perturbation on FVS nodes is applied to ensure the system still arrives at the desired attractor. We injected seven levels of noise (1\%, 5\%, 10\%, 20\%, 30\%, 40\%, 50\%) in the undesired and desired initial conditions using the Random Distribution item in the COPASI's Parameter Scan function. For each node with a nonzero initial concentration, the noisy initial condition was generated using a normal distribution, where the mean was the initial state of the node, and the standard deviation was .1, .5, .10, .20, .30, .40, or .50, to simulate 1\%, 5\%, 10\%, 20\%, 30\%, 40\%, or 50\% noise, respectively. We generated 1,000 initial states for each noise level for the desired initial and undesired initial states.
+
+\hypertarget{von-dassows-drosophila-segment-polarity-gene-model}{%
+\subsection{von Dassow's Drosophila Segment Polarity Gene model}\label{von-dassows-drosophila-segment-polarity-gene-model}}
+
+In COPASI, von Dassow's Drosophila Segment Polarity Gene model simulations were computed using the deterministic LSODA Solver for 500 seconds when a steady-state was reached. The COPASI file containing the model, parameters, and Time Course functions for both the wild type and unpatterned initial states can be found in \url{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/copasi}.
+
+\hypertarget{zhou-cell-fate-specification-model}{%
+\subsection{Zhou Cell Fate Specification model}\label{zhou-cell-fate-specification-model}}
+
+The SDE model was extracted from Zhou et al.~and simulated using the SDE solver. To implement the time-delay perturbations of MafA, Pdx1, Ngn3, Pax4 overexpression, and Ptf1a knockout in exocrine cells, we used the Event function to increase the production or degradation rates as performed in Zhou et al.~he COPASI file containing the model, parameters, and Time Course functions can be found in \url{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/copasi}.
+
+\hypertarget{noisy-initial-states-files}{%
+\section{Noisy initial states files}\label{noisy-initial-states-files}}
+
+The above COPASI files automatically export the initial states of the network nodes with noise to a csv file (found in \url{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/noise-initial-states} or \url{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/noise_studies/pancreas/noise-initial-states/expressions-10percent.csv}). The \texttt{generate\_triplicates.py} script can split the generated initial states into separate files, each containing 3 undesired and 3 desired initial states. You can find examples in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/NETISCE/10percent/input_data/noise}{pancreas} and (drosophila){[}\url{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/NETISCE/40-percentnoise/input_data/noise}{]} subfolders.
+
+\hypertarget{running-the-netisce-simulations}{%
+\section{Running the NETISCE simulations}\label{running-the-netisce-simulations}}
+
+Due to space constraints on github, we have provided the entire folder for one level of noise for the Drosophila and Pancreas examples.
+
+\hypertarget{drosophila-noise-studies-at-40-noise-in-initial-states}{%
+\subsection{Drosophila noise studies at 40\% noise in initial states}\label{drosophila-noise-studies-at-40-noise-in-initial-states}}
+
+The relevant input files and nextflorw pipeline can be found in \url{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/NETISCE/40-percentnoise}.
+We provide the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/noise_studies/drosophila/NETISCE/40-percentnoise/run.sh}{shell script} which will loop through all initial states files to run NETISCE for each set of wild type and unpatterened initial states.
+
+If you are interested in running this analysis with a different noise level, you can use the \texttt{generate\_triplicates.py} to create triplicates of initial states from the appropriate noisy initial states. Then, in the \texttt{run.sh} shell script, set the \texttt{-\/-expressions} flag to the directory that contains your noisy initial states.
+
+\hypertarget{pancreas-cell-fate-specification-at-10-noise-in-initial-states}{%
+\subsection{Pancreas cell fate specification at 10\% noise in initial states}\label{pancreas-cell-fate-specification-at-10-noise-in-initial-states}}
+
+The relevant input files and nextflorw pipeline can be found in \url{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/NETISCE/10percent/input_data}.
+We provide the \href{https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/noise_studies/pancreas/NETISCE/10percent/run10.sh}{shell script} which will loop through all initial states files to run NETISCE for each set of exocrine and beta cell initial states.
+
+If you are interested in running this analysis with a different noise level, you can use the \texttt{generate\_triplicates.py} to create triplicates of initial states from the appropriate noisy initial states. Then, in the \texttt{run.sh} shell script, set the \texttt{-\/-expressions} flag to the directory that contains your noisy initial states.
 
 \hypertarget{netisce-in-galaxy-project}{%
 \chapter{NETISCE in Galaxy Project}\label{netisce-in-galaxy-project}}

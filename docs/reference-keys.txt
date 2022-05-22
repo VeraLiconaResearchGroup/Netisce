@@ -15,7 +15,6 @@ fig:unnamed-chunk-41
 fig:crc-charts
 fig:all-three
 fig:crc-chartsapop
-fig:crc-chartsprolif
 fig:crc-chartsmapk
 about
 installation-and-usage
@@ -54,6 +53,14 @@ results-2
 general-results-1
 results-using-3-internal-marker-nodes
 results-using-apoptosis-proliferation-and-mapk-signaling-internal-marker-nodes
+evaluating-the-robustness-to-noise-of-netisce
+copasi-simualtions-of-mathematical-models
+von-dassows-drosophila-segment-polarity-gene-model
+zhou-cell-fate-specification-model
+noisy-initial-states-files
+running-the-netisce-simulations
+drosophila-noise-studies-at-40-noise-in-initial-states
+pancreas-cell-fate-specification-at-10-noise-in-initial-states
 netisce-in-galaxy-project
 installing-galaxy
 installing-the-netisce-tool-from-galaxy-tool-shed.

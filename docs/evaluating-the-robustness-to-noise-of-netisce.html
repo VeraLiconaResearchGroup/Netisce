@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Evaluating the Robustness to Noise of NETISCE | NETISCE Manual and Tutorials</title>
+  <meta name="description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Evaluating the Robustness to Noise of NETISCE | NETISCE Manual and Tutorials" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://veraliconaresearchgroup.github.io/Netisce/" />
+  <meta property="og:image" content="https://veraliconaresearchgroup.github.io/Netisce/images/netisce-logo.png" />
+  <meta property="og:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
+  <meta name="github-repo" content="https://github.com/veraliconaresearchgroup/netisce" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Evaluating the Robustness to Noise of NETISCE | NETISCE Manual and Tutorials" />
+  
+  <meta name="twitter:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
+  <meta name="twitter:image" content="https://veraliconaresearchgroup.github.io/Netisce/images/netisce-logo.png" />
+
+<meta name="author" content="Lauren Marazzi" />
+
+
+<meta name="date" content="2022-05-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="adaptive-resistance-in-colorectal-cancer-example.html"/>
+<link rel="next" href="netisce-in-galaxy-project.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="assets/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">NETISCE manual and tutorials</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="installation-and-usage.html"><a href="installation-and-usage.html"><i class="fa fa-check"></i><b>2</b> Installation and Usage</a><ul>
+<li class="chapter" data-level="2.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#download-netisce"><i class="fa fa-check"></i><b>2.1</b> Download NETISCE</a></li>
+<li class="chapter" data-level="2.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#install-nextflow"><i class="fa fa-check"></i><b>2.2</b> Install Nextflow</a></li>
+<li class="chapter" data-level="2.3" data-path="installation-and-usage.html"><a href="installation-and-usage.html#prerequisuites"><i class="fa fa-check"></i><b>2.3</b> Prerequisuites</a></li>
+<li class="chapter" data-level="2.4" data-path="installation-and-usage.html"><a href="installation-and-usage.html#docker-image"><i class="fa fa-check"></i><b>2.4</b> Docker Image</a></li>
+<li class="chapter" data-level="2.5" data-path="installation-and-usage.html"><a href="installation-and-usage.html#params"><i class="fa fa-check"></i><b>2.5</b> Parameters and Configuration</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#netisce_mutations.nf"><i class="fa fa-check"></i><b>2.5.1</b> NETISCE_mutations.nf</a></li>
+<li class="chapter" data-level="2.5.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#nextflow.config"><i class="fa fa-check"></i><b>2.5.2</b> nextflow.config</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="installation-and-usage.html"><a href="installation-and-usage.html#running-netisce"><i class="fa fa-check"></i><b>2.6</b> Running NETISCE</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="netsice-output.html"><a href="netsice-output.html"><i class="fa fa-check"></i><b>3</b> NETSICE output</a></li>
+<li class="chapter" data-level="4" data-path="toy.html"><a href="toy.html"><i class="fa fa-check"></i><b>4</b> Toy Network Examples</a><ul>
+<li class="chapter" data-level="4.1" data-path="toy.html"><a href="toy.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="toy.html"><a href="toy.html#data"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="toy.html"><a href="toy.html#netisce-run-configuration"><i class="fa fa-check"></i><b>4.3</b> NETISCE run configuration</a></li>
+<li class="chapter" data-level="4.4" data-path="toy.html"><a href="toy.html#run-netisce"><i class="fa fa-check"></i><b>4.4</b> Run NETISCE</a></li>
+<li class="chapter" data-level="4.5" data-path="toy.html"><a href="toy.html#netsice-results"><i class="fa fa-check"></i><b>4.5</b> NETSICE Results</a></li>
+<li class="chapter" data-level="4.6" data-path="toy.html"><a href="toy.html#toy-example-with-mutations"><i class="fa fa-check"></i><b>4.6</b> Toy Example with mutations</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html"><i class="fa fa-check"></i><b>5</b> Cell Fate Specification in Ascidian Embryo</a><ul>
+<li class="chapter" data-level="5.1" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#input-data"><i class="fa fa-check"></i><b>5.1</b> Input Data</a></li>
+<li class="chapter" data-level="5.2" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#run-the-simulation"><i class="fa fa-check"></i><b>5.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="5.3" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#results"><i class="fa fa-check"></i><b>5.3</b> Results</a></li>
+<li class="chapter" data-level="5.4" data-path="cell-fate-specification-in-ascidian-embryo.html"><a href="cell-fate-specification-in-ascidian-embryo.html#visualizing-results"><i class="fa fa-check"></i><b>5.4</b> Visualizing Results</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html"><i class="fa fa-check"></i><b>6</b> Pluripotent Stem Cell Example</a><ul>
+<li class="chapter" data-level="6.1" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#input-data-1"><i class="fa fa-check"></i><b>6.1</b> Input Data</a></li>
+<li class="chapter" data-level="6.2" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#run-the-simulation-1"><i class="fa fa-check"></i><b>6.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="6.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-1"><i class="fa fa-check"></i><b>6.3</b> Results</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#general-results"><i class="fa fa-check"></i><b>6.3.1</b> General Results</a></li>
+<li class="chapter" data-level="6.3.2" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-4-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.2</b> Results using 4 internal-marker nodes</a></li>
+<li class="chapter" data-level="6.3.3" data-path="pluripotent-stem-cell-example.html"><a href="pluripotent-stem-cell-example.html#results-using-7-internal-marker-nodes"><i class="fa fa-check"></i><b>6.3.3</b> Results using 7 internal-marker nodes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html"><i class="fa fa-check"></i><b>7</b> Adaptive Resistance in Colorectal Cancer Example</a><ul>
+<li class="chapter" data-level="7.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#input-data-2"><i class="fa fa-check"></i><b>7.1</b> Input Data</a></li>
+<li class="chapter" data-level="7.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#run-the-simulation-2"><i class="fa fa-check"></i><b>7.2</b> Run the simulation</a></li>
+<li class="chapter" data-level="7.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-2"><i class="fa fa-check"></i><b>7.3</b> Results</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#general-results-1"><i class="fa fa-check"></i><b>7.3.1</b> General Results</a></li>
+<li class="chapter" data-level="7.3.2" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-3-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.2</b> Results using 3 internal-marker nodes</a></li>
+<li class="chapter" data-level="7.3.3" data-path="adaptive-resistance-in-colorectal-cancer-example.html"><a href="adaptive-resistance-in-colorectal-cancer-example.html#results-using-apoptosis-proliferation-and-mapk-signaling-internal-marker-nodes"><i class="fa fa-check"></i><b>7.3.3</b> Results using apoptosis, proliferation, and MAPK signaling internal-marker nodes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html"><i class="fa fa-check"></i><b>8</b> Evaluating the Robustness to Noise of NETISCE</a><ul>
+<li class="chapter" data-level="8.1" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html#copasi-simualtions-of-mathematical-models"><i class="fa fa-check"></i><b>8.1</b> COPASI simualtions of mathematical models</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html#von-dassows-drosophila-segment-polarity-gene-model"><i class="fa fa-check"></i><b>8.1.1</b> von Dassow’s Drosophila Segment Polarity Gene model</a></li>
+<li class="chapter" data-level="8.1.2" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html#zhou-cell-fate-specification-model"><i class="fa fa-check"></i><b>8.1.2</b> Zhou Cell Fate Specification model</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html#noisy-initial-states-files"><i class="fa fa-check"></i><b>8.2</b> Noisy initial states files</a></li>
+<li class="chapter" data-level="8.3" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html#running-the-netisce-simulations"><i class="fa fa-check"></i><b>8.3</b> Running the NETISCE simulations</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html#drosophila-noise-studies-at-40-noise-in-initial-states"><i class="fa fa-check"></i><b>8.3.1</b> Drosophila noise studies at 40% noise in initial states</a></li>
+<li class="chapter" data-level="8.3.2" data-path="evaluating-the-robustness-to-noise-of-netisce.html"><a href="evaluating-the-robustness-to-noise-of-netisce.html#pancreas-cell-fate-specification-at-10-noise-in-initial-states"><i class="fa fa-check"></i><b>8.3.2</b> Pancreas cell fate specification at 10% noise in initial states</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html"><i class="fa fa-check"></i><b>9</b> NETISCE in Galaxy Project</a><ul>
+<li class="chapter" data-level="9.1" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html#installing-galaxy"><i class="fa fa-check"></i><b>9.1</b> Installing Galaxy</a></li>
+<li class="chapter" data-level="9.2" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html#installing-the-netisce-tool-from-galaxy-tool-shed."><i class="fa fa-check"></i><b>9.2</b> Installing the NETISCE tool from Galaxy Tool Shed.</a></li>
+<li class="chapter" data-level="9.3" data-path="netisce-in-galaxy-project.html"><a href="netisce-in-galaxy-project.html#downloading-the-netisce-workflow."><i class="fa fa-check"></i><b>9.3</b> Downloading the NETISCE workflow.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NETISCE Manual and Tutorials</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evaluating-the-robustness-to-noise-of-netisce" class="section level1">
+<h1><span class="header-section-number">8</span> Evaluating the Robustness to Noise of NETISCE</h1>
+<p>This section contains the results of evaluating NETISCE’s robustness to noisy initial states data. We evaluated this metric in the von Dassow ODE model of Drosophila Segment Polarity Genes and the Zhou model of pancreatic cell fate differentiation.</p>
+<p>The original study of controlling Drosophila development using the FVS Control theory was performed by Zanudo et al. in<a href="https://www.pnas.org/doi/10.1073/pnas.1617387114">Structure-based control of complex networks with nonlinear dynamics</a> using the von Dassow Segment Polarity genes ODE model, originally published in <a href="https://www.nature.com/articles/35018085">The segment polarity network is a robust developmental module.</a>. The ODE model was obtained form xyz, and the initial states were extracted from the supplementary material of <a href="link">Zanudo et al.</a>. The study of pancreatic cell fate differentiation was performed by Zhou et al. in “<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0014752">Predicting Pancreas Cell Fate Decisions and Reprogramming with a Hierarchical Multi-Attractor Model</a>”. The model and parameters were extracted from Zhou et al.</p>
+<p>The input data, COPASI files, nextflow pipeline, and results of this simulation can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies">noise_studies</a> folder in the NETISCE github repository.</p>
+<p>Our approach to these noise studies uses COPASI to simulate two differential equation models of cell reprogramming and add different noise levels into some initial states. We use these generated initial states to simulate 1,000 triplicates of the desired and undesired phenotype normalized gene expression data per noise level varying from 0% to 50%</p>
+<div id="copasi-simualtions-of-mathematical-models" class="section level2">
+<h2><span class="header-section-number">8.1</span> COPASI simualtions of mathematical models</h2>
+<p>In COPASI, we simulated the Differential Equation (DE) DE models using the Time Course function for the undesired and desired phenotypes. We additionally simulate the time course for the undesired initial condition when a perturbation on FVS nodes is applied to ensure the system still arrives at the desired attractor. We injected seven levels of noise (1%, 5%, 10%, 20%, 30%, 40%, 50%) in the undesired and desired initial conditions using the Random Distribution item in the COPASI’s Parameter Scan function. For each node with a nonzero initial concentration, the noisy initial condition was generated using a normal distribution, where the mean was the initial state of the node, and the standard deviation was .1, .5, .10, .20, .30, .40, or .50, to simulate 1%, 5%, 10%, 20%, 30%, 40%, or 50% noise, respectively. We generated 1,000 initial states for each noise level for the desired initial and undesired initial states.</p>
+<div id="von-dassows-drosophila-segment-polarity-gene-model" class="section level3">
+<h3><span class="header-section-number">8.1.1</span> von Dassow’s Drosophila Segment Polarity Gene model</h3>
+<p>In COPASI, von Dassow’s Drosophila Segment Polarity Gene model simulations were computed using the deterministic LSODA Solver for 500 seconds when a steady-state was reached. The COPASI file containing the model, parameters, and Time Course functions for both the wild type and unpatterned initial states can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/copasi">https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/copasi</a>.</p>
+</div>
+<div id="zhou-cell-fate-specification-model" class="section level3">
+<h3><span class="header-section-number">8.1.2</span> Zhou Cell Fate Specification model</h3>
+<p>The SDE model was extracted from Zhou et al. and simulated using the SDE solver. To implement the time-delay perturbations of MafA, Pdx1, Ngn3, Pax4 overexpression, and Ptf1a knockout in exocrine cells, we used the Event function to increase the production or degradation rates as performed in Zhou et al. he COPASI file containing the model, parameters, and Time Course functions can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/copasi">https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/copasi</a>.</p>
+</div>
+</div>
+<div id="noisy-initial-states-files" class="section level2">
+<h2><span class="header-section-number">8.2</span> Noisy initial states files</h2>
+<p>The above COPASI files automatically export the initial states of the network nodes with noise to a csv file (found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/noise-initial-states">https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/noise-initial-states</a> or <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/noise_studies/pancreas/noise-initial-states/expressions-10percent.csv">https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/noise_studies/pancreas/noise-initial-states/expressions-10percent.csv</a>). The <code>generate_triplicates.py</code> script can split the generated initial states into separate files, each containing 3 undesired and 3 desired initial states. You can find examples in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/NETISCE/10percent/input_data/noise">pancreas</a> and (drosophila)[<a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/NETISCE/40-percentnoise/input_data/noise" class="uri">https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/NETISCE/40-percentnoise/input_data/noise</a>] subfolders.</p>
+</div>
+<div id="running-the-netisce-simulations" class="section level2">
+<h2><span class="header-section-number">8.3</span> Running the NETISCE simulations</h2>
+<p>Due to space constraints on github, we have provided the entire folder for one level of noise for the Drosophila and Pancreas examples.</p>
+<div id="drosophila-noise-studies-at-40-noise-in-initial-states" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Drosophila noise studies at 40% noise in initial states</h3>
+<p>The relevant input files and nextflorw pipeline can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/NETISCE/40-percentnoise">https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/drosophila/NETISCE/40-percentnoise</a>.
+We provide the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/noise_studies/drosophila/NETISCE/40-percentnoise/run.sh">shell script</a> which will loop through all initial states files to run NETISCE for each set of wild type and unpatterened initial states.</p>
+<p>If you are interested in running this analysis with a different noise level, you can use the <code>generate_triplicates.py</code> to create triplicates of initial states from the appropriate noisy initial states. Then, in the <code>run.sh</code> shell script, set the <code>--expressions</code> flag to the directory that contains your noisy initial states.</p>
+</div>
+<div id="pancreas-cell-fate-specification-at-10-noise-in-initial-states" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Pancreas cell fate specification at 10% noise in initial states</h3>
+<p>The relevant input files and nextflorw pipeline can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/NETISCE/10percent/input_data">https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/noise_studies/pancreas/NETISCE/10percent/input_data</a>.
+We provide the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/noise_studies/pancreas/NETISCE/10percent/run10.sh">shell script</a> which will loop through all initial states files to run NETISCE for each set of exocrine and beta cell initial states.</p>
+<p>If you are interested in running this analysis with a different noise level, you can use the <code>generate_triplicates.py</code> to create triplicates of initial states from the appropriate noisy initial states. Then, in the <code>run.sh</code> shell script, set the <code>--expressions</code> flag to the directory that contains your noisy initial states.</p>
+<!-- ## Input Data -->
+<!-- [`network.sif`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/network.sif) contains the network structure for CRC signaling -->
+<!-- [`expression.csv`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/expression.csv) contains the initial activities for HT29 untreated cells. The columns for H29_BRAFi (MAPK inhibitor therapy resistant state) and H29_BRAFi+EGRFi (MAPK inhibitor therapy sensitive state) are copies of the HT29 column  -->
+<!-- [`internal-marker-1.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-1.txt) contains the 3 internal marker nodes that were originally used in Park et al., to evaluate simulations. -->
+<!-- [`internal-marker-apoptosis.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-apoptosis.txt) contains the internal marker nodes related to apoptosis used to evaluate simulations. -->
+<!-- [`internal-marker-mapk.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-mapk.txt) contains the internal marker nodes related to mapk used to evaluate simulations. -->
+<!-- [`internal-marker-proliferation.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/internal-marker-proliferation.txt) contains the internal marker nodes related to proliferation used to evaluate simulations. -->
+<!-- [`samples.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/samples.txt) contains they key for NETISCE to associate certain samples to the phenotypes of untreated (HT29), resistant (HT29_BRAFi), and sensitive (HT29_BRAFiEGFRi) -->
+<!-- [`mutations.csv`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/input_data/mutations.csv) mutational profile of HT29 cells, as well as the overrides for simulating BRAFi and EGRFi. -->
+<!-- ## Run the simulation -->
+<!-- These simulations were run on a high performance cluster that uses a SLURM executor. If your hpc uses a different executor, please update those specifications in the `nextflow.config` file in the directory. Please see <https://www.nextflow.io/docs/latest/config.html> for more information regarding your executor. -->
+<!-- For ease of reproduction, we have included all files necessary to reproduce the reported results directly in the [directory](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation). We highly recommend you run this simulation on an hpc, as you will be generating files of 3Gb+. We have included the [bash file](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/run.sh) we used on our SLURM executor. -->
+<!-- **Note: ** within the [`NETISCE_mutations.nf`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/NETISCE_mutations.nf) configuration file, you will want to change the params.internal_control line if you want to use a different set of internal-marker nodes.  -->
+<!-- ``` -->
+<!-- #!/usr/bin/env nextflow -->
+<!-- params.expressions = "$baseDir/input_data/expression.csv" -->
+<!-- params.network = "$baseDir/input_data/network.sif" -->
+<!-- params.samples = "$baseDir/input_data/samples.txt" -->
+<!-- params.internal_control="$baseDir/input_data/internal-marker-1.txt" -->
+<!-- params.mutations="$baseDir/input_data/mutations.csv" -->
+<!-- params.alpha = 0.9 -->
+<!-- params.undesired = 'resistant' -->
+<!-- params.desired = 'sensitive' -->
+<!-- params.filter ="strict" -->
+<!-- ``` -->
+<!-- As discussed in our paper, we filtered the perturbations using the original 3 internal-marker nodes for apoptosis, proliferation, and MAPK signaling. We further filtered perturbations on the FVS control nodes using 17 addition internal-marker nodes, related to the phenotypes of apoptosis, proliferation, and MAPK signaling. Therefore, to use a set of internal-marker nodes, please point to the correct input-data file. We created folders within the `results` folder to house the relevant internal-marker node files for each set. You may  want to do the same as to not overwrite them (or move them into a separate folder). Additionally, when you run the nextflow command, **please be sure to use the `-resume` flag so that you use the cached computations that do not need to be re-computed** -->
+<!-- You can run NETISCE directly from this folder using the following command: `./nextflow run NETISC_mutations.nf -resume` -->
+<!-- ## Results -->
+<!-- Herein, we will focus on the results that are deposited in the [`results`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results) folder by NETISCE. However, each step of the nextflow pipeline produces its corresponding raw results (for example, the entire attractor state for network simulations initialized with experimental data). If you are interested in looking at those raw results, they can be found within the [`work`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/work) folder. We provide [`workfiles.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/work/workfiles.txt) which is a guide to which folders/subfolders contain the relevant results of each step.  -->
+<!-- ### General Results  -->
+<!-- First, let's take a look at the results that do not depend on the internal-marker node set.  -->
+<!-- #### FVS finding {-#section-id} -->
+<!-- Here we focus on one of the FVSes in the network, which we call, Set 1. -->
+<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE} -->
+<!-- fvs<-read.delim('crc/results/fvs.txt',sep=" ") -->
+<!-- knitr::kable(fvs) -->
+<!-- ``` -->
+<!-- Set 1 contains 14 nodes. Notice that TP53 is included in the FVS. This is a mutant gene in HT29 cells. NETISCE_mutations automatically filters out mutated genes, and places the FVS without mutated genes in the `fvs-no-mutated-genes.txt` file. -->
+<!-- and we remove mutated genes! -->
+<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE} -->
+<!-- fvs_nomut<-read.delim('crc/results/fvs-no-mutated-genes.txt',sep=" ") -->
+<!-- knitr::kable(fvs_nomut) -->
+<!-- ``` -->
+<!-- #### Attractor landscape estimation via k-means analysis {-#section-id} -->
+<!-- Now, let's look at the results of k-means analysis. First, NETISCE determines the optimal number of k clusters by computing the elbow and silhouette metrics.  -->
+<!-- ```{r, out.width='50%', fig.show="hold",echo = FALSE, fig.cap = 'optimal k as identified by a) the elbow and b) silhouette metrics'} -->
+<!-- knitr::include_graphics("crc/results/elbow.png") -->
+<!-- knitr::include_graphics("crc/results/silhouette.png") -->
+<!-- ``` -->
+<!-- We see that the optimal k assessed by both the elbow metric and silhouette metric was k=3. NETISCE checkes to make sure that the untreated, MAPK inihibitor therapy resistant, and MAPK inhibitor therapy sensitive attractors are all separate.  -->
+<!-- We can look at those results in the `kmeans.txt` file.  -->
+<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE} -->
+<!-- kmeans<-read.delim('crc/results/kmeans.txt',sep=" ",nrows=3) -->
+<!-- knitr::kable(kmeans) -->
+<!-- ``` -->
+<!-- #### Pertrubations on FVS control nodes that pass criterion 1 {-#section-id} -->
+<!-- With 13 FVS control nodes, NETISCE performed 1,594,323 simulations of combinations of perturbations on the FVS control nodes. The resulting attractors were classified to the clusters produced from the k-means analysis using Naive Bayes, Support Vector Machine, and Random Forest Machine Learning classification algorithms. Then, the perturbations are filtered by which of their corresponding attractors were classified to the  MAPK inhibitor therapy sensitive cluster by at least 2 of the 3 methods. These results can be found in [`crit1_perts.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/crit1perts.txt). Here we show the first 10 rows. -->
+<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE} -->
+<!-- crit1<-read.delim('crc/results/crit1perts.txt',sep=" ",header=F) -->
+<!-- print(paste0('number of perturbations that pass filtering criteria 1: ',nrow(crit1))) -->
+<!-- knitr::kable(crit1[1:10,]) -->
+<!-- ``` -->
+<!-- ### Results using 3 internal-marker nodes -->
+<!-- **The relevant files have the prefix 'original' in the github repository** -->
+<!-- Our second perturbation filtering criterion identifies perturbations where, in their corresponding attractors, 90% of the steady state values for internal-marker nodes that are within the steady state expression ranges in the attractor representing MAPK inhibitor therapy sensitivity.  -->
+<!-- First, let's take a  look at the steady state values of the internal-marker nodes CASP3, CCNE1, and MAPK1 in the attractors generated from the untreated HT29 with simulated BRAFi (resistant) and BRAFi+EGFRi (sensitive). The values can be found in the [`exp_internalmarkers.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/exp_internalmarkers.txt) and are plotted in [`-experimental_internalmarkers.pdf`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/experimental_internalmarkers.pdf): -->
+<!-- ```{r, echo = FALSE, message=FALSE, include=TRUE, fig.align='center',fig.cap = "histograms of 3 internal-marker node values",fig.pos='H'} -->
+<!-- knitr::include_graphics("crc/results/3-marker-nodes/experimental_internalmarkers.png") -->
+<!-- ``` -->
+<!-- We see that the value of the internal-marker for the apoptosis (CASP3) is higher and the steady-state values of the internal-marker nodes for proliferation (CCNE1) and MAPK signaling (MAPK1) are lower in the MAPK inhibitor therapy sensitive associated attractor than the MAPK inhibitor therapy resistance and untreated associated attractors.  -->
+<!-- Now, we can take a look at the attractors that passed filtering criterion 2. We show the first 10 rows here, but you can view the entire set in [`successful_controlnode_perturbations.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/successful_controlnode_perturbations.txt) -->
+<!-- ```{r echo=TRUE, message=FALSE, warning=FALSE} -->
+<!-- crit2_3<-read.delim('crc/results/3-marker-nodes/successful_controlnode_perturbations.txt',sep=" ",as.is = T) -->
+<!-- print(paste0('number of perturbations that pass filtering criteria 2: ',nrow(crit2_3))) -->
+<!-- knitr::kable(crit2_3[1:10,])  %>% column_spec(15, bold = F, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;")  -->
+<!-- ``` -->
+<!-- We can look to see if there are any trends in the orientation of the perturbations on FVS control nodes across the perturbations that passed both filtering criteria. -->
+<!-- ```{r echo=TRUE, message=FALSE, warning=FALSE, fig.align='center',fig.width=12, fig.cap="the precentage of specific perturbations on FVS control nodes in the perturbations that passed the filtering criteria"} -->
+<!-- library(data.table) -->
+<!-- library(ggplot2) -->
+<!-- d3<-crit2_3[,c(1:13)] %>% transpose() %>% as.matrix() -->
+<!-- row.names(d3)<-colnames(crit2_3[1:13]) -->
+<!-- colnames(d3)<-row.names(crit2_3) -->
+<!-- d3r<-reshape2::melt(d3) %>% select(-Var2) -->
+<!-- #From Paul Tol: https://personal.sron.nl/~pault/ -->
+<!-- Tol_muted <- c('#88CCEE', '#44AA99', '#117733', '#332288', '#DDCC77', '#999933','#CC6677', '#882255', '#AA4499', '#DDDDDD') -->
+<!-- ggplot(d3r, aes(x=value)) + -->
+<!--   facet_wrap(~Var1,scales = "free_x",shrink=FALSE) + -->
+<!--   geom_bar(aes(y = (..count..)/ncol(d3),fill=value))  + scale_y_continuous(labels=scales::percent) + scale_fill_manual(values=Tol_muted)+ ylab("% of specified perturbation to an FVS control node across all \n combinations of perturbations that passed filtering criteria ") + xlab("node perturbation") -->
+<!-- ``` -->
+<!-- Here, we see that in the majority of perturbations, SRC is knocked-out. -->
+<!-- The steady-state values of the internal-marker nodes for these perturbations can be found in [`pert1_internal_markers.txt`](https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/colorectal_cancer_validation/results/3-marker-nodes/pert_internal_markers.txt). -->
+<!-- The combination BRAFi+SRCi treatment was identified and experimentally validated by Park et al., to overcome adaptive resistance to MAPK inhibitor therapy in HT29 cells. This perturbation, pert_797158, passed both of our filtering criteria. We can plot the  steady-state values of the internal-marker nodes for HT29_BRAFi, H29_BRAFi+EGFRi, and HT29_BRAFi+SRCi using a radar plot. -->
+<!-- ```{r crc-charts, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 3 internal-marker nodes for HT29_BRAFi+SRCi"} -->
+<!-- library(fmsb) -->
+<!-- attr_pert<-read.delim("crc/results/3-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1) %>% mutate(across(where(is.numeric), ~ round(., digits = 3))) -->
+<!-- attr_pert <-attr_pert[c('pert_797158'),] -->
+<!-- exp<-read.delim("crc/results/3-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1) %>% mutate(across(where(is.numeric), ~ round(., digits = 3))) -->
+<!-- exp<-exp[c(2,3),] -->
+<!-- d1<-rbind(exp,attr_pert)  -->
+<!-- maxcol<-apply(exp, 2, max) -->
+<!-- mincol<-apply(exp, 2, min) -->
+<!-- d2<-rbind(maxcol,mincol, exp) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- create_beautiful_radarchart(d2,color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(min(d2),max(d2),.4),title ="resistant and sensitive attractors");legend(x=0.4, y=1.4, legend =c(row.names(d2)[3:nrow(d2)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- # library(NMF) -->
+<!-- # annot<-c("sensitive","resistant","perturbation") -->
+<!-- # aheatmap(t(d1),scale="none",Rowv = NA,color = colorRampPalette(c("navy", "white", "firebrick3"))(80), annCol=annot,cellwidth = 30) -->
+<!-- rownames(d1)[3]<- c("HT29_BRAFi+SRCi") -->
+<!-- maxcol<-apply(d1, 2, max) -->
+<!-- mincol<-apply(d1, 2, min) -->
+<!-- d2<-rbind(maxcol,mincol, d1) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
+<!-- for (i in 5:nrow(d2)) { -->
+<!--   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c(row.names(d2)[3:nrow(d2)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- } -->
+<!-- ``` -->
+<!-- We see here that the steady state value of CASP3 in the attractor produced from the HT29_BRAFi+SRCi perturbation is within the range of attractor produced from the HT29_BRAFi+EGFRi perturbation.  -->
+<!-- ### Results using apoptosis, proliferation, and MAPK signaling internal-marker nodes -->
+<!-- We filtered the 52,703 perturbations using an additional 17 internal-marker nodes for the phenotypes of apoptosis, proliferation, and mapk signaling.  -->
+<!-- The individual results for all three sets can be found in their respective folders on github: -->
+<!-- [`apoptosis-marker-nodes`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results/apoptosis-marker-nodes) -->
+<!-- [`mapk-marker-nodes`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results/mapk-marker-nodes) -->
+<!-- [`proliferation-marker-nodes`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/colorectal_cancer_validation/results/proliferation-marker-nodes) -->
+<!-- ```{r message=FALSE, warning=FALSE, include=FALSE} -->
+<!-- crit2_apop<-read.delim('crc/results/apoptosis-marker-nodes/successful_controlnode_perturbations.txt',sep=" ") -->
+<!-- crit2_prolif<-read.delim('crc/results/proliferation-marker-nodes/successful_controlnode_perturbations.txt',sep=" ") -->
+<!-- crit2_mapk<-read.delim('crc/results/mapk-marker-nodes/successful_controlnode_perturbations.txt',sep=" ") -->
+<!-- print(paste0('number of perturbations that pass filtering criteria 2: ',nrow(crit2_mapk))) -->
+<!-- # knitr::kable(crit2_mapk[1:10,])  %>% column_spec(15, bold = F, border_left = T) %>% scroll_box(width = "100%", box_css = "border: 0px;") -->
+<!-- ``` -->
+<!-- We are interested in perturbations on FVS control nodes that pass the filtering criterion for each of the three phenotypes (i.e., the 90% threshold for steady-state values is met separately for each of the sets of apoptosis, MAPK signaling, and proliferation nodes). We can plot the node perturbation trends for these perturbations. -->
+<!-- ```{r all-three,fig.cap="the precentage of specific perturbations on FVS control nodes in the perturbations that passed the filtering criteria"} -->
+<!-- allthree<-crit2_3[c(Reduce(intersect, list(row.names(crit2_3),row.names(crit2_apop),row.names(crit2_prolif),row.names(crit2_mapk)))),] -->
+<!-- print(paste0('number of perturbations that pass filtering criteria 2: ',nrow(allthree))) -->
+<!-- d4<-allthree[,c(1:13)] %>% transpose() %>% as.matrix() -->
+<!-- row.names(d4)<-colnames(allthree[1:13]) -->
+<!-- colnames(d4)<-row.names(allthree) -->
+<!-- d4r<-reshape2::melt(d4) %>% select(-Var2) -->
+<!-- ggplot(d4r, aes(x=value)) + -->
+<!--   facet_wrap(~Var1,scales = "free_x",shrink=FALSE) + -->
+<!--   geom_bar(aes(y = (..count..)/ncol(d4),fill=value))  + scale_y_continuous(labels=scales::percent)+ -->
+<!--   theme(panel.spacing.x = unit(4, "mm")) + scale_fill_manual(values=Tol_muted) + ylab("% of specified perturbation to an FVS control node across all \n combinations of perturbations that passed filtering criteria ") + xlab("node perturbation") -->
+<!-- ``` -->
+<!-- For perturbations that pass the 2nd filtering criterion using internal-marker nodes for apoptosis, MAPK sigaling and proliferation, we see that in 100% of the perturbations SRC is downregulated. In the majority of of perturbations, TSC1 is upregulated, and GRB2 is downregulated. -->
+<!-- The two smallest sets of perturbations that passed the filtering criteria were BRAFi+SRCi+TSC1overexpression (pert_797159) and BRAFi+SRCi+GRB2i (pert_790597). We can make radar charts for each phenotype's internal marker nodes to show that the steady-state values for the internal marker-nodes produced from these perturbations are within the gene expression range of the MAPK inhibitor therapy sensitivty assocaited attractor (HT29_BRAFi+EGFRi). -->
+<!-- ```{r crc-chartsapop, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of apoptosis internal-marker nodes for HT29_BRAFi+SRCi_TSCovr and HT29_BRAFi+SRCi_GRB2i"} -->
+<!-- attr_pert<-read.delim("crc/results/apoptosis-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1) -->
+<!-- attr_pert <-attr_pert[c('pert_797159','pert_790597'),] -->
+<!-- exp<-read.delim("crc/results/apoptosis-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- exp<-exp[c(2,3),] -->
+<!-- d1<-rbind(exp,attr_pert) -->
+<!-- annot<-c("sensitive","resistant","perturbation","perturbation") -->
+<!-- aheatmap(t(d1),scale="row",Rowv = NA,color = colorRampPalette(c("navy", "white", "firebrick3"))(80), annCol=annot,cellwidth = 30,main="apoptosis marker nodes") -->
+<!-- rownames(d1)[3:4]<- c("HT29_BRAFi+SRCi+TSCovr","HT29_BRAFi+SRCi+GRB2i") -->
+<!-- maxcol<-apply(d1, 2, max) -->
+<!-- mincol<-apply(d1, 2, min) -->
+<!-- d2<-rbind(maxcol,mincol, d1) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
+<!-- for (i in 5:nrow(d2)) { -->
+<!--   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c(row.names(d2)[c(3,4,i)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- } -->
+<!-- ``` -->
+<!-- ```{r crc-chartsprolif, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of proliferation internal-marker nodes for HT29_BRAFi+SRCi_TSCovr and HT29_BRAFi+SRCi_GRB2i"} -->
+<!-- attr_pert<-read.delim("crc/results/proliferation-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1) -->
+<!-- attr_pert <-attr_pert[c('pert_797159','pert_790597'),] -->
+<!-- exp<-read.delim("crc/results/proliferation-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- exp<-exp[c(2,3),] -->
+<!-- d1<-rbind(exp,attr_pert) -->
+<!-- annot<-c("sensitive","resistant","perturbation","perturbation") -->
+<!-- aheatmap(t(d1),scale="row",Rowv = NA,color = colorRampPalette(c("navy", "white", "firebrick3"))(80), cellwidth = 30,main="proliferation marker nodes") -->
+<!-- rownames(d1)[3:4]<- c("HT29_BRAFi+SRCi+TSCovr","HT29_BRAFi+SRCi+GRB2i") -->
+<!-- maxcol<-apply(d1, 2, max) -->
+<!-- mincol<-apply(d1, 2, min) -->
+<!-- d2<-rbind(maxcol,mincol, d1) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
+<!-- for (i in 5:nrow(d2)) { -->
+<!--   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);#legend(x=0.4, y=1.4, legend =c(row.names(d2)[c(3,4,i)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- } -->
+<!-- ``` -->
+<!-- ```{r crc-chartsmapk, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of MAPK signaling internal-marker nodes for HT29_BRAFi+SRCi_TSCovr and HT29_BRAFi+SRCi_GRB2i"} -->
+<!-- attr_pert<-read.delim("crc/results/mapk-marker-nodes/pert_internal_markers.txt",sep=" ",row.names = 1) -->
+<!-- attr_pert <-attr_pert[c('pert_797159','pert_790597'),] -->
+<!-- exp<-read.delim("crc/results/mapk-marker-nodes/exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- exp<-exp[c(2,3),] -->
+<!-- d1<-rbind(exp,attr_pert) -->
+<!-- annot<-c("sensitive","resistant","perturbation","perturbation") -->
+<!-- aheatmap(t(d1),scale="row",Rowv = NA,color = colorRampPalette(c("navy", "white", "firebrick3"))(80), cellwidth = 30,main="proliferation marker nodes") -->
+<!-- rownames(d1)[3:4]<- c("HT29_BRAFi+SRCi+TSCovr","HT29_BRAFi+SRCi+GRB2i") -->
+<!-- maxcol<-apply(d1, 2, max) -->
+<!-- mincol<-apply(d1, 2, min) -->
+<!-- d2<-rbind(maxcol,mincol, d1) -->
+<!-- rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- par(mar = c(4, 0.1, 4, 0.1)) -->
+<!-- for (i in 5:nrow(d2)) { -->
+<!--   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);#legend(x=0.4, y=1.4, legend =c(row.names(d2)[c(3,4,i)]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- } -->
+<!-- ``` -->
+<!-- ```{r test} -->
+<!-- exp<-read.delim("crc-lpm/exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- attr_pert<-read.delim("crc-lpm/pert_internal_markers.txt",sep=" ",row.names =1) -->
+<!-- # exp<-exp[c(2,3),] -->
+<!-- attr_pert <-attr_pert[c('pert_797158','pert_797159','pert_790597'),] -->
+<!-- d1<-rbind(exp,attr_pert) -->
+<!-- annot<-c("sensitive","resistant","perturbation","perturbation","perturbation") -->
+<!-- aheatmap(t(d1),scale="row",color = colorRampPalette(c("navy", "white", "firebrick3"))(80), cellwidth = 30,main="all marker nodes -scale",file="allmaker-withunpert-scale.pdf") -->
+<!-- exp<-read.delim("crc-lpm/exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- aheatmap(t(d1),scale="row",Rowv = NA,color = colorRampPalette(c("navy", "white", "firebrick3"))(80), cellwidth = 30,main="all marker nodes scaled",file="allmarkers-scale.pdf") -->
+<!-- ``` -->
+<!-- # ```{r radar-plots-for-paper, out.width='50%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"} -->
+<!-- #  -->
+<!-- #  -->
+<!-- # attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1) -->
+<!-- # attr_pert <-attr_pert[c('pert_445','pert_365'),c('Oct4',"Sox2","Nanog","EpiTFs")] -->
+<!-- # exp<-read.delim("ipsc/results/original-exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- # EpiSC_avg<-colMeans(exp[4:6,]) -->
+<!-- # ESC_avg<-colMeans(exp[1:3,]) -->
+<!-- #  -->
+<!-- # d1<-rbind(EpiSC_avg,ESC_avg,attr_pert) -->
+<!-- # rownames(d1)[1:4]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression") -->
+<!-- # maxcol<-apply(d1, 2, max) -->
+<!-- # mincol<-apply(d1, 2, min) -->
+<!-- #  -->
+<!-- # d2<-rbind(maxcol,mincol, d1) -->
+<!-- # rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- #  -->
+<!-- # par(mar = c(4, 0.1, 4, 0.1)) -->
+<!-- #  -->
+<!-- #  -->
+<!-- # for (i in 5:nrow(d2)) { -->
+<!-- #   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=1, pt.cex=2) -->
+<!-- # } -->
+<!-- # ``` -->
+<!-- #  -->
+<!-- #  -->
+<!-- # ```{r radar-plots-for-paper2, out.width='33%',echo = TRUE,fig.show='hold',fig.cap = "radar charts of the steady-state values of 7 internal-marker nodes perturbation"} -->
+<!-- #  -->
+<!-- #  -->
+<!-- # attr_pert<-read.delim("ipsc/results/pert1_internal_markers.txt",sep=" ",row.names = 1) -->
+<!-- # attr_pert <-attr_pert[c('pert_445','pert_365','pert_446'),] -->
+<!-- # exp<-read.delim("ipsc/results/original-exp_internalmarkers.txt",sep=" ",row.names = 1) -->
+<!-- # EpiSC_avg<-colMeans(exp[4:6,]) -->
+<!-- # ESC_avg<-colMeans(exp[1:3,]) -->
+<!-- #  -->
+<!-- # d1<-rbind(EpiSC_avg,ESC_avg,attr_pert) -->
+<!-- # rownames(d1)[1:5]<- c("EpiSC", "ESC","Nanog overexpression","Klf4 overexpression","Nanog+Klf4 overexpression") -->
+<!-- # maxcol<-apply(d1, 2, max) -->
+<!-- # mincol<-apply(d1, 2, min) -->
+<!-- #  -->
+<!-- # d2<-rbind(maxcol,mincol, d1) -->
+<!-- # rownames(d2)[1:2]<- c("Max", "Min") -->
+<!-- #  -->
+<!-- # par(mar = c(4, 0.1, 4, 0.1)) -->
+<!-- #  -->
+<!-- #  -->
+<!-- # for (i in 5:nrow(d2)) { -->
+<!-- #   create_beautiful_radarchart(d2[c(1:4, i), ],color = c("#00AFBB", "#E7B800","#FC4E07"),caxislabels = seq(round(min(d2[c(1:4, i),]),1),round(max(d2[c(1:4, i),]),1),.2),title =row.names(d2)[i]);legend(x=0.4, y=1.4, legend =c("average EpiSC","average ESC",row.names(d2)[i]) , bty = "n", pch=20 , col=c("#00AFBB", "#E7B800","#FC4E07") , text.col = "black", cex=.8, pt.cex=1.8) -->
+<!-- # } -->
+<!-- # ``` -->
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="adaptive-resistance-in-colorectal-cancer-example.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="netisce-in-galaxy-project.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/VeraLiconaResearchGroup/Netisce/tree/gh-pages/07-noise.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
