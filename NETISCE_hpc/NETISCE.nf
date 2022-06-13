@@ -29,7 +29,7 @@ process sfa_exp {
 
     script:
     """
-    SFA_exp_attr.py network.sif expressions.csv attrs_exp.txt
+    SFA_exp_attr.py network.sif expressions.csv attrs_exp.txt $params.alpha
     """
 }
 
