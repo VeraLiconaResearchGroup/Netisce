@@ -1,4 +1,4 @@
-# NETSICE output 
+# NETISCE output 
 
 After the NETISCE computations are complete, the output files will be located in the `results` folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline's `work` folder that is generated during a NETISCE run. 
 

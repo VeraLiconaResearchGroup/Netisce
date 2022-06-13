@@ -5,11 +5,11 @@
 
 NETISCE pipelines can be downloaded from our github repository:  <https://github.com/veraliconaresearchgroup/netisce>
 
-We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs [(NETISCE_hpc)](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc), and another for running NETISCE on a local machine [(NETISCE_local)](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local).
+We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs [(NETISCE_hpc)](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_hpc), and another for running NETISCE on a local machine [(NETISCE_local)](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local).
 
 ## Install Nextflow
 
-Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see 'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETSICE folder (_local or _hpc).
+Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see 'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETISCE folder (_local or _hpc). Note: if you are on a Windows Machine, please see this additional information <https://www.nextflow.io/blog/2021/setup-nextflow-on-windows.html>
 
 ## Prerequisuites
 
@@ -19,6 +19,16 @@ Please be sure you have the following Python packages installed:
 - [pandas](https://pandas.pydata.org/getting_started.html)
 - [sklearn](https://scikit-learn.org/stable/install.html)
 - [yellowbrick](https://www.scikit-yb.org/en/latest/quickstart.html)
+
+As well as the following R packages:
+
+- dplyr
+- ggplot2
+- plyr
+- reshape2
+- readr
+
+which can be installed through [CRAN](https://cran.r-project.org/)
 
 ## Docker Image
 
@@ -57,7 +67,7 @@ If you are running nextflow on an hpc, please specify your executor, and cluster
 
 ## Running NETISCE
 
-Once you have specified the parameters, run NETSICE using the following command: 
+Once you have specified the parameters, run NETISCE using the following command: 
 ``` 
 ./nextflow run NETISCE.nf -resume ##or NETISCE_mutations.nf if including mutational data
 

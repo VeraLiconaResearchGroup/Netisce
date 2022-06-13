@@ -1,6 +1,6 @@
 # Toy Network Examples {#toy}
 
-Here, we will walk through a brief tutorial of a NETISCE run. The files necessary to complete the tutorial are within the `input data` folder of both [`NETISCE_local`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local) and [`NETISCE_hpc`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc).
+Here, we will walk through a brief tutorial of a NETISCE run. The files necessary to complete the tutorial are within the `input data` folder of both [`NETISCE_local`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local) and [`NETISCE_hpc`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_hpc).
 The results from these Toy examples can be found in the [toy_example_results](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results) folder of the main github repository.
 
 ## Overview
