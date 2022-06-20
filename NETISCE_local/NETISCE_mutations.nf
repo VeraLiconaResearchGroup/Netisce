@@ -156,7 +156,7 @@ process check_icns{
     path 'samples.txt' from params.samples
 
     output:
-    path 'experimental_internalmarkers.pdf' into records_icn_check
+    path 'experimental_internalmarkers.png' into records_icn_check
 
     script:
     """
