@@ -26,7 +26,7 @@ params
 netisce_mutations.nf
 nextflow.config
 running-netisce
-netsice-output
+netisce-output
 toy
 overview
 data

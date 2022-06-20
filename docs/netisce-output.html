@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>NETISCE Manual and Tutorials</title>
+  <title>3 NETISCE output | NETISCE Manual and Tutorials</title>
   <meta name="description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="NETISCE Manual and Tutorials" />
+  <meta property="og:title" content="3 NETISCE output | NETISCE Manual and Tutorials" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://veraliconaresearchgroup.github.io/Netisce/" />
   <meta property="og:image" content="https://veraliconaresearchgroup.github.io/Netisce/images/netisce-logo.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/veraliconaresearchgroup/netisce" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="NETISCE Manual and Tutorials" />
+  <meta name="twitter:title" content="3 NETISCE output | NETISCE Manual and Tutorials" />
   
   <meta name="twitter:description" content="Welcome to the NETISCE manual and tutorials. NETISCE is a network-based approach for cellular reprogramming. This manual contains directions for intial setup, as well as tutorials for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology." />
   <meta name="twitter:image" content="https://veraliconaresearchgroup.github.io/Netisce/images/netisce-logo.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="installation-and-usage.html"/>
+<link rel="prev" href="installation-and-usage.html"/>
+<link rel="next" href="toy.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -219,32 +219,51 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">NETISCE Manual and Tutorials</h1>
-<p class="author"><em>Lauren Marazzi</em></p>
-<p class="date"><em>2022-06-16</em></p>
+<div id="netisce-output" class="section level1">
+<h1><span class="header-section-number">3</span> NETISCE output</h1>
+<p>After the NETISCE computations are complete, the output files will be located in the <code>results</code> folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline’s <code>work</code> folder that is generated during a NETISCE run.</p>
+<p>The contents of each file are briefly described below. For more details and to see example outputs, please see the <a href="toy.html#toy">Toy Network Examples</a>.</p>
+<div id="section-id" class="section level4 unnumbered">
+<h4>exp_internalmarkers.txt</h4>
+<p>This file contains the resultant steady state values for the internal marker nodes for the provided experimental samples (those specified in samples.txt) from Signal Flow Analysis.</p>
 </div>
-<div id="about" class="section level1">
-<h1><span class="header-section-number">1</span> About</h1>
-<p>Welcome to the NETISCE manual and tutorials.</p>
-<p>The search for effective therapeutic targets in fields like regenerative medicine and cancer research has generated interest in cell fate reprogramming. This cellular reprogramming paradigm can drive cells to a desired target state from any initial state. However, methods for identifying reprogramming targets remain limited for biological systems that lack large sets of experimental data or a dynamical characterization. We present NETISCE, a novel computational tool for identifying cell fate reprogramming targets in static networks. NETISCE identifies reprogramming targets through the innovative use of control theory within a dynamical systems framework. Through validations in studies of cell fate reprogramming from developmental, stem cell, and cancer biology, we show that NETISCE can predict previously identified cell fate reprogramming targets and identify potentially novel combinations of targets. NETISCE extends cell fate reprogramming studies to larger-scale biological networks without the need for full model parameterization and can be implemented by experimental and computational biologists to identify parts of a biological system that are relevant for the desired reprogramming task.</p>
-<p>For more information, please see the accompanying paper:</p>
-<p>Or biorxiv version: <a href="https://www.biorxiv.org/content/10.1101/2021.12.30.474582v1" class="uri">https://www.biorxiv.org/content/10.1101/2021.12.30.474582v1</a></p>
-<p>This manual contains instructions for installing the NETISCE pipeline tool and accessing the Galaxy Project GUI web-based tool. We provide a simple toy example walkthrough tutorial. Lastly, we include instructions for reproducing NETISCE cell reprogramming results in developmental, stem cell, and cancer biology.</p>
-<p>To navigate this site, use the menu on the left-hand side.</p>
-<script type="text/javascript">
-title=document.getElementById('header');
-title.innerHTML = '<img src="images/netisce-logo.png" alt="logo",width="90",height="20">' + title.innerHTML
-</script>
+<div id="section-id" class="section level4 unnumbered">
+<h4>experimental_internalmarkers.pdf</h4>
+<p>This pdf is a figure of the steady state values for the internal marker nodes for the provided experimental samples. This can be used to verify the validity of the internal marker nodes.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>elbow.png</h4>
+<p>A graph of the elbow metric for determining the optimal k for k-means.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>silhouette.png</h4>
+<p>A graph of the silhouette metric for determining the optimal k for k-means.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>fvs.txt</h4>
+<p>This file contains the node names for the FVS used as control nodes for the NETISCE run.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>crit1perts.txt</h4>
+<p>This file contains a list of IDs for the control node perturbations that passed criterion 1.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>pert1_internal_markers.txt</h4>
+<p>This file contains a table of the internal marker node steady state values from control node perturbations whose associated attractors passed the first filtering criterion.</p>
+</div>
+<div id="section-id" class="section level4 unnumbered">
+<h4>successful_controlnode_perturbations.txt</h4>
+<p>This file contains a table of the control node perturbations that pass both the 1st and 2nd filtering criteria. it also contains the number of upregulation,downregulations, and total number of nodes perturbed for each perturbation set.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="installation-and-usage.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="installation-and-usage.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="toy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -275,7 +294,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/VeraLiconaResearchGroup/Netisce/tree/gh-pages/index.Rmd",
+"link": "https://github.com/VeraLiconaResearchGroup/Netisce/tree/gh-pages/02-output.Rmd",
 "text": "Edit"
 },
 "history": {

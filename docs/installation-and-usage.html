@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2022-05-22" />
+<meta name="date" content="2022-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="netsice-output.html"/>
+<link rel="next" href="netisce-output.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -150,7 +150,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="installation-and-usage.html"><a href="installation-and-usage.html#running-netisce"><i class="fa fa-check"></i><b>2.6</b> Running NETISCE</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="netsice-output.html"><a href="netsice-output.html"><i class="fa fa-check"></i><b>3</b> NETSICE output</a></li>
+<li class="chapter" data-level="3" data-path="netisce-output.html"><a href="netisce-output.html"><i class="fa fa-check"></i><b>3</b> NETISCE output</a></li>
 <li class="chapter" data-level="4" data-path="toy.html"><a href="toy.html"><i class="fa fa-check"></i><b>4</b> Toy Network Examples</a><ul>
 <li class="chapter" data-level="4.1" data-path="toy.html"><a href="toy.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
 <li class="chapter" data-level="4.2" data-path="toy.html"><a href="toy.html#data"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
@@ -224,11 +224,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="download-netisce" class="section level2">
 <h2><span class="header-section-number">2.1</span> Download NETISCE</h2>
 <p>NETISCE pipelines can be downloaded from our github repository: <a href="https://github.com/veraliconaresearchgroup/netisce" class="uri">https://github.com/veraliconaresearchgroup/netisce</a></p>
-<p>We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc">(NETISCE_hpc)</a>, and another for running NETISCE on a local machine <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local">(NETISCE_local)</a>.</p>
+<p>We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_hpc">(NETISCE_hpc)</a>, and another for running NETISCE on a local machine <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local">(NETISCE_local)</a>.</p>
 </div>
 <div id="install-nextflow" class="section level2">
 <h2><span class="header-section-number">2.2</span> Install Nextflow</h2>
-<p>Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <a href="https://www.nextflow.io/" class="uri">https://www.nextflow.io/</a> (see ‘Getting Started’ steps 1 &amp; 2) to install Nextflow in the appropriate NETSICE folder (_local or _hpc).</p>
+<p>Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <a href="https://www.nextflow.io/" class="uri">https://www.nextflow.io/</a> (see ‘Getting Started’ steps 1 &amp; 2) to install Nextflow in the appropriate NETISCE folder (_local or _hpc). Note: if you are on a Windows Machine, you will need to install Windows Subsystem for Linux <a href="https://docs.microsoft.com/en-us/windows/wsl/install" class="uri">https://docs.microsoft.com/en-us/windows/wsl/install</a></p>
 </div>
 <div id="prerequisuites" class="section level2">
 <h2><span class="header-section-number">2.3</span> Prerequisuites</h2>
@@ -239,6 +239,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://scikit-learn.org/stable/install.html">sklearn</a></li>
 <li><a href="https://www.scikit-yb.org/en/latest/quickstart.html">yellowbrick</a></li>
 </ul>
+<p>As well as the following R packages:</p>
+<ul>
+<li>dplyr</li>
+<li>ggplot2</li>
+<li>plyr</li>
+<li>reshape2</li>
+<li>readr</li>
+</ul>
+<p>which can be installed through <a href="https://cran.r-project.org/">CRAN</a></p>
 </div>
 <div id="docker-image" class="section level2">
 <h2><span class="header-section-number">2.4</span> Docker Image</h2>
@@ -274,7 +283,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="running-netisce" class="section level2">
 <h2><span class="header-section-number">2.6</span> Running NETISCE</h2>
-<p>Once you have specified the parameters, run NETSICE using the following command:</p>
+<p>Once you have specified the parameters, run NETISCE using the following command:</p>
 <pre><code>./nextflow run NETISCE.nf -resume ##or NETISCE_mutations.nf if including mutational data
 </code></pre>
 <p>We recommend using the -resume flag in the case that you change a file or parameter within your pipeline. This way, nextflow caches results that remain unchanged, preventing pipeline steps from being re-run.</p>
@@ -287,7 +296,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="netsice-output.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="netisce-output.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

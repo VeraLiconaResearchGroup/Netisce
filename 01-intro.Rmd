@@ -9,7 +9,7 @@ We recommend that you run NETISCE on a high-performance cluster (hpc), as you ma
 
 ## Install Nextflow
 
-Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see 'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETISCE folder (_local or _hpc). Note: if you are on a Windows Machine, please see this additional information <https://www.nextflow.io/blog/2021/setup-nextflow-on-windows.html>
+Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see 'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETISCE folder (_local or _hpc). Note: if you are on a Windows Machine, you will need to install Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install>
 
 ## Prerequisuites
 

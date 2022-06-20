@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2022-05-22}
+\date{2022-06-16}
 
 \begin{document}
 \maketitle
@@ -159,12 +159,12 @@ To navigate this site, use the menu on the left-hand side.
 
 NETISCE pipelines can be downloaded from our github repository: \url{https://github.com/veraliconaresearchgroup/netisce}
 
-We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc}{(NETISCE\_hpc)}, and another for running NETISCE on a local machine \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local}{(NETISCE\_local)}.
+We recommend that you run NETISCE on a high-performance cluster (hpc), as you may generate files that are quite large, or run computations that may take a long time. However, we provide two Nextflow pipelines, one designed for hpcs \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_hpc}{(NETISCE\_hpc)}, and another for running NETISCE on a local machine \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local}{(NETISCE\_local)}.
 
 \hypertarget{install-nextflow}{%
 \section{Install Nextflow}\label{install-nextflow}}
 
-Nextflow is required to run the NETISCE pipeline. Please follow the instructions from \url{https://www.nextflow.io/} (see `Getting Started' steps 1 \& 2) to install Nextflow in the appropriate NETSICE folder (\_local or \_hpc).
+Nextflow is required to run the NETISCE pipeline. Please follow the instructions from \url{https://www.nextflow.io/} (see `Getting Started' steps 1 \& 2) to install Nextflow in the appropriate NETISCE folder (\_local or \_hpc). Note: if you are on a Windows Machine, you will need to install Windows Subsystem for Linux \url{https://docs.microsoft.com/en-us/windows/wsl/install}
 
 \hypertarget{prerequisuites}{%
 \section{Prerequisuites}\label{prerequisuites}}
@@ -182,6 +182,24 @@ Please be sure you have the following Python packages installed:
 \item
   \href{https://www.scikit-yb.org/en/latest/quickstart.html}{yellowbrick}
 \end{itemize}
+
+As well as the following R packages:
+
+\begin{itemize}
+\tightlist
+\item
+  dplyr
+\item
+  ggplot2
+\item
+  plyr
+\item
+  reshape2
+\item
+  readr
+\end{itemize}
+
+which can be installed through \href{https://cran.r-project.org/}{CRAN}
 
 \hypertarget{docker-image}{%
 \section{Docker Image}\label{docker-image}}
@@ -238,7 +256,7 @@ If you are running nextflow on an hpc, please specify your executor, and cluster
 \hypertarget{running-netisce}{%
 \section{Running NETISCE}\label{running-netisce}}
 
-Once you have specified the parameters, run NETSICE using the following command:
+Once you have specified the parameters, run NETISCE using the following command:
 
 \begin{verbatim}
 ./nextflow run NETISCE.nf -resume ##or NETISCE_mutations.nf if including mutational data
@@ -246,8 +264,8 @@ Once you have specified the parameters, run NETSICE using the following command:
 
 We recommend using the -resume flag in the case that you change a file or parameter within your pipeline. This way, nextflow caches results that remain unchanged, preventing pipeline steps from being re-run.
 
-\hypertarget{netsice-output}{%
-\chapter{NETSICE output}\label{netsice-output}}
+\hypertarget{netisce-output}{%
+\chapter{NETISCE output}\label{netisce-output}}
 
 After the NETISCE computations are complete, the output files will be located in the \texttt{results} folder. Please note that we have included in this folder the most relevant output files that you may want to use for further analysis. However, you can explore all outputs by checking within each step of the pipeline's \texttt{work} folder that is generated during a NETISCE run.
 
@@ -304,7 +322,7 @@ This file contains a table of the control node perturbations that pass both the 
 \hypertarget{toy}{%
 \chapter{Toy Network Examples}\label{toy}}
 
-Here, we will walk through a brief tutorial of a NETISCE run. The files necessary to complete the tutorial are within the \texttt{input\ data} folder of both \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_local}{\texttt{NETISCE\_local}} and \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETICSE_hpc}{\texttt{NETISCE\_hpc}}.
+Here, we will walk through a brief tutorial of a NETISCE run. The files necessary to complete the tutorial are within the \texttt{input\ data} folder of both \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local}{\texttt{NETISCE\_local}} and \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_hpc}{\texttt{NETISCE\_hpc}}.
 The results from these Toy examples can be found in the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results}{toy\_example\_results} folder of the main github repository.
 
 \hypertarget{overview}{%
