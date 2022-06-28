@@ -137,6 +137,7 @@ process check_icns{
 
     script:
     """
+    module load R/3.6.3
     icn_check1.R exp_internalmarkers.txt samples.txt experimental_internalmarkers.png
     """
     
@@ -239,6 +240,7 @@ process filtering_by_icn {
     
     script:
     """
+    module load R/3.6.3
     for x in pert_logss*
     do
     crit2.R exp_internalmarkers.txt samples.txt \$x $params.desired $params.undesired $params.filter
@@ -280,6 +282,7 @@ process translate_perts {
     
     script:
     """
+    module load R/3.6.3
     pertanalysis.R extract_perts.txt
     """
     

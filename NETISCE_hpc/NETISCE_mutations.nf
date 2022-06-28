@@ -12,7 +12,7 @@ params.filter ="strict"
 
 
 params.kmeans_min_val = 2
-params.kmeans_max_val = 6
+params.kmeans_max_val = 8
 
 
 params.num_nodes = 6 // that have expression data
@@ -162,6 +162,7 @@ process check_icns{
 
     script:
     """
+    module load R/3.6.3
     icn_check1.R exp_internalmarkers.txt samples.txt
     """
     
@@ -264,6 +265,7 @@ process filtering_by_icn {
     
     script:
     """
+    module load R/3.6.3
     for x in pert_logss*
     do
     crit2.R exp_internalmarkers.txt samples.txt \$x $params.desired $params.undesired $params.filter
@@ -305,6 +307,7 @@ process translate_perts {
     
     script:
     """
+    module load R/3.6.3
      pertanalysis.R extract_perts.txt
     """
     
