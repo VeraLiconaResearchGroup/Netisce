@@ -11,14 +11,14 @@ We recommend that you run NETISCE on a high-performance cluster (hpc), as you ma
 
 Nextflow is required to run the NETISCE pipeline. Please follow the instructions from <https://www.nextflow.io/> (see 'Getting Started' steps 1 & 2) to install Nextflow in the appropriate NETISCE folder (_local or _hpc). Note: if you are on a Windows Machine, you will need to install Windows Subsystem for Linux <https://docs.microsoft.com/en-us/windows/wsl/install>
 
-## Prerequisuites
+## Prerequisuites 
 
 Please be sure you have the following Python packages installed:
 
-- [scipy](https://scipy.org/install/)
-- [pandas](https://pandas.pydata.org/getting_started.html)
-- [sklearn](https://scikit-learn.org/stable/install.html)
-- [yellowbrick](https://www.scikit-yb.org/en/latest/quickstart.html)
+- [scipy](https://scipy.org/install/) version=1.5.4
+- [pandas](https://pandas.pydata.org/getting_started.html) version=1.1.5
+- [sklearn](https://scikit-learn.org/stable/install.html) version=0.24.2
+- [yellowbrick](https://www.scikit-yb.org/en/latest/quickstart.html) version=1.3.post1
 
 As well as the following R packages:
 
@@ -54,6 +54,7 @@ Whether on your local machine or hpc, to run NETISCE you must specify the files 
 - **params.kmeans_max_val**:  maximum k-means value for clustering (default=10)
 - **params.num_nodes**: number of nodes in network for which normalized expression data exists (within the params.expressions file)
 - **params.num_states**: number of randomly generated initial states (default=100000, or 3^n where n is the number of network nodes and 3^n is less than 100000)
+- **params.randseed**: random seed to generate one FVS of a network
 
 Please see the [`input_data`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local/input_data) folder for examples of files to match the formatting. 
 

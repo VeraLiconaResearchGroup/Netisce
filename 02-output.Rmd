@@ -7,8 +7,8 @@ The contents of each file are briefly described below. For more details and to s
 #### exp_internalmarkers.txt {-#section-id}
 This file contains the resultant steady state values for the internal marker nodes for the provided experimental samples (those specified in samples.txt) from Signal Flow Analysis.
 
-#### experimental_internalmarkers.pdf {-#section-id}
-This pdf is a figure of the steady state values for the internal marker nodes for the provided experimental samples. This can be used to verify the validity of the internal marker nodes.
+#### experimental_internalmarkers.png {-#section-id}
+This png is a figure of the steady state values for the internal marker nodes for the provided experimental samples. This can be used to verify the validity of the internal marker nodes.
 
 #### elbow.png  {-#section-id}
 A graph of the elbow metric for determining the optimal k for k-means.
