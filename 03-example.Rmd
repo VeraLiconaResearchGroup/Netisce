@@ -219,9 +219,9 @@ knitr::kable(read.delim('results/successful_controlnode_perturbations_mutations.
 
 ```
 
-Let's take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states when mutational information is included.
+Let's take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states B_1 when mutational information is included.
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-knitr::kable(read.delim('results/markers_mutations.txt',sep=" "))
+knitr::kable(read.delim('results/marker_mutations.txt',sep=" "))
 
 ```
 

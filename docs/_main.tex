@@ -174,13 +174,13 @@ Please be sure you have the following Python packages installed:
 \begin{itemize}
 \tightlist
 \item
-  \href{https://scipy.org/install/}{scipy}
+  \href{https://scipy.org/install/}{scipy} version=1.5.4
 \item
-  \href{https://pandas.pydata.org/getting_started.html}{pandas}
+  \href{https://pandas.pydata.org/getting_started.html}{pandas} version=1.1.5
 \item
-  \href{https://scikit-learn.org/stable/install.html}{sklearn}
+  \href{https://scikit-learn.org/stable/install.html}{sklearn} version=0.24.2
 \item
-  \href{https://www.scikit-yb.org/en/latest/quickstart.html}{yellowbrick}
+  \href{https://www.scikit-yb.org/en/latest/quickstart.html}{yellowbrick} version=1.3.post1
 \end{itemize}
 
 As well as the following R packages:
@@ -239,6 +239,8 @@ Whether on your local machine or hpc, to run NETISCE you must specify the files 
   \textbf{params.num\_nodes}: number of nodes in network for which normalized expression data exists (within the params.expressions file)
 \item
   \textbf{params.num\_states}: number of randomly generated initial states (default=100000, or 3\^{}n where n is the number of network nodes and 3\^{}n is less than 100000)
+\item
+  \textbf{params.randseed}: random seed to generate one FVS of a network
 \end{itemize}
 
 Please see the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local/input_data}{\texttt{input\_data}} folder for examples of files to match the formatting.
@@ -278,10 +280,10 @@ The contents of each file are briefly described below. For more details and to s
 This file contains the resultant steady state values for the internal marker nodes for the provided experimental samples (those specified in samples.txt) from Signal Flow Analysis.
 
 \hypertarget{section-id}{%
-\subsubsection*{experimental\_internalmarkers.pdf}\label{section-id}}
-\addcontentsline{toc}{subsubsection}{experimental\_internalmarkers.pdf}
+\subsubsection*{experimental\_internalmarkers.png}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{experimental\_internalmarkers.png}
 
-This pdf is a figure of the steady state values for the internal marker nodes for the provided experimental samples. This can be used to verify the validity of the internal marker nodes.
+This png is a figure of the steady state values for the internal marker nodes for the provided experimental samples. This can be used to verify the validity of the internal marker nodes.
 
 \hypertarget{section-id}{%
 \subsubsection*{elbow.png}\label{section-id}}
@@ -355,9 +357,13 @@ A & 2 & 1 & 2 & 6 & 7 & 6\\
 \hline
 B & 6 & 7 & 6 & 2 & 1 & 1\\
 \hline
+C & 5 & 5 & 5 & 1 & 1 & 1\\
+\hline
 D & -1 & -1 & -2 & 6 & 7 & 6\\
 \hline
 E & 2 & 1 & 2 & 6 & 7 & 6\\
+\hline
+F & 0 & 0 & 0 & 0 & 0 & 0\\
 \hline
 \end{tabular}
 
@@ -365,7 +371,7 @@ The \texttt{samples.txt} file specifies that A is associated to a treatment sens
 
 \begin{tabular}{l|l}
 \hline
-name & phenotype\\
+sample\_name & phenotype\\
 \hline
 A\_1 & sensitive\\
 \hline
@@ -747,23 +753,19 @@ pert\_8 & up & up & 2 & 0 & 2\\
 \hline
 \end{tabular}
 
-Let's take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states when mutational information is included.
+Let's take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states B\_1 when mutational information is included.
 
 \begin{tabular}{l|r}
 \hline
 name & C\\
 \hline
-A\_1 & -0.6621166\\
+pert\_3 & 2.319659\\
 \hline
-B\_1 & 0.1590962\\
+pert\_6 & 6.400000\\
 \hline
-pert\_0 & -2.7000000\\
+pert\_7 & 6.400000\\
 \hline
-pert\_1 & -2.7000000\\
-\hline
-pert\_2 & -2.7000000\\
-\hline
-pert\_5 & -2.8528056\\
+pert\_8 & 6.400000\\
 \hline
 \end{tabular}
 

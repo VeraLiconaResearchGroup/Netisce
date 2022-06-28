@@ -270,6 +270,15 @@ The normalized expression data is housed in <code>expressions.csv</code>, and co
 <td align="right">1</td>
 </tr>
 <tr class="odd">
+<td align="left">C</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
 <td align="left">D</td>
 <td align="right">-1</td>
 <td align="right">-1</td>
@@ -278,7 +287,7 @@ The normalized expression data is housed in <code>expressions.csv</code>, and co
 <td align="right">7</td>
 <td align="right">6</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">E</td>
 <td align="right">2</td>
 <td align="right">1</td>
@@ -287,13 +296,22 @@ The normalized expression data is housed in <code>expressions.csv</code>, and co
 <td align="right">7</td>
 <td align="right">6</td>
 </tr>
+<tr class="even">
+<td align="left">F</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
 </tbody>
 </table>
 <p>The <code>samples.txt</code> file specifies that A is associated to a treatment sensitive phenotype, while B is associated to a resistance phenotype.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">name</th>
+<th align="left">sample_name</th>
 <th align="left">phenotype</th>
 </tr>
 </thead>
@@ -769,7 +787,7 @@ Now, our <code>successful_controlnode_perturbations.txt</code> file contains per
 </tr>
 </tbody>
 </table>
-<p>Let’s take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states when mutational information is included.</p>
+<p>Let’s take a look at the steady-state expression values of node C in the attractors generated from the successful perturbations and the experimental initial states B_1 when mutational information is included.</p>
 <table>
 <thead>
 <tr class="header">
@@ -779,28 +797,20 @@ Now, our <code>successful_controlnode_perturbations.txt</code> file contains per
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">A_1</td>
-<td align="right">-0.6621166</td>
+<td align="left">pert_3</td>
+<td align="right">2.319659</td>
 </tr>
 <tr class="even">
-<td align="left">B_1</td>
-<td align="right">0.1590962</td>
+<td align="left">pert_6</td>
+<td align="right">6.400000</td>
 </tr>
 <tr class="odd">
-<td align="left">pert_0</td>
-<td align="right">-2.7000000</td>
+<td align="left">pert_7</td>
+<td align="right">6.400000</td>
 </tr>
 <tr class="even">
-<td align="left">pert_1</td>
-<td align="right">-2.7000000</td>
-</tr>
-<tr class="odd">
-<td align="left">pert_2</td>
-<td align="right">-2.7000000</td>
-</tr>
-<tr class="even">
-<td align="left">pert_5</td>
-<td align="right">-2.8528056</td>
+<td align="left">pert_8</td>
+<td align="right">6.400000</td>
 </tr>
 </tbody>
 </table>

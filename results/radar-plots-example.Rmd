@@ -1,0 +1,78 @@
+---
+title: "radar plots"
+author: "Lauren Marazzi"
+date: "10/29/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fmsb)
+library(dplyr)
+```
+
+## radar plots
+
+This script can be used to generate radar plots for results of NETISCE simulations
+
+```{r radar plots, echo=FALSE}
+create_beautiful_radarchart <- function(data, color = "#00AFBB", 
+                                        vlabels = colnames(data), vlcex = 1,
+                                        caxislabels = NULL, title = NULL, ...){
+  radarchart(
+    data, axistype = 0,
+    # Customize the polygon
+    pcol = color, pfcol = scales::alpha(color, 0.5), plwd = 2, plty = 1,
+    # Customize the grid
+    cglcol = "grey", cglty = 1, cglwd = 0.8,
+    # Customize the axis
+    axislabcol = "grey", 
+    # Variable labels
+    vlcex = vlcex, vlabels = vlabels,
+    title = row.names(data)[5],
+    centerzero = T
+    #caxislabels = caxislabels, title = title, ...
+  )
+}
+```
+
+
+```{r cars,echo=FALSE,fig.align = "center"}
+
+screenings<-read.delim("pert1_internal_markers.txt",row.names = 1,check.names = F,sep=" ")
+perts<-read.delim("successful_controlnode_perturbations.txt",sep=" ")
+screenings<- screenings %>% filter(row.names(screenings) %in% rownames(perts))
+
+exp<-read.delim("exp_internalmarkers.txt",row.names = 1,check.names = F,sep=" ")
+
+d1<-rbind(exp,screenings)
+maxcol<-apply(d1, 2, max)
+mincol<-apply(d1, 2, min)
+
+d2<-rbind(maxcol,mincol, d1)
+rownames(d2)[1:2]<- c("Max", "Min")
+
+pert1 <- d2[c("Max", "Min","A_1", "B_1","pert_1"),,drop=F ]
+create_beautiful_radarchart(pert1, caxislabels = c(-0.5,-0.3,0,.3,.5),color = c("#00AFBB", "#E7B800"))
+legend(
+  x = "topleft", legend = c("unperturbed","adEntZ (brain+pan-neural perturbation)"), horiz = F,
+  bty = "n", pch = 20 , col = c("#00AFBB", "#E7B800", "#FC4E07"),
+  text.col = "black", cex = 1, pt.cex = 1.5)
+par(op)
+
+opar <- par() 
+par <- par(opar) 
+# Define settings for plotting in a 3x4 grid, with appropriate margins:
+for (i in range(9:12)){
+  create_beautiful_radarchart(d2[c(1:3,6,i),,drop=F],color = c("#00AFBB", "#E7B800","#FC4E07"))
+  legend(
+    x = "bottom", legend = rownames(d2[c(3,6,i),,drop=F]), horiz = TRUE,
+    bty = "n", pch = 20 , col = c("#00AFBB", "#E7B800", "#FC4E07"),
+    text.col = "black", cex = 1, pt.cex = 1.5
+    )
+}
+
+
+```
