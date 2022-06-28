@@ -1,4 +1,4 @@
-name	phenotype
+sample_name	phenotype
 A_1	sensitive
 A_2	sensitive
 A_3	sensitive
