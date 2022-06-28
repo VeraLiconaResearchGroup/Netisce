@@ -15,10 +15,10 @@ params.kmeans_min_val = 2
 params.kmeans_max_val = 10
 
 
-params.num_nodes = 4 // that have expression data
-params.num_states = 100
+params.num_nodes = 6 // that have expression data
+params.num_states = 100000
 
-
+params.randseed=4
 
 process sfa_exp {
     input: 
@@ -85,12 +85,13 @@ process getFVS {
 
     input:
     path 'network.sif' from params.network
+  
  
     output:
     path 'fvs.txt' into records_fvs
     script:
     """
-    FVS_run.py network.sif
+    FVS_run.py network.sif $params.randseed
     """
 }
 process perturbation_inits {
@@ -136,7 +137,7 @@ process check_icns{
 
     script:
     """
-    icn_check1.R exp_internalmarkers.txt samples.txt
+    icn_check1.R exp_internalmarkers.txt samples.txt experimental_internalmarkers.png
     """
     
 }

@@ -17,6 +17,8 @@ def main():
     options=sys.argv[5].split(',')
     outpath = os.path.dirname(folder)
     df1=pd.DataFrame()
+    if numpert > len(options)**numnodes: 
+        numpert = len(options)**numnodes
     while len(df1.index)<numpert:
         temp=np.random.choice(a=options,size=[500000,numnodes]) # set to 200,000 to ensure unique random combinations in a timely manner (or 500,000 to run faster)
         df1=pd.DataFrame(temp)

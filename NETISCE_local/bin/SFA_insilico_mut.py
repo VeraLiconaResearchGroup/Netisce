@@ -60,7 +60,6 @@ if __name__ == "__main__":
         m=switch_num*i
         qs = all_samples[all_samples.isin([phenotypes[i]]).any(axis=1)]['name'].tolist()
         qdata=qdata_all.loc[:,qs]
-        pi=[]
         samples2=samples.iloc[l:switch_num+m]
         minv=pd.Series(index = qdata.index, data = [np.amin(qdata.loc[node,]) for node in qdata.index])
         maxv=pd.Series(index = qdata.index, data = [np.amax(qdata.loc[node,]) for node in qdata.index])
@@ -68,10 +67,10 @@ if __name__ == "__main__":
         q2=pd.Series(index = qdata.index, data = [np.quantile(qdata.loc[node,],.66) for node in qdata.index]) 
 
         for name, item in samples2.iterrows():                     #for each simulated initial condition
+            print(name)
             pi=[]
+            b = np.zeros((n,))
             enodes=item.index.tolist()
-            # print(enodes)
-            # die
             for node in enodes:                                     # set initial state to simulated value                                    # set initial state to simulated value
                 if item.loc[node]==1:               # if 1
                     number=np.random.uniform(low=q2[node], high=maxv[node]) #generate a random value for the node in the upper quartile
@@ -80,8 +79,7 @@ if __name__ == "__main__":
                 else: #item.loc[node]==0
                     number=np.random.uniform(low=q1[node], high=q2[node])   #generate a random value for the node in the middle
                 b[data.n2i[node]]=number
-            # print(b)
-            # die
+            print(b)
             if name in mut.index:
                 muti=mut.loc[name,]
                 muti=muti.dropna()
@@ -92,7 +90,7 @@ if __name__ == "__main__":
                     if status==1.0:
                         b[data.n2i[node]]=float(str(maxv[node]))+2.5*(float(str(maxv[node])))
                         pi.append(data.n2i[node])
-
+            print(b)
             x = alg.compute(b,pi)                                 # Run SFA calculation
             logss.loc[name,netnodes]=x[0]
         l=switch_num+m 

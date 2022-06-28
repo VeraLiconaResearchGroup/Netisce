@@ -26,7 +26,7 @@ def main():
     labels=df_labels['clusters'].tolist()
     outfolder=sys.argv[2]
     
-    svm=SVC(gamma='auto',random_state=4) #intialize knn
+    svm=SVC(gamma='auto') #intialize knn
     svm.fit(df_attr,labels)  #do knn with attractor landscape
     perturb_lab=svm.predict(df_perturb) # predict clusters for perturbations
     #create dataframe of perturabtion and clusters

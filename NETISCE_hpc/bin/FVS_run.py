@@ -18,7 +18,7 @@ data=[tuple([line[0],line[2]]) for line in data1] #creates tuple from file
 G3=nx.DiGraph()
 G3.add_edges_from(data)
 
-G3_FVS1=FVS.FVS(G3, T_0=0.6, alpha=0.99, maxMvt_factor=5, maxFail=10,randomseed=37)
+G3_FVS1=FVS.FVS(G3, T_0=0.6, alpha=0.99, maxMvt_factor=5, maxFail=10,randomseed=sys.argv[2])
 G3_FVS1.sort()
 
 outputfile.write('name'+'\n')

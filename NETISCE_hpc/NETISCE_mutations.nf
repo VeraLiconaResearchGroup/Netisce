@@ -12,12 +12,13 @@ params.filter ="strict"
 
 
 params.kmeans_min_val = 2
-params.kmeans_max_val = 10
+params.kmeans_max_val = 6
 
 
-params.num_nodes = 4 // that have expression data
-params.num_states = 1000
+params.num_nodes = 6 // that have expression data
+params.num_states = 100000
 
+params.randseed=4
 
 process sfa_exp {
     input: 
@@ -96,7 +97,7 @@ process getFVS {
     path 'fvs.txt' into records_fvs
     script:
     """
-    FVS_run.py network.sif
+    FVS_run.py network.sif $params.randseed
     """
 }
 
@@ -161,7 +162,6 @@ process check_icns{
 
     script:
     """
-    module load R/3.6.3
     icn_check1.R exp_internalmarkers.txt samples.txt
     """
     
@@ -172,11 +172,12 @@ process kmeans {
 
     input:
     path 'attrs_exp.txt' from records_expattr
-    path 'attrs_insilico*' from records_insilico
+    path 'attrs_insilico.txt' from records_insilico
  
     output:
 
-    path 'optimalk_plots.png' into records_elbowplots
+    path 'elbow.png' into records_elbowplots
+    path 'silhouette.png' into records_silplots
     path 'kmeans.txt' into records_kmeans
     
     script:
@@ -263,7 +264,6 @@ process filtering_by_icn {
     
     script:
     """
-    module load R/3.6.3
     for x in pert_logss*
     do
     crit2.R exp_internalmarkers.txt samples.txt \$x $params.desired $params.undesired $params.filter
@@ -305,8 +305,7 @@ process translate_perts {
     
     script:
     """
-    module load R/3.6.3
-    pertanalysis.R extract_perts.txt
+     pertanalysis.R extract_perts.txt
     """
     
 }

@@ -9,7 +9,7 @@ library(reshape2)
 library(readr)
 
 
-pdf(file="experimental_internalmarkers.pdf")
+pdf(file="experimental_internalmarkers.png")
 exp<-read.delim(args[1],sep=" ",row.names = 1)
 samples<-read.delim(args[2],sep="\t",row.names = 1)
 exp<-exp %>% dplyr::filter(row.names(exp) %in% row.names(samples))

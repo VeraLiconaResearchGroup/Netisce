@@ -1,9 +1,0 @@
-name C
-pert_0 -2.7
-pert_2 -2.7
-pert_3 2.245
-pert_4 0.146
-pert_5 -5.211
-pert_6 6.3
-pert_7 6.3
-pert_8 6.3

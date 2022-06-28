@@ -15,8 +15,10 @@ params.kmeans_min_val = 2
 params.kmeans_max_val = 6
 
 
-params.num_nodes = 4 // that have expression data
-params.num_states = 10
+params.num_nodes = 6 // that have expression data
+params.num_states = 100000
+
+params.randseed=4
 
 process sfa_exp {
     input: 
@@ -95,7 +97,7 @@ process getFVS {
     path 'fvs.txt' into records_fvs
     script:
     """
-    FVS_run.py network.sif
+    FVS_run.py network.sif $params.randseed
     """
 }
 

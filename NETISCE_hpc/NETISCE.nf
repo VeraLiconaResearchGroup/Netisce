@@ -4,6 +4,7 @@ params.expressions = "$baseDir/input_data/expressions.csv"
 params.network = "$baseDir/input_data/network.sif"
 params.samples = "$baseDir/input_data/samples.txt"
 params.internal_control="$baseDir/input_data/internal_marker.txt"
+// params.mutations="$baseDir/input_data/mutations.csv"
 params.alpha = 0.9
 params.undesired = 'resistant'
 params.desired = 'sensitive'
@@ -14,10 +15,10 @@ params.kmeans_min_val = 2
 params.kmeans_max_val = 10
 
 
-params.num_nodes = 4
-params.num_states = 1000
+params.num_nodes = 6 // that have expression data
+params.num_states = 100000
 
-
+params.randseed=4
 
 process sfa_exp {
     input: 
@@ -29,7 +30,7 @@ process sfa_exp {
 
     script:
     """
-    SFA_exp_attr.py network.sif expressions.csv attrs_exp.txt $params.alpha
+    SFA_exp_attr.py network.sif expressions.csv attrs_exp.txt
     """
 }
 
@@ -45,7 +46,7 @@ process get_exp_internal_control_nodes {
     
     script:
     """
-    get_RONs.py attrs_exp.txt internal-marker* exp_internalmarkers.txt
+    get_RONs.py attrs_exp.txt internal-marker*
     """
     
 }
@@ -84,12 +85,13 @@ process getFVS {
 
     input:
     path 'network.sif' from params.network
+  
  
     output:
     path 'fvs.txt' into records_fvs
     script:
     """
-    FVS_run.py network.sif
+    FVS_run.py network.sif $params.randseed
     """
 }
 process perturbation_inits {
@@ -135,8 +137,7 @@ process check_icns{
 
     script:
     """
-    module load R/3.6.3
-    icn_check1.R exp_internalmarkers.txt samples.txt
+    icn_check1.R exp_internalmarkers.txt samples.txt experimental_internalmarkers.png
     """
     
 }
@@ -157,7 +158,7 @@ process kmeans {
     script:
     """
     datasets=\$(ls -m attr* | sed 's/ //g')
-    kmeans_full.py \$datasets $params.kmeans_max_val $params.kmeans_min_val 
+    kmeans_full.py \$datasets $params.kmeans_max_val
     """
 }
 
@@ -238,7 +239,6 @@ process filtering_by_icn {
     
     script:
     """
-    module load R/3.6.3
     for x in pert_logss*
     do
     crit2.R exp_internalmarkers.txt samples.txt \$x $params.desired $params.undesired $params.filter
@@ -280,7 +280,6 @@ process translate_perts {
     
     script:
     """
-    module load R/3.6.3
     pertanalysis.R extract_perts.txt
     """
     
