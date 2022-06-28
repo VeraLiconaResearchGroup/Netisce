@@ -13,7 +13,7 @@ knitr::include_graphics("images/toy_network.png")
 You can find the relevant data files in the `input_data` folder.
 
 In this example, we have 2 samples, A and B, with three replicates each (A_1,A_2,A_3, etc).
-The normalized expression data is housed in `expressions.csv`, and contains normalized expression values for 4 of the network nodes (in this case, node C was not found to be expressed in the samples).
+The normalized expression data is housed in `expressions.csv`, and contains normalized expression values for  the network nodes. Note that the value of F has been initialized to zero. A feature of NETISCE is that it does not require non-zero values for all network nodes, which is useful if the data is unavailable for a node. Such values can either be entered in the `expressions.csv` file as 0s, or the node can be excluded entirely from this file, depending on user preference (in this case, the values will automatically be initialized to 0).
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 exp<-read.csv('input_data/expressions.csv')
 knitr::kable(exp)
@@ -45,6 +45,7 @@ params.expressions = "$baseDir/input_data/expressions.csv"
 params.network = "$baseDir/input_data/network.sif"
 params.samples = "$baseDir/input_data/samples.txt"
 params.internal_control="$baseDir/input_data/internal_marker.txt"
+// params.mutations="$baseDir/input_data/mutations.csv"
 params.alpha = 0.9
 params.undesired = 'resistant'
 params.desired = 'sensitive'
@@ -55,10 +56,12 @@ params.kmeans_min_val = 2
 params.kmeans_max_val = 10
 
 
-params.num_nodes = 4 // that have expression data
+params.num_nodes = 6 // that have expression data
 params.num_states = 100000
+
+params.randseed=4
 ```
-**Some Notes: ** make sure to include `$baseDir` before pointing to the folder containing your input data. Also, be sure that `params.num_nodes` is the number of nodes where there exists normalized expression data within `expression.csv`. 
+**Some Notes: ** make sure to include `$baseDir` before pointing to the folder containing your input data. Also, be sure that `params.num_nodes` is the number of nodes where there exists data within `expressions.csv`. Finally, by adjusting the `params.randseed` you can identify alternate FVSes within the nextwork.
 
 ## Run NETISCE
 In your terminal/command prompt, navigate to the appropriate NETISCE folder (`_hpc` or `local`). To start your run, enter `./nextflow run NETISCE.nf -resume`.
@@ -78,10 +81,8 @@ knitr::include_graphics("images/completed.png")
 ## NETSICE Results
 Let's take a look at the results of our NETISCE run, where the goal was to shift the system from the undesired state B, and towards the desired state A. These results can be found in the toy_example_1 subfolder of the [toy_example_results](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results) folder of the main github repository.
 
-
-
 #### exp_internalmarkers.txt {-#section-id}
-Our internal marker node was node C. In this file we see the steady state values of the node in the A and B sample replicates (the output values from SFA).
+Our internal marker node was node C. In this file we see the steady state values of node see in the A sample replicates A_1, A_2 and A_3 and B sample replicates B_1, B_2, and B_3 (as computed by SFA).
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 expmarker<-read.delim('results/exp_internalmarkers.txt',sep=" ")
 knitr::kable(expmarker)
@@ -91,9 +92,11 @@ knitr::kable(expmarker)
 #### experimental_internalmarkers.pdf {-#section-id}
 The above numbers may be a little challenging to read! So, we have included a plot of the values in the`experimental_internalmarkers.pdf`:
 ```{r, out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'experimental marker node steady state values'}
-knitr::include_graphics("images/expmarkers.png")
+knitr::include_graphics("results/experimental_internalmarkers.png")
 ```
-On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.
+On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. The grey bars can be aggregated to show the number of attractors with values for C that are binned together (for example, in the above table we see that the steady state value of C in replicate B_2=0.171 and replicate B_3=0.166. These values are binned together on the histogram to show that two replicates had similar values.)
+
+Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.
 
 In this example, since there are only 4 network nodes that have normalized expression values, NETISCE generates the maximum number of random initial states, \(3^4\), or 81.
 
@@ -126,12 +129,15 @@ And we see in the `kmeans.txt` file, that the A samples are clustered in cluster
 
 
 #### fvs.txt  {-#section-id}
-This file contains the node names that were identified by the FVS finding algorithm.
+This file contains the node names that were identified by the FVS finding algorithm when the random seed was set to 4 (i.e. FVS4).
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 fvs<-read.delim('results/fvs.txt')
 knitr::kable(fvs)
 ```
-The FVS finding algorithm identified nodes B and D to be the minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.
+The FVS finding algorithm identified nodes B and E to be a minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.
+
+
+**Note: ** this network contains 4 unique minimal Feedback Verex Sets (FVS_1: {D, B}, FVS_2:{D,C}	, FVS_3:{E,C}	, FVS_4: {E,B}).By adjusting the `params.randseed` parameter in the `NETISCE.nf` file, the other FVSes can be identified and perturbations can be computed with them.
 
 #### crit1perts.txt  {-#section-id}
 This file contains a list of IDs for the perturbations to FVS control nodes that passed criterion 1.
@@ -139,13 +145,14 @@ This file contains a list of IDs for the perturbations to FVS control nodes that
 crit1<-read.delim('results/crit1perts.txt',header = F)
 knitr::kable(crit1)
 ```
-8 out of the 9 pertrubations passed the machine learning filtering criterion.
+3 out of the 9 pertrubations passed the machine learning filtering criterion.
 
 
-#### pert1_internal_markers.txt  {-#section-id}
-This file contains a table of the internal marker node state  values from control node perturbations whose associated attractors passed the first filtering criterion. 
+#### pert_replicate_1_internal_markers.txt  {-#section-id}
+NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B_1,B_2,B_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert_3,pert_6, and pert_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B_1 (contained in the file `pert_replicate_1_internal_markers.txt`; the values of C for the system under perturbations when initialized from B_2 are found in `pert_replicate_2_internal_markers.txt`, the values of C for the system under perturbations when initialized from B_3 are found in `pert_replicate_3_internal_markers.txt` )
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-marker<-read.delim('results/pert1_internal_markers.txt',sep=" ")
+marker<-read.delim('results/pert_replicate_1_internal_markers.txt',sep=" ")
 knitr::kable(marker)
 ```
 
@@ -167,7 +174,7 @@ knitr::kable(allmarkers)
 Indeed, we see that the steady-state expression values of node C in the attractors generated by peturbations to the FVS control nodes are all are greater than the steady-state expression values of node C in the attractors generated from the sensitive A sample. A successful reprogramming from resistant (B) to sensitive (A) cells has occurred!
 
 ## Toy Example with mutations
-Let's say that in our system, gene A exhibits a loss of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the `NETISCE_mutations.nf` pipeline.
+Let's say that in our system, gene D exhibits a gain of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the `NETISCE_mutations.nf` pipeline.
 
 First, we must add to our `input_data` folder a `.csv` file containing the mutational profile. Let's call this file `mutations.csv`:
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -175,7 +182,7 @@ knitr::kable(read.csv('input_data/mutations.csv'))
 
 ```
 
-The loss of function mutation is encoded with 0 (gain-of-function mutations can be encoded with "1").
+The gain of function mutation is encoded with 1 (loss-of-function mutations can be encoded with "0").
 
 Next, we make sure that the parameters in `NETISCE_mutations.nf` on lines 3-19 are set correctly for the conditions
 
@@ -205,7 +212,7 @@ As above, to run Netisce, enter `./nextflow run NETISCE.nf -resume`.
 
 #### Results {-#section-id}
 By including mutational information, the results of NETISCE have changed.These results can be found in the toy_example_2 subfolder of the [toy_example_results](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results) folder of the main github repository.
-Now, our `successful_controlnode_perturbations.txt` file contains pert_0 instead of pert_8
+Now, our `successful_controlnode_perturbations.txt` file contains pert_7 in addition to perturbations pert_3, pert_6, and pert_8
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 knitr::kable(read.delim('results/successful_controlnode_perturbations_mutations.txt',sep=" "))

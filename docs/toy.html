@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2022-06-16" />
+<meta name="date" content="2022-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -237,7 +237,7 @@ Figure 4.1: Simple Toy Network
 <h2><span class="header-section-number">4.2</span> Data</h2>
 <p>You can find the relevant data files in the <code>input_data</code> folder.</p>
 <p>In this example, we have 2 samples, A and B, with three replicates each (A_1,A_2,A_3, etc).
-The normalized expression data is housed in <code>expressions.csv</code>, and contains normalized expression values for 4 of the network nodes (in this case, node C was not found to be expressed in the samples).</p>
+The normalized expression data is housed in <code>expressions.csv</code>, and contains normalized expression values for the network nodes. Note that the value of F has been initialized to zero. A feature of NETISCE is that it does not require non-zero values for all network nodes, which is useful if the data is unavailable for a node. Such values can either be entered in the <code>expressions.csv</code> file as 0s, or the node can be excluded entirely from this file, depending on user preference (in this case, the values will automatically be initialized to 0).</p>
 <table>
 <thead>
 <tr class="header">
@@ -345,6 +345,7 @@ The normalized expression data is housed in <code>expressions.csv</code>, and co
 params.network = &quot;$baseDir/input_data/network.sif&quot;
 params.samples = &quot;$baseDir/input_data/samples.txt&quot;
 params.internal_control=&quot;$baseDir/input_data/internal_marker.txt&quot;
+// params.mutations=&quot;$baseDir/input_data/mutations.csv&quot;
 params.alpha = 0.9
 params.undesired = &#39;resistant&#39;
 params.desired = &#39;sensitive&#39;
@@ -355,9 +356,11 @@ params.kmeans_min_val = 2
 params.kmeans_max_val = 10
 
 
-params.num_nodes = 4 // that have expression data
-params.num_states = 100000</code></pre>
-<p><strong>Some Notes: </strong> make sure to include <code>$baseDir</code> before pointing to the folder containing your input data. Also, be sure that <code>params.num_nodes</code> is the number of nodes where there exists normalized expression data within <code>expression.csv</code>.</p>
+params.num_nodes = 6 // that have expression data
+params.num_states = 100000
+
+params.randseed=4</code></pre>
+<p><strong>Some Notes: </strong> make sure to include <code>$baseDir</code> before pointing to the folder containing your input data. Also, be sure that <code>params.num_nodes</code> is the number of nodes where there exists data within <code>expressions.csv</code>. Finally, by adjusting the <code>params.randseed</code> you can identify alternate FVSes within the nextwork.</p>
 </div>
 <div id="run-netisce" class="section level2">
 <h2><span class="header-section-number">4.4</span> Run NETISCE</h2>
@@ -383,7 +386,7 @@ Figure 4.3: Terminal when running NETISCE
 <p>Let’s take a look at the results of our NETISCE run, where the goal was to shift the system from the undesired state B, and towards the desired state A. These results can be found in the toy_example_1 subfolder of the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results">toy_example_results</a> folder of the main github repository.</p>
 <div id="section-id" class="section level4 unnumbered">
 <h4>exp_internalmarkers.txt</h4>
-<p>Our internal marker node was node C. In this file we see the steady state values of the node in the A and B sample replicates (the output values from SFA).</p>
+<p>Our internal marker node was node C. In this file we see the steady state values of node see in the A sample replicates A_1, A_2 and A_3 and B sample replicates B_1, B_2, and B_3 (as computed by SFA).</p>
 <table>
 <thead>
 <tr class="header">
@@ -394,27 +397,27 @@ Figure 4.3: Terminal when running NETISCE
 <tbody>
 <tr class="odd">
 <td align="left">A_1</td>
-<td align="right">0.4278056</td>
+<td align="right">0.792</td>
 </tr>
 <tr class="even">
 <td align="left">A_2</td>
-<td align="right">0.4802943</td>
+<td align="right">0.844</td>
 </tr>
 <tr class="odd">
 <td align="left">A_3</td>
-<td align="right">0.4361991</td>
+<td align="right">0.800</td>
 </tr>
 <tr class="even">
 <td align="left">B_1</td>
-<td align="right">0.1590962</td>
+<td align="right">0.232</td>
 </tr>
 <tr class="odd">
 <td align="left">B_2</td>
-<td align="right">0.0982107</td>
+<td align="right">0.171</td>
 </tr>
 <tr class="even">
 <td align="left">B_3</td>
-<td align="right">0.0935476</td>
+<td align="right">0.166</td>
 </tr>
 </tbody>
 </table>
@@ -423,12 +426,13 @@ Figure 4.3: Terminal when running NETISCE
 <h4>experimental_internalmarkers.pdf</h4>
 The above numbers may be a little challenging to read! So, we have included a plot of the values in the<code>experimental_internalmarkers.pdf</code>:
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
-<img src="images/expmarkers.png" alt="experimental marker node steady state values" width="50%" />
+<img src="results/experimental_internalmarkers.png" alt="experimental marker node steady state values" width="50%" />
 <p class="caption">
 Figure 4.4: experimental marker node steady state values
 </p>
 </div>
-<p>On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.</p>
+<p>On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. The grey bars can be aggregated to show the number of attractors with values for C that are binned together (for example, in the above table we see that the steady state value of C in replicate B_2=0.171 and replicate B_3=0.166. These values are binned together on the histogram to show that two replicates had similar values.)</p>
+<p>Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.</p>
 <p>In this example, since there are only 4 network nodes that have normalized expression values, NETISCE generates the maximum number of random initial states, <span class="math inline">\(3^4\)</span>, or 81.</p>
 <p>After estimating attractors for the experimental and randomly generated initial states, the resultant attractors were clustered using k-means clustering. The elbow and silhouette metrics are used to determine the optimal number k.</p>
 </div>
@@ -495,7 +499,7 @@ Figure 4.6: silhouette metric for optimal k
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>fvs.txt</h4>
-<p>This file contains the node names that were identified by the FVS finding algorithm.</p>
+<p>This file contains the node names that were identified by the FVS finding algorithm when the random seed was set to 4 (i.e. FVS4).</p>
 <table>
 <thead>
 <tr class="header">
@@ -504,14 +508,15 @@ Figure 4.6: silhouette metric for optimal k
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">D</td>
+<td align="left">B</td>
 </tr>
 <tr class="even">
-<td align="left">B</td>
+<td align="left">E</td>
 </tr>
 </tbody>
 </table>
-<p>The FVS finding algorithm identified nodes B and D to be the minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.</p>
+<p>The FVS finding algorithm identified nodes B and E to be a minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.</p>
+<p><strong>Note: </strong> this network contains 4 unique minimal Feedback Verex Sets (FVS_1: {D, B}, FVS_2:{D,C} , FVS_3:{E,C} , FVS_4: {E,B}).By adjusting the <code>params.randseed</code> parameter in the <code>NETISCE.nf</code> file, the other FVSes can be identified and perturbations can be computed with them.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>crit1perts.txt</h4>
@@ -524,36 +529,21 @@ Figure 4.6: silhouette metric for optimal k
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">pert_0</td>
-</tr>
-<tr class="even">
-<td align="left">pert_1</td>
-</tr>
-<tr class="odd">
-<td align="left">pert_2</td>
-</tr>
-<tr class="even">
-<td align="left">pert_4</td>
-</tr>
-<tr class="odd">
-<td align="left">pert_5</td>
+<td align="left">pert_3</td>
 </tr>
 <tr class="even">
 <td align="left">pert_6</td>
 </tr>
 <tr class="odd">
-<td align="left">pert_7</td>
-</tr>
-<tr class="even">
 <td align="left">pert_8</td>
 </tr>
 </tbody>
 </table>
-<p>8 out of the 9 pertrubations passed the machine learning filtering criterion.</p>
+<p>3 out of the 9 pertrubations passed the machine learning filtering criterion.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
-<h4>pert1_internal_markers.txt</h4>
-<p>This file contains a table of the internal marker node state values from control node perturbations whose associated attractors passed the first filtering criterion.</p>
+<h4>pert_replicate_1_internal_markers.txt</h4>
+<p>NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B_1,B_2,B_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert_3,pert_6, and pert_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B_1 (contained in the file <code>pert_replicate_1_internal_markers.txt</code>; the values of C for the system under perturbations when initialized from B_2 are found in <code>pert_replicate_2_internal_markers.txt</code>, the values of C for the system under perturbations when initialized from B_3 are found in <code>pert_replicate_3_internal_markers.txt</code> )</p>
 <table>
 <thead>
 <tr class="header">
@@ -563,36 +553,16 @@ Figure 4.6: silhouette metric for optimal k
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">pert_0</td>
-<td align="right">-2.7000000</td>
-</tr>
-<tr class="even">
-<td align="left">pert_1</td>
-<td align="right">1.0209997</td>
-</tr>
-<tr class="odd">
-<td align="left">pert_2</td>
-<td align="right">6.3000000</td>
-</tr>
-<tr class="even">
-<td align="left">pert_4</td>
-<td align="right">-0.0427445</td>
-</tr>
-<tr class="odd">
-<td align="left">pert_5</td>
-<td align="right">6.3000000</td>
+<td align="left">pert_3</td>
+<td align="right">2.657829</td>
 </tr>
 <tr class="even">
 <td align="left">pert_6</td>
-<td align="right">-2.7000000</td>
+<td align="right">6.400000</td>
 </tr>
 <tr class="odd">
-<td align="left">pert_7</td>
-<td align="right">-2.8528056</td>
-</tr>
-<tr class="even">
 <td align="left">pert_8</td>
-<td align="right">6.3000000</td>
+<td align="right">6.400000</td>
 </tr>
 </tbody>
 </table>
@@ -604,8 +574,8 @@ Figure 4.6: silhouette metric for optimal k
 <thead>
 <tr class="header">
 <th align="left"></th>
-<th align="left">D</th>
 <th align="left">B</th>
+<th align="left">E</th>
 <th align="right">up</th>
 <th align="right">down</th>
 <th align="right">total</th>
@@ -613,30 +583,22 @@ Figure 4.6: silhouette metric for optimal k
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">pert_1</td>
-<td align="left">down</td>
+<td align="left">pert_3</td>
 <td align="left">nochange</td>
+<td align="left">down</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">pert_5</td>
-<td align="left">nochange</td>
+<td align="left">pert_6</td>
 <td align="left">up</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">pert_2</td>
 <td align="left">down</td>
-<td align="left">up</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pert_8</td>
 <td align="left">up</td>
 <td align="left">up</td>
@@ -651,61 +613,46 @@ Figure 4.6: silhouette metric for optimal k
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="left">name</th>
 <th align="right">C</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
 <td align="left">A_1</td>
-<td align="right">0.4278056</td>
+<td align="right">0.792000</td>
 </tr>
 <tr class="even">
-<td align="left">2</td>
 <td align="left">A_2</td>
-<td align="right">0.4802943</td>
+<td align="right">0.844000</td>
 </tr>
 <tr class="odd">
-<td align="left">3</td>
 <td align="left">A_3</td>
-<td align="right">0.4361991</td>
+<td align="right">0.800000</td>
 </tr>
 <tr class="even">
-<td align="left">4</td>
 <td align="left">B_1</td>
-<td align="right">0.1590962</td>
+<td align="right">0.232000</td>
 </tr>
 <tr class="odd">
-<td align="left">5</td>
 <td align="left">B_2</td>
-<td align="right">0.0982107</td>
+<td align="right">0.171000</td>
 </tr>
 <tr class="even">
-<td align="left">6</td>
 <td align="left">B_3</td>
-<td align="right">0.0935476</td>
+<td align="right">0.166000</td>
 </tr>
 <tr class="odd">
-<td align="left">21</td>
-<td align="left">pert_1</td>
-<td align="right">1.0209997</td>
+<td align="left">pert_3</td>
+<td align="right">2.657829</td>
 </tr>
 <tr class="even">
-<td align="left">31</td>
-<td align="left">pert_2</td>
-<td align="right">6.3000000</td>
+<td align="left">pert_6</td>
+<td align="right">6.400000</td>
 </tr>
 <tr class="odd">
-<td align="left">51</td>
-<td align="left">pert_5</td>
-<td align="right">6.3000000</td>
-</tr>
-<tr class="even">
-<td align="left">8</td>
 <td align="left">pert_8</td>
-<td align="right">6.3000000</td>
+<td align="right">6.400000</td>
 </tr>
 </tbody>
 </table>
@@ -714,27 +661,27 @@ Figure 4.6: silhouette metric for optimal k
 </div>
 <div id="toy-example-with-mutations" class="section level2">
 <h2><span class="header-section-number">4.6</span> Toy Example with mutations</h2>
-<p>Let’s say that in our system, gene A exhibits a loss of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the <code>NETISCE_mutations.nf</code> pipeline.</p>
+<p>Let’s say that in our system, gene D exhibits a gain of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the <code>NETISCE_mutations.nf</code> pipeline.</p>
 <p>First, we must add to our <code>input_data</code> folder a <code>.csv</code> file containing the mutational profile. Let’s call this file <code>mutations.csv</code>:</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left">X</th>
-<th align="right">A</th>
+<th align="right">D</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">A_1</td>
-<td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">A_2</td>
-<td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">A_3</td>
-<td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">B_1</td>
@@ -750,7 +697,7 @@ Figure 4.6: silhouette metric for optimal k
 </tr>
 </tbody>
 </table>
-<p>The loss of function mutation is encoded with 0 (gain-of-function mutations can be encoded with “1”).</p>
+<p>The gain of function mutation is encoded with 1 (loss-of-function mutations can be encoded with “0”).</p>
 <p>Next, we make sure that the parameters in <code>NETISCE_mutations.nf</code> on lines 3-19 are set correctly for the conditions</p>
 <p>For this example, your parameters should look like:</p>
 <pre><code>params.expressions = &quot;$baseDir/input_data/expressions.csv&quot;
@@ -775,13 +722,13 @@ params.num_states = 1000</code></pre>
 <div id="section-id" class="section level4 unnumbered">
 <h4>Results</h4>
 <p>By including mutational information, the results of NETISCE have changed.These results can be found in the toy_example_2 subfolder of the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results">toy_example_results</a> folder of the main github repository.
-Now, our <code>successful_controlnode_perturbations.txt</code> file contains pert_0 instead of pert_8</p>
+Now, our <code>successful_controlnode_perturbations.txt</code> file contains pert_7 in addition to perturbations pert_3, pert_6, and pert_8</p>
 <table>
 <thead>
 <tr class="header">
 <th align="left"></th>
 <th align="left">B</th>
-<th align="left">D</th>
+<th align="left">E</th>
 <th align="right">up</th>
 <th align="right">down</th>
 <th align="right">total</th>
@@ -789,35 +736,35 @@ Now, our <code>successful_controlnode_perturbations.txt</code> file contains per
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">pert_1</td>
-<td align="left">down</td>
+<td align="left">pert_3</td>
 <td align="left">nochange</td>
+<td align="left">down</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">pert_5</td>
-<td align="left">nochange</td>
+<td align="left">pert_7</td>
 <td align="left">up</td>
+<td align="left">nochange</td>
 <td align="right">1</td>
 <td align="right">0</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">pert_0</td>
+<td align="left">pert_6</td>
+<td align="left">up</td>
 <td align="left">down</td>
-<td align="left">down</td>
-<td align="right">0</td>
-<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
-<td align="left">pert_2</td>
-<td align="left">down</td>
+<td align="left">pert_8</td>
 <td align="left">up</td>
-<td align="right">1</td>
-<td align="right">1</td>
+<td align="left">up</td>
+<td align="right">2</td>
+<td align="right">0</td>
 <td align="right">2</td>
 </tr>
 </tbody>

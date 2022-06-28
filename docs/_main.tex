@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2022-06-16}
+\date{2022-06-28}
 
 \begin{document}
 \maketitle
@@ -308,10 +308,10 @@ This file contains the node names for the FVS used as control nodes for the NETI
 This file contains a list of IDs for the control node perturbations that passed criterion 1.
 
 \hypertarget{section-id}{%
-\subsubsection*{pert1\_internal\_markers.txt}\label{section-id}}
-\addcontentsline{toc}{subsubsection}{pert1\_internal\_markers.txt}
+\subsubsection*{pert\_replicate\_i\_internal\_markers.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{pert\_replicate\_i\_internal\_markers.txt}
 
-This file contains a table of the internal marker node steady state values from control node perturbations whose associated attractors passed the first filtering criterion.
+This file contains a table of the internal marker node steady state values from control node perturbations whose initialized from replicate i (1,2,3..,n) associated attractors passed the first filtering criterion.
 
 \hypertarget{section-id}{%
 \subsubsection*{successful\_controlnode\_perturbations.txt}\label{section-id}}
@@ -345,7 +345,7 @@ We will use a simple toy network of 6 nodes and 9 edges.
 You can find the relevant data files in the \texttt{input\_data} folder.
 
 In this example, we have 2 samples, A and B, with three replicates each (A\_1,A\_2,A\_3, etc).
-The normalized expression data is housed in \texttt{expressions.csv}, and contains normalized expression values for 4 of the network nodes (in this case, node C was not found to be expressed in the samples).
+The normalized expression data is housed in \texttt{expressions.csv}, and contains normalized expression values for the network nodes. Note that the value of F has been initialized to zero. A feature of NETISCE is that it does not require non-zero values for all network nodes, which is useful if the data is unavailable for a node. Such values can either be entered in the \texttt{expressions.csv} file as 0s, or the node can be excluded entirely from this file, depending on user preference (in this case, the values will automatically be initialized to 0).
 
 \begin{tabular}{l|r|r|r|r|r|r}
 \hline
@@ -407,6 +407,7 @@ params.expressions = "$baseDir/input_data/expressions.csv"
 params.network = "$baseDir/input_data/network.sif"
 params.samples = "$baseDir/input_data/samples.txt"
 params.internal_control="$baseDir/input_data/internal_marker.txt"
+// params.mutations="$baseDir/input_data/mutations.csv"
 params.alpha = 0.9
 params.undesired = 'resistant'
 params.desired = 'sensitive'
@@ -417,11 +418,13 @@ params.kmeans_min_val = 2
 params.kmeans_max_val = 10
 
 
-params.num_nodes = 4 // that have expression data
+params.num_nodes = 6 // that have expression data
 params.num_states = 100000
+
+params.randseed=4
 \end{verbatim}
 
-\textbf{Some Notes: } make sure to include \texttt{\$baseDir} before pointing to the folder containing your input data. Also, be sure that \texttt{params.num\_nodes} is the number of nodes where there exists normalized expression data within \texttt{expression.csv}.
+\textbf{Some Notes: } make sure to include \texttt{\$baseDir} before pointing to the folder containing your input data. Also, be sure that \texttt{params.num\_nodes} is the number of nodes where there exists data within \texttt{expressions.csv}. Finally, by adjusting the \texttt{params.randseed} you can identify alternate FVSes within the nextwork.
 
 \hypertarget{run-netisce}{%
 \section{Run NETISCE}\label{run-netisce}}
@@ -460,23 +463,23 @@ Let's take a look at the results of our NETISCE run, where the goal was to shift
 \subsubsection*{exp\_internalmarkers.txt}\label{section-id}}
 \addcontentsline{toc}{subsubsection}{exp\_internalmarkers.txt}
 
-Our internal marker node was node C. In this file we see the steady state values of the node in the A and B sample replicates (the output values from SFA).
+Our internal marker node was node C. In this file we see the steady state values of node see in the A sample replicates A\_1, A\_2 and A\_3 and B sample replicates B\_1, B\_2, and B\_3 (as computed by SFA).
 
 \begin{tabular}{l|r}
 \hline
 name & C\\
 \hline
-A\_1 & 0.4278056\\
+A\_1 & 0.792\\
 \hline
-A\_2 & 0.4802943\\
+A\_2 & 0.844\\
 \hline
-A\_3 & 0.4361991\\
+A\_3 & 0.800\\
 \hline
-B\_1 & 0.1590962\\
+B\_1 & 0.232\\
 \hline
-B\_2 & 0.0982107\\
+B\_2 & 0.171\\
 \hline
-B\_3 & 0.0935476\\
+B\_3 & 0.166\\
 \hline
 \end{tabular}
 
@@ -488,14 +491,16 @@ The above numbers may be a little challenging to read! So, we have included a pl
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{images/expmarkers} 
+{\centering \includegraphics[width=0.5\linewidth]{results/experimental_internalmarkers} 
 
 }
 
 \caption{experimental marker node steady state values}\label{fig:unnamed-chunk-10}
 \end{figure}
 
-On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.
+On this histogram, we see bars for each of the samples and their replicates. The A (sensitive) samples are marked by a blue vertical line at their steady state value, while the B (resistant) samples are marked by a red vertical line at their steady state value. The grey bars can be aggregated to show the number of attractors with values for C that are binned together (for example, in the above table we see that the steady state value of C in replicate B\_2=0.171 and replicate B\_3=0.166. These values are binned together on the histogram to show that two replicates had similar values.)
+
+Here, we see that the values of node C are well separated between the two phenotypes (all of the A values are greater than all of the B values). We will assume that this also aligns with the biological knowledge of the system.
 
 In this example, since there are only 4 network nodes that have normalized expression values, NETISCE generates the maximum number of random initial states, \(3^4\), or 81.
 
@@ -564,19 +569,21 @@ And we see in the \texttt{kmeans.txt} file, that the A samples are clustered in 
 \subsubsection*{fvs.txt}\label{section-id}}
 \addcontentsline{toc}{subsubsection}{fvs.txt}
 
-This file contains the node names that were identified by the FVS finding algorithm.
+This file contains the node names that were identified by the FVS finding algorithm when the random seed was set to 4 (i.e.~FVS4).
 
 \begin{tabular}{l}
 \hline
 name\\
 \hline
-D\\
-\hline
 B\\
+\hline
+E\\
 \hline
 \end{tabular}
 
-The FVS finding algorithm identified nodes B and D to be the minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.
+The FVS finding algorithm identified nodes B and E to be a minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.
+
+\textbf{Note: } this network contains 4 unique minimal Feedback Verex Sets (FVS\_1: \{D, B\}, FVS\_2:\{D,C\} , FVS\_3:\{E,C\} , FVS\_4: \{E,B\}).By adjusting the \texttt{params.randseed} parameter in the \texttt{NETISCE.nf} file, the other FVSes can be identified and perturbations can be computed with them.
 
 \hypertarget{section-id}{%
 \subsubsection*{crit1perts.txt}\label{section-id}}
@@ -588,51 +595,31 @@ This file contains a list of IDs for the perturbations to FVS control nodes that
 \hline
 V1\\
 \hline
-pert\_0\\
-\hline
-pert\_1\\
-\hline
-pert\_2\\
-\hline
-pert\_4\\
-\hline
-pert\_5\\
+pert\_3\\
 \hline
 pert\_6\\
-\hline
-pert\_7\\
 \hline
 pert\_8\\
 \hline
 \end{tabular}
 
-8 out of the 9 pertrubations passed the machine learning filtering criterion.
+3 out of the 9 pertrubations passed the machine learning filtering criterion.
 
 \hypertarget{section-id}{%
-\subsubsection*{pert1\_internal\_markers.txt}\label{section-id}}
-\addcontentsline{toc}{subsubsection}{pert1\_internal\_markers.txt}
+\subsubsection*{pert\_replicate\_1\_internal\_markers.txt}\label{section-id}}
+\addcontentsline{toc}{subsubsection}{pert\_replicate\_1\_internal\_markers.txt}
 
-This file contains a table of the internal marker node state values from control node perturbations whose associated attractors passed the first filtering criterion.
+NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B\_1,B\_2,B\_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert\_3,pert\_6, and pert\_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B\_1 (contained in the file \texttt{pert\_replicate\_1\_internal\_markers.txt}; the values of C for the system under perturbations when initialized from B\_2 are found in \texttt{pert\_replicate\_2\_internal\_markers.txt}, the values of C for the system under perturbations when initialized from B\_3 are found in \texttt{pert\_replicate\_3\_internal\_markers.txt} )
 
 \begin{tabular}{l|r}
 \hline
 name & C\\
 \hline
-pert\_0 & -2.7000000\\
+pert\_3 & 2.657829\\
 \hline
-pert\_1 & 1.0209997\\
+pert\_6 & 6.400000\\
 \hline
-pert\_2 & 6.3000000\\
-\hline
-pert\_4 & -0.0427445\\
-\hline
-pert\_5 & 6.3000000\\
-\hline
-pert\_6 & -2.7000000\\
-\hline
-pert\_7 & -2.8528056\\
-\hline
-pert\_8 & 6.3000000\\
+pert\_8 & 6.400000\\
 \hline
 \end{tabular}
 
@@ -644,13 +631,11 @@ This file contains a table of the perturbations on FVS control nodes that passed
 
 \begin{tabular}{l|l|l|r|r|r}
 \hline
-  & D & B & up & down & total\\
+  & B & E & up & down & total\\
 \hline
-pert\_1 & down & nochange & 0 & 1 & 1\\
+pert\_3 & nochange & down & 0 & 1 & 1\\
 \hline
-pert\_5 & nochange & up & 1 & 0 & 1\\
-\hline
-pert\_2 & down & up & 1 & 1 & 2\\
+pert\_6 & up & down & 1 & 1 & 2\\
 \hline
 pert\_8 & up & up & 2 & 0 & 2\\
 \hline
@@ -660,29 +645,27 @@ Here, we see that four perturbations that passed both filtering criteria.
 
 Let's take a quick look at the steady state values for these perturbations, and the attractors generated from the experimental data:
 
-\begin{tabular}{l|l|r}
+\begin{tabular}{l|r}
 \hline
-  & name & C\\
+name & C\\
 \hline
-1 & A\_1 & 0.4278056\\
+A\_1 & 0.792000\\
 \hline
-2 & A\_2 & 0.4802943\\
+A\_2 & 0.844000\\
 \hline
-3 & A\_3 & 0.4361991\\
+A\_3 & 0.800000\\
 \hline
-4 & B\_1 & 0.1590962\\
+B\_1 & 0.232000\\
 \hline
-5 & B\_2 & 0.0982107\\
+B\_2 & 0.171000\\
 \hline
-6 & B\_3 & 0.0935476\\
+B\_3 & 0.166000\\
 \hline
-21 & pert\_1 & 1.0209997\\
+pert\_3 & 2.657829\\
 \hline
-31 & pert\_2 & 6.3000000\\
+pert\_6 & 6.400000\\
 \hline
-51 & pert\_5 & 6.3000000\\
-\hline
-8 & pert\_8 & 6.3000000\\
+pert\_8 & 6.400000\\
 \hline
 \end{tabular}
 
@@ -691,19 +674,19 @@ Indeed, we see that the steady-state expression values of node C in the attracto
 \hypertarget{toy-example-with-mutations}{%
 \section{Toy Example with mutations}\label{toy-example-with-mutations}}
 
-Let's say that in our system, gene A exhibits a loss of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the \texttt{NETISCE\_mutations.nf} pipeline.
+Let's say that in our system, gene D exhibits a gain of function mutation in the sensitive phenotype (A samples). If we want to include this in our simulations, we will use the \texttt{NETISCE\_mutations.nf} pipeline.
 
 First, we must add to our \texttt{input\_data} folder a \texttt{.csv} file containing the mutational profile. Let's call this file \texttt{mutations.csv}:
 
 \begin{tabular}{l|r}
 \hline
-X & A\\
+X & D\\
 \hline
-A\_1 & 0\\
+A\_1 & 1\\
 \hline
-A\_2 & 0\\
+A\_2 & 1\\
 \hline
-A\_3 & 0\\
+A\_3 & 1\\
 \hline
 B\_1 & NA\\
 \hline
@@ -713,7 +696,7 @@ B\_3 & NA\\
 \hline
 \end{tabular}
 
-The loss of function mutation is encoded with 0 (gain-of-function mutations can be encoded with ``1'').
+The gain of function mutation is encoded with 1 (loss-of-function mutations can be encoded with ``0'').
 
 Next, we make sure that the parameters in \texttt{NETISCE\_mutations.nf} on lines 3-19 are set correctly for the conditions
 
@@ -748,19 +731,19 @@ As above, to run Netisce, enter \texttt{./nextflow\ run\ NETISCE.nf\ -resume}.
 \addcontentsline{toc}{subsubsection}{Results}
 
 By including mutational information, the results of NETISCE have changed.These results can be found in the toy\_example\_2 subfolder of the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/toy_example_results}{toy\_example\_results} folder of the main github repository.
-Now, our \texttt{successful\_controlnode\_perturbations.txt} file contains pert\_0 instead of pert\_8
+Now, our \texttt{successful\_controlnode\_perturbations.txt} file contains pert\_7 in addition to perturbations pert\_3, pert\_6, and pert\_8
 
 \begin{tabular}{l|l|l|r|r|r}
 \hline
-  & B & D & up & down & total\\
+  & B & E & up & down & total\\
 \hline
-pert\_1 & down & nochange & 0 & 1 & 1\\
+pert\_3 & nochange & down & 0 & 1 & 1\\
 \hline
-pert\_5 & nochange & up & 1 & 0 & 1\\
+pert\_7 & up & nochange & 1 & 0 & 1\\
 \hline
-pert\_0 & down & down & 0 & 2 & 2\\
+pert\_6 & up & down & 1 & 1 & 2\\
 \hline
-pert\_2 & down & up & 1 & 1 & 2\\
+pert\_8 & up & up & 2 & 0 & 2\\
 \hline
 \end{tabular}
 
