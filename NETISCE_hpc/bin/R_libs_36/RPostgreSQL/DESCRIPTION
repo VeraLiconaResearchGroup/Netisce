@@ -1,0 +1,28 @@
+Package: RPostgreSQL
+Version: 0.6-2
+Date: 2017-06-24
+Title: R Interface to the 'PostgreSQL' Database System
+Author: Joe Conway, Dirk Eddelbuettel, Tomoaki Nishiyama, Sameer Kumar Prayaga (during 2008), Neil Tiffin
+Maintainer: Tomoaki Nishiyama <tomoakin@staff.kanazawa-u.ac.jp>
+Description: Database interface and 'PostgreSQL' driver for 'R'.
+ This package provides a Database Interface 'DBI' compliant 
+ driver for 'R' to access 'PostgreSQL' database systems.  
+ In order to build and install this package from source, 'PostgreSQL' 
+ itself must be present your system to provide 'PostgreSQL' functionality 
+ via its libraries and header files. These files are provided as
+ 'postgresql-devel' package under some Linux distributions.
+ On 'macOS' and 'Microsoft Windows' system the attached 'libpq' library source will be used.
+LazyLoad: true
+Depends: R (>= 2.9.0), methods, DBI (>= 0.3)
+License: GPL-2 | file LICENSE
+Copyright: Authors listed above, PostgreSQL Global Development Group,
+        and The Regents of the University of California
+Collate: S4R.R zzz.R PostgreSQLSupport.R dbObjectId.R PostgreSQL.R
+URL: https://github.com/tomoakin/RPostgreSQL,
+        https://cran.r-project.org/package=DBI,
+        http://www.postgresql.org
+NeedsCompilation: yes
+Packaged: 2017-06-24 03:16:20 UTC; tomoaki
+Repository: CRAN
+Date/Publication: 2017-06-24 07:17:52 UTC
+Built: R 3.6.3; x86_64-pc-linux-gnu; 2020-06-14 19:43:38 UTC; unix

@@ -1,0 +1,89 @@
+Dim                     A more general dimension function
+Header                  Print heading text with a border.
+Mode                    Find the mode of a vector.
+NCmisc-package          Miscellaneous Functions for Creating Adaptive
+                        Functions and Scripts
+Rfile.index             Create an index file for an R function file
+Substitute              Convert objects as arguments to object names
+Unlist                  Unlist a list, starting only from a set depth.
+Z.to.p                  Convert Z-scores to p-values
+check.linux.install     Check whether a given system command is
+                        installed (e.g, bash)
+comify                  Function to add commas for large numbers
+cor.with                Simulate a correlated variable
+dup.pairs               Obtain an index of all instances of values with
+                        duplicates (ordered)
+estimate.memory         Estimate the memory required for an object.
+exists.not.function     Does object exist ignoring functions The
+                        exists() function can tell you whether an
+                        object exists at all, or whether an object
+                        exists with a certain type, but it can be
+                        useful to know whether an object exists as
+                        genuine data (and not a function) which can be
+                        important when a variable or object is
+                        accidently or intentionally given the same name
+                        as a function. This function usually returns a
+                        logical value as to the existence of the object
+                        (ignoring functions) but can also be set to
+                        return the non-function type if the object
+                        exists.
+extend.pc               Extend an interval by percentage
+fakeLines               Create fake text for testing purposes
+file.split              Split a text file into multiple parts
+force.percentage        Force argument to be a percentage with length
+                        one
+force.scalar            Force argument to be a numeric type with length
+                        one
+get.distinct.cols       Return up to 22 distinct colours.
+getRepositories         Detect all available R repositories.
+has.method              Determine whether a function can be applied to
+                        an S4 class/object
+headl                   A good way to preview large lists.
+list.functions.in.file
+                        Show all functions used in an R script file, by
+                        package
+list.to.env             Create variables from a list
+loess.scatter           Draw a scatterplot with a fit line
+loop.tracker            Creates a progess bar within a loop
+memory.summary          Summary of RAM footprint for all R objects in
+                        the current session. Not my function, but taken
+                        from an R-Help response by Elizabeth Purdom, at
+                        Berkeley. Simply applies the function
+                        'object.size' to the objects in ls(). Also very
+                        similar to an example in the 'Help' for the
+                        utils::object.size() function.
+must.use.package        Do everything possible to load an R package.
+narm                    Return an object with missing values removed.
+out.of                  Easily display fraction and percentages
+p.to.Z                  Convert p-values to Z-scores
+packages.loaded         Check whether a set of packages has been loaded
+pad.left                Print a vector with appropriate padding so each
+                        has equal char length.
+pctile                  Find data thresholds corresponding to
+                        percentiles
+ppa                     Posterior probability of association function
+preview                 Output variable states within functions during
+                        testing/debugging
+prv                     Output variable states within functions/loops
+                        during testing/debugging
+prv.large               Tidy display function for matrix objects
+rmv.spc                 Remove leading and trailing spaces (or other
+                        character).
+search.cran             Search all CRAN packages for those containing
+                        keyword(s).
+sim.cor                 Simulate a dataset with correlated measures
+simple.date             Simple representation and retrieval of
+                        Date/Time
+spc                     Print a character a specified number of times.
+standardize             Convert a numeric vector to Z-scores.
+summarise.r.datasets    Summarise the dimensions and type of available
+                        R example datasets
+textogram               Make an ascii histogram in the console.
+timeit                  Times an expression, with breakdown of time
+                        spent in each function
+toheader                Return a string with each first letter of each
+                        word in upper case.
+top                     Monitor CPU, RAM and Processes
+wait                    Wait for a period of time.
+which.outlier           Return vector indexes of statistical univariate
+                        outliers

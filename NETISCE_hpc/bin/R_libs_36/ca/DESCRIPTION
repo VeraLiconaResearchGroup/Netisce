@@ -1,0 +1,23 @@
+Package: ca
+Version: 0.71.1
+Date: 2018-10-10
+Title: Simple, Multiple and Joint Correspondence Analysis
+Authors@R: c(person(given = "Michael", family = "Greenacre", role = "aut", email = "michael.greenacre@upf.edu"),
+             person(given = "Oleg", family = "Nenadic", role = c("aut", "cre"), email = "onenadi@uni-goettingen.de"),
+             person(given = "Michael", family = "Friendly", role = "ctb"))
+Author: Michael Greenacre [aut],
+  Oleg Nenadic [aut, cre],
+  Michael Friendly [ctb]
+Maintainer: Oleg Nenadic <onenadi@uni-goettingen.de>
+Depends: R (>= 3.0.0)
+Suggests: rgl (>= 0.64-10), vcd
+Description: Computation and visualization of simple, multiple and joint correspondence analysis.
+LazyLoad: yes
+LazyData: yes
+License: GPL
+URL: http://www.carme-n.org/
+NeedsCompilation: no
+Packaged: 2020-01-23 13:25:58 UTC; ripley
+Repository: CRAN
+Date/Publication: 2020-01-24 06:59:53 UTC
+Built: R 3.6.3; ; 2020-07-21 21:59:14 UTC; unix

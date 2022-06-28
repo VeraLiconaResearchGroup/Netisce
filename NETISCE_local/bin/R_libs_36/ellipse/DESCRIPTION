@@ -1,0 +1,22 @@
+Package: ellipse
+Version: 0.4.2
+Title: Functions for Drawing Ellipses and Ellipse-Like Confidence
+        Regions
+Author: Duncan Murdoch <murdoch@stats.uwo.ca> and E. D. Chow 
+    (porting to R by Jesus M. Frias Celayeta <iosu@bureau.ucc.ie>)
+Maintainer: Duncan Murdoch <murdoch.duncan@gmail.com>
+Description: Contains various routines for drawing
+    ellipses and ellipse-like confidence regions, implementing the plots
+    described in Murdoch and Chow (1996), A graphical display of large
+    correlation matrices, The American Statistician 50, 178-180. There are
+    also routines implementing the profile plots described in Bates and
+    Watts (1988), Nonlinear Regression Analysis and its Applications.
+Depends: R (>= 2.0.0),graphics,stats
+Suggests: MASS
+LazyLoad: yes
+License: GPL (>= 2)
+NeedsCompilation: no
+Packaged: 2020-05-26 15:17:47 UTC; murdoch
+Repository: CRAN
+Date/Publication: 2020-05-27 05:30:02 UTC
+Built: R 3.6.3; ; 2020-07-21 21:58:11 UTC; unix

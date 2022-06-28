@@ -1,0 +1,15 @@
+Package: proftools
+Title: Profile Output Processing Tools for R
+Version: 0.99-3
+Author: Luke Tierney and Riad Jarjour
+Description: Tools for examining Rprof profile output.
+Maintainer: Luke Tierney <luke-tierney@uiowa.edu>
+Suggests: graph,Rgraphviz,boot,knitr
+VignetteBuilder: knitr
+License: GPL
+ByteCompile: yes
+NeedsCompilation: no
+Packaged: 2020-07-07 20:17:11 UTC; luke
+Repository: CRAN
+Date/Publication: 2020-07-08 06:20:23 UTC
+Built: R 3.6.3; ; 2021-11-26 17:17:25 UTC; unix

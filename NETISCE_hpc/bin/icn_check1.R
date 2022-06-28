@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
-.libPaths('~/R_libs_36')
+.libPaths('../../../bin/R_libs_36')
 args = commandArgs(trailingOnly=TRUE)
-
+getwd()
 library(plyr)
 library(dplyr)
 library(ggplot2)

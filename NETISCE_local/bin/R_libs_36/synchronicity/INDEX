@@ -1,0 +1,21 @@
+attach.mutex            Attach to an existing mutex.
+boost.mutex             Create a boost.mutex object
+boost.mutex-class       Class "boost.mutex"
+boost.mutex.descriptor-class
+                        An S4 class holding boost.mutex description
+                        information.
+describe                Create descriptors to mutexes and attach
+describe,boost.mutex-method
+                        Describe the boost.mutex object
+description             Accessor for descriptor objects
+descriptor-class        An S4 class holding mutex description
+                        information.
+is.timed                Timeout operations for boost.mutex objects
+lock                    Lock and Unlock a Mutex
+shared                  Is it a shared mutex?
+shared.name             The name of a mutex's shared resource
+synchronicity-package   This package provides support for
+                        synchronization via mutexes and may eventually
+                        support interprocess communication (ipc) and
+                        message passing.
+uuid                    Create a universal unique identifier.

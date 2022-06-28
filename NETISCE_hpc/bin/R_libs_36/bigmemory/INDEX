@@ -1,0 +1,38 @@
+Extract,big.matrix      Extract or Replace
+GetMatrixSize           big.matrix size
+as.big.matrix-methods   Create a "big.matrix" from a matrix or vector.
+as.matrix,big.matrix-method
+                        Convert to base R matrix
+big.matrix              The core "big.matrix" operations.
+big.matrix-class        Class "big.matrix"
+bigmemory-package       Manage massive matrices with shared memory and
+                        memory-mapped files.
+deepcopy                Produces a physical copy of a "big.matrix"
+describe,big.matrix-method
+                        The basic "big.matrix" operations for sharing
+                        and re-attaching.
+descriptor-class        Class "big.matrix.descriptor"
+dim,big.matrix-method   Dimensions of a big.matrix object
+dimnames,big.matrix-method
+                        Dimnames of a big.matrix Object
+flush                   Updating a big.matrix filebacking.
+head,big.matrix-method
+                        Return First or Last Part of a big.matrix
+                        Object
+is.float                Check if Float
+is.float,numeric-method
+                        Is Float?
+is.sub.big.matrix       Submatrix support
+length,big.matrix-method
+                        Length of a big.matrix object
+morder                  Ordering and Permuting functions for
+                        big.matrix" and matrix" objects
+mwhich                  Expanded "which"-like functionality.
+mwhich-methods          Expanded "which"-like functionality.
+ncol,big.matrix-method
+                        The Number of Rows/Columns of a big.matrix
+print,big.matrix-method
+                        Print Values
+typeof,big.matrix-method
+                        The Type of a big.matrix Object
+write.big.matrix        File interface for a "big.matrix"

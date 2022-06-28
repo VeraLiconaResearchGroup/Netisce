@@ -1,0 +1,18 @@
+citHeader("To cite GenSA in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Generalized Simulated Annealing for Efficient Global Optimization: the {GenSA} Package for {R}.",
+  author       = personList(person("Yang Xiang"),
+                   as.person("Sylvain Gubian"),
+                   as.person("Brian Suomela"),
+                   as.person("Julia Hoeng")),
+  journal      = "The R Journal Volume 5/1, June 2013",
+  year         = "2013",
+  note         = "",
+  url          = "https://journal.r-project.org/archive/2013/RJ-2013-002/index.html",
+  textVersion  =
+  paste("Y. Xiang, S. Gubian. B. Suomela, J. Hoeng (2013).",
+        "Generalized Simulated Annealing for Efficient Global Optimization: the GenSA Package for R.",
+        "The R Journal, Volume 5/1, June 2013.",
+        "https://journal.r-project.org/archive/2013/RJ-2013-002/index.html")
+)

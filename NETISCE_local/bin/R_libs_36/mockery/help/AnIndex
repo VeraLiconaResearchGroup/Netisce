@@ -1,0 +1,11 @@
+mockery-package	mockery
+call-expectations	call-expectations
+expect_args	call-expectations
+expect_call	call-expectations
+expect_called	call-expectations
+length.mock	mock
+mock	mock
+mockery	mockery
+mock_args	mock
+mock_calls	mock
+stub	stub

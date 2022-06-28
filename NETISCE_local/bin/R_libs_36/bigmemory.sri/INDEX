@@ -1,0 +1,6 @@
+attach.resource         Create an object that makes use of a shared
+                        resource
+bigmemory.sri-package   A shared resource interface for Bigmemory
+                        Project packages
+describe                Create a description of a shared resource that
+                        can be attached

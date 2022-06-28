@@ -1,0 +1,6 @@
+import(methods)
+exportPattern("^[[:alpha:]]+")
+exportMethods(
+    "attach.resource",
+    "describe" 
+)

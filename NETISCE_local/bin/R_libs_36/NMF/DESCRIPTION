@@ -1,0 +1,45 @@
+Package: NMF
+Type: Package
+Title: Algorithms and Framework for Nonnegative Matrix Factorization
+        (NMF)
+Version: 0.22.0
+Date: 2020-02-02
+Author: Renaud Gaujoux, Cathal Seoighe
+Maintainer: Nicolas Sauwen <nicolas.sauwen@openanalytics.eu>
+Description: Provides a framework to perform Non-negative Matrix
+    Factorization (NMF). The package implements a set of already published algorithms
+    and seeding methods, and provides a framework to test, develop and plug
+    new/custom algorithms. Most of the built-in algorithms have been optimized
+    in C++, and the main interface function provides an easy way of performing
+    parallel computations on multicore machines.
+License: GPL (>= 2)
+URL: http://renozao.github.io/NMF
+LazyLoad: yes
+VignetteBuilder: knitr
+Depends: R (>= 3.0.0), methods, utils, pkgmaker (>= 0.20), registry,
+        rngtools (>= 1.2.3), cluster
+Imports: graphics, stats, stringr (>= 1.0.0), digest, grid, grDevices,
+        gridBase, colorspace, RColorBrewer, foreach, doParallel,
+        ggplot2, reshape2, BiocManager, Biobase
+Suggests: fastICA, doMPI, bigmemory (>= 4.2), synchronicity(>= 1.3.2),
+        corpcor, xtable, devtools, knitr, bibtex, RUnit, mail
+Collate: 'colorcode.R' 'options.R' 'grid.R' 'atracks.R' 'aheatmap.R'
+        'algorithmic.R' 'nmf-package.R' 'rmatrix.R' 'utils.R'
+        'versions.R' 'NMF-class.R' 'transforms.R' 'Bioc-layer.R'
+        'NMFstd-class.R' 'NMFOffset-class.R' 'heatmaps.R'
+        'NMFns-class.R' 'nmfModel.R' 'fixed-terms.R' 'NMFfit-class.R'
+        'NMFSet-class.R' 'NMFStrategy-class.R' 'registry.R'
+        'NMFSeed-class.R' 'NMFStrategyFunction-class.R'
+        'NMFStrategyIterative-class.R' 'NMFplots.R'
+        'registry-algorithms.R' 'algorithms-base.R' 'algorithms-lnmf.R'
+        'algorithms-lsnmf.R' 'algorithms-pe-nmf.R' 'algorithms-siNMF.R'
+        'algorithms-snmf.R' 'data.R' 'extractFeatures.R' 'parallel.R'
+        'registry-seed.R' 'nmf.R' 'rnmf.R' 'run.R' 'seed-base.R'
+        'seed-ica.R' 'seed-nndsvd.R' 'setNMFClass.R' 'simulation.R'
+        'tests.R'
+Packaged: 2020-02-12 10:44:23 UTC; nsauwen
+NeedsCompilation: yes
+Repository: CRAN
+Date/Publication: 2020-02-12 12:40:02 UTC
+RoxygenNote: 6.0.1.9000
+Built: R 3.6.1; x86_64-pc-linux-gnu; 2020-05-21 20:54:39 UTC; unix

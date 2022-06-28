@@ -1,0 +1,5 @@
+importFrom("stats", "constrOptim", "runif")
+importFrom("utils", "write.table")
+export(GenSA)
+useDynLib("GenSA", createInstance, releaseInstance, execute, getREnergy, getRXMiniVector, getRTraceMat, getRNbFuncCall,getRTraceMatSize)
+

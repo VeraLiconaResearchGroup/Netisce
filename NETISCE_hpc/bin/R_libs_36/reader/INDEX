@@ -1,0 +1,33 @@
+cat.path                Simple and robust way to create full-path file
+                        names.
+classify.ext            Classify file types readable by standard R I/O
+                        functions.
+column.salvage          Change column name in different form to desired
+                        form.
+conv.fixed.width        Convert a matrix or dataframe to fixed-width
+                        for nice file output
+file.ncol               Find the number of columns (lines) in a file.
+file.nrow               Find the number of rows (lines) in a file.
+find.file               Search for a directory to add to the path so
+                        that a file exists.
+find.id.col             Find which column in a dataframe contains a
+                        specified set of values.
+force.frame             returns a dataframe if 'unknown.data' can in
+                        anyway relate to such:
+force.vec               returns a vector if 'unknown.data' can in
+                        anyway relate to such:
+get.delim               Determine the delimiter for a text data file.
+get.ext                 Get the file extension from a file-name.
+is.file                 Test whether a file exists in a target
+                        directory, or alternative list of directories.
+n.readLines             Read 'n' lines (ignoring comments and header)
+                        from a file.
+parse.args              Function to collect arguments when running R
+                        from the command line
+reader                  Flexibly load from a text or binary file,
+                        accepts multiple file formats.
+reader-package          Suite of Functions to Flexibly Read Data from
+                        Files
+rmv.ext                 Remove the file extension from a file-name.
+shift.rownames          Shift the first column of a dataframe to
+                        rownames() if appropriate.

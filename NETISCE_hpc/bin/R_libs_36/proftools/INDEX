@@ -1,0 +1,18 @@
+annotateSource          Annotate Source Files
+filterProfileData       Filter Profile Data
+flameGraph              Call Tree Graphs
+flatProfile             Flat Profile for Rprof Profile Data
+funSummary              Basic Profile Data Summaries
+hotPaths                Hot Paths in Profile Data
+plain.style             Style Specifications for Call Graphs
+plot.proftools_profData
+                        Plot Profile Data
+plotProfileCallGraph    Plot Call Graph for Rprof Profile Data
+printProfileCallGraph   Print Call Graph for Rprof Profile Data
+profileCallGraph2Dot    Write Call Graph for Rprof Profile Data to
+                        Graphviz Dot File
+profileDataCycles       Profile Data Utilities
+profileExpr             Read Rprof Profile Data
+proftools-package       Tools for examining R profile output
+readProfileData         Read Rprof Profile Data
+writeCallgrindFile      Write Out Profile Data in Callgrind Format

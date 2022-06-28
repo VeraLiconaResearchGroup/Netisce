@@ -1,0 +1,2 @@
+profmem                 Memory profiling R
+readRprofmem            Read an Rprofmem log file
