@@ -59,7 +59,7 @@ params.kmeans_max_val = 10
 params.num_nodes = 6 // that have expression data
 params.num_states = 100000
 
-params.randseed=4
+params.randseed=0
 ```
 **Some Notes: ** make sure to include `$baseDir` before pointing to the folder containing your input data. Also, be sure that `params.num_nodes` is the number of nodes where there exists data within `expressions.csv`. Finally, by adjusting the `params.randseed` you can identify alternate FVSes within the nextwork.
 
@@ -126,16 +126,25 @@ knitr::kable(kmeans[1:6,])
 And we see in the `kmeans.txt` file, that the A samples are clustered in cluster 0, while the B samples are grouped in cluster 1. 
 
 
+
+#### FVS_Finding output of FVSes.txt
+
+The `FVS_Finding` Nextflow script was used to identify all unique FVSes in the toy network.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+fvs<-read.delim('results/FVSes.txt',header=F)
+knitr::kable(fvs)
+```
+The first column contains the FVS identifier, where the number is the `randomseed` value where that FVS was identified. There were four FVSes identified in this network, each comprised of two nodes (column2 and column 3)
+
 #### fvs.txt  {-#section-id}
-This file contains the node names that were identified by the FVS finding algorithm when the random seed was set to 4 (i.e. FVS4).
+We selected FVS_0 to be analyzed in this example. Therefore, `params.randomseed` was set to 0 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 fvs<-read.delim('results/fvs.txt')
 knitr::kable(fvs)
 ```
 The FVS finding algorithm identified nodes B and E to be a minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.
 
-
-**Note: ** this network contains 4 unique minimal Feedback Verex Sets (FVS_1: {D, B}, FVS_2:{D,C}	, FVS_3:{E,C}	, FVS_4: {E,B}).By adjusting the `params.randseed` parameter in the `NETISCE.nf` file, the other FVSes can be identified and perturbations can be computed with them.
 
 #### crit1perts.txt  {-#section-id}
 This file contains a list of IDs for the perturbations to FVS control nodes that passed criterion 1.

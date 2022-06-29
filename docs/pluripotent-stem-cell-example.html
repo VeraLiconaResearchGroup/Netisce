@@ -149,6 +149,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#nextflow.config"><i class="fa fa-check"></i><b>2.5.2</b> nextflow.config</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="installation-and-usage.html"><a href="installation-and-usage.html#running-netisce"><i class="fa fa-check"></i><b>2.6</b> Running NETISCE</a></li>
+<li class="chapter" data-level="2.7" data-path="installation-and-usage.html"><a href="installation-and-usage.html#fvs_finding-nextflow-script"><i class="fa fa-check"></i><b>2.7</b> FVS_Finding Nextflow Script</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#parameters"><i class="fa fa-check"></i><b>2.7.1</b> parameters</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="netisce-output.html"><a href="netisce-output.html"><i class="fa fa-check"></i><b>3</b> NETISCE output</a></li>
 <li class="chapter" data-level="4" data-path="toy.html"><a href="toy.html"><i class="fa fa-check"></i><b>4</b> Toy Network Examples</a><ul>
@@ -305,7 +308,7 @@ Klf4
 <div id="section-id" class="section level4 unnumbered">
 <h4>Attractor landscape estimation via k-means analysis</h4>
 <p>Now, let’s look at the results of k-means analysis. First, NETISCE determines the optimal number of k clusters by computing the elbow and silhouette metrics.</p>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
 <img src="ipsc/results/elbow.png" alt="optimal k as identified by a) the elbow and b) silhouette metrics" width="50%" /><img src="ipsc/results/silhouette.png" alt="optimal k as identified by a) the elbow and b) silhouette metrics" width="50%" />
 <p class="caption">
 Figure 6.1: optimal k as identified by a) the elbow and b) silhouette metrics
@@ -448,7 +451,7 @@ pert_98
 <p><strong>The relevant files have the prefix ‘original’ in the github repository</strong></p>
 <p>Our second perturbation filtering criterion identifies perturbations where, in their corresponding attractors, 90% of the steady state values for internal-marker nodes that are within the steady state expression ranges in the attractors generated from the ESC experimental data.</p>
 <p>First, let’s take a look at the steady state values of the internal-marker nodes Oct4, Sox2, and Nanog in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-exp_internalmarkers.txt"><code>original-exp_internalmarkers.txt</code></a> and are plotted in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/original-experimental_internalmarkers.pdf"><code>original-experimental_internalmarkers.pdf</code></a>:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-28"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-29"></span>
 <img src="ipsc/results/original-experimental_internalmarkers.pdf" alt="histograms of 4 internal-marker node values" width="460pt" height="700pt" />
 <p class="caption">
 Figure 6.2: histograms of 4 internal-marker node values
@@ -833,7 +836,7 @@ nochange
 <span id="cb11-11"><a href="pluripotent-stem-cell-example.html#cb11-11"></a><span class="kw">ggplot</span>(d3r, <span class="kw">aes</span>(<span class="dt">x=</span>value)) <span class="op">+</span></span>
 <span id="cb11-12"><a href="pluripotent-stem-cell-example.html#cb11-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Var1,<span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>,<span class="dt">shrink=</span><span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb11-13"><a href="pluripotent-stem-cell-example.html#cb11-13"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">ncol</span>(d3),<span class="dt">fill=</span>value))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>Tol_muted)<span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;% of specified perturbation to an FVS control node across all </span><span class="ch">\n</span><span class="st"> combinations of perturbations that passed filtering criteria &quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;node perturbation&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" />
 Here, we see that in the majority of perturbations, there is overexpression of the FVS nodes Sox2, Nanog and Oct4. This aligns with their role as maintainers of pluripotency.</p>
 <p>The steady-state values of the internal-marker nodes for these perturbations can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt"><code>pert1_internal_markers.txt</code></a>.</p>
 <p>A perturbation on the FVS control node, Nanog overexpression (pert_445), was also identified in Yachie-Kinoshita et al. and experimentally verified to shift cells from the EpiSC state towards the ESC state. We can plot the internal-marker node values using a radar plot.</p>
@@ -872,7 +875,7 @@ Figure 6.3: radar charts of the steady-state values of 4 internal-marker nodes f
 <p><em>The relevant files have the prefix ‘expanded’ in the github repository.</em></p>
 <p>We explored filtering the 132 perturbations that passed the second filtering criterion by adding additional internal-marker nodes associated with pluripotency. We added 3 nodes, Lefty1, Pitx2 (transcription factors active in EpiSCs), and Esrrb (transcription factor active in ESCs) to the 4 previously used internal-marker nodes.</p>
 <p>Let’s look at the steady state values of the internal-marker nodes in the attractors generated from the ESC and EpiSC experimental data. The values can be found in the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-exp_internalmarkers.txt"><code>expanded-exp_internalmarkers.txt</code></a> and are plotted in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/expanded-experimental_internalmarkers.pdf"><code>expanded-experimental_internalmarkers.pdf</code></a>:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-31"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
 <img src="ipsc/results/expanded-experimental_internalmarkers.pdf" alt="histograms of 7 internal-marker node values" width="460pt" height="700pt" />
 <p class="caption">
 Figure 6.4: histograms of 7 internal-marker node values
@@ -1414,7 +1417,7 @@ up
 <span id="cb16-8"><a href="pluripotent-stem-cell-example.html#cb16-8"></a><span class="kw">ggplot</span>(d4r, <span class="kw">aes</span>(<span class="dt">x=</span>value)) <span class="op">+</span></span>
 <span id="cb16-9"><a href="pluripotent-stem-cell-example.html#cb16-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Var1,<span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>,<span class="dt">shrink=</span><span class="ot">FALSE</span>) <span class="op">+</span></span>
 <span id="cb16-10"><a href="pluripotent-stem-cell-example.html#cb16-10"></a><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">y =</span> (..count..)<span class="op">/</span><span class="kw">ncol</span>(d4),<span class="dt">fill=</span>value))  <span class="op">+</span><span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">labels=</span>scales<span class="op">::</span>percent) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>Tol_muted) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;% of specified perturbation to an FVS control node across all </span><span class="ch">\n</span><span class="st"> combinations of perturbations that passed filtering criteria &quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;node perturbation&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" />
 Interestingly, we see among these 15 perturbations, Nanog overexpression, but no change to Oct4 or Sox2, is indicated. We also see that Klf4 is overexpressed in the majority of these 15 perturbations.</p>
 <p>The steady-state values of the internal-marker nodes for these perturbations can be found in <a href="https://github.com/VeraLiconaResearchGroup/Netisce/blob/main/ipsc_validation/results/pert1_internal_markers.txt"><code>pert1_internal_markers.txt</code></a>.</p>
 <p>We can also generate radar plots for these 15 perturbations.</p>

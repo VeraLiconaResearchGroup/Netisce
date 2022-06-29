@@ -149,6 +149,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#nextflow.config"><i class="fa fa-check"></i><b>2.5.2</b> nextflow.config</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="installation-and-usage.html"><a href="installation-and-usage.html#running-netisce"><i class="fa fa-check"></i><b>2.6</b> Running NETISCE</a></li>
+<li class="chapter" data-level="2.7" data-path="installation-and-usage.html"><a href="installation-and-usage.html#fvs_finding-nextflow-script"><i class="fa fa-check"></i><b>2.7</b> FVS_Finding Nextflow Script</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#parameters"><i class="fa fa-check"></i><b>2.7.1</b> parameters</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="netisce-output.html"><a href="netisce-output.html"><i class="fa fa-check"></i><b>3</b> NETISCE output</a></li>
 <li class="chapter" data-level="4" data-path="toy.html"><a href="toy.html"><i class="fa fa-check"></i><b>4</b> Toy Network Examples</a><ul>
@@ -247,7 +250,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>reshape2</li>
 <li>readr</li>
 </ul>
-<p>which can be installed through <a href="https://cran.r-project.org/">CRAN</a></p>
+<p>which can be installed through <a href="https://cran.r-project.org/">CRAN</a>.</p>
+<p><strong>A Note about R packages</strong>
+NETISCE was originally constructed and run using R version 3.6.3. However, it has also been tested and functions in R version 4.0.4. The in <code>NETISCE_hpc</code> we specify for R scripts to use R/3.6.3 and have included the relevant R packages within the <code>bin</code> folder in an effort to alleviate potential package installation issues when using an hpc.</p>
 </div>
 <div id="docker-image" class="section level2">
 <h2><span class="header-section-number">2.4</span> Docker Image</h2>
@@ -270,7 +275,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>params.kmeans_max_val</strong>: maximum k-means value for clustering (default=10)</li>
 <li><strong>params.num_nodes</strong>: number of nodes in network for which normalized expression data exists (within the params.expressions file)</li>
 <li><strong>params.num_states</strong>: number of randomly generated initial states (default=100000, or 3^n where n is the number of network nodes and 3^n is less than 100000)</li>
-<li><strong>params.randseed</strong>: random seed to generate one FVS of a network</li>
+<li><strong>params.randseed</strong>: random seed to generate one FVS of a network. <strong>Note:</strong> If you are interested in identifying all FVSes within a network, and using this information to specifically select a FVS, please see the additional folder and Nextflow script in the <code>FVS_finding</code> folder. Detailed description of the input and output is below.</li>
 </ul>
 <p>Please see the <a href="https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local/input_data"><code>input_data</code></a> folder for examples of files to match the formatting.</p>
 <div id="netisce_mutations.nf" class="section level3">
@@ -288,7 +293,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>./nextflow run NETISCE.nf -resume ##or NETISCE_mutations.nf if including mutational data
 </code></pre>
 <p>We recommend using the -resume flag in the case that you change a file or parameter within your pipeline. This way, nextflow caches results that remain unchanged, preventing pipeline steps from being re-run.</p>
+</div>
+<div id="fvs_finding-nextflow-script" class="section level2">
+<h2><span class="header-section-number">2.7</span> FVS_Finding Nextflow Script</h2>
+<p>A user may be interested in identifying all FVSes within a network. By looking at individual FVSes, users can select the FVS that contains nodes of interest. We have included an additional Nextflow script that calculates the FVSes within a network and then provides the unique sets of FVSes identified.</p>
+<div id="parameters" class="section level3">
+<h3><span class="header-section-number">2.7.1</span> parameters</h3>
+<p><strong>params.network</strong> = location of network file (this can be directed to your <code>input_data</code> folder)</p>
+<p><strong>params.sets</strong> = number of FVS searches to perform (i.e., the randomseed value). This should be set reasonably high to discover all FVSes within a network, based on the network size.</p>
+<p>##output</p>
+<p><strong>FVSes.txt</strong> = file containing the unique minimal FVSes within the network. The first column contains the FVS identifier- the number following “FVS_” indicates which randomseed value was used to identify that specific FVS. You can use this value as the setting for <strong>params.randseed</strong> in NETISCE.</p>
 
+</div>
 </div>
 </div>
             </section>

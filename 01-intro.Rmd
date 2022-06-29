@@ -28,7 +28,10 @@ As well as the following R packages:
 - reshape2
 - readr
 
-which can be installed through [CRAN](https://cran.r-project.org/)
+which can be installed through [CRAN](https://cran.r-project.org/).
+
+**A Note about R packages**
+NETISCE was originally constructed and run using R version 3.6.3. However, it has also been tested and functions in R version 4.0.4. The in `NETISCE_hpc` we specify for R scripts to use R/3.6.3 and have included the relevant R packages within the `bin` folder in an effort to alleviate potential package installation issues when using an hpc. 
 
 ## Docker Image
 
@@ -54,7 +57,7 @@ Whether on your local machine or hpc, to run NETISCE you must specify the files 
 - **params.kmeans_max_val**:  maximum k-means value for clustering (default=10)
 - **params.num_nodes**: number of nodes in network for which normalized expression data exists (within the params.expressions file)
 - **params.num_states**: number of randomly generated initial states (default=100000, or 3^n where n is the number of network nodes and 3^n is less than 100000)
-- **params.randseed**: random seed to generate one FVS of a network
+- **params.randseed**: random seed to generate one FVS of a network. **Note:** If you are interested in identifying all FVSes within a network, and using this information to specifically select a FVS, please see the additional folder and Nextflow script in the `FVS_finding` folder. Detailed description of the input and output is below.
 
 Please see the [`input_data`](https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local/input_data) folder for examples of files to match the formatting. 
 
@@ -75,3 +78,18 @@ Once you have specified the parameters, run NETISCE using the following command:
 ```
 
 We recommend using the -resume flag in the case that you change a file or parameter within your pipeline. This way, nextflow caches results that remain unchanged, preventing pipeline steps from being re-run. 
+
+
+## FVS_Finding Nextflow Script
+A user may be interested in identifying all FVSes within a network. By looking at individual FVSes, users can select the FVS that contains nodes of interest. We have included an additional Nextflow script that calculates the FVSes within a network and then provides the unique sets of FVSes identified. 
+
+### parameters
+
+**params.network** = location of network file (this can be directed to your `input_data` folder)
+
+**params.sets** = number of FVS searches to perform (i.e., the randomseed value). This should be set reasonably high to discover all FVSes within a network, based on the network size.
+
+
+##output
+
+**FVSes.txt** = file containing the unique minimal FVSes within the network. The first column contains the FVS identifier- the number following "FVS_" indicates which randomseed value was used to identify that specific FVS. You can use this value as the setting for **params.randseed** in NETISCE. 

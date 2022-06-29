@@ -149,6 +149,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.2" data-path="installation-and-usage.html"><a href="installation-and-usage.html#nextflow.config"><i class="fa fa-check"></i><b>2.5.2</b> nextflow.config</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="installation-and-usage.html"><a href="installation-and-usage.html#running-netisce"><i class="fa fa-check"></i><b>2.6</b> Running NETISCE</a></li>
+<li class="chapter" data-level="2.7" data-path="installation-and-usage.html"><a href="installation-and-usage.html#fvs_finding-nextflow-script"><i class="fa fa-check"></i><b>2.7</b> FVS_Finding Nextflow Script</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="installation-and-usage.html"><a href="installation-and-usage.html#parameters"><i class="fa fa-check"></i><b>2.7.1</b> parameters</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="netisce-output.html"><a href="netisce-output.html"><i class="fa fa-check"></i><b>3</b> NETISCE output</a></li>
 <li class="chapter" data-level="4" data-path="toy.html"><a href="toy.html"><i class="fa fa-check"></i><b>4</b> Toy Network Examples</a><ul>
@@ -377,7 +380,7 @@ params.kmeans_max_val = 10
 params.num_nodes = 6 // that have expression data
 params.num_states = 100000
 
-params.randseed=4</code></pre>
+params.randseed=0</code></pre>
 <p><strong>Some Notes: </strong> make sure to include <code>$baseDir</code> before pointing to the folder containing your input data. Also, be sure that <code>params.num_nodes</code> is the number of nodes where there exists data within <code>expressions.csv</code>. Finally, by adjusting the <code>params.randseed</code> you can identify alternate FVSes within the nextwork.</p>
 </div>
 <div id="run-netisce" class="section level2">
@@ -514,9 +517,45 @@ Figure 4.6: silhouette metric for optimal k
 </table>
 <p>And we see in the <code>kmeans.txt</code> file, that the A samples are clustered in cluster 0, while the B samples are grouped in cluster 1.</p>
 </div>
+<div id="fvs_finding-output-of-fvses.txt" class="section level4">
+<h4><span class="header-section-number">4.5.0.1</span> FVS_Finding output of FVSes.txt</h4>
+<p>The <code>FVS_Finding</code> Nextflow script was used to identify all unique FVSes in the toy network.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">V1</th>
+<th align="left">V2</th>
+<th align="left">V3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FVS_0</td>
+<td align="left">B</td>
+<td align="left">E</td>
+</tr>
+<tr class="even">
+<td align="left">FVS_2</td>
+<td align="left">C</td>
+<td align="left">D</td>
+</tr>
+<tr class="odd">
+<td align="left">FVS_5</td>
+<td align="left">B</td>
+<td align="left">D</td>
+</tr>
+<tr class="even">
+<td align="left">FVS_11</td>
+<td align="left">C</td>
+<td align="left">E</td>
+</tr>
+</tbody>
+</table>
+<p>The first column contains the FVS identifier, where the number is the <code>randomseed</code> value where that FVS was identified. There were four FVSes identified in this network, each comprised of two nodes (column2 and column 3)</p>
+</div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>fvs.txt</h4>
-<p>This file contains the node names that were identified by the FVS finding algorithm when the random seed was set to 4 (i.e. FVS4).</p>
+<p>We selected FVS_0 to be analyzed in this example. Therefore, <code>params.randomseed</code> was set to 0</p>
 <table>
 <thead>
 <tr class="header">
@@ -533,7 +572,6 @@ Figure 4.6: silhouette metric for optimal k
 </tbody>
 </table>
 <p>The FVS finding algorithm identified nodes B and E to be a minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.</p>
-<p><strong>Note: </strong> this network contains 4 unique minimal Feedback Verex Sets (FVS_1: {D, B}, FVS_2:{D,C} , FVS_3:{E,C} , FVS_4: {E,B}).By adjusting the <code>params.randseed</code> parameter in the <code>NETISCE.nf</code> file, the other FVSes can be identified and perturbations can be computed with them.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>crit1perts.txt</h4>

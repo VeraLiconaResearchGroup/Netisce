@@ -199,7 +199,10 @@ As well as the following R packages:
   readr
 \end{itemize}
 
-which can be installed through \href{https://cran.r-project.org/}{CRAN}
+which can be installed through \href{https://cran.r-project.org/}{CRAN}.
+
+\textbf{A Note about R packages}
+NETISCE was originally constructed and run using R version 3.6.3. However, it has also been tested and functions in R version 4.0.4. The in \texttt{NETISCE\_hpc} we specify for R scripts to use R/3.6.3 and have included the relevant R packages within the \texttt{bin} folder in an effort to alleviate potential package installation issues when using an hpc.
 
 \hypertarget{docker-image}{%
 \section{Docker Image}\label{docker-image}}
@@ -240,7 +243,7 @@ Whether on your local machine or hpc, to run NETISCE you must specify the files 
 \item
   \textbf{params.num\_states}: number of randomly generated initial states (default=100000, or 3\^{}n where n is the number of network nodes and 3\^{}n is less than 100000)
 \item
-  \textbf{params.randseed}: random seed to generate one FVS of a network
+  \textbf{params.randseed}: random seed to generate one FVS of a network. \textbf{Note:} If you are interested in identifying all FVSes within a network, and using this information to specifically select a FVS, please see the additional folder and Nextflow script in the \texttt{FVS\_finding} folder. Detailed description of the input and output is below.
 \end{itemize}
 
 Please see the \href{https://github.com/VeraLiconaResearchGroup/Netisce/tree/main/NETISCE_local/input_data}{\texttt{input\_data}} folder for examples of files to match the formatting.
@@ -265,6 +268,22 @@ Once you have specified the parameters, run NETISCE using the following command:
 \end{verbatim}
 
 We recommend using the -resume flag in the case that you change a file or parameter within your pipeline. This way, nextflow caches results that remain unchanged, preventing pipeline steps from being re-run.
+
+\hypertarget{fvs_finding-nextflow-script}{%
+\section{FVS\_Finding Nextflow Script}\label{fvs_finding-nextflow-script}}
+
+A user may be interested in identifying all FVSes within a network. By looking at individual FVSes, users can select the FVS that contains nodes of interest. We have included an additional Nextflow script that calculates the FVSes within a network and then provides the unique sets of FVSes identified.
+
+\hypertarget{parameters}{%
+\subsection{parameters}\label{parameters}}
+
+\textbf{params.network} = location of network file (this can be directed to your \texttt{input\_data} folder)
+
+\textbf{params.sets} = number of FVS searches to perform (i.e., the randomseed value). This should be set reasonably high to discover all FVSes within a network, based on the network size.
+
+\#\#output
+
+\textbf{FVSes.txt} = file containing the unique minimal FVSes within the network. The first column contains the FVS identifier- the number following ``FVS\_'' indicates which randomseed value was used to identify that specific FVS. You can use this value as the setting for \textbf{params.randseed} in NETISCE.
 
 \hypertarget{netisce-output}{%
 \chapter{NETISCE output}\label{netisce-output}}
@@ -427,7 +446,7 @@ params.kmeans_max_val = 10
 params.num_nodes = 6 // that have expression data
 params.num_states = 100000
 
-params.randseed=4
+params.randseed=0
 \end{verbatim}
 
 \textbf{Some Notes: } make sure to include \texttt{\$baseDir} before pointing to the folder containing your input data. Also, be sure that \texttt{params.num\_nodes} is the number of nodes where there exists data within \texttt{expressions.csv}. Finally, by adjusting the \texttt{params.randseed} you can identify alternate FVSes within the nextwork.
@@ -569,11 +588,32 @@ B\_3 & 1\\
 
 And we see in the \texttt{kmeans.txt} file, that the A samples are clustered in cluster 0, while the B samples are grouped in cluster 1.
 
+\hypertarget{fvs_finding-output-of-fvses.txt}{%
+\subsubsection{FVS\_Finding output of FVSes.txt}\label{fvs_finding-output-of-fvses.txt}}
+
+The \texttt{FVS\_Finding} Nextflow script was used to identify all unique FVSes in the toy network.
+
+\begin{tabular}{l|l|l}
+\hline
+V1 & V2 & V3\\
+\hline
+FVS\_0 & B & E\\
+\hline
+FVS\_2 & C & D\\
+\hline
+FVS\_5 & B & D\\
+\hline
+FVS\_11 & C & E\\
+\hline
+\end{tabular}
+
+The first column contains the FVS identifier, where the number is the \texttt{randomseed} value where that FVS was identified. There were four FVSes identified in this network, each comprised of two nodes (column2 and column 3)
+
 \hypertarget{section-id}{%
 \subsubsection*{fvs.txt}\label{section-id}}
 \addcontentsline{toc}{subsubsection}{fvs.txt}
 
-This file contains the node names that were identified by the FVS finding algorithm when the random seed was set to 4 (i.e.~FVS4).
+We selected FVS\_0 to be analyzed in this example. Therefore, \texttt{params.randomseed} was set to 0
 
 \begin{tabular}{l}
 \hline
@@ -586,8 +626,6 @@ E\\
 \end{tabular}
 
 The FVS finding algorithm identified nodes B and E to be a minimal FVS control nodes in the toy network. Since the FVS control node set contained 2 nodes, 9 combinations of perturbations were performed on the control node sets.
-
-\textbf{Note: } this network contains 4 unique minimal Feedback Verex Sets (FVS\_1: \{D, B\}, FVS\_2:\{D,C\} , FVS\_3:\{E,C\} , FVS\_4: \{E,B\}).By adjusting the \texttt{params.randseed} parameter in the \texttt{NETISCE.nf} file, the other FVSes can be identified and perturbations can be computed with them.
 
 \hypertarget{section-id}{%
 \subsubsection*{crit1perts.txt}\label{section-id}}
@@ -1015,7 +1053,7 @@ Klf4\\
 Now, let's look at the results of k-means analysis. First, NETISCE determines the optimal number of k clusters by computing the elbow and silhouette metrics.
 
 \begin{figure}
-\includegraphics[width=0.5\linewidth]{ipsc/results/elbow} \includegraphics[width=0.5\linewidth]{ipsc/results/silhouette} \caption{optimal k as identified by a) the elbow and b) silhouette metrics}\label{fig:unnamed-chunk-25}
+\includegraphics[width=0.5\linewidth]{ipsc/results/elbow} \includegraphics[width=0.5\linewidth]{ipsc/results/silhouette} \caption{optimal k as identified by a) the elbow and b) silhouette metrics}\label{fig:unnamed-chunk-26}
 \end{figure}
 
 We see that the optimal k assessed by the elbow metric was k=4, while the optimal k identified by the silhouette metric was k=2. NETISCE automatically chooses the smaller k value, after checking that the attractors generated from the ESC samples and EpiSC samples do not appear in the same cluster.
@@ -1091,7 +1129,7 @@ First, let's take a look at the steady state values of the internal-marker nodes
 
 }
 
-\caption{histograms of 4 internal-marker node values}\label{fig:unnamed-chunk-28}
+\caption{histograms of 4 internal-marker node values}\label{fig:unnamed-chunk-29}
 \end{figure}
 
 We see that the values of the internal-markers for the pluripotent state (Oct4, Sox2, Nanog) are higher in the attractors generated from the experimental data of the ESCs than the attractors generated from the experimental data of the EpiSCs, and the makrer of the epiblast stem state is higher in the attractors generated from the experimental data of the EpiSCs than in the attractors generated from the experimental data of the ESC.
@@ -1161,7 +1199,7 @@ We can look to see if there are any trends in the orientation of the perturbatio
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-30-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-31-1} \end{center}
 
 Here, we see that in the majority of perturbations, there is overexpression of the FVS nodes Sox2, Nanog and Oct4. This aligns with their role as maintainers of pluripotency.
 
@@ -1218,7 +1256,7 @@ Let's look at the steady state values of the internal-marker nodes in the attrac
 
 }
 
-\caption{histograms of 7 internal-marker node values}\label{fig:unnamed-chunk-31}
+\caption{histograms of 7 internal-marker node values}\label{fig:unnamed-chunk-32}
 \end{figure}
 
 Again, the internal-marker nodes have the correct expression patterns within the attractors generated from the ESC and EpiSC states.
@@ -1295,7 +1333,7 @@ We can plot the trends of the orientation of perturbations for each FVS control 
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-33-1} \end{center}
+\begin{center}\includegraphics{_main_files/figure-latex/unnamed-chunk-34-1} \end{center}
 
 Interestingly, we see among these 15 perturbations, Nanog overexpression, but no change to Oct4 or Sox2, is indicated. We also see that Klf4 is overexpressed in the majority of these 15 perturbations.
 
@@ -1482,7 +1520,7 @@ TSC1\\
 Now, let's look at the results of k-means analysis. First, NETISCE determines the optimal number of k clusters by computing the elbow and silhouette metrics.
 
 \begin{figure}
-\includegraphics[width=0.5\linewidth]{crc/results/elbow} \includegraphics[width=0.5\linewidth]{crc/results/silhouette} \caption{optimal k as identified by a) the elbow and b) silhouette metrics}\label{fig:unnamed-chunk-36}
+\includegraphics[width=0.5\linewidth]{crc/results/elbow} \includegraphics[width=0.5\linewidth]{crc/results/silhouette} \caption{optimal k as identified by a) the elbow and b) silhouette metrics}\label{fig:unnamed-chunk-37}
 \end{figure}
 
 We see that the optimal k assessed by both the elbow metric and silhouette metric was k=3. NETISCE checkes to make sure that the untreated, MAPK inihibitor therapy resistant, and MAPK inhibitor therapy sensitive attractors are all separate.
@@ -1552,7 +1590,7 @@ First, let's take a look at the steady state values of the internal-marker nodes
 
 }
 
-\caption{histograms of 3 internal-marker node values}\label{fig:unnamed-chunk-39}
+\caption{histograms of 3 internal-marker node values}\label{fig:unnamed-chunk-40}
 \end{figure}
 
 We see that the value of the internal-marker for the apoptosis (CASP3) is higher and the steady-state values of the internal-marker nodes for proliferation (CCNE1) and MAPK signaling (MAPK1) are lower in the MAPK inhibitor therapy sensitive associated attractor than the MAPK inhibitor therapy resistance and untreated associated attractors.
@@ -1624,11 +1662,11 @@ We can look to see if there are any trends in the orientation of the perturbatio
 
 \begin{figure}
 
-{\centering \includegraphics{_main_files/figure-latex/unnamed-chunk-41-1} 
+{\centering \includegraphics{_main_files/figure-latex/unnamed-chunk-42-1} 
 
 }
 
-\caption{the precentage of specific perturbations on FVS control nodes in the perturbations that passed the filtering criteria}\label{fig:unnamed-chunk-41}
+\caption{the precentage of specific perturbations on FVS control nodes in the perturbations that passed the filtering criteria}\label{fig:unnamed-chunk-42}
 \end{figure}
 
 Here, we see that in the majority of perturbations, SRC is knocked-out.
