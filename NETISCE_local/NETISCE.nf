@@ -18,7 +18,7 @@ params.kmeans_max_val = 10
 params.num_nodes = 6 // that have expression data
 params.num_states = 100000
 
-params.randseed=4
+params.randseed=0
 
 process sfa_exp {
     input: 
