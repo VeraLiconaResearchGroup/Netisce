@@ -13,7 +13,7 @@ fvs<-lapply(fvs, function(x) gsub("'","",x))
 fvs<-lapply(fvs, function(x) x[x != ""])
 fvs<-lapply(fvs, function(x) sort(x))
 
-fvs<-fvs[lengths(fvs)<26]
+
 
 df<-as.data.frame(fvs) 
 

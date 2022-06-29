@@ -1,5 +1,4 @@
-#!/usr/bin/env Rscript 
-.libPaths('../../../../bin/R_libs_36')
+#!/usr/bin/env Rscript
 library(dplyr)
 args = commandArgs(trailingOnly=TRUE)
 
@@ -13,7 +12,7 @@ fvs<-lapply(fvs, function(x) gsub("'","",x))
 fvs<-lapply(fvs, function(x) x[x != ""])
 fvs<-lapply(fvs, function(x) sort(x))
 
-fvs<-fvs[lengths(fvs)<26]
+
 
 df<-as.data.frame(fvs) 
 
@@ -24,5 +23,6 @@ df<-df %>% t()
 row.names(df)<-paste0("FVS_",0:(cols-1))
 df<-unique(df)
 write.table(df,"FVSes.txt",quote=F,row.names = T,col.names = F,sep="\t")
+
 
 

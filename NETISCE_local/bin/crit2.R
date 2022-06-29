@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript 
-.libPaths('../../../bin/R_libs_36')
+
 args = commandArgs(trailingOnly=TRUE)
 
 library(plyr)
