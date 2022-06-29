@@ -1,0 +1,4 @@
+FVS_0	B	E
+FVS_1	C	D
+FVS_4	B	D
+FVS_10	C	E
