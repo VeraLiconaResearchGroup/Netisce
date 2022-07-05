@@ -1,5 +1,0 @@
-call-expectations       Expectation: does the given call match the
-                        expected?
-mock                    Create and query a mocked function.
-mockery                 R package to make mocking easier
-stub                    Replace a function with a stub.

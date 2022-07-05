@@ -1,5 +1,0 @@
-exportPattern("^[[:alpha:]]+")
-import(grDevices, graphics, stats, utils)
-importFrom(proftools, readProfileData, flatProfile)
-importFrom(tools, toHTML)
-importFrom(methods, is, showMethods)
