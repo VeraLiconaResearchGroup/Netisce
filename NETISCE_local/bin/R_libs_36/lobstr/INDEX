@@ -1,8 +1,0 @@
-ast                     Display the abstract syntax tree
-cst                     Call stack tree
-mem_used                How much memory is currently used by R?
-obj_addr                Find memory location of objects and their
-                        children.
-obj_size                Calculate the size of an object.
-ref                     Display tree of references
-sxp                     Inspect an object
