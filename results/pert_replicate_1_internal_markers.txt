@@ -1,4 +1,6 @@
 name C
+pert_0 -2.6
 pert_3 2.6578289853432926
 pert_6 6.4
+pert_7 6.4
 pert_8 6.4

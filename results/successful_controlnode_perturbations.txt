@@ -1,4 +1,5 @@
 B E up down total
 pert_3 nochange down 0 1 1
+pert_7 up nochange 1 0 1
 pert_6 up down 1 1 2
 pert_8 up up 2 0 2

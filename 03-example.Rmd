@@ -105,7 +105,7 @@ After estimating attractors for the experimental and randomly generated initial 
 ```{r, out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'elbow metric for optimal k'}
 knitr::include_graphics("results/elbow.png")
 ```
-The elbow metric found the optimal number of k clusters to be k=3.
+The elbow metric found the optimal number of k clusters to be k=5.
 
 #### silhouette.png {-#section-id}
 ```{r,out.width='50%', fig.align='center',echo = FALSE, fig.cap = 'silhouette metric for optimal k'}
@@ -152,11 +152,11 @@ This file contains a list of IDs for the perturbations to FVS control nodes that
 crit1<-read.delim('results/crit1perts.txt',header = F)
 knitr::kable(crit1)
 ```
-3 out of the 9 pertrubations passed the machine learning filtering criterion.
+5 out of the 9 perturbations passed the machine learning filtering criterion.
 
 
 #### pert_replicate_1_internal_markers.txt  {-#section-id}
-NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B_1,B_2,B_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert_3,pert_6, and pert_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B_1 (contained in the file `pert_replicate_1_internal_markers.txt`; the values of C for the system under perturbations when initialized from B_2 are found in `pert_replicate_2_internal_markers.txt`, the values of C for the system under perturbations when initialized from B_3 are found in `pert_replicate_3_internal_markers.txt` )
+NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B_1,B_2,B_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert_0, pert_3, pert_6, pert_7, pert_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B_1 (contained in the file `pert_replicate_1_internal_markers.txt`; the values of C for the system under perturbations when initialized from B_2 are found in `pert_replicate_2_internal_markers.txt`, the values of C for the system under perturbations when initialized from B_3 are found in `pert_replicate_3_internal_markers.txt` )
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 marker<-read.delim('results/pert_replicate_1_internal_markers.txt',sep=" ")

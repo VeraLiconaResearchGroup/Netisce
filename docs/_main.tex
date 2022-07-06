@@ -127,7 +127,7 @@
 
 \title{NETISCE Manual and Tutorials}
 \author{Lauren Marazzi}
-\date{2022-06-28}
+\date{2022-07-05}
 
 \begin{document}
 \maketitle
@@ -542,7 +542,7 @@ After estimating attractors for the experimental and randomly generated initial 
 \caption{elbow metric for optimal k}\label{fig:unnamed-chunk-11}
 \end{figure}
 
-The elbow metric found the optimal number of k clusters to be k=3.
+The elbow metric found the optimal number of k clusters to be k=5.
 
 \hypertarget{section-id}{%
 \subsubsection*{silhouette.png}\label{section-id}}
@@ -637,29 +637,37 @@ This file contains a list of IDs for the perturbations to FVS control nodes that
 \hline
 V1\\
 \hline
+pert\_0\\
+\hline
 pert\_3\\
 \hline
 pert\_6\\
+\hline
+pert\_7\\
 \hline
 pert\_8\\
 \hline
 \end{tabular}
 
-3 out of the 9 pertrubations passed the machine learning filtering criterion.
+5 out of the 9 perturbations passed the machine learning filtering criterion.
 
 \hypertarget{section-id}{%
 \subsubsection*{pert\_replicate\_1\_internal\_markers.txt}\label{section-id}}
 \addcontentsline{toc}{subsubsection}{pert\_replicate\_1\_internal\_markers.txt}
 
-NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B\_1,B\_2,B\_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert\_3,pert\_6, and pert\_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B\_1 (contained in the file \texttt{pert\_replicate\_1\_internal\_markers.txt}; the values of C for the system under perturbations when initialized from B\_2 are found in \texttt{pert\_replicate\_2\_internal\_markers.txt}, the values of C for the system under perturbations when initialized from B\_3 are found in \texttt{pert\_replicate\_3\_internal\_markers.txt} )
+NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B\_1,B\_2,B\_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert\_0, pert\_3, pert\_6, pert\_7, pert\_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B\_1 (contained in the file \texttt{pert\_replicate\_1\_internal\_markers.txt}; the values of C for the system under perturbations when initialized from B\_2 are found in \texttt{pert\_replicate\_2\_internal\_markers.txt}, the values of C for the system under perturbations when initialized from B\_3 are found in \texttt{pert\_replicate\_3\_internal\_markers.txt} )
 
 \begin{tabular}{l|r}
 \hline
 name & C\\
 \hline
+pert\_0 & -2.600000\\
+\hline
 pert\_3 & 2.657829\\
 \hline
 pert\_6 & 6.400000\\
+\hline
+pert\_7 & 6.400000\\
 \hline
 pert\_8 & 6.400000\\
 \hline
@@ -677,6 +685,8 @@ This file contains a table of the perturbations on FVS control nodes that passed
 \hline
 pert\_3 & nochange & down & 0 & 1 & 1\\
 \hline
+pert\_7 & up & nochange & 1 & 0 & 1\\
+\hline
 pert\_6 & up & down & 1 & 1 & 2\\
 \hline
 pert\_8 & up & up & 2 & 0 & 2\\
@@ -687,27 +697,29 @@ Here, we see that four perturbations that passed both filtering criteria.
 
 Let's take a quick look at the steady state values for these perturbations, and the attractors generated from the experimental data:
 
-\begin{tabular}{l|r}
+\begin{tabular}{l|l|r}
 \hline
-name & C\\
+  & name & C\\
 \hline
-A\_1 & 0.792000\\
+1 & A\_1 & 0.792000\\
 \hline
-A\_2 & 0.844000\\
+2 & A\_2 & 0.844000\\
 \hline
-A\_3 & 0.800000\\
+3 & A\_3 & 0.800000\\
 \hline
-B\_1 & 0.232000\\
+4 & B\_1 & 0.232000\\
 \hline
-B\_2 & 0.171000\\
+5 & B\_2 & 0.171000\\
 \hline
-B\_3 & 0.166000\\
+6 & B\_3 & 0.166000\\
 \hline
-pert\_3 & 2.657829\\
+21 & pert\_3 & 2.657829\\
 \hline
-pert\_6 & 6.400000\\
+31 & pert\_6 & 6.400000\\
 \hline
-pert\_8 & 6.400000\\
+41 & pert\_7 & 6.400000\\
+\hline
+51 & pert\_8 & 6.400000\\
 \hline
 \end{tabular}
 

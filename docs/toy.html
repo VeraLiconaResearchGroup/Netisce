@@ -24,7 +24,7 @@
 <meta name="author" content="Lauren Marazzi" />
 
 
-<meta name="date" content="2022-06-28" />
+<meta name="date" content="2022-07-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -464,7 +464,7 @@ Figure 4.4: experimental marker node steady state values
 Figure 4.5: elbow metric for optimal k
 </p>
 </div>
-<p>The elbow metric found the optimal number of k clusters to be k=3.</p>
+<p>The elbow metric found the optimal number of k clusters to be k=5.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>silhouette.png</h4>
@@ -584,21 +584,27 @@ Figure 4.6: silhouette metric for optimal k
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">pert_3</td>
+<td align="left">pert_0</td>
 </tr>
 <tr class="even">
+<td align="left">pert_3</td>
+</tr>
+<tr class="odd">
 <td align="left">pert_6</td>
+</tr>
+<tr class="even">
+<td align="left">pert_7</td>
 </tr>
 <tr class="odd">
 <td align="left">pert_8</td>
 </tr>
 </tbody>
 </table>
-<p>3 out of the 9 pertrubations passed the machine learning filtering criterion.</p>
+<p>5 out of the 9 perturbations passed the machine learning filtering criterion.</p>
 </div>
 <div id="section-id" class="section level4 unnumbered">
 <h4>pert_replicate_1_internal_markers.txt</h4>
-<p>NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B_1,B_2,B_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert_3,pert_6, and pert_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B_1 (contained in the file <code>pert_replicate_1_internal_markers.txt</code>; the values of C for the system under perturbations when initialized from B_2 are found in <code>pert_replicate_2_internal_markers.txt</code>, the values of C for the system under perturbations when initialized from B_3 are found in <code>pert_replicate_3_internal_markers.txt</code> )</p>
+<p>NETISCE calculated perturbations on FVS control nodes when the system was initialized from the three undesired B replicates (B_1,B_2,B_3). The steady state values of the internal marker node C was extracted from each of these replicate perturbations that passed filtering criterion 1 (i.e., the steady state value of C in pert_0, pert_3, pert_6, pert_7, pert_8). Here we will show the steady state values of C under FVS perturbations when the system was initialized with the normalized expression values of B_1 (contained in the file <code>pert_replicate_1_internal_markers.txt</code>; the values of C for the system under perturbations when initialized from B_2 are found in <code>pert_replicate_2_internal_markers.txt</code>, the values of C for the system under perturbations when initialized from B_3 are found in <code>pert_replicate_3_internal_markers.txt</code> )</p>
 <table>
 <thead>
 <tr class="header">
@@ -608,11 +614,19 @@ Figure 4.6: silhouette metric for optimal k
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">pert_0</td>
+<td align="right">-2.600000</td>
+</tr>
+<tr class="even">
 <td align="left">pert_3</td>
 <td align="right">2.657829</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">pert_6</td>
+<td align="right">6.400000</td>
+</tr>
+<tr class="even">
+<td align="left">pert_7</td>
 <td align="right">6.400000</td>
 </tr>
 <tr class="odd">
@@ -646,6 +660,14 @@ Figure 4.6: silhouette metric for optimal k
 <td align="right">1</td>
 </tr>
 <tr class="even">
+<td align="left">pert_7</td>
+<td align="left">up</td>
+<td align="left">nochange</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
 <td align="left">pert_6</td>
 <td align="left">up</td>
 <td align="left">down</td>
@@ -653,7 +675,7 @@ Figure 4.6: silhouette metric for optimal k
 <td align="right">1</td>
 <td align="right">2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">pert_8</td>
 <td align="left">up</td>
 <td align="left">up</td>
@@ -668,44 +690,59 @@ Figure 4.6: silhouette metric for optimal k
 <table>
 <thead>
 <tr class="header">
+<th align="left"></th>
 <th align="left">name</th>
 <th align="right">C</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1</td>
 <td align="left">A_1</td>
 <td align="right">0.792000</td>
 </tr>
 <tr class="even">
+<td align="left">2</td>
 <td align="left">A_2</td>
 <td align="right">0.844000</td>
 </tr>
 <tr class="odd">
+<td align="left">3</td>
 <td align="left">A_3</td>
 <td align="right">0.800000</td>
 </tr>
 <tr class="even">
+<td align="left">4</td>
 <td align="left">B_1</td>
 <td align="right">0.232000</td>
 </tr>
 <tr class="odd">
+<td align="left">5</td>
 <td align="left">B_2</td>
 <td align="right">0.171000</td>
 </tr>
 <tr class="even">
+<td align="left">6</td>
 <td align="left">B_3</td>
 <td align="right">0.166000</td>
 </tr>
 <tr class="odd">
+<td align="left">21</td>
 <td align="left">pert_3</td>
 <td align="right">2.657829</td>
 </tr>
 <tr class="even">
+<td align="left">31</td>
 <td align="left">pert_6</td>
 <td align="right">6.400000</td>
 </tr>
 <tr class="odd">
+<td align="left">41</td>
+<td align="left">pert_7</td>
+<td align="right">6.400000</td>
+</tr>
+<tr class="even">
+<td align="left">51</td>
 <td align="left">pert_8</td>
 <td align="right">6.400000</td>
 </tr>
